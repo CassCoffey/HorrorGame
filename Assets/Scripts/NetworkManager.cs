@@ -5,6 +5,8 @@ public class NetworkManager : MonoBehaviour {
 
     private const string typeName = "HorrorGameTest";
     private const string gameName = "TestRoom";
+    public GameObject playerPrefab;
+
     private HostData[] hostList;
 
 	// Use this for initialization
@@ -18,6 +20,7 @@ public class NetworkManager : MonoBehaviour {
 	void OnServerInitialized() 
     {
         Debug.Log("Server Initialized");
+        SpawnPlayer();
 	}
 
     private void RefreshHostList()
@@ -39,6 +42,12 @@ public class NetworkManager : MonoBehaviour {
     void OnConnectedToServer()
     {
         Debug.Log("Server Joined");
+        SpawnPlayer();
+    }
+
+    private void SpawnPlayer()
+    {
+        Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
     }
 
     void OnGUI()
