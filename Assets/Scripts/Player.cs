@@ -7,7 +7,25 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
-        InputMovement();
+        if (networkView.isMine)
+        {
+            InputMovement();
+        }
+    }
+
+    void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+    {
+        Vector3 syncPosition = Vector3.zero;
+        if (stream.isWriting)
+        {
+            syncPosition = rigidbody.position;
+            stream.Serialize(ref syncPosition);
+        }
+        else
+        {
+            stream.Serialize(ref syncPosition);
+            rigidbody.position = syncPosition;
+        }
     }
 
     void InputMovement()
