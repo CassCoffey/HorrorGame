@@ -184,7 +184,7 @@ MonoBehaviour:
   headBobSideMovement: .0500000007
   bobHeightSpeedMultiplier: .300000012
   bobStrideSpeedLengthen: .300000012
-  jumpLandMove: 3
+  jumpLandMove: 1.5
   jumpLandTilt: 60
   footstepSounds: []
   jumpSound: {fileID: 0}

@@ -47,7 +47,7 @@ public class NetworkManager : MonoBehaviour {
 
     private void SpawnPlayer()
     {
-        GameObject player = (GameObject)Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+        GameObject player = (GameObject)Network.Instantiate(playerPrefab, new Vector3(0f, 2f, 0f), Quaternion.identity, 0);
         Camera.main.transform.position = player.transform.FindChild("CameraLocation").position;
         Camera.main.transform.SetParent(player.transform);
         MouseLook lookScript = (MouseLook)Camera.main.GetComponent("MouseLook");
