@@ -34,11 +34,14 @@ public class Player : MonoBehaviour {
 
     void Awake()
     {
-        // Set up a reference to the capsule collider.
-        capsule = collider as CapsuleCollider;
-        grounded = true;
-        Screen.lockCursor = true;
-        rayHitComparer = new RayHitComparer();
+        if (networkView.isMine)
+        {
+            // Set up a reference to the capsule collider.
+            capsule = collider as CapsuleCollider;
+            grounded = true;
+            Screen.lockCursor = true;
+            rayHitComparer = new RayHitComparer();
+        }
     }
 
     void FixedUpdate()
@@ -184,15 +187,6 @@ public class Player : MonoBehaviour {
         rigidbody.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
     }
 
-    //used for comparing distances
-    class RayHitComparer : IComparer
-    {
-        public int Compare(object x, object y)
-        {
-            return ((RaycastHit)x).distance.CompareTo(((RaycastHit)y).distance);
-        }
-    }
-
     void OnNetworkInstantiate()
     {
         if (networkView.isMine)
@@ -206,6 +200,15 @@ public class Player : MonoBehaviour {
             Camera.main.GetComponent<Camera>().enabled = false;
             GetComponent<MouseLook>().enabled = false;
             GetComponent<FirstPersonHeadBob>().enabled = false;
+        }
+    }
+
+    //used for comparing distances
+    class RayHitComparer : IComparer
+    {
+        public int Compare(object x, object y)
+        {
+            return ((RaycastHit)x).distance.CompareTo(((RaycastHit)y).distance);
         }
     }
 }
