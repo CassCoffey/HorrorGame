@@ -51,6 +51,8 @@ public class NetworkManager : MonoBehaviour {
         Camera.main.transform.position = player.transform.FindChild("CameraLocation").position;
         Camera.main.transform.SetParent(player.transform);
         MouseLook lookScript = (MouseLook)Camera.main.GetComponent("MouseLook");
+        FirstPersonHeadBob headBob = (FirstPersonHeadBob)player.GetComponent("FirstPersonHeadBob");
+        headBob.head = Camera.main.transform;
         lookScript.enabled = true;
     }
 

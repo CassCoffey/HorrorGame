@@ -8,7 +8,7 @@ public class FirstPersonHeadBob : MonoBehaviour {
 	// (because the footsteps are tied to the head bob cycle)
 	// When jumping or landing, the head also moves and tilts based on some simple springy calculations.
 
-	[SerializeField] Transform head;							// the object to which the head-bob movement should be applied
+	public Transform head;							// the object to which the head-bob movement should be applied
 
 	// these modulate the head bob movement
 	[SerializeField] float headBobFrequency = 1.5f;				// the base speed of the head bobbing (in cycles per metre)
@@ -28,7 +28,7 @@ public class FirstPersonHeadBob : MonoBehaviour {
 	[SerializeField] AudioClip landSound;				// the sound played when character touches back on ground.
 
 	// private vars:
-	FirstPersonCharacter character;						// a reference to the First Person Character component (on the parent gameobject)
+	Player character;						// a reference to the First Person Character component (on the parent gameobject)
 	Vector3 originalLocalPos;							// the original local position of this gameobject at Start
 
 	float nextStepTime = 0.5f;									// the time at which the next footstep sound is due to occur
@@ -54,7 +54,7 @@ public class FirstPersonHeadBob : MonoBehaviour {
 	void Start () {
 
 		originalLocalPos = head.localPosition;
-		character = GetComponent<FirstPersonCharacter>();
+		character = GetComponent<Player>();
 		if (audio == null)
 		{
 			// we automatically add an audiosource, if one has not been manually added.
