@@ -46,7 +46,6 @@ public class Player : MonoBehaviour {
         if (networkView.isMine)
         {
             InputMovement();
-            InputColorChange();
         }
         else
         {
@@ -185,27 +184,28 @@ public class Player : MonoBehaviour {
         rigidbody.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
     }
 
-    private void InputColorChange()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-            ChangeColorTo(new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)));
-    }
-
-    [RPC]
-    void ChangeColorTo(Vector3 color)
-    {
-        renderer.material.color = new Color(color.x, color.y, color.z, 1f);
-
-        if (networkView.isMine)
-            networkView.RPC("ChangeColorTo", RPCMode.OthersBuffered, color);
-    }
-
     //used for comparing distances
     class RayHitComparer : IComparer
     {
         public int Compare(object x, object y)
         {
             return ((RaycastHit)x).distance.CompareTo(((RaycastHit)y).distance);
+        }
+    }
+
+    void OnNetworkInstantiate()
+    {
+        if (networkView.isMine)
+        {
+            Camera.main.GetComponent<Camera>().enabled = true;
+            GetComponent<MouseLook>().enabled = true;
+            GetComponent<FirstPersonHeadBob>().enabled = true;
+        }
+        else
+        {
+            Camera.main.GetComponent<Camera>().enabled = false;
+            GetComponent<MouseLook>().enabled = false;
+            GetComponent<FirstPersonHeadBob>().enabled = false;
         }
     }
 }

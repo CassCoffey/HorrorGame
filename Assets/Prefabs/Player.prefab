@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 114: {fileID: 11400002}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   - 148: {fileID: 14800000}
@@ -119,32 +118,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 8
   strafeSpeed: 4
-  jumpPower: 5
+  jumpPower: 10
   walkByDefault: 1
   walkSpeed: 3
   advanced:
     gravityMultiplier: 2
-    zeroFrictionMaterial: {fileID: 0}
-    highFrictionMaterial: {fileID: 0}
-    groundStickyEffect: 5
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db24dc40cce042d4caa4c9783a5612d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runSpeed: 8
-  strafeSpeed: 4
-  jumpPower: 5
-  walkByDefault: 1
-  walkSpeed: 3
-  advanced:
-    gravityMultiplier: 1
     zeroFrictionMaterial: {fileID: 0}
     highFrictionMaterial: {fileID: 0}
     groundStickyEffect: 5

@@ -269,6 +269,7 @@ GameObject:
   - 124: {fileID: 1172994589}
   - 81: {fileID: 1172994588}
   - 114: {fileID: 1172994593}
+  - 148: {fileID: 1172994595}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -359,6 +360,18 @@ MonoBehaviour:
   maximumX: 360
   minimumY: -90
   maximumY: 90
+--- !u!148 &1172994595
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1172994587}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 1172994592}
+  m_ViewID:
+    m_ID: 1
+    m_Type: 1
 --- !u!1 &2082305837
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +405,7 @@ Light:
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
-    m_Strength: 1
+    m_Strength: .400000006
     m_Bias: .349999994
     m_Softness: 8
     m_SoftnessFade: 1.89999998
