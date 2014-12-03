@@ -191,13 +191,13 @@ public class Player : MonoBehaviour {
     {
         if (networkView.isMine)
         {
-            Camera.main.GetComponent<Camera>().enabled = true;
+            GetComponent<Camera>().enabled = true;
             GetComponent<MouseLook>().enabled = true;
             GetComponent<FirstPersonHeadBob>().enabled = true;
         }
         else
         {
-            Camera.main.GetComponent<Camera>().enabled = false;
+            GetComponent<Camera>().enabled = false;
             GetComponent<MouseLook>().enabled = false;
             GetComponent<FirstPersonHeadBob>().enabled = false;
         }
