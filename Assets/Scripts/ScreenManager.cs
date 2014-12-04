@@ -31,10 +31,8 @@ public class ScreenManager : MonoBehaviour {
         if (move)
         {
             float time = curTime / totalTime;
-            Debug.Log("Current Time: " + time);
             if (time >= 1)
             {
-                Debug.Log("Done Moving.");
                 time = 1;
                 camera.transform.position = Vector3.Lerp(startLocation, locationTo, Mathf.SmoothStep(0, 1, time));
                 camera.transform.rotation = Quaternion.Lerp(startRotation, rotationTo, Mathf.SmoothStep(0, 1, time));
@@ -43,7 +41,6 @@ public class ScreenManager : MonoBehaviour {
             }
             else
             {
-                Debug.Log("Moving.");
                 camera.transform.position = Vector3.Lerp(startLocation, locationTo, Mathf.SmoothStep(0, 1, time));
                 camera.transform.rotation = Quaternion.Lerp(startRotation, rotationTo, Mathf.SmoothStep(0, 1, time));
                 curTime += Time.deltaTime;
