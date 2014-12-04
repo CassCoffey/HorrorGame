@@ -135,12 +135,14 @@
      <Compile Include="Assets\Sample Assets\Vehicles\Rolling Ball\Scripts\Ball.cs" />
      <Compile Include="Assets\Sample Assets\Vehicles\Rolling Ball\Scripts\BallUserControl.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\LobbyManager.cs" />
+     <Compile Include="Assets\Scripts\Menus\LobbyManager.cs" />
+     <Compile Include="Assets\Scripts\Menus\OptionsManager.cs" />
+     <Compile Include="Assets\Scripts\Menus\PlayerMenu.cs" />
+     <Compile Include="Assets\Scripts\Menus\QuitScript.cs" />
+     <Compile Include="Assets\Scripts\Menus\ScreenManager.cs" />
      <Compile Include="Assets\Scripts\NetworkCamera.cs" />
      <Compile Include="Assets\Scripts\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\QuitScript.cs" />
-     <Compile Include="Assets\Scripts\ScreenManager.cs" />
      <Compile Include="Assets\UnityChan\Scripts\CameraController.cs" />
      <Compile Include="Assets\UnityChan\Scripts\FaceUpdate.cs" />
      <Compile Include="Assets\UnityChan\Scripts\IdleChanger.cs" />

@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class Player : MonoBehaviour {
+
+    public Canvas Menu;
 
     [SerializeField]private float runSpeed = 8f;                                       // The speed at which we want the character to move
     [SerializeField]private float strafeSpeed = 4f;                                    // The speed at which we want the character to be able to strafe
@@ -108,6 +112,11 @@ public class Player : MonoBehaviour {
 
 
 #endif
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Menu.enabled = !Menu.enabled;
+        }
 
         input = new Vector2(h, v);
 
