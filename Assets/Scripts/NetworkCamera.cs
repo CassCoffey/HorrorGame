@@ -3,7 +3,7 @@ using System.Collections;
 
 public class NetworkCamera : MonoBehaviour {
 
-    void OnNetworkInstantiate()
+    void OnNetworkInstantiate(NetworkMessageInfo info)
     {
         if (networkView.isMine)
         {

@@ -187,19 +187,24 @@ public class Player : MonoBehaviour {
         rigidbody.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
     }
 
-    void OnNetworkInstantiate()
+    void OnNetworkInstantiate(NetworkMessageInfo info)
     {
         if (networkView.isMine)
         {
-            GetComponent<Camera>().enabled = true;
+            Debug.Log("Instantiating local player view.");
+            Camera.SetupCurrent(GetComponentInChildren<Camera>());
+            GetComponentInChildren<Camera>().enabled = true;
             GetComponent<MouseLook>().enabled = true;
-            GetComponent<FirstPersonHeadBob>().enabled = true;
+            GetComponentInChildren<MouseLook>().enabled = true;
+            GetComponentInChildren<Camera>().GetComponent<MouseLook>().enabled = true;
         }
         else
         {
-            GetComponent<Camera>().enabled = false;
+            Debug.Log("Instantiating remote player view.");
+            GetComponentInChildren<Camera>().enabled = false;
             GetComponent<MouseLook>().enabled = false;
-            GetComponent<FirstPersonHeadBob>().enabled = false;
+            GetComponentInChildren<MouseLook>().enabled = false;
+            GetComponentInChildren<Camera>().GetComponent<MouseLook>().enabled = false;
         }
     }
 

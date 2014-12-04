@@ -1,19 +1,33 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NetworkManager : MonoBehaviour {
 
     private const string typeName = "HorrorGameTest";
     private const string gameName = "TestRoom";
+    public string gameScene = "TestScene";
+    public GameObject dummy;
     public GameObject playerPrefab;
+    public Canvas canvas;
+    public Font font;
 
     private HostData[] hostList;
+    private List<GameObject> buttons = new List<GameObject>();
+
+    void Start()
+    {
+        DontDestroyOnLoad(this);
+    }
 
 	// Use this for initialization
-	private void StartServer() 
+	public void StartServer() 
     {
         Network.InitializeServer(4, 25000, !Network.HavePublicAddress());
         MasterServer.RegisterHost(typeName, gameName);
+        Application.LoadLevel(gameScene);
 	}
 	
 	// Update is called once per frame
@@ -23,57 +37,86 @@ public class NetworkManager : MonoBehaviour {
         SpawnPlayer();
 	}
 
-    private void RefreshHostList()
+    // Refreshes the list of hosts.
+    public void RefreshHostList()
     {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            Destroy(buttons[i]);
+        }
+        buttons.Clear();
         MasterServer.RequestHostList(typeName);
     }
 
+    // Called by the master server.
     void OnMasterServerEvent(MasterServerEvent msEvent)
     {
         if (msEvent == MasterServerEvent.HostListReceived)
-            hostList = MasterServer.PollHostList();
-    }
-
-    private void JoinServer(HostData hostData)
-    {
-        Network.Connect(hostData);
-    }
-
-    void OnConnectedToServer()
-    {
-        Debug.Log("Server Joined");
-        SpawnPlayer();
-    }
-
-    private void SpawnPlayer()
-    {
-        GameObject player = (GameObject)Network.Instantiate(playerPrefab, new Vector3(0f, 2f, 0f), Quaternion.identity, 0);
-        Camera.main.enabled = false;
-        MouseLook lookScript = player.GetComponentInChildren<Camera>().GetComponent<MouseLook>();
-        FirstPersonHeadBob headBob = player.GetComponent< FirstPersonHeadBob>();
-        headBob.head = player.GetComponentInChildren<Camera>().transform;
-        lookScript.enabled = true;
-    }
-
-    void OnGUI()
-    {
-        if (!Network.isClient && !Network.isServer)
         {
-            if (GUI.Button(new Rect(100, 100, 250, 100), "Start Server"))
-            {
-                StartServer();
-            }
-            if (GUI.Button(new Rect(100, 250, 250, 100), "Refresh Hosts"))
-                RefreshHostList();
-
+            hostList = MasterServer.PollHostList();
             if (hostList != null)
             {
                 for (int i = 0; i < hostList.Length; i++)
                 {
-                    if (GUI.Button(new Rect(400, 100 + (110 * i), 300, 100), hostList[i].gameName))
-                        JoinServer(hostList[i]);
+                    GameObject button = (GameObject)Instantiate(dummy);
+                    button.transform.SetParent(canvas.transform, false);
+                    UnityEngine.UI.Button buttonScript = button.GetComponent<UnityEngine.UI.Button>();
+                    button.GetComponentInChildren<Text>().font = font;
+                    button.GetComponentInChildren<Text>().text = hostList[i].gameName;
+                    button.GetComponent<RectTransform>().anchoredPosition.Set(10, 10);
+                    HostData data = hostList[i];
+                    AddListener(buttonScript, data);
+                    buttons.Add(button);
                 }
             }
         }
+    }
+
+    public void AddListener(UnityEngine.UI.Button button, HostData data)
+    {
+        button.onClick.AddListener(() => JoinServer(data));
+    }
+
+    // Joins the specified host.
+    public void JoinServer(HostData hostData)
+    {
+        Debug.Log("Attempting to join server.");
+        Network.Connect(hostData);
+    }
+
+    // On connecting to a server, spawn a player.
+    void OnConnectedToServer()
+    {
+        Debug.Log("Server Joined");
+        Application.LoadLevel(gameScene);
+        SpawnPlayer();
+    }
+
+    // Called when disconnected from a server. Will perform cleanup tasks.
+    void OnDisconnectedFromServer(NetworkDisconnection info)
+    {
+        if (Network.isServer)
+        {
+            Debug.Log("Successfully shut down server.");
+        }
+        else
+        {
+            if (info == NetworkDisconnection.Disconnected)
+            {
+                Debug.Log("Successfully terminated connection to server.");
+            }
+            else
+            {
+                Debug.Log("Lost connection to host.");
+            }
+        }
+        Application.LoadLevel("MainMenu");
+    }
+
+    // Create a player object.
+    private void SpawnPlayer()
+    {
+        Debug.Log("Spawning Player");
+        GameObject player = (GameObject)Network.Instantiate(playerPrefab, new Vector3(0f, 2f, 0f), Quaternion.identity, 0);
     }
 }
