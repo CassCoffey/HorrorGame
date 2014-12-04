@@ -27,14 +27,19 @@ public class NetworkManager : MonoBehaviour {
     {
         Network.InitializeServer(4, 25000, !Network.HavePublicAddress());
         MasterServer.RegisterHost(typeName, gameName);
-        Application.LoadLevel(gameScene);
+        
+	}
+	//Loads the level to start the game
+	public void LoadLevel()
+	{
+		Application.LoadLevel(gameScene);
+		SpawnPlayer();
 	}
 	
 	// Update is called once per frame
 	void OnServerInitialized() 
     {
         Debug.Log("Server Initialized");
-        SpawnPlayer();
 	}
 
     // Refreshes the list of hosts.
