@@ -7,8 +7,10 @@ using System.Collections.Generic;
 public class NetworkManager : MonoBehaviour {
 
     private const string typeName = "HorrorGameTest";
-    private const string gameName = "TestRoom";
     public string gameScene = "TestScene";
+    public string gameName = "ServerName";
+    public int maxPlayers = 4;
+    public int port = 25000;
     public GameObject dummy;
     public Canvas canvas;
     public Font font;
@@ -28,9 +30,25 @@ public class NetworkManager : MonoBehaviour {
 	// Use this for initialization
 	public void StartServer() 
     {
-        Network.InitializeServer(4, 25000, !Network.HavePublicAddress());
+        Network.InitializeServer(maxPlayers, port, !Network.HavePublicAddress());
         MasterServer.RegisterHost(typeName, gameName);
 	}
+
+    public void SetOption(InputField field)
+    {
+        switch(field.name)
+        {
+            case "NameInputField":
+                gameName = field.text;
+                break;
+            case "PortInputField":
+                port = int.Parse(field.text);
+                break;
+            case "PlayerInputField":
+                maxPlayers = int.Parse(field.text) - 1;
+                break;
+        }
+    }
 	
 	// Update is called once per frame
 	void OnServerInitialized() 
@@ -75,19 +93,35 @@ public class NetworkManager : MonoBehaviour {
 
     public void AddListener(UnityEngine.UI.Button button, HostData data)
     {
-        button.onClick.AddListener(() => setHost(data));
+        button.onClick.AddListener(() => setHost(data, button));
     }
 
-    public void setHost(HostData data)
+    public void setHost(HostData data, UnityEngine.UI.Button button)
     {
-        host = data;
+        if (host == data)
+        {
+            host = null;
+            button.image.color = Color.white;
+        }
+        else
+        {
+            host = data;
+            button.image.color = Color.grey;
+        }
     }
 
     // Joins the specified host.
     public void JoinServer()
     {
-        Debug.Log("Attempting to join server.");
-        Network.Connect(host);
+        if (host != null)
+        {
+            Debug.Log("Attempting to join server.");
+            Network.Connect(host);
+        }
+        else
+        {
+            Debug.Log("No host selected.");
+        }
     }
 
     public void ShutdownServer()
@@ -96,7 +130,7 @@ public class NetworkManager : MonoBehaviour {
         MasterServer.UnregisterHost();
     }
 
-    // On connecting to a server, spawn a player.
+    // On connecting to a server
     void OnConnectedToServer()
     {
         Debug.Log("Server Joined");

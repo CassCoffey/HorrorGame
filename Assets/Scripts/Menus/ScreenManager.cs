@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class ScreenManager : MonoBehaviour {
@@ -10,6 +12,8 @@ public class ScreenManager : MonoBehaviour {
     Quaternion startRotation;
     Vector3 startLocation;
     private Canvas previousCanvas;
+    private Canvas nextCanvas;
+    private int previousRenderQueue = 0;
     bool move = false;
     float curTime = 0;
 
@@ -20,13 +24,17 @@ public class ScreenManager : MonoBehaviour {
             canvas.enabled = false;
         }
         camera.transform.parent.GetComponentInChildren<Canvas>().enabled = true;
+        camera.transform.parent.GetComponentInChildren<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
+        camera.transform.parent.GetComponentInChildren<Canvas>().planeDistance = 6;
     }
 
 	public void MoveCameraTo(GameObject Location)
     {
         // Enable the next canvas, and turn off the current one.
         previousCanvas = camera.transform.parent.GetComponentInChildren<Canvas>();
-        Location.transform.GetComponentInChildren<Canvas>().enabled = true;
+        previousCanvas.renderMode = RenderMode.WorldSpace;
+        nextCanvas = Location.transform.GetComponentInChildren<Canvas>();
+        nextCanvas.enabled = true;
         camera.transform.SetParent(Location.transform);
 
         locationTo = Location.transform.position;
@@ -34,6 +42,21 @@ public class ScreenManager : MonoBehaviour {
         startLocation = camera.transform.position;
         startRotation = camera.transform.rotation;
         move = true;
+    }
+
+    public void SetPanel(GameObject panel, bool isOpen)
+    {
+        panel.GetComponent<Animator>().SetBool("Open", isOpen);
+        panel.GetComponentInChildren<UnityEngine.UI.Button>().enabled = isOpen;
+    }
+    public void TogglePanel(GameObject panel)
+    {
+        SetPanel(panel, !panel.GetComponent<Animator>().GetBool("Open"));
+    }
+
+    public void ClosePanel(GameObject panel)
+    {
+        SetPanel(panel, false);
     }
 
     void Update()
@@ -49,6 +72,8 @@ public class ScreenManager : MonoBehaviour {
                 camera.transform.rotation = Quaternion.Lerp(startRotation, rotationTo, Mathf.SmoothStep(0, 1, time));
                 curTime = 0;
                 move = false;
+                nextCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+                nextCanvas.planeDistance = 6;
             }
             else
             {
