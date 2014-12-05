@@ -93,4 +93,11 @@ public class OptionsManager : MonoBehaviour {
             Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         });
     }
+
+    // Audio Options
+
+    public void ChangeMasterVolume(float value)
+    {
+        AudioListener.volume = value;
+    }
 }
