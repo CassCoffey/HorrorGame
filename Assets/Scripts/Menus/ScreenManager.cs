@@ -47,7 +47,10 @@ public class ScreenManager : MonoBehaviour {
     public void SetPanel(GameObject panel, bool isOpen)
     {
         panel.GetComponent<Animator>().SetBool("Open", isOpen);
-        panel.GetComponentInChildren<UnityEngine.UI.Button>().enabled = isOpen;
+        foreach (UnityEngine.UI.Button button in panel.GetComponentsInChildren<UnityEngine.UI.Button>())
+        {
+            button.enabled = isOpen;
+        }
     }
     public void TogglePanel(GameObject panel)
     {
