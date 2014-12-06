@@ -26,11 +26,19 @@ public class ScreenManager : MonoBehaviour {
         camera.transform.parent.GetComponentInChildren<Canvas>().enabled = true;
         camera.transform.parent.GetComponentInChildren<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
         camera.transform.parent.GetComponentInChildren<Canvas>().planeDistance = 6;
+        if (camera.transform.parent.GetComponent<Animator>() != null)
+        {
+            camera.transform.parent.GetComponent<Animator>().enabled = true;
+        }
     }
 
 	public void MoveCameraTo(GameObject Location)
     {
         // Enable the next canvas, and turn off the current one.
+        if (camera.transform.parent.GetComponent<Animator>() != null)
+        {
+            camera.transform.parent.GetComponent<Animator>().enabled = false;
+        }
         previousCanvas = camera.transform.parent.GetComponentInChildren<Canvas>();
         previousCanvas.renderMode = RenderMode.WorldSpace;
         nextCanvas = Location.transform.GetComponentInChildren<Canvas>();
@@ -77,6 +85,10 @@ public class ScreenManager : MonoBehaviour {
                 move = false;
                 nextCanvas.renderMode = RenderMode.ScreenSpaceCamera;
                 nextCanvas.planeDistance = 6;
+                if (camera.transform.parent.GetComponent<Animator>() != null)
+                {
+                    camera.transform.parent.GetComponent<Animator>().enabled = true;
+                }
             }
             else
             {
