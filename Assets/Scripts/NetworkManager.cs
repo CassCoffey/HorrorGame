@@ -54,7 +54,7 @@ public class NetworkManager : MonoBehaviour {
             case "PlayerInputField":
                 maxPlayers = int.Parse(field.text) - 1;
                 break;
-            case "PasswordInputFields":
+            case "PasswordInputField":
                 password = field.text;
                 break;
         }

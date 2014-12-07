@@ -125,8 +125,15 @@ public class ServerListManager : MonoBehaviour {
 
     public void JoinPasswordedServer()
     {
-        Network.Connect(host, password);
-        screenManager.GetComponent<ScreenManager>().MoveCameraTo(lobby);
+        if (Network.Connect(host, password) == NetworkConnectionError.InvalidPassword)
+        {
+            Debug.Log("Invalid Password");
+        }
+        else
+        {
+            passwordPanel.SetActive(false);
+            screenManager.GetComponent<ScreenManager>().MoveCameraTo(lobby);
+        }
     }
 
     public void setHost(HostData data, UnityEngine.UI.Button button)
