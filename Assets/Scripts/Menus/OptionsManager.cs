@@ -60,7 +60,6 @@ public class OptionsManager : MonoBehaviour {
         resolutionPanel.transform.parent.GetComponent<Animator>().SetBool("Open", true);
         if (resolutions != null)
         {
-            Debug.Log("The Font is Dynamic: " + font.dynamic);
             float panelHeight = buttonPrefab.GetComponent<RectTransform>().rect.height * resolutions.Length;
             float currentHeight = resolutionPanel.transform.parent.GetComponent<RectTransform>().rect.height;
             resolutionPanel.GetComponentInParent<ScrollRect>().enabled = (panelHeight > currentHeight);

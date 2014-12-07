@@ -18,6 +18,7 @@ public class ServerListManager : MonoBehaviour {
     private HostData host;
     private UnityEngine.UI.Button selectedButton;
     private Dictionary<Text, Ping> serverPings = new Dictionary<Text,Ping>();
+    private float pingUpdateTime = 0;
 
     // Refreshes the list of hosts.
     public void RefreshHostList()
@@ -38,6 +39,7 @@ public class ServerListManager : MonoBehaviour {
 
     public string CheckPing(Text text)
     {
+        Debug.Log("Checking Ping.");
         Ping ping = serverPings[text];
         if (serverPings[text].isDone)
         {
@@ -59,9 +61,6 @@ public class ServerListManager : MonoBehaviour {
             {
                 float panelHeight = serverPrefab.GetComponent<RectTransform>().rect.height * hostList.Length;
                 float currentHeight = serverListPanel.transform.parent.GetComponent<RectTransform>().rect.height;
-                Debug.Log("ServerPrefabHeight: " + serverPrefab.GetComponent<RectTransform>().rect.height);
-                Debug.Log("panelHeight: " + panelHeight);
-                Debug.Log("currentHeight: " + currentHeight);
                 serverListPanel.GetComponentInParent<ScrollRect>().enabled = (panelHeight > currentHeight);
                 serverListPanel.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
                 serverListPanel.GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
@@ -138,12 +137,14 @@ public class ServerListManager : MonoBehaviour {
 
     void Update()
     {
-        if (Time.deltaTime > 1f)
+        if (servers.Count > 0 && pingUpdateTime > 1f)
         {
             foreach (GameObject server in servers)
             {
                 server.transform.FindChild("PingText").GetComponent<Text>().text = CheckPing(server.transform.FindChild("PingText").GetComponent<Text>());
             }
+            pingUpdateTime = 0;
         }
+        pingUpdateTime += Time.deltaTime;
     }
 }
