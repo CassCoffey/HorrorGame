@@ -12,6 +12,7 @@ public class ServerListManager : MonoBehaviour {
     public GameObject lobby;
     public GameObject screenManager;
     public float pingUpdate;
+    public GameObject passwordPanel;
 
     private HostData[] hostList;
     private List<GameObject> servers = new List<GameObject>();
@@ -19,6 +20,7 @@ public class ServerListManager : MonoBehaviour {
     private UnityEngine.UI.Button selectedButton;
     private Dictionary<Text, Ping> serverPings = new Dictionary<Text,Ping>();
     private float pingUpdateTime = 0;
+    private string password = "";
 
     // Refreshes the list of hosts.
     public void RefreshHostList()
@@ -105,13 +107,26 @@ public class ServerListManager : MonoBehaviour {
         if (host != null)
         {
             Debug.Log("Attempting to join server.");
-            Network.Connect(host);
-            screenManager.GetComponent<ScreenManager>().MoveCameraTo(lobby);
+            if (host.passwordProtected)
+            {
+                passwordPanel.SetActive(true);
+            }
+            else
+            {
+                Network.Connect(host);
+                screenManager.GetComponent<ScreenManager>().MoveCameraTo(lobby);
+            }
         }
         else
         {
             Debug.Log("No host selected.");
         }
+    }
+
+    public void JoinPasswordedServer()
+    {
+        Network.Connect(host, password);
+        screenManager.GetComponent<ScreenManager>().MoveCameraTo(lobby);
     }
 
     public void setHost(HostData data, UnityEngine.UI.Button button)
@@ -133,6 +148,11 @@ public class ServerListManager : MonoBehaviour {
             host = data;
             button.image.color = new UnityEngine.Color(newColor.r - 0.1f, newColor.g - 0.1f, newColor.b - 0.1f);
         }
+    }
+
+    public void setPassword(string newPassword)
+    {
+        password = newPassword;
     }
 
     void Update()
