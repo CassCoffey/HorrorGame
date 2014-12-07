@@ -8,7 +8,7 @@ public class OptionsManager : MonoBehaviour {
 
     public GameObject currentPanel;
     public UnityEngine.UI.Button currentButton;
-    public GameObject dummyButton;
+    public GameObject buttonPrefab;
     public GameObject resolutionPanel;
     public Font font;
     public ScreenManager manager;
@@ -57,33 +57,32 @@ public class OptionsManager : MonoBehaviour {
     private void CreateResolutionList()
     {
         Resolution[] resolutions = Screen.resolutions;
-        resolutionPanel.GetComponent<Animator>().SetBool("Open", true);
+        resolutionPanel.transform.parent.GetComponent<Animator>().SetBool("Open", true);
         if (resolutions != null)
         {
+            Debug.Log("The Font is Dynamic: " + font.dynamic);
+            float panelHeight = buttonPrefab.GetComponent<RectTransform>().rect.height * resolutions.Length;
+            float currentHeight = resolutionPanel.transform.parent.GetComponent<RectTransform>().rect.height;
+            resolutionPanel.GetComponentInParent<ScrollRect>().enabled = (panelHeight > currentHeight);
+            resolutionPanel.transform.parent.GetComponentInChildren<Scrollbar>().enabled = (panelHeight > currentHeight);
+            resolutionPanel.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+            resolutionPanel.GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
             for (int i = 0; i < resolutions.Length; i++)
             {
-                GameObject button = (GameObject)Instantiate(dummyButton);
+                GameObject button = (GameObject)Instantiate(buttonPrefab);
                 button.transform.SetParent(resolutionPanel.transform, false);
                 UnityEngine.UI.Button buttonScript = button.GetComponent<UnityEngine.UI.Button>();
                 AddListener(buttonScript, resolutions[i]);
                 button.GetComponentInChildren<Text>().font = font;
                 button.GetComponentInChildren<Text>().text = (resolutions[i].width + "x" + resolutions[i].height);
-                button.GetComponent<RectTransform>().anchorMax = new Vector2(0.8728045f, 1 - (float)(0.155f * i));
-                button.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0.845f - (float)(0.155f * i));
+                button.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)resolutions.Length) * i));
+                button.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)resolutions.Length)) - ((1.0f / (float)resolutions.Length) * i));
                 button.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
                 button.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
                 resolutionButtons.Add(button);
             }
         }
-        resolutionPanel.transform.FindChild("ResolutionScroll").GetComponent<RectTransform>().anchorMax = new Vector2(0.8728045f, 1);
-        resolutionPanel.transform.FindChild("ResolutionScroll").GetComponent<RectTransform>().anchorMin = new Vector2(0, 0.845f - (float)(0.155f * resolutionButtons.Count));
-        resolutionPanel.transform.FindChild("ResolutionScroll").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
-        resolutionPanel.transform.FindChild("ResolutionScroll").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
-        foreach (GameObject button in resolutionButtons)
-        {
-            button.transform.SetParent(resolutionPanel.transform.FindChild("ResolutionScroll"), true);
-        }
-        manager.ClosePanel(resolutionPanel);
+        manager.ClosePanel(resolutionPanel.transform.parent.gameObject);
     }
 
     private void AddListener(UnityEngine.UI.Button button, Resolution resolution)

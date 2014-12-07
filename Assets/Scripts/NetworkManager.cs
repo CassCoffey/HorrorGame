@@ -6,19 +6,24 @@ using System.Collections.Generic;
 
 public class NetworkManager : MonoBehaviour {
 
-    private const string typeName = "HorrorGameTest";
+    private static string typeName = "HorrorGameTest";
+    public static string TypeName 
+    {
+        get
+        {
+            return typeName;
+        }
+        private set
+        {
+            typeName = value;
+        }
+    }
     public string gameScene = "TestScene";
     public string gameName = "ServerName";
     public int maxPlayers = 4;
     public int port = 25000;
-    public GameObject dummy;
-    public Canvas canvas;
-    public Font font;
 
-    private HostData[] hostList;
-    private List<GameObject> buttons = new List<GameObject>();
     private int lastLevelPrefix = 0;
-    private HostData host;
 
     void Awake()
     {
@@ -55,74 +60,6 @@ public class NetworkManager : MonoBehaviour {
     {
         Debug.Log("Server Initialized");
 	}
-
-    // Refreshes the list of hosts.
-    public void RefreshHostList()
-    {
-        for (int i = 0; i < buttons.Count; i++)
-        {
-            Destroy(buttons[i]);
-        }
-        buttons.Clear();
-        MasterServer.RequestHostList(typeName);
-    }
-
-    // Called by the master server.
-    void OnMasterServerEvent(MasterServerEvent msEvent)
-    {
-        if (msEvent == MasterServerEvent.HostListReceived)
-        {
-            hostList = MasterServer.PollHostList();
-            if (hostList != null)
-            {
-                for (int i = 0; i < hostList.Length; i++)
-                {
-                    GameObject button = (GameObject)Instantiate(dummy);
-                    button.transform.SetParent(canvas.transform, false);
-                    UnityEngine.UI.Button buttonScript = button.GetComponent<UnityEngine.UI.Button>();
-                    button.GetComponentInChildren<Text>().font = font;
-                    button.GetComponentInChildren<Text>().text = hostList[i].gameName;
-                    button.GetComponent<RectTransform>().anchoredPosition.Set(10, 10);
-                    HostData data = hostList[i];
-                    AddListener(buttonScript, data);
-                    buttons.Add(button);
-                }
-            }
-        }
-    }
-
-    public void AddListener(UnityEngine.UI.Button button, HostData data)
-    {
-        button.onClick.AddListener(() => setHost(data, button));
-    }
-
-    public void setHost(HostData data, UnityEngine.UI.Button button)
-    {
-        if (host == data)
-        {
-            host = null;
-            button.image.color = Color.white;
-        }
-        else
-        {
-            host = data;
-            button.image.color = Color.grey;
-        }
-    }
-
-    // Joins the specified host.
-    public void JoinServer()
-    {
-        if (host != null)
-        {
-            Debug.Log("Attempting to join server.");
-            Network.Connect(host);
-        }
-        else
-        {
-            Debug.Log("No host selected.");
-        }
-    }
 
     public void ShutdownServer()
     {
