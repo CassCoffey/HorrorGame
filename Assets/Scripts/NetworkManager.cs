@@ -20,6 +20,7 @@ public class NetworkManager : MonoBehaviour {
     }
     public string gameScene = "TestScene";
     public string gameName = "ServerName";
+    public string password = "";
     public int maxPlayers = 4;
     public int port = 25000;
 
@@ -35,6 +36,7 @@ public class NetworkManager : MonoBehaviour {
 	// Use this for initialization
 	public void StartServer() 
     {
+        Network.incomingPassword = password;
         Network.InitializeServer(maxPlayers, port, !Network.HavePublicAddress());
         MasterServer.RegisterHost(typeName, gameName);
 	}
@@ -51,6 +53,9 @@ public class NetworkManager : MonoBehaviour {
                 break;
             case "PlayerInputField":
                 maxPlayers = int.Parse(field.text) - 1;
+                break;
+            case "PasswordInputFields":
+                password = field.text;
                 break;
         }
     }

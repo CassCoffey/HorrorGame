@@ -9,11 +9,15 @@ public class ServerListManager : MonoBehaviour {
     public GameObject serverPrefab;
     public GameObject serverListPanel;
     public Font font;
+    public GameObject lobby;
+    public GameObject screenManager;
+    public float pingUpdate;
 
     private HostData[] hostList;
     private List<GameObject> servers = new List<GameObject>();
     private HostData host;
     private UnityEngine.UI.Button selectedButton;
+    private Dictionary<Text, Ping> serverPings = new Dictionary<Text,Ping>();
 
     // Refreshes the list of hosts.
     public void RefreshHostList()
@@ -32,6 +36,19 @@ public class ServerListManager : MonoBehaviour {
         button.onClick.AddListener(() => setHost(data, button));
     }
 
+    public string CheckPing(Text text)
+    {
+        Ping ping = serverPings[text];
+        if (serverPings[text].isDone)
+        {
+            return ping.time.ToString();
+        }
+        else
+        {
+            return "???";
+        }
+    }
+
     // Called by the master server.
     void OnMasterServerEvent(MasterServerEvent msEvent)
     {
@@ -42,6 +59,9 @@ public class ServerListManager : MonoBehaviour {
             {
                 float panelHeight = serverPrefab.GetComponent<RectTransform>().rect.height * hostList.Length;
                 float currentHeight = serverListPanel.transform.parent.GetComponent<RectTransform>().rect.height;
+                Debug.Log("ServerPrefabHeight: " + serverPrefab.GetComponent<RectTransform>().rect.height);
+                Debug.Log("panelHeight: " + panelHeight);
+                Debug.Log("currentHeight: " + currentHeight);
                 serverListPanel.GetComponentInParent<ScrollRect>().enabled = (panelHeight > currentHeight);
                 serverListPanel.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
                 serverListPanel.GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
@@ -50,8 +70,16 @@ public class ServerListManager : MonoBehaviour {
                     GameObject button = (GameObject)Instantiate(serverPrefab);
                     button.transform.SetParent(serverListPanel.transform, false);
                     UnityEngine.UI.Button buttonScript = button.GetComponent<UnityEngine.UI.Button>();
-                    button.GetComponentInChildren<Text>().font = font;
-                    button.GetComponentInChildren<Text>().text = hostList[i].gameName;
+                    foreach (Text text in button.GetComponentsInChildren<Text>())
+                    {
+                        text.font = font;
+                    }
+                    button.transform.FindChild("NameText").GetComponent<Text>().text = hostList[i].gameName;
+                    button.transform.FindChild("PlayersText").GetComponent<Text>().text = hostList[i].connectedPlayers + "/" + hostList[i].playerLimit;
+                    button.transform.FindChild("PasswordText").GetComponent<Text>().text = hostList[i].passwordProtected.ToString();
+                    Ping serverPing = new Ping(hostList[i].ip[0]);
+                    serverPings.Add(button.transform.FindChild("PingText").GetComponent<Text>(), serverPing);
+                    button.transform.FindChild("PingText").GetComponent<Text>().text = "???";
                     button.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f/(float)hostList.Length) * i));
                     button.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)hostList.Length)) - ((1.0f / (float)hostList.Length) * i));
                     button.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
@@ -79,6 +107,7 @@ public class ServerListManager : MonoBehaviour {
         {
             Debug.Log("Attempting to join server.");
             Network.Connect(host);
+            screenManager.GetComponent<ScreenManager>().MoveCameraTo(lobby);
         }
         else
         {
@@ -104,6 +133,17 @@ public class ServerListManager : MonoBehaviour {
         {
             host = data;
             button.image.color = new UnityEngine.Color(newColor.r - 0.1f, newColor.g - 0.1f, newColor.b - 0.1f);
+        }
+    }
+
+    void Update()
+    {
+        if (Time.deltaTime > 1f)
+        {
+            foreach (GameObject server in servers)
+            {
+                server.transform.FindChild("PingText").GetComponent<Text>().text = CheckPing(server.transform.FindChild("PingText").GetComponent<Text>());
+            }
         }
     }
 }
