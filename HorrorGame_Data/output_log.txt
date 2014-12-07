@@ -1,7 +1,7 @@
 Initialize engine version: 4.6.0f3 (30840d631a27)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4411]
+    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4475]
     Renderer: NVIDIA GeForce GTX 675M
     Vendor:   NVIDIA
     VRAM:     3072 MB (via DXGI)
@@ -19,39 +19,20 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.045 seconds
-desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
-Initialize engine version: 4.6.0f3 (30840d631a27)
-GfxDevice: creating device client; threaded=1
-<RI> Initializing input.
-<RI> Input initialized.
-Direct3D:
-    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4411]
-    Renderer: NVIDIA GeForce GTX 675M
-    Vendor:   NVIDIA
-    VRAM:     3072 MB (via DXGI)
-    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
-Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.046 seconds
+- Completed reload, in  0.100 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
+The Font is Dynamic: True
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
 Initialize engine version: 4.6.0f3 (30840d631a27)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4411]
+    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4475]
     Renderer: NVIDIA GeForce GTX 675M
     Vendor:   NVIDIA
     VRAM:     3072 MB (via DXGI)
@@ -69,14 +50,14 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.042 seconds
+- Completed reload, in  0.056 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Initialize engine version: 4.6.0f3 (30840d631a27)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4411]
+    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4475]
     Renderer: NVIDIA GeForce GTX 675M
     Vendor:   NVIDIA
     VRAM:     3072 MB (via DXGI)
@@ -94,162 +75,46 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.045 seconds
+- Completed reload, in  0.080 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
-FormatException: Input string was not in the correct format
-  at System.Int32.Parse (System.String s) [0x00000] in <filename unknown>:0 
-  at NetworkManager.SetOption (UnityEngine.UI.InputField field) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.InvokableCall`1[UnityEngine.UI.InputField].Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.CachedInvokableCall`1[UnityEngine.UI.InputField].Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.UnityEvent`1[T0].Invoke (.T0 arg0) [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.InputField.SendOnSubmit () [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.InputField.DeactivateInputField () [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.InputField.OnDeselect (UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
-  at UnityEngine.EventSystems.ExecuteEvents.Execute (IDeselectHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
-  at UnityEngine.EventSystems.ExecuteEvents.Execute[IDeselectHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
-UnityEngine.Debug:Internal_LogException(Exception, Object)
-UnityEngine.Debug:LogException(Exception)
-UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
-UnityEngine.EventSystems.EventSystem:SetSelectedGameObject(GameObject, BaseEventData)
-UnityEngine.EventSystems.PointerInputModule:DeselectIfSelectionChanged(GameObject, BaseEventData)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent()
-UnityEngine.EventSystems.StandaloneInputModule:Process()
-UnityEngine.EventSystems.EventSystem:Update()
+The Font is Dynamic: True
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.RectTransform:INTERNAL_set_anchorMin (UnityEngine.Vector2&)
+  at UnityEngine.RectTransform.set_anchorMin (Vector2 value) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Scrollbar.UpdateVisuals () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Scrollbar.OnRectTransformDimensionsChange () [0x00000] in <filename unknown>:0 
+UnityEngine.Canvas:set_scaleFactor(Single)
+UnityEngine.UI.CanvasScaler:SetScaleFactor(Single)
+UnityEngine.UI.CanvasScaler:OnDisable()
  
 (Filename:  Line: -1)
 
-Server Initialized
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Server Initialized
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Server Initialized
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Server Initialized
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Initialize engine version: 4.6.0f3 (30840d631a27)
-GfxDevice: creating device client; threaded=1
-Direct3D:
-    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4411]
-    Renderer: NVIDIA GeForce GTX 675M
-    Vendor:   NVIDIA
-    VRAM:     3072 MB (via DXGI)
-    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
-Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.129 seconds
-desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
-<RI> Initializing input.
-<RI> Input initialized.
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
-Initialize engine version: 4.6.0f3 (30840d631a27)
-GfxDevice: creating device client; threaded=1
-Direct3D:
-    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4411]
-    Renderer: NVIDIA GeForce GTX 675M
-    Vendor:   NVIDIA
-    VRAM:     3072 MB (via DXGI)
-    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
-Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.101 seconds
-desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
-<RI> Initializing input.
-<RI> Input initialized.
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
-Server Initialized
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-FormatException: Input string was not in the correct format
-  at System.Int32.Parse (System.String s) [0x00000] in <filename unknown>:0 
-  at NetworkManager.SetOption (UnityEngine.UI.InputField field) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.InvokableCall`1[UnityEngine.UI.InputField].Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.CachedInvokableCall`1[UnityEngine.UI.InputField].Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Events.UnityEvent`1[T0].Invoke (.T0 arg0) [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.InputField.SendOnSubmit () [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.InputField.DeactivateInputField () [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.InputField.OnDeselect (UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
-  at UnityEngine.EventSystems.ExecuteEvents.Execute (IDeselectHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
-  at UnityEngine.EventSystems.ExecuteEvents.Execute[IDeselectHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
-UnityEngine.Debug:Internal_LogException(Exception, Object)
-UnityEngine.Debug:LogException(Exception)
-UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
-UnityEngine.EventSystems.EventSystem:SetSelectedGameObject(GameObject, BaseEventData)
-UnityEngine.EventSystems.PointerInputModule:DeselectIfSelectionChanged(GameObject, BaseEventData)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent()
-UnityEngine.EventSystems.StandaloneInputModule:Process()
-UnityEngine.EventSystems.EventSystem:Update()
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.RectTransform:INTERNAL_set_anchorMin (UnityEngine.Vector2&)
+  at UnityEngine.RectTransform.set_anchorMin (Vector2 value) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Scrollbar.UpdateVisuals () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Scrollbar.OnRectTransformDimensionsChange () [0x00000] in <filename unknown>:0 
+UnityEngine.Canvas:set_scaleFactor(Single)
+UnityEngine.UI.CanvasScaler:SetScaleFactor(Single)
+UnityEngine.UI.CanvasScaler:OnDisable()
  
 (Filename:  Line: -1)
 
-Server Initialized
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.RectTransform:INTERNAL_set_anchorMin (UnityEngine.Vector2&)
+  at UnityEngine.RectTransform.set_anchorMin (Vector2 value) [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Scrollbar.UpdateVisuals () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Scrollbar.OnRectTransformDimensionsChange () [0x00000] in <filename unknown>:0 
+UnityEngine.Canvas:set_referencePixelsPerUnit(Single)
+UnityEngine.UI.CanvasScaler:SetReferencePixelsPerUnit(Single)
+UnityEngine.UI.CanvasScaler:OnDisable()
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Successfully shut do n swnrver.
- 
-.
-ile
-name: C:/Bui:/BugendAgenrk/work/d63df51638510/b60/aracts/Sts/SalonePlayerGeayerated/UratedSUiccessfulle epuut de:n4ine:
-v
-er)
-
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-SSccessefully  ysshdt wdn sererve
- 
-
-(
-(F(lenanem CC://uillddggtnwtworkd63dfc6385518b6b6/0a60tiraaictscStsantaoneealloyyerPGaynerated/antetyEnngtneeDeibug.Depu gicn:: 49)
-
- 49)
+(Filename:  Line: -1)
 

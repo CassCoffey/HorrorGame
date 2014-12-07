@@ -73,6 +73,7 @@ public class NetworkManager : MonoBehaviour {
         Debug.Log("Server Joined");
     }
 
+
     public void LoadLevel()
     {
         Network.RemoveRPCsInGroup(0);
