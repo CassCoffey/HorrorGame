@@ -31,7 +31,7 @@ public class ServerListManager : MonoBehaviour {
             Destroy(servers[i]);
         }
         servers.Clear();
-        MasterServer.RequestHostList(NetworkManager.TypeName);
+        MasterServer.RequestHostList(NetworkManager.AppId);
     }
 
     public void AddListener(UnityEngine.UI.Button button, HostData data)
@@ -48,7 +48,6 @@ public class ServerListManager : MonoBehaviour {
         }
         else
         {
-            Debug.Log(ping.ip);
             return "???";
         }
     }

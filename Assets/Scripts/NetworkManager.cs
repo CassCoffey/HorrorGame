@@ -3,19 +3,20 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using ExitGames.Client.Photon;
 
-public class NetworkManager : MonoBehaviour {
+public class NetworkManager : IPhotonPeerListener {
 
-    private static string typeName = "HorrorGameTest";
-    public static string TypeName 
+    private static string appId = "285263d0-0de6-43a5-b2df-33bc4f463a63";
+    public static string AppId 
     {
         get
         {
-            return typeName;
+            return appId;
         }
         private set
         {
-            typeName = value;
+            appId = value;
         }
     }
     public string gameScene = "TestScene";
@@ -25,6 +26,23 @@ public class NetworkManager : MonoBehaviour {
     public int port = 25000;
 
     private int lastLevelPrefix = 0;
+    private LoadbalancingPeer peer;
+
+    public bool Connect()
+    {
+        peer = new LoadbalancingPeer(this, ConnectionProtocol.Udp);
+        if (peer.Connect("app-us.exitgamescloud.com:port", AppId))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    void Update()
+    {
+        peer.Service();
+    }
 
     void Awake()
     {
@@ -38,7 +56,7 @@ public class NetworkManager : MonoBehaviour {
     {
         Network.incomingPassword = password;
         Network.InitializeServer(maxPlayers, port, !Network.HavePublicAddress());
-        MasterServer.RegisterHost(typeName, gameName);
+        MasterServer.RegisterHost(appId, gameName);
 	}
 
     public void SetOption(InputField field)
@@ -47,6 +65,10 @@ public class NetworkManager : MonoBehaviour {
         {
             case "NameInputField":
                 gameName = field.text;
+                if (gameName.Equals(""))
+                {
+                    gameName = "ServerName";
+                }
                 break;
             case "PortInputField":
                 int portNum;
@@ -93,6 +115,7 @@ public class NetworkManager : MonoBehaviour {
     {
         Debug.Log("Server Joined");
     }
+
 
 
     public void LoadLevel()
