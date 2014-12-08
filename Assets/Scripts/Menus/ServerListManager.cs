@@ -114,7 +114,6 @@ public class ServerListManager : MonoBehaviour {
             else
             {
                 Network.Connect(host);
-                screenManager.GetComponent<ScreenManager>().MoveCameraTo(lobby);
             }
         }
         else
@@ -125,14 +124,20 @@ public class ServerListManager : MonoBehaviour {
 
     public void JoinPasswordedServer()
     {
-        if (Network.Connect(host, password) == NetworkConnectionError.InvalidPassword)
+        Network.Connect(host, password);
+        passwordPanel.SetActive(false);
+    }
+
+    void OnConnectedToServer()
+    {
+        screenManager.GetComponent<ScreenManager>().MoveCameraTo(lobby);
+    }
+
+    void OnFailedToConnect(NetworkConnectionError error)
+    {
+        if (error == NetworkConnectionError.InvalidPassword)
         {
             Debug.Log("Invalid Password");
-        }
-        else
-        {
-            passwordPanel.SetActive(false);
-            screenManager.GetComponent<ScreenManager>().MoveCameraTo(lobby);
         }
     }
 

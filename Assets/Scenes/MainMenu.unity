@@ -2891,7 +2891,7 @@ MonoBehaviour:
   lobby: {fileID: 1912312847}
   screenManager: {fileID: 827992458}
   pingUpdate: 1
-  passwordPanel: {fileID: 0}
+  passwordPanel: {fileID: 1660824524}
 --- !u!4 &644898157
 Transform:
   m_ObjectHideFlags: 0
