@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
 
-public class NetworkManager : IPhotonPeerListener {
+public class NetworkManager : MonoBehaviour {
 
     private static string appId = "285263d0-0de6-43a5-b2df-33bc4f463a63";
     public static string AppId 
@@ -26,23 +26,6 @@ public class NetworkManager : IPhotonPeerListener {
     public int port = 25000;
 
     private int lastLevelPrefix = 0;
-    private LoadbalancingPeer peer;
-
-    public bool Connect()
-    {
-        peer = new LoadbalancingPeer(this, ConnectionProtocol.Udp);
-        if (peer.Connect("app-us.exitgamescloud.com:port", AppId))
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    void Update()
-    {
-        peer.Service();
-    }
 
     void Awake()
     {
