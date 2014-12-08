@@ -3,9 +3,10 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+    // The default player prefab.
     public GameObject playerPrefab;
 
-	// Use this for initialization
+	// Used when the player enters the map to spawn a player object.
 	void Start () {
         SpawnPlayer();
 	}
@@ -16,9 +17,4 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Spawning Player");
         GameObject player = (GameObject)Network.Instantiate(playerPrefab, new Vector3(0f, 2f, 0f), Quaternion.identity, 0);
     }
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
 }

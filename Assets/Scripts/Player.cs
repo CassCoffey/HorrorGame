@@ -190,12 +190,14 @@ public class Player : MonoBehaviour {
         rigidbody.AddForce(Physics.gravity * (advanced.gravityMultiplier - 1));
     }
 
+    // Smoothly moves networked bodies.
     private void SyncedMovement()
     {
         syncTime += Time.deltaTime;
         rigidbody.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
     }
 
+    // Sets up the player view based on if client or server.
     void OnNetworkInstantiate(NetworkMessageInfo info)
     {
         if (networkView.isMine)
@@ -217,7 +219,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    //used for comparing distances
+    // Used for comparing distances
     class RayHitComparer : IComparer
     {
         public int Compare(object x, object y)

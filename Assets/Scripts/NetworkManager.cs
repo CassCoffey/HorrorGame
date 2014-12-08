@@ -3,10 +3,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
-using ExitGames.Client.Photon;
 
 public class NetworkManager : MonoBehaviour {
 
+    // AppID for identifying the game on the master server.
     private static string appId = "285263d0-0de6-43a5-b2df-33bc4f463a63";
     public static string AppId 
     {
@@ -19,12 +19,14 @@ public class NetworkManager : MonoBehaviour {
             appId = value;
         }
     }
+    // Fields for defining the server.
     public string gameScene = "TestScene";
     public string gameName = "ServerName";
     public string password = "";
     public int maxPlayers = 4;
     public int port = 25000;
 
+    // Defines the prefix of the previous level.
     private int lastLevelPrefix = 0;
 
     void Awake()
@@ -34,7 +36,7 @@ public class NetworkManager : MonoBehaviour {
         networkView.group = 1;
     }
 
-	// Use this for initialization
+	// When creating the server, set a password and register it with the master server.
 	public void StartServer() 
     {
         Network.incomingPassword = password;
@@ -42,6 +44,7 @@ public class NetworkManager : MonoBehaviour {
         MasterServer.RegisterHost(appId, gameName);
 	}
 
+    // Called whenever a input field is changed that has to do with server creation.
     public void SetOption(InputField field)
     {
         switch(field.name)
@@ -81,12 +84,13 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
+	// Debug info that server has started.
 	void OnServerInitialized() 
     {
         Debug.Log("Server Initialized");
 	}
 
+    // Disconnects the server and removes it from the master server list.
     public void ShutdownServer()
     {
         Network.Disconnect();
@@ -99,8 +103,7 @@ public class NetworkManager : MonoBehaviour {
         Debug.Log("Server Joined");
     }
 
-
-
+    // Calls an RPC to load the level for all clients.
     public void LoadLevel()
     {
         Network.RemoveRPCsInGroup(0);
@@ -128,6 +131,7 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
+    // The RPC that handles loading a level for all clients.
     [RPC] IEnumerator LoadLevelRPC(string level, int levelPrefix)
     {
         lastLevelPrefix = levelPrefix;
