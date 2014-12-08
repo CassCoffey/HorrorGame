@@ -41,7 +41,6 @@ public class ServerListManager : MonoBehaviour {
 
     public string CheckPing(Text text)
     {
-        Debug.Log("Checking Ping.");
         Ping ping = serverPings[text];
         if (serverPings[text].isDone)
         {
@@ -138,6 +137,10 @@ public class ServerListManager : MonoBehaviour {
         if (error == NetworkConnectionError.InvalidPassword)
         {
             Debug.Log("Invalid Password");
+        }
+        else
+        {
+            Debug.Log(error);
         }
     }
 
