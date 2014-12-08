@@ -50,13 +50,25 @@ public class NetworkManager : MonoBehaviour {
                 break;
             case "PortInputField":
                 int portNum;
-                int.TryParse(field.text, out portNum);
-                port = portNum;
+                if (int.TryParse(field.text, out portNum))
+                {
+                    port = portNum;
+                }
+                else
+                {
+                    port = 25000;
+                }
                 break;
             case "PlayerInputField":
                 int maxPlayersNum;
-                int.TryParse(field.text, out maxPlayersNum);
-                maxPlayers = maxPlayersNum - 1;
+                if (int.TryParse(field.text, out maxPlayersNum))
+                {
+                    maxPlayers = maxPlayersNum - 1;
+                }
+                else
+                {
+                    maxPlayers = 4;
+                }
                 break;
             case "PasswordInputField":
                 password = field.text;

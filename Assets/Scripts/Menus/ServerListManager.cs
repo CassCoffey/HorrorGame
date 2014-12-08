@@ -48,6 +48,7 @@ public class ServerListManager : MonoBehaviour {
         }
         else
         {
+            Debug.Log(ping.ip);
             return "???";
         }
     }
@@ -172,7 +173,7 @@ public class ServerListManager : MonoBehaviour {
 
     void Update()
     {
-        if (servers.Count > 0 && pingUpdateTime > 1f)
+        if (servers.Count > 0)
         {
             foreach (GameObject server in servers)
             {
