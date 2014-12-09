@@ -48,6 +48,14 @@ public class Player : MonoBehaviour {
         }
     }
 
+    void Update()
+    {
+        if (networkView.isMine)
+        {
+            MenuInput();
+        }
+    }
+
     void FixedUpdate()
     {
         if (networkView.isMine)
@@ -112,11 +120,6 @@ public class Player : MonoBehaviour {
 
 
 #endif
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Menu.enabled = !Menu.enabled;
-        }
 
         input = new Vector2(h, v);
 
@@ -195,6 +198,25 @@ public class Player : MonoBehaviour {
     {
         syncTime += Time.deltaTime;
         rigidbody.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
+    }
+
+    private void MenuInput()
+    {
+        // Menu Options
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleMenu();
+        }
+    }
+
+    public void ToggleMenu()
+    {
+        Menu.enabled = !Menu.enabled;
+        Screen.showCursor = Menu.enabled;
+        foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
+        {
+            mouseLook.enabled = !Menu.enabled;
+        }
     }
 
     // Sets up the player view based on if client or server.
