@@ -19,7 +19,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.103 seconds
+- Completed reload, in  0.116 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -60,7 +60,7 @@ Server Joined
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-129.21.105.46
+Successfully terminated connection to server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -72,19 +72,19 @@ Server Joined
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-129.21.105.46
+Attempting to join server.
  
-(File29.2n.m1:0C5/.ui6l
-dA
-(gent/wmer C:/B3ufi6385190b60/rk/d63dts/Sta190alo0ePartifalta/erGenerStandalonePlainerDebugrcpped/ine: 49)g
-ne
-Debug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Server Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 Successfully terminated connection to server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-129.21.105.46
+No host selected.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -96,19 +96,7 @@ Server Joined
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-129.21.105.46
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-129.21.105.46
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
 Successfully terminated connection to server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-129.21.105.46
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
