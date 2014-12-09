@@ -8301,6 +8301,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1912312848}
   - 114: {fileID: 1912312849}
+  - 148: {fileID: 1912312850}
   m_Layer: 0
   m_Name: Lobby
   m_TagString: Untagged
@@ -8336,6 +8337,18 @@ MonoBehaviour:
   startGameButton: {fileID: 17289677}
   playerListPanel: {fileID: 1051683591}
   font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!148 &1912312850
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1912312847}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 1912312848}
+  m_ViewID:
+    m_ID: 2
+    m_Type: 1
 --- !u!1 &1914386434
 GameObject:
   m_ObjectHideFlags: 0
@@ -9175,12 +9188,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1912312847}
-        m_MethodName: 
+      - m_Target: {fileID: 1912312849}
+        m_MethodName: ClearPlayerList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
