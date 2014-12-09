@@ -40,7 +40,7 @@ public class NetworkManager : MonoBehaviour {
 	public void StartServer() 
     {
         Network.incomingPassword = password;
-        Network.InitializeServer(maxPlayers, port, !Network.HavePublicAddress());
+        Network.InitializeServer(maxPlayers - 1, port, !Network.HavePublicAddress());
         MasterServer.RegisterHost(appId, gameName);
 	}
 
@@ -71,7 +71,7 @@ public class NetworkManager : MonoBehaviour {
                 int maxPlayersNum;
                 if (int.TryParse(field.text, out maxPlayersNum))
                 {
-                    maxPlayers = maxPlayersNum - 1;
+                    maxPlayers = maxPlayersNum;
                 }
                 else
                 {
