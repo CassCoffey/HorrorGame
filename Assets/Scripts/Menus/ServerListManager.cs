@@ -21,6 +21,7 @@ public class ServerListManager : MonoBehaviour {
     private Dictionary<Text, Ping> serverPings = new Dictionary<Text,Ping>();
     private float pingUpdateTime = 0;
     private string password = "";
+    private bool cameraChild = false;
 
     // Refreshes the list of hosts.
     public void RefreshHostList()
@@ -42,9 +43,10 @@ public class ServerListManager : MonoBehaviour {
     public string CheckPing(Text text)
     {
         Ping ping = serverPings[text];
-        if (serverPings[text].isDone)
+        if (ping.isDone)
         {
-            return ping.time.ToString();
+            string pingTime = ping.time.ToString();
+            return pingTime;
         }
         else
         {
@@ -172,14 +174,21 @@ public class ServerListManager : MonoBehaviour {
 
     void Update()
     {
+        if (cameraChild && Camera.main.transform.parent != this.transform)
+        {
+            cameraChild = false;
+        }
+        else if (!cameraChild && Camera.main.transform.parent == this.transform)
+        {
+            cameraChild = true;
+            RefreshHostList();
+        }
         if (servers.Count > 0)
         {
             foreach (GameObject server in servers)
             {
                 server.transform.FindChild("PingText").GetComponent<Text>().text = CheckPing(server.transform.FindChild("PingText").GetComponent<Text>());
             }
-            pingUpdateTime = 0;
         }
-        pingUpdateTime += Time.deltaTime;
     }
 }
