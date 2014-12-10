@@ -60,6 +60,7 @@ public class ScreenManager : MonoBehaviour {
             button.enabled = isOpen;
         }
     }
+
     public void TogglePanel(GameObject panel)
     {
         SetPanel(panel, !panel.GetComponent<Animator>().GetBool("Open"));
