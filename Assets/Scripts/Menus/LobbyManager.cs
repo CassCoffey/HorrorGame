@@ -36,7 +36,7 @@ public class LobbyManager : MonoBehaviour {
 		UpdatePlayerLabels ();
 	}
 
-	[RPC] public void ClearPlayerLabels()	
+	[RPC] void ClearPlayerLabels()	
 	{
 		for (int i = 0; i < playerLabels.Count; i++)
 		{
@@ -45,7 +45,10 @@ public class LobbyManager : MonoBehaviour {
 			playerLabels.Clear();
 	}
 
-
+	public void ClearPlayerList()
+	{
+		playerList.Clear ();
+	}
 
 	[RPC] void RefreshList(NetworkPlayer player)
 	{
@@ -65,6 +68,7 @@ public class LobbyManager : MonoBehaviour {
 				playerList.Add (Network.connections[i]);
 			}
 		}
+		Debug.Log (playerList);
 	}
 
 	[RPC] void RemovePlayerFromList(NetworkPlayer player)
