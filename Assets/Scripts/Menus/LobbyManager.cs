@@ -33,7 +33,7 @@ public class LobbyManager : MonoBehaviour {
 	void OnServerInitialized()
 	{
 		playerList.Add (Network.player);
-		UpdatePlayerLabels ();
+		UpdatePlayerLabels (playerList);
 	}
 
 	[RPC] void ClearPlayerLabels()	
@@ -50,61 +50,52 @@ public class LobbyManager : MonoBehaviour {
 		playerList.Clear ();
 	}
 
-	[RPC] void RefreshList(NetworkPlayer player)
+	void RefreshList(NetworkPlayer player)
 	{
 		playerList.Clear ();
-		if (Network.isClient) 
+		playerList.Add(player);
+		for (int i = 0; i < Network.connections.Length; i++) 
 		{
-			for (int i = 0; i < Network.connections.Length; i++) 
-			{
-				playerList.Add (Network.connections[i]);
-			}
+			playerList.Add (Network.connections[i]);
 		}
-		else
-		{
-			playerList.Add(player);
-			for (int i = 0; i < Network.connections.Length; i++) 
-			{
-				playerList.Add (Network.connections[i]);
-			}
-		}
-		Debug.Log (playerList);
 	}
 
-	[RPC] void RemovePlayerFromList(NetworkPlayer player)
+	void RemovePlayerFromList(NetworkPlayer player)
 	{
 		playerList.Remove (player);
 	}
 
-	[RPC] void UpdatePlayerLabels()
+	void UpdatePlayerLabels(List<NetworkPlayer> serverPlayerList)
 	{
 		ClearPlayerLabels();
-		for(int i = 0; i < playerList.Count; i++)
+		for(int i = 0; i < serverPlayerList.Count; i++)
 		{
-			GameObject label = (GameObject)Instantiate(labelPrefab);
-			label.transform.SetParent(playerListPanel.transform.FindChild("PlayersScrolling"), false);
-			UnityEngine.UI.Button labelScript = label.GetComponent<UnityEngine.UI.Button>();
-			label.GetComponentInChildren<Text>().font = font;
-			label.GetComponentInChildren<Text>().text = (playerList[i].ipAddress);
-			label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)playerList.Count) * i));
-			label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)playerList.Count)) - ((1.0f / (float)playerList.Count) * i));
-			label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
-			label.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
-			playerLabels.Add(label);
+			networkView.RPC("CreatePlayerLabel", RPCMode.All, serverPlayerList[i].ipAddress, serverPlayerList.Count, i);
 		}
 	}
 
+	[RPC] void CreatePlayerLabel(string playerText, int numOfPlayers, int i){
+		GameObject label = (GameObject)Instantiate(labelPrefab);
+		label.transform.SetParent(playerListPanel.transform.FindChild("PlayersScrolling"), false);
+		UnityEngine.UI.Button labelScript = label.GetComponent<UnityEngine.UI.Button>();
+		label.GetComponentInChildren<Text>().font = font;
+		label.GetComponentInChildren<Text>().text = playerText;
+		label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)numOfPlayers) * i));
+		label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)numOfPlayers)) - ((1.0f / (float)numOfPlayers) * i));
+		label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+		label.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+		playerLabels.Add(label);
+	 }
+
 	void OnPlayerConnected(NetworkPlayer player) {
 		Debug.Log ("Player Connected!" + player.ipAddress);
-		playerList.Add (player);
-		networkView.RPC ("RefreshList", RPCMode.All,player);
-		networkView.RPC ("UpdatePlayerLabels", RPCMode.All);
+		RefreshList (player);
+		UpdatePlayerLabels(playerList);
 	}
 
 	void OnPlayerDisconnected(NetworkPlayer player) {
 		Debug.Log ("Player Disconnected!" + player.ipAddress);
-		playerList.Remove (player);
-		networkView.RPC ("RemovePlayerFromList", RPCMode.All,player);
-		networkView.RPC ("UpdatePlayerLabels", RPCMode.All);
+		RemovePlayerFromList(player);
+		UpdatePlayerLabels(playerList);
 	}
 }

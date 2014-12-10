@@ -19,7 +19,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.094 seconds
+- Completed reload, in  0.116 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -32,6 +32,10 @@ Attempting to join server.
 Server Joined
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+The server has disconnected from the client. Most likely the server has shut down.
+ 
+(Filename:  Line: 745)
 
 Successfully terminated connection to server.
  
