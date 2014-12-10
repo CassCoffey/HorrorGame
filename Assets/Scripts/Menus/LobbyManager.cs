@@ -50,24 +50,20 @@ public class LobbyManager : MonoBehaviour {
 		playerList.Clear ();
 	}
 
-	void RefreshList(NetworkPlayer player)
+	void RefreshList()
 	{
 		playerList.Clear ();
-		playerList.Add(player);
+		playerList.Add (Network.player);
 		for (int i = 0; i < Network.connections.Length; i++) 
 		{
 			playerList.Add (Network.connections[i]);
 		}
 	}
-
-	void RemovePlayerFromList(NetworkPlayer player)
-	{
-		playerList.Remove (player);
-	}
+	
 
 	void UpdatePlayerLabels(List<NetworkPlayer> serverPlayerList)
 	{
-		ClearPlayerLabels();
+		networkView.RPC ("ClearPlayerLabels", RPCMode.All);
 		for(int i = 0; i < serverPlayerList.Count; i++)
 		{
 			networkView.RPC("CreatePlayerLabel", RPCMode.All, serverPlayerList[i].ipAddress, serverPlayerList.Count, i);
@@ -89,13 +85,19 @@ public class LobbyManager : MonoBehaviour {
 
 	void OnPlayerConnected(NetworkPlayer player) {
 		Debug.Log ("Player Connected!" + player.ipAddress);
-		RefreshList (player);
-		UpdatePlayerLabels(playerList);
+		if (Network.isServer) 
+		{
+			RefreshList();
+			UpdatePlayerLabels (playerList);
+		}
 	}
 
 	void OnPlayerDisconnected(NetworkPlayer player) {
 		Debug.Log ("Player Disconnected!" + player.ipAddress);
-		RemovePlayerFromList(player);
-		UpdatePlayerLabels(playerList);
+		if (Network.isServer) 
+		{
+			playerList.Remove (player);
+			UpdatePlayerLabels (playerList);
+		}
 	}
 }
