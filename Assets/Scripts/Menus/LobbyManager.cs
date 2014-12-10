@@ -30,46 +30,45 @@ public class LobbyManager : MonoBehaviour {
         }
 	}
 
-//	[RPC] void UpdatePlayerList(NetworkPlayer player) {
-//
-//		for (int i = 0; i < Network.connections.Length; i++)
-//		{
-//			Debug.Log (Network.connections[i].ipAddress);
-//			GameObject label = (GameObject)Instantiate(labelPrefab);
-//			label.transform.SetParent(playerListPanel.transform, false);
-//			UnityEngine.UI.Button labelScript = label.GetComponent<UnityEngine.UI.Button>();
-//			label.GetComponentInChildren<Text>().font = font;
-//			label.GetComponentInChildren<Text>().text = (player.ipAddress);
-//			label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)Network.connections.Length) * i));
-//			label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)Network.connections.Length)) - ((1.0f / (float)Network.connections.Length) * i));
-//			label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
-//			label.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
-//			playerList.Add(label);
-//		}
-//	}
+	void OnServerInitialized()
+	{
+		playerList.Add (Network.player);
+		UpdatePlayerLabels ();
+	}
 
-//	[RPC] void RemovePlayerFromList(NetworkPlayer player) 
-//	{
-//		for (int i = 0; i< playerList.Count; i++) 
-//		{
-//			if(player.ipAddress == playerList[i].GetComponentInChildren<Text>().text)
-//			{
-//				Destroy(playerList[i]);
-//				playerList.Remove (playerList[i]);
-//			}
-//		}
-//	}
-//
-	[RPC] public void ClearPlayerLabels()	{
+	[RPC] void ClearPlayerLabels()	
+	{
 		for (int i = 0; i < playerLabels.Count; i++)
 		{
 			Destroy(playerLabels[i]);
 		}
 			playerLabels.Clear();
 	}
-	[RPC] void AddPlayerToList(NetworkPlayer player)
+
+	public void ClearPlayerList()
 	{
-		playerList.Add (player);
+		playerList.Clear ();
+	}
+
+	[RPC] void RefreshList(NetworkPlayer player)
+	{
+		playerList.Clear ();
+		if (Network.isClient) 
+		{
+			for (int i = 0; i < Network.connections.Length; i++) 
+			{
+				playerList.Add (Network.connections[i]);
+			}
+		}
+		else
+		{
+			playerList.Add(player);
+			for (int i = 0; i < Network.connections.Length; i++) 
+			{
+				playerList.Add (Network.connections[i]);
+			}
+		}
+		Debug.Log (playerList);
 	}
 
 	[RPC] void RemovePlayerFromList(NetworkPlayer player)
@@ -77,18 +76,18 @@ public class LobbyManager : MonoBehaviour {
 		playerList.Remove (player);
 	}
 
-	[RPC] void UpdatePlayerList()
+	[RPC] void UpdatePlayerLabels()
 	{
 		ClearPlayerLabels();
 		for(int i = 0; i < playerList.Count; i++)
 		{
 			GameObject label = (GameObject)Instantiate(labelPrefab);
-			label.transform.SetParent(playerListPanel.transform, false);
+			label.transform.SetParent(playerListPanel.transform.FindChild("PlayersScrolling"), false);
 			UnityEngine.UI.Button labelScript = label.GetComponent<UnityEngine.UI.Button>();
 			label.GetComponentInChildren<Text>().font = font;
 			label.GetComponentInChildren<Text>().text = (playerList[i].ipAddress);
-			label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)Network.connections.Length) * i));
-			label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)Network.connections.Length)) - ((1.0f / (float)Network.connections.Length) * i));
+			label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)playerList.Count) * i));
+			label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)playerList.Count)) - ((1.0f / (float)playerList.Count) * i));
 			label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 			label.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
 			playerLabels.Add(label);
@@ -97,13 +96,15 @@ public class LobbyManager : MonoBehaviour {
 
 	void OnPlayerConnected(NetworkPlayer player) {
 		Debug.Log ("Player Connected!" + player.ipAddress);
-		networkView.RPC ("AddPlayerToList", RPCMode.All,player);
-		networkView.RPC ("UpdatePlayerList", RPCMode.All);
+		playerList.Add (player);
+		networkView.RPC ("RefreshList", RPCMode.All,player);
+		networkView.RPC ("UpdatePlayerLabels", RPCMode.All);
 	}
 
 	void OnPlayerDisconnected(NetworkPlayer player) {
 		Debug.Log ("Player Disconnected!" + player.ipAddress);
+		playerList.Remove (player);
 		networkView.RPC ("RemovePlayerFromList", RPCMode.All,player);
-		networkView.RPC ("UpdatePlayerList", RPCMode.All);
+		networkView.RPC ("UpdatePlayerLabels", RPCMode.All);
 	}
 }
