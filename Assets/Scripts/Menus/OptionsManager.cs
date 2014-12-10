@@ -11,13 +11,14 @@ public class OptionsManager : MonoBehaviour {
     public GameObject buttonPrefab;
     public GameObject resolutionPanel;
     public Font font;
-    public ScreenManager manager;
 
     private Resolution[] resolutions;
     private List<GameObject> resolutionButtons = new List<GameObject>();
+    private Resolution CurrentResolution;
 
     void Start()
     {
+        CurrentResolution = Screen.currentResolution;
         CreateResolutionList();
     }
 
@@ -71,7 +72,14 @@ public class OptionsManager : MonoBehaviour {
                 GameObject button = (GameObject)Instantiate(buttonPrefab);
                 button.transform.SetParent(resolutionPanel.transform, false);
                 UnityEngine.UI.Button buttonScript = button.GetComponent<UnityEngine.UI.Button>();
-                AddListener(buttonScript, resolutions[i]);
+                if (resolutions[i].height == CurrentResolution.height && resolutions[i].width == CurrentResolution.width)
+                {
+                    buttonScript.image.color = Color.grey;
+                }
+                else
+                {
+                    AddListener(buttonScript, resolutions[i]);
+                }
                 button.GetComponentInChildren<Text>().font = font;
                 button.GetComponentInChildren<Text>().text = (resolutions[i].width + "x" + resolutions[i].height);
                 button.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)resolutions.Length) * i));
@@ -81,7 +89,12 @@ public class OptionsManager : MonoBehaviour {
                 resolutionButtons.Add(button);
             }
         }
-        manager.ClosePanel(resolutionPanel.transform.parent.gameObject);
+        // Close the panel and disable all buttons.
+        resolutionPanel.transform.parent.gameObject.GetComponent<Animator>().SetBool("Open", false);
+        foreach (UnityEngine.UI.Button button in resolutionPanel.transform.parent.gameObject.GetComponentsInChildren<UnityEngine.UI.Button>())
+        {
+            button.enabled = false;
+        }
     }
 
     private void AddListener(UnityEngine.UI.Button button, Resolution resolution)
@@ -89,6 +102,13 @@ public class OptionsManager : MonoBehaviour {
         button.onClick.AddListener(() =>
         {
             Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+            CurrentResolution = resolution;
+            for (int i = 0; i < resolutionButtons.Count; i++)
+            {
+                Destroy(resolutionButtons[i]);
+            }
+            resolutionButtons.Clear();
+            CreateResolutionList();
         });
     }
 
