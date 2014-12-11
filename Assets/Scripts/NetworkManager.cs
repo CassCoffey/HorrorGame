@@ -33,7 +33,10 @@ public class NetworkManager : MonoBehaviour {
     void Awake()
     {
         // Network level loading is done in a separate channel.
-        playerName = PlayerPrefs.GetString("UserName");
+        if (PlayerPrefs.HasKey("UserName"))
+        {
+            playerName = PlayerPrefs.GetString("UserName");
+        }
         DontDestroyOnLoad(this);
         networkView.group = 1;
     }
