@@ -1,14 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menus/LobbyManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menus\LobbyManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Menus/LobbyManager.cs" Line="77" Column="83" />
-      <File FileName="Assets/Scripts/Menus/ServerListManager.cs" Line="66" Column="59" />
+      <File FileName="Assets\Scripts\Menus\ServerListManager.cs" Line="66" Column="59" />
+      <File FileName="Assets\Scripts\Menus\LobbyManager.cs" Line="86" Column="83" />
+      <File FileName="Assets\Scripts\NetworkManager.cs" Line="24" Column="43" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Sample Assets" expanded="True">
+              <Node name="Effects" expanded="True">
+                <Node name="Light Shafts" expanded="True">
+                  <Node name="Scripts" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
             <Node name="Scripts" expanded="True">
               <Node name="Menus" expanded="True">
                 <Node name="LobbyManager.cs" selected="True" />
