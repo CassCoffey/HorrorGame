@@ -3742,8 +3742,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1417490316}
   m_HandleRect: {fileID: 1417490315}
   m_Direction: 2
-  m_Value: 0
-  m_Size: .999998808
+  m_Value: .266666681
+  m_Size: .999998689
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4784,8 +4784,8 @@ RectTransform:
   - {fileID: 1456295721}
   m_Father: {fileID: 1684561346}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: .284688115}
-  m_AnchorMax: {x: .499475062, y: 1}
+  m_AnchorMin: {x: 0, y: .280512422}
+  m_AnchorMax: {x: .498305738, y: .898000062}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -6182,8 +6182,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1192546343}
   m_HandleRect: {fileID: 1192546342}
   m_Direction: 2
-  m_Value: 1
-  m_Size: .999998152
+  m_Value: .339285702
+  m_Size: .999993026
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6241,13 +6241,13 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1456295720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .0015175076}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .99999994, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1051683592}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: .952843249, y: 1}
+  m_AnchorMax: {x: .952401757, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -8405,7 +8405,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 373050730}
   m_HandleRect: {fileID: 373050729}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8594,7 +8594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6fec7f5e9252d64c8ae33e5a90a94e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  labelPrefab: {fileID: 100000, guid: b49b7125d51c34642862f4b180258f64, type: 2}
+  labelPrefab: {fileID: 100000, guid: cd07b9a033a9b4506bead1352b2b8140, type: 2}
   startGameButton: {fileID: 17289677}
   playerListPanel: {fileID: 1051683591}
   font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
