@@ -5170,7 +5170,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 15
   m_EndEdit:
     m_PersistentCalls:
       m_Calls:
@@ -7692,6 +7692,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400042, guid: 90b35641f9a20f4418baf761d3c5dd2d, type: 2}
+      propertyPath: m_CharacterLimit
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90b35641f9a20f4418baf761d3c5dd2d, type: 2}
   m_RootGameObject: {fileID: 842209652}
@@ -8183,7 +8187,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 1
-  m_CharacterLimit: 20
+  m_CharacterLimit: 2
   m_EndEdit:
     m_PersistentCalls:
       m_Calls:
@@ -9934,7 +9938,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 1
-  m_CharacterLimit: 20
+  m_CharacterLimit: 5
   m_EndEdit:
     m_PersistentCalls:
       m_Calls:

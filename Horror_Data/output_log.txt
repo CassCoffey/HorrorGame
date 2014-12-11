@@ -15,14 +15,7 @@ Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\M
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.059 seconds
+- Completed reload, in  0.717 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.dll (this message is harmless)
-NullReferenceException: Object reference not set to an instance of an object
-  at OptionsManager.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
