@@ -37,6 +37,7 @@ public class LobbyManager : MonoBehaviour {
 				pingTime = 0;
 				foreach(NetworkPlayer player in playerList)
 				{
+					Debug.Log ("Looping through players"+player.ipAddress+ " " +Network.GetLastPing (player));
 					networkView.RPC ("UpdatePing",RPCMode.All, player.ipAddress.ToString(), Network.GetLastPing(player));
 				}
 			}
@@ -48,6 +49,7 @@ public class LobbyManager : MonoBehaviour {
 	{
 		for (int i = 0; i < playerList.Count; i++) 
 		{
+			Debug.Log ("Update ping: "+playerList[i].ipAddress + ping);
 			if(ipAddress == playerList[i].ipAddress)
 			{
 				playerLabels[i].transform.FindChild("PlayerPing").GetComponent<Text>().text = ping.ToString();
