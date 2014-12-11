@@ -10,6 +10,7 @@ public class OptionsManager : MonoBehaviour {
     public UnityEngine.UI.Button currentButton;
     public GameObject buttonPrefab;
     public GameObject resolutionPanel;
+    public GameObject playerTextBox;
     public Font font;
 
     private Resolution[] resolutions;
@@ -18,6 +19,7 @@ public class OptionsManager : MonoBehaviour {
 
     void Start()
     {
+        playerTextBox.GetComponent<Text>().text = PlayerPrefs.GetString("UserName");
         CurrentResolution = Screen.currentResolution;
         CreateResolutionList();
     }
