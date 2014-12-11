@@ -30,11 +30,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Sample Assets/Sample Scenes/Scenes/AI Character.unity
   - enabled: 0
-    path: Assets/Sample Assets/Effects/Light Shafts/Scenes/LightShaft Directional.unity
+    path: Assets/Unity Assets/Sample Assets/Effects/Light Shafts/Scenes/LightShaft
+      Directional.unity
   - enabled: 0
     path: Assets/Sample Assets/Sample Scenes/Scenes/Third Person Character.unity
   - enabled: 0
-    path: Assets/Sample Assets/Effects/Light Shafts/Scenes/LightShaft Spot.unity
+    path: Assets/Unity Assets/Sample Assets/Effects/Light Shafts/Scenes/LightShaft
+      Spot.unity
   - enabled: 0
     path: Assets/Sample Assets/Sample Scenes/Scenes/Car.unity
   - enabled: 0

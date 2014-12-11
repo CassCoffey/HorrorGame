@@ -7246,7 +7246,7 @@ AudioSource:
   m_GameObject: {fileID: 1660176521}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 0330f5ac4222b6347b22b8fb0d2b719b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f78889c007f3ed54c94b1eeb812d0bec, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -8783,7 +8783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6fec7f5e9252d64c8ae33e5a90a94e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  labelPrefab: {fileID: 100000, guid: b49b7125d51c34642862f4b180258f64, type: 2}
+  labelPrefab: {fileID: 100002, guid: 9bd24b1ab93106e47a65ad85fc75b2aa, type: 2}
   startGameButton: {fileID: 17289677}
   playerListPanel: {fileID: 1051683591}
   font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
