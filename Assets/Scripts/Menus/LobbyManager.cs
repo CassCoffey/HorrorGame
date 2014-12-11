@@ -75,6 +75,7 @@ public class LobbyManager : MonoBehaviour {
 	{
 		float panelHeight = labelPrefab.GetComponent<RectTransform>().rect.height * numOfPlayers;
 		float currentHeight = playerListPanel.GetComponent<RectTransform>().rect.height;
+		Debug.Log (panelHeight);
 		playerListPanel.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
