@@ -13,6 +13,7 @@ public class LobbyManager : MonoBehaviour {
 	public GameObject networkManager;
 	public string serverName;
 	public Font font;
+	private float pingTime;
 	
 	private List<NetworkPlayer> playerList = new List<NetworkPlayer>();
     private List<string> playerNameList = new List<string>();
@@ -31,7 +32,21 @@ public class LobbyManager : MonoBehaviour {
             startGameButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
             startGameButton.GetComponent<UnityEngine.UI.Image>().enabled = true;
             startGameButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = true;
+			if(pingTime > 1)
+			{
+				pingTime = 0;
+				foreach(NetworkPlayer player in playerList)
+				{
+					networkView.RPC ("UpdatePing",RPCMode.All, player, Network.GetLastPing(player));
+				}
+			}
+			pingTime+= Time.deltaTime;
         }
+	}
+
+	[RPC] void UpdatePing (NetworkPlayer player, int ping)
+	{
+		playerLabels[playerList.IndexOf(player)].transform.FindChild("PlayerPing").GetComponent<Text>().text = ping.ToString();
 	}
 
 	void OnServerInitialized()
