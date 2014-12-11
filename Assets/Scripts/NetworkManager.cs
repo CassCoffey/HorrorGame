@@ -33,6 +33,7 @@ public class NetworkManager : MonoBehaviour {
     void Awake()
     {
         // Network level loading is done in a separate channel.
+        playerName = PlayerPrefs.GetString("UserName");
         DontDestroyOnLoad(this);
         networkView.group = 1;
     }
@@ -40,6 +41,8 @@ public class NetworkManager : MonoBehaviour {
     public void SetPlayerName(string newName)
     {
         playerName = newName;
+        PlayerPrefs.SetString("UserName", newName);
+        PlayerPrefs.Save();
     }
 
 	// When creating the server, set a password and register it with the master server.
