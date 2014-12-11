@@ -35,26 +35,19 @@ public class LobbyManager : MonoBehaviour {
 			if(pingTime > 1)
 			{
 				pingTime = 0;
-				foreach(NetworkPlayer player in playerList)
+				for(int i = 0; i < playerList.Count;i++)
 				{
-					Debug.Log ("Looping through players"+player.ipAddress+ " " +Network.GetLastPing (player));
-					networkView.RPC ("UpdatePing",RPCMode.All, player.ipAddress.ToString(), Network.GetLastPing(player));
+					Debug.Log ("Looping through players"+playerList[i].ipAddress+ " " +Network.GetLastPing (playerList[i]));
+					networkView.RPC ("UpdatePing",RPCMode.All, i, Network.GetLastPing(playerList[i]));
 				}
 			}
 			pingTime+= Time.deltaTime;
         }
 	}
 
-	[RPC] void UpdatePing (string ipAddress, int ping)
+	[RPC] void UpdatePing (int index, int ping)
 	{
-		for (int i = 0; i < playerList.Count; i++) 
-		{
-			Debug.Log ("Update ping: "+playerList[i].ipAddress + ping);
-			if(ipAddress == playerList[i].ipAddress)
-			{
-				playerLabels[i].transform.FindChild("PlayerPing").GetComponent<Text>().text = ping.ToString();
-			}
-		}
+		playerLabels[index].transform.FindChild ("PlayerPing").GetComponent<Text> ().text = ping.ToString ();
 	}
 
 	void OnServerInitialized()
