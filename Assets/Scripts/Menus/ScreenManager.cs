@@ -24,6 +24,7 @@ public class ScreenManager : MonoBehaviour {
             canvas.enabled = false;
         }
         camera.transform.parent.GetComponentInChildren<Canvas>().enabled = true;
+        camera.transform.parent.GetComponentInChildren<Canvas>().worldCamera = camera;
         camera.transform.parent.GetComponentInChildren<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
         camera.transform.parent.GetComponentInChildren<Canvas>().planeDistance = 6;
         if (camera.transform.parent.GetComponent<Animator>() != null)
