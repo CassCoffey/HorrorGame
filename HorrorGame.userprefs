@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menus/LobbyManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menus\LobbyManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Menus/LobbyManager.cs" Line="77" Column="83" />
-      <File FileName="Assets/Scripts/Menus/ServerListManager.cs" Line="66" Column="59" />
+      <File FileName="Assets\Scripts\Menus\ServerListManager.cs" Line="66" Column="59" />
+      <File FileName="Assets\Scripts\Menus\LobbyManager.cs" Line="78" Column="27" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

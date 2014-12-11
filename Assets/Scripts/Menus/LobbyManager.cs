@@ -9,6 +9,9 @@ public class LobbyManager : MonoBehaviour {
 	public GameObject labelPrefab;
 	public GameObject startGameButton;
 	public GameObject playerListPanel;
+	public GameObject serverNamePanel;
+	public GameObject networkManager;
+	public string serverName;
 	public Font font;
 	
 	private List<NetworkPlayer> playerList = new List<NetworkPlayer>();
@@ -34,6 +37,12 @@ public class LobbyManager : MonoBehaviour {
 	{
 		playerList.Add (Network.player);
 		UpdatePlayerLabels (playerList);
+		serverName = networkManager.GetComponent<NetworkManager> ().gameName;
+		networkView.RPC ("UpdateServerName",RPCMode.AllBuffered, serverName);
+	}
+
+	[RPC] void UpdateServerName(string name){
+		serverNamePanel.transform.FindChild ("ServerName").GetComponent<Text> ().text = name;
 	}
 
 	[RPC] void ClearPlayerLabels()	
@@ -75,7 +84,6 @@ public class LobbyManager : MonoBehaviour {
 	{
 		float panelHeight = labelPrefab.GetComponent<RectTransform>().rect.height * numOfPlayers;
 		float currentHeight = playerListPanel.GetComponent<RectTransform>().rect.height;
-		Debug.Log (panelHeight);
 		playerListPanel.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
@@ -101,7 +109,6 @@ public class LobbyManager : MonoBehaviour {
 		}
 		playerLabels.Add(label);
 	 }
-
 	void OnPlayerConnected(NetworkPlayer player) {
 		Debug.Log ("Player Connected!" + player.ipAddress);
 		if (Network.isServer) 
