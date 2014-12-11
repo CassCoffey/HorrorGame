@@ -83,6 +83,7 @@ public class LobbyManager : MonoBehaviour {
 	{
 		networkView.RPC ("ClearPlayerLabels", RPCMode.All);
 		networkView.RPC ("ResizeScrollingBox", RPCMode.All,serverPlayerList.Count);
+		foreach(string player in playerNameList)
 		for(int i = 0; i < serverPlayerList.Count; i++)
 		{
 			networkView.RPC("CreatePlayerLabel", RPCMode.All, playerNameList[i], Network.GetLastPing(serverPlayerList[i]).ToString(), serverPlayerList.Count, i);
@@ -124,6 +125,7 @@ public class LobbyManager : MonoBehaviour {
     [RPC] void AddPlayerName(string playerName)
     {
         playerNameList.Add(playerName);
+		UpdatePlayerLabels (playerList);
     }
 
 	void OnPlayerConnected(NetworkPlayer player) 
@@ -132,7 +134,6 @@ public class LobbyManager : MonoBehaviour {
 		if (Network.isServer) 
 		{
 			RefreshList();
-			UpdatePlayerLabels (playerList);
 		}
 	}
 
