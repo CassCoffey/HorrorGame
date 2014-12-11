@@ -85,7 +85,7 @@ public class LobbyManager : MonoBehaviour {
 		networkView.RPC ("ResizeScrollingBox", RPCMode.All,serverPlayerList.Count);
 		for(int i = 0; i < serverPlayerList.Count; i++)
 		{
-			networkView.RPC("CreatePlayerLabel", RPCMode.All, playerNameList[i], serverPlayerList.Count, i);
+			networkView.RPC("CreatePlayerLabel", RPCMode.All, playerNameList[i], Network.GetLastPing(serverPlayerList[i]).ToString(), serverPlayerList.Count, i);
 		}
 	}
 
@@ -98,13 +98,14 @@ public class LobbyManager : MonoBehaviour {
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
 	}
 
-	[RPC] void CreatePlayerLabel(string playerText, int numOfPlayers, int i)
+	[RPC] void CreatePlayerLabel(string playerText,string playerPing, int numOfPlayers, int i)
     {
 		GameObject label = (GameObject)Instantiate(labelPrefab);
 		label.transform.SetParent(playerListPanel.transform.FindChild("PlayersScrolling"), false);
 		UnityEngine.UI.Text labelScript = label.GetComponent<UnityEngine.UI.Text>();
 		label.GetComponentInChildren<Text>().font = font;
-		label.GetComponentInChildren<Text>().text = playerText;
+		label.transform.FindChild("PlayerName").GetComponent<Text>().text = playerText;
+		label.transform.FindChild("PlayerPing").GetComponent<Text>().text = playerPing;
 		label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)numOfPlayers) * i));
 		label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)numOfPlayers)) - ((1.0f / (float)numOfPlayers) * i));
 		label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);

@@ -8,22 +8,7 @@
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Sample Assets" expanded="True">
-              <Node name="Effects" expanded="True">
-                <Node name="Light Shafts" expanded="True">
-                  <Node name="Scripts" expanded="True" />
-                </Node>
-              </Node>
-            </Node>
-            <Node name="Scripts" expanded="True">
-              <Node name="Menus" expanded="True">
-                <Node name="LobbyManager.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
