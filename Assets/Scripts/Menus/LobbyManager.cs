@@ -46,7 +46,13 @@ public class LobbyManager : MonoBehaviour {
 
 	[RPC] void UpdatePing (NetworkPlayer player, int ping)
 	{
-		playerLabels[playerList.IndexOf(player)].transform.FindChild("PlayerPing").GetComponent<Text>().text = ping.ToString();
+		for (int i = 0; i < playerList.Count; i++) 
+		{
+			if(player.ipAddress == playerList[i].ipAddress)
+			{
+				playerLabels[i].transform.FindChild("PlayerPing").GetComponent<Text>().text = ping.ToString();
+			}
+		}
 	}
 
 	void OnServerInitialized()
