@@ -37,18 +37,18 @@ public class LobbyManager : MonoBehaviour {
 				pingTime = 0;
 				foreach(NetworkPlayer player in playerList)
 				{
-					networkView.RPC ("UpdatePing",RPCMode.All, player, Network.GetLastPing(player));
+					networkView.RPC ("UpdatePing",RPCMode.All, player.ipAddress.ToString(), Network.GetLastPing(player));
 				}
 			}
 			pingTime+= Time.deltaTime;
         }
 	}
 
-	[RPC] void UpdatePing (NetworkPlayer player, int ping)
+	[RPC] void UpdatePing (string ipAddress, int ping)
 	{
 		for (int i = 0; i < playerList.Count; i++) 
 		{
-			if(player.ipAddress == playerList[i].ipAddress)
+			if(ipAddress == playerList[i].ipAddress)
 			{
 				playerLabels[i].transform.FindChild("PlayerPing").GetComponent<Text>().text = ping.ToString();
 			}
