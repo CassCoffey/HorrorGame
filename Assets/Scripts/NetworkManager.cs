@@ -25,6 +25,7 @@ public class NetworkManager : MonoBehaviour {
     public string password = "";
     public int maxPlayers = 4;
     public int port = 25000;
+    public string playerName = "Player Name";
 
     // Defines the prefix of the previous level.
     private int lastLevelPrefix = 0;
@@ -34,6 +35,11 @@ public class NetworkManager : MonoBehaviour {
         // Network level loading is done in a separate channel.
         DontDestroyOnLoad(this);
         networkView.group = 1;
+    }
+
+    public void SetPlayerName(string newName)
+    {
+        playerName = newName;
     }
 
 	// When creating the server, set a password and register it with the master server.
