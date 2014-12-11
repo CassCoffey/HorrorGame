@@ -64,22 +64,41 @@ public class LobbyManager : MonoBehaviour {
 	void UpdatePlayerLabels(List<NetworkPlayer> serverPlayerList)
 	{
 		networkView.RPC ("ClearPlayerLabels", RPCMode.All);
+		networkView.RPC ("ResizeScrollingBox", RPCMode.All,serverPlayerList.Count);
 		for(int i = 0; i < serverPlayerList.Count; i++)
 		{
 			networkView.RPC("CreatePlayerLabel", RPCMode.All, serverPlayerList[i].ipAddress, serverPlayerList.Count, i);
 		}
 	}
 
+	[RPC] void ResizeScrollingBox(int numOfPlayers)
+	{
+		float panelHeight = labelPrefab.GetComponent<RectTransform>().rect.height * numOfPlayers;
+		float currentHeight = playerListPanel.GetComponent<RectTransform>().rect.height;
+		Debug.Log (panelHeight);
+		playerListPanel.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
+		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
+	}
+
 	[RPC] void CreatePlayerLabel(string playerText, int numOfPlayers, int i){
 		GameObject label = (GameObject)Instantiate(labelPrefab);
 		label.transform.SetParent(playerListPanel.transform.FindChild("PlayersScrolling"), false);
-		UnityEngine.UI.Button labelScript = label.GetComponent<UnityEngine.UI.Button>();
+		UnityEngine.UI.Text labelScript = label.GetComponent<UnityEngine.UI.Text>();
 		label.GetComponentInChildren<Text>().font = font;
 		label.GetComponentInChildren<Text>().text = playerText;
 		label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)numOfPlayers) * i));
 		label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)numOfPlayers)) - ((1.0f / (float)numOfPlayers) * i));
 		label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		label.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+		if (i % 2 == 0)
+		{
+			label.GetComponent<Image>().color = new UnityEngine.Color(0.4f, 0.4f, 0.4f, 0.7f);
+		}
+		else
+		{
+			label.GetComponent<Image>().color = new UnityEngine.Color(0.6f, 0.6f, 0.6f, 0.7f);
+		}
 		playerLabels.Add(label);
 	 }
 
