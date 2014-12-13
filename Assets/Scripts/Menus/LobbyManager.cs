@@ -44,6 +44,19 @@ public class LobbyManager : MonoBehaviour {
         }
 	}	
 
+    void RefreshChat()
+    {
+        for (int i = 0; i < chatMessages.Count; i++)
+        {
+            Destroy(chatMessages[i]);
+        }
+        chatMessages.Clear();
+        float panelHeight = chatPrefab.GetComponent<RectTransform>().rect.height * 20;
+        float currentHeight = chatPanel.GetComponent<RectTransform>().rect.height;
+        chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, panelHeight);
+        chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+    }
+
 	public void ClearPlayerList()
 	{
 		playerList.Clear();
@@ -52,6 +65,7 @@ public class LobbyManager : MonoBehaviour {
 
     void OnConnectedToServer()
     {
+        RefreshChat();
         settingsBlocker.SetActive(true);
         staticServerInfo.SetActive(true);
         dynamicServerInfo.SetActive(false);
@@ -103,6 +117,7 @@ public class LobbyManager : MonoBehaviour {
 
     void OnServerInitialized()
     {
+        RefreshChat();
         settingsBlocker.SetActive(false);
         staticServerInfo.SetActive(false);
         dynamicServerInfo.SetActive(true);
@@ -128,23 +143,28 @@ public class LobbyManager : MonoBehaviour {
 
     public void SendChatMessage(string message)
     {
-        networkView.RPC("RetrieveChatMessage", RPCMode.All, networkManager.name, message);
+        networkView.RPC("RetrieveChatMessage", RPCMode.All, networkManager.GetComponent<NetworkManager>().playerName, message);
     }
 
     [RPC] void RetrieveChatMessage(string player, string message)
     {
-        float panelHeight = chatPrefab.GetComponent<RectTransform>().rect.height * (chatMessages.Count + 1);
-        float currentHeight = chatPanel.GetComponent<RectTransform>().rect.height;
-        chatPanel.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
-        chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, panelHeight);
-        chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+        if (chatMessages.Count >= 20)
+        {
+            Destroy(chatMessages[0]);
+            chatMessages.RemoveAt(0);
+            for (int i = 0; i < chatMessages.Count; i++)
+            {
+                chatMessages[i].GetComponent<RectTransform>().anchorMax = new Vector2(1, (1 - ((1f / 20f) * i)));
+                chatMessages[i].GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - ((1f / 20f) * (i + 1))));
+            }
+        }
         GameObject chat = (GameObject)Instantiate(chatPrefab);
         chat.transform.SetParent(chatPanel.transform.FindChild("ChatScrolling"), false);
         chat.GetComponentInChildren<Text>().font = font;
         chat.transform.FindChild("NameText").GetComponent<Text>().text = player;
         chat.transform.FindChild("ChatText").GetComponent<Text>().text = message;
-        chat.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)chatMessages.Count) * (chatMessages.Count + 1)));
-        chat.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)chatMessages.Count)) - ((1.0f / (float)chatMessages.Count) * (chatMessages.Count + 1)));
+        chat.GetComponent<RectTransform>().anchorMax = new Vector2(1, (1 - (1f / 20f) * (chatMessages.Count)));
+        chat.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1f/20f) * (chatMessages.Count + 1)));
         chat.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
         chat.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
         if ((chatMessages.Count + 1) % 2 == 0)
