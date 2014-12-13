@@ -7,8 +7,11 @@ using System.Collections.Generic;
 public class LobbyManager : MonoBehaviour {
 
 	public GameObject labelPrefab;
+    public GameObject chatPrefab;
+    public GameObject chatPanel;
 	public GameObject startGameButton;
     public GameObject settingsBlocker;
+    public GameObject settingsPanel;
     public GameObject dynamicServerInfo;
     public GameObject staticServerInfo;
 	public GameObject playerListPanel;
@@ -21,6 +24,7 @@ public class LobbyManager : MonoBehaviour {
 	private List<NetworkPlayer> playerList = new List<NetworkPlayer>();
     private List<string> playerNameList = new List<string>();
 	private List<GameObject> playerLabels = new List<GameObject>();
+    private List<GameObject> chatMessages = new List<GameObject>();
 
 	// Update is called once per frame
 	void Update () 
@@ -117,9 +121,53 @@ public class LobbyManager : MonoBehaviour {
         networkView.RPC("RetrieveServerInfo", RPCMode.OthersBuffered, info);
     }
 
+    public void UpdateServerOptions(GameObject option)
+    {
+        networkView.RPC("RetrieveServerOptions", RPCMode.OthersBuffered, option.name, option.transform.FindChild("Text").GetComponent<Text>().text);
+    }
+
+    public void SendChatMessage(string message)
+    {
+        networkView.RPC("RetrieveChatMessage", RPCMode.All, networkManager.name, message);
+    }
+
+    [RPC] void RetrieveChatMessage(string player, string message)
+    {
+        float panelHeight = labelPrefab.GetComponent<RectTransform>().rect.height * (chatMessages.Count + 1);
+        float currentHeight = playerListPanel.GetComponent<RectTransform>().rect.height;
+        chatPanel.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
+        chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, currentHeight - panelHeight);
+        chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+        GameObject chat = (GameObject)Instantiate(chatPrefab);
+        chat.transform.SetParent(chatPanel.transform.FindChild("ChatScrolling"), false);
+        UnityEngine.UI.Text labelScript = chat.GetComponent<UnityEngine.UI.Text>();
+        chat.GetComponentInChildren<Text>().font = font;
+        chat.transform.FindChild("NameText").GetComponent<Text>().text = player;
+        chat.transform.FindChild("ChatText").GetComponent<Text>().text = message;
+        chat.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)chatMessages.Count) * (chatMessages.Count + 1)));
+        chat.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)chatMessages.Count)) - ((1.0f / (float)chatMessages.Count) * (chatMessages.Count + 1)));
+        chat.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+        chat.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+        if ((chatMessages.Count + 1) % 2 == 0)
+        {
+            chat.GetComponent<Image>().color = new UnityEngine.Color(0.4f, 0.4f, 0.4f, 0.7f);
+        }
+        else
+        {
+            chat.GetComponent<Image>().color = new UnityEngine.Color(0.6f, 0.6f, 0.6f, 0.7f);
+        }
+        chatMessages.Add(chat);
+    }
+
     [RPC] void RetrieveServerInfo(string info)
     {
         staticServerInfo.GetComponent<Text>().text = info;
+    }
+
+    [RPC]
+    void RetrieveServerOptions(string option, string value)
+    {
+        settingsPanel.transform.FindChild(option).GetComponent<Text>().text = value;
     }
 
 	[RPC] void ResizeScrollingBox(int numOfPlayers)

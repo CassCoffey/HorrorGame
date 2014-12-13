@@ -1,0 +1,27 @@
+Hi there! Thanks for trying out my voice chat system.
+
+It should be very easy to use, just drop a Microphone prefab instance into any scene that you want to have voice chat in, and you're good to go! Change any public variables to use the particular key you want for push-to-talk and such.
+
+This will NOT just work right away on its own. It piggiebacks on your existing network connection, which means you must have a connected game in order for it to work. If you're not familiar with Unity networking, start here: http://docs.unity3d.com/Documentation/Components/NetworkReferenceGuide.html
+
+For convenience's sake, I've also included a BasicConnector prefab, just drop one of these in the scene alongside your Microphone object and you'll be able to make a simple connection between two instances of your game to test it out. You CAN run both of these on one computer at once and hear the eco of you talking to yourself :)
+
+TLDR
+1) Create new scene
+2) Add a new camera to the scene (unless there already is one)
+3) Drag BasicConnector into scene
+4) Drag Microphone into scene
+5) Go to Edit->Project Settings->Player and check the box next to "Run in Background". This allows the game to continue updating while you're not focused on it, which is important if you want to test two applications on one computer. 
+6) Build & Run
+7) Open exe again while the first is running (so you have two windows)
+8) On one, click "Start Server"
+9) On the other, click "Start Client"
+10) Press the push-to-talk key and hear yourself! Default key is "F"
+
+
+I don't claim this to be the perfect solution, so please feel free to alter the code as needed and tweak the scripts to work with your project. All I ask is to be credited for my work.
+
+Have fun! Always keep exploring :-)
+
+
+Support: edenspuzzle@gmail.com
