@@ -133,14 +133,13 @@ public class LobbyManager : MonoBehaviour {
 
     [RPC] void RetrieveChatMessage(string player, string message)
     {
-        float panelHeight = labelPrefab.GetComponent<RectTransform>().rect.height * (chatMessages.Count + 1);
-        float currentHeight = playerListPanel.GetComponent<RectTransform>().rect.height;
+        float panelHeight = chatPrefab.GetComponent<RectTransform>().rect.height * (chatMessages.Count + 1);
+        float currentHeight = chatPanel.GetComponent<RectTransform>().rect.height;
         chatPanel.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, currentHeight - panelHeight);
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
         GameObject chat = (GameObject)Instantiate(chatPrefab);
         chat.transform.SetParent(chatPanel.transform.FindChild("ChatScrolling"), false);
-        UnityEngine.UI.Text labelScript = chat.GetComponent<UnityEngine.UI.Text>();
         chat.GetComponentInChildren<Text>().font = font;
         chat.transform.FindChild("NameText").GetComponent<Text>().text = player;
         chat.transform.FindChild("ChatText").GetComponent<Text>().text = message;
@@ -167,7 +166,7 @@ public class LobbyManager : MonoBehaviour {
     [RPC]
     void RetrieveServerOptions(string option, string value)
     {
-        settingsPanel.transform.FindChild(option).GetComponent<Text>().text = value;
+        settingsPanel.transform.FindChild(option).FindChild("Text").GetComponent<Text>().text = value;
     }
 
 	[RPC] void ResizeScrollingBox(int numOfPlayers)
@@ -183,7 +182,6 @@ public class LobbyManager : MonoBehaviour {
     {
 		GameObject label = (GameObject)Instantiate(labelPrefab);
 		label.transform.SetParent(playerListPanel.transform.FindChild("PlayersScrolling"), false);
-		UnityEngine.UI.Text labelScript = label.GetComponent<UnityEngine.UI.Text>();
 		label.GetComponentInChildren<Text>().font = font;
 		label.transform.FindChild("PlayerName").GetComponent<Text>().text = playerText;
 		label.transform.FindChild("PlayerPing").GetComponent<Text>().text = playerPing;
