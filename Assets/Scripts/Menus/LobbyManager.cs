@@ -136,7 +136,7 @@ public class LobbyManager : MonoBehaviour {
         float panelHeight = chatPrefab.GetComponent<RectTransform>().rect.height * (chatMessages.Count + 1);
         float currentHeight = chatPanel.GetComponent<RectTransform>().rect.height;
         chatPanel.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
-        chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, currentHeight - panelHeight);
+        chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, panelHeight);
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
         GameObject chat = (GameObject)Instantiate(chatPrefab);
         chat.transform.SetParent(chatPanel.transform.FindChild("ChatScrolling"), false);
