@@ -115,7 +115,6 @@ public class OptionsManager : MonoBehaviour {
     }
 
     // Audio Options
-
     public void ChangeMasterVolume(float value)
     {
         AudioListener.volume = value;

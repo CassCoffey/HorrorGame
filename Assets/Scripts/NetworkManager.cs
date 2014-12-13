@@ -93,6 +93,9 @@ public class NetworkManager : MonoBehaviour {
             case "PasswordInputField":
                 password = field.text;
                 break;
+            case "TimeInputField":
+                PlayerPrefs.SetString("BoatTime", field.text);
+                break;
         }
     }
 	

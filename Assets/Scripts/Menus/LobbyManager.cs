@@ -8,6 +8,9 @@ public class LobbyManager : MonoBehaviour {
 
 	public GameObject labelPrefab;
 	public GameObject startGameButton;
+    public GameObject settingsBlocker;
+    public GameObject dynamicServerInfo;
+    public GameObject staticServerInfo;
 	public GameObject playerListPanel;
 	public GameObject serverNamePanel;
 	public GameObject networkManager;
@@ -20,58 +23,22 @@ public class LobbyManager : MonoBehaviour {
 	private List<GameObject> playerLabels = new List<GameObject>();
 
 	// Update is called once per frame
-	void Update () {
-	    if (!Network.isServer)
-        {
-            startGameButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
-            startGameButton.GetComponent<UnityEngine.UI.Image>().enabled = false;
-            startGameButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = false;
-        }
-        else
-        {
-            startGameButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
-            startGameButton.GetComponent<UnityEngine.UI.Image>().enabled = true;
-            startGameButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = true;
-			if(pingTime > 1)
-			{
-				pingTime = 0;
-				for(int i = 0; i < playerList.Count;i++)
-				{
-					Debug.Log ("Looping through players"+playerList[i].ipAddress+ " " +Network.GetLastPing (playerList[i]));
-					networkView.RPC ("UpdatePing",RPCMode.All, i, Network.GetLastPing(playerList[i]));
-				}
-			}
-			pingTime+= Time.deltaTime;
-        }
-	}
-
-	[RPC] void UpdatePing (int index, int ping)
-	{
-		playerLabels[index].transform.FindChild ("PlayerPing").GetComponent<Text> ().text = ping.ToString ();
-	}
-
-	void OnServerInitialized()
-	{
-		playerList.Add (Network.player);
-        playerNameList.Add(networkManager.GetComponent<NetworkManager>().playerName);
-		UpdatePlayerLabels (playerList);
-		serverName = networkManager.GetComponent<NetworkManager> ().gameName;
-		networkView.RPC ("UpdateServerName",RPCMode.AllBuffered, serverName);
-	}
-
-	[RPC] void UpdateServerName(string name)
+	void Update () 
     {
-		serverNamePanel.transform.FindChild ("ServerName").GetComponent<Text> ().text = name;
-	}
-
-	[RPC] void ClearPlayerLabels()	
-	{
-		for (int i = 0; i < playerLabels.Count; i++)
-		{
-			Destroy(playerLabels[i]);
-		}
-			playerLabels.Clear();
-	}
+	    if (Network.isServer)
+        {
+            if (pingTime > 1)
+            {
+                pingTime = 0;
+                for (int i = 0; i < playerList.Count; i++)
+                {
+                    Debug.Log("Looping through players" + playerList[i].ipAddress + " " + Network.GetLastPing(playerList[i]));
+                    networkView.RPC("UpdatePing", RPCMode.All, i, Network.GetLastPing(playerList[i]));
+                }
+            }
+            pingTime += Time.deltaTime;
+        }
+	}	
 
 	public void ClearPlayerList()
 	{
@@ -81,6 +48,12 @@ public class LobbyManager : MonoBehaviour {
 
     void OnConnectedToServer()
     {
+        settingsBlocker.SetActive(true);
+        staticServerInfo.SetActive(true);
+        dynamicServerInfo.SetActive(false);
+        startGameButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
+        startGameButton.GetComponent<UnityEngine.UI.Image>().enabled = false;
+        startGameButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = false;
         networkView.RPC("AddPlayerName", RPCMode.Server, networkManager.GetComponent<NetworkManager>().playerName);
     }
 
@@ -93,7 +66,26 @@ public class LobbyManager : MonoBehaviour {
 			playerList.Add (Network.connections[i]);
 		}
 	}
-	
+
+    void OnPlayerConnected(NetworkPlayer player)
+    {
+        Debug.Log("Player Connected!" + player.ipAddress);
+        if (Network.isServer)
+        {
+            RefreshList();
+        }
+    }
+
+    void OnPlayerDisconnected(NetworkPlayer player)
+    {
+        Debug.Log("Player Disconnected!" + player.ipAddress);
+        if (Network.isServer)
+        {
+            playerNameList.RemoveAt(playerList.IndexOf(player));
+            playerList.Remove(player);
+            UpdatePlayerLabels(playerList);
+        }
+    }
 
 	void UpdatePlayerLabels(List<NetworkPlayer> serverPlayerList)
 	{
@@ -104,6 +96,31 @@ public class LobbyManager : MonoBehaviour {
 			networkView.RPC("CreatePlayerLabel", RPCMode.All, playerNameList[i], Network.GetLastPing(serverPlayerList[i]).ToString(), serverPlayerList.Count, i);
 		}
 	}
+
+    void OnServerInitialized()
+    {
+        settingsBlocker.SetActive(false);
+        staticServerInfo.SetActive(false);
+        dynamicServerInfo.SetActive(true);
+        startGameButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
+        startGameButton.GetComponent<UnityEngine.UI.Image>().enabled = true;
+        startGameButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = true;
+        playerList.Add(Network.player);
+        playerNameList.Add(networkManager.GetComponent<NetworkManager>().playerName);
+        UpdatePlayerLabels(playerList);
+        serverName = networkManager.GetComponent<NetworkManager>().gameName;
+        networkView.RPC("UpdateServerName", RPCMode.AllBuffered, serverName);
+    }
+
+    public void UpdateServerInfo(string info)
+    {
+        networkView.RPC("RetrieveServerInfo", RPCMode.OthersBuffered, info);
+    }
+
+    [RPC] void RetrieveServerInfo(string info)
+    {
+        staticServerInfo.GetComponent<Text>().text = info;
+    }
 
 	[RPC] void ResizeScrollingBox(int numOfPlayers)
 	{
@@ -144,23 +161,25 @@ public class LobbyManager : MonoBehaviour {
 		Debug.Log (playerName);
     }
 
-	void OnPlayerConnected(NetworkPlayer player) 
+    [RPC]
+    void UpdatePing(int index, int ping)
     {
-		Debug.Log ("Player Connected!" + player.ipAddress);
-		if (Network.isServer) 
-		{
-			RefreshList();
-		}
-	}
+        playerLabels[index].transform.FindChild("PlayerPing").GetComponent<Text>().text = ping.ToString();
+    }
 
-	void OnPlayerDisconnected(NetworkPlayer player) 
+    [RPC]
+    void UpdateServerName(string name)
     {
-		Debug.Log ("Player Disconnected!" + player.ipAddress);
-		if (Network.isServer) 
-		{
-            playerNameList.RemoveAt(playerList.IndexOf(player));
-			playerList.Remove (player);
-			UpdatePlayerLabels (playerList);
-		}
-	}
+        serverNamePanel.transform.FindChild("ServerName").GetComponent<Text>().text = name;
+    }
+
+    [RPC]
+    void ClearPlayerLabels()
+    {
+        for (int i = 0; i < playerLabels.Count; i++)
+        {
+            Destroy(playerLabels[i]);
+        }
+        playerLabels.Clear();
+    }
 }
