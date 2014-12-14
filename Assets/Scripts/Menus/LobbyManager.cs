@@ -9,6 +9,7 @@ public class LobbyManager : MonoBehaviour {
 	public GameObject labelPrefab;
     public GameObject chatPrefab;
     public GameObject chatPanel;
+    public InputField chatInput;
 	public GameObject startGameButton;
     public GameObject settingsBlocker;
     public GameObject settingsPanel;
@@ -41,6 +42,11 @@ public class LobbyManager : MonoBehaviour {
                 }
             }
             pingTime += Time.deltaTime;
+        }
+        if (Input.GetKeyDown(KeyCode.Return) && EventSystem.current.currentSelectedGameObject.name == chatInput.name)
+        {
+            SendChatMessage(chatInput.transform.FindChild("Text").GetComponent<Text>().text);
+            chatInput.text = "";
         }
 	}	
 
@@ -151,20 +157,23 @@ public class LobbyManager : MonoBehaviour {
         if (chatMessages.Count >= 20)
         {
             Destroy(chatMessages[0]);
-            chatMessages.RemoveAt(0);
-            for (int i = 0; i < chatMessages.Count; i++)
-            {
-                chatMessages[i].GetComponent<RectTransform>().anchorMax = new Vector2(1, (1 - ((1f / 20f) * i)));
-                chatMessages[i].GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - ((1f / 20f) * (i + 1))));
-            }
+            chatMessages.RemoveAt(0); 
         }
+        for (int i = 0; i < chatMessages.Count; i++)
+        {
+            chatMessages[i].GetComponent<RectTransform>().anchorMax = new Vector2(1, (1f / 20f) * (1 + chatMessages.Count - i));
+            chatMessages[i].GetComponent<RectTransform>().anchorMin = new Vector2(0, (1f / 20f) * (chatMessages.Count - i));
+        }
+        float chatHeight = chatPrefab.GetComponent<RectTransform>().rect.height * chatMessages.Count;
+        float panelHeight = chatPanel.GetComponent<RectTransform>().rect.height;
+        chatPanel.GetComponent<ScrollRect>().enabled = (chatHeight > panelHeight);
         GameObject chat = (GameObject)Instantiate(chatPrefab);
         chat.transform.SetParent(chatPanel.transform.FindChild("ChatScrolling"), false);
         chat.GetComponentInChildren<Text>().font = font;
         chat.transform.FindChild("NameText").GetComponent<Text>().text = player;
         chat.transform.FindChild("ChatText").GetComponent<Text>().text = message;
-        chat.GetComponent<RectTransform>().anchorMax = new Vector2(1, (1 - (1f / 20f) * (chatMessages.Count)));
-        chat.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1f/20f) * (chatMessages.Count + 1)));
+        chat.GetComponent<RectTransform>().anchorMax = new Vector2(1, (1f / 20f));
+        chat.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
         chat.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
         chat.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
         if ((chatMessages.Count + 1) % 2 == 0)
