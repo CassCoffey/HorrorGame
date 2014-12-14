@@ -14,7 +14,7 @@ public class VoiceChatManagerScript : MonoBehaviour
 	
     private AudioClip clip;
 	private AudioClip receivedClip;
-    private int Frequency = 8000;
+    private int Frequency = 16000;
 	private bool isMicConnected;
 	private int lastPosition = 0;
 	private List<float> floatAudio = new List<float>();
