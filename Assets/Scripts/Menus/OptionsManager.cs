@@ -11,6 +11,7 @@ public class OptionsManager : MonoBehaviour {
     public GameObject buttonPrefab;
     public GameObject resolutionPanel;
     public GameObject playerTextBox;
+    public GameObject audioPanel;
     public Font font;
 
     private Resolution[] resolutions;
@@ -22,6 +23,18 @@ public class OptionsManager : MonoBehaviour {
         playerTextBox.GetComponent<Text>().text = PlayerPrefs.GetString("UserName");
         CurrentResolution = Screen.currentResolution;
         CreateResolutionList();
+        if (PlayerPrefs.HasKey("Master"))
+        {
+            audioPanel.transform.FindChild("MasterSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Master");
+            audioPanel.transform.FindChild("MusicSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Music");
+            audioPanel.transform.FindChild("VoiceSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Voice");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("Master", 1f);
+            PlayerPrefs.SetFloat("Music", 1f);
+            PlayerPrefs.SetFloat("Voice", 1f);
+        }
     }
 
     // Tab Management
@@ -118,5 +131,17 @@ public class OptionsManager : MonoBehaviour {
     public void ChangeMasterVolume(float value)
     {
         AudioListener.volume = value;
+        PlayerPrefs.SetFloat("Master", value);
+    }
+
+    public void ChangeMusicVolume(float value)
+    {
+        Camera.main.transform.FindChild("Music").GetComponent<AudioSource>().volume = value;
+        PlayerPrefs.SetFloat("Music", value);
+    }
+    public void ChangeVoiceVolume(float value)
+    {
+        Camera.main.transform.FindChild("Voice").GetComponent<AudioSource>().volume = value;
+        PlayerPrefs.SetFloat("Voice", value);
     }
 }
