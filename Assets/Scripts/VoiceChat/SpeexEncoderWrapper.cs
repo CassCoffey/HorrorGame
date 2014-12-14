@@ -17,7 +17,7 @@ public static class SpeexEncoderWrapper
 	
 	public static byte[] EncodeMyAudio(short[] raw, out int numEncoded)
 	{
-		Encoder.Quality = 5;						//change this to change your quality. 1 = worse quality, but less data
+		Encoder.Quality = 8;						//change this to change your quality. 1 = worse quality, but less data
 		var encodedData = new byte[raw.Length];
 		samplesEncoded = raw.Length - raw.Length % Encoder.FrameSize;
 		encodedBytes = Encoder.Encode(raw, 0, samplesEncoded, encodedData, 0, encodedData.Length);
