@@ -26,6 +26,8 @@ public class LobbyManager : MonoBehaviour {
     private List<string> playerNameList = new List<string>();
 	private List<GameObject> playerLabels = new List<GameObject>();
     private List<GameObject> chatMessages = new List<GameObject>();
+    private float maxChatHeight;
+    private float currentChatHeight = 0;
 
 	// Update is called once per frame
 	void Update () 
@@ -37,15 +39,14 @@ public class LobbyManager : MonoBehaviour {
                 pingTime = 0;
                 for (int i = 0; i < playerList.Count; i++)
                 {
-                    Debug.Log("Looping through players" + playerList[i].ipAddress + " " + Network.GetLastPing(playerList[i]));
                     networkView.RPC("UpdatePing", RPCMode.All, i, Network.GetLastPing(playerList[i]));
                 }
             }
             pingTime += Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.Return) && EventSystem.current.currentSelectedGameObject.name == chatInput.name)
+        if (Input.GetKeyDown(KeyCode.Return) && chatInput.text != "" && EventSystem.current.currentSelectedGameObject.name == chatInput.name)
         {
-            SendChatMessage(chatInput.transform.FindChild("Text").GetComponent<Text>().text);
+            SendChatMessage(chatInput.text);
             chatInput.text = "";
         }
 	}	
@@ -58,6 +59,8 @@ public class LobbyManager : MonoBehaviour {
         }
         chatMessages.Clear();
         float panelHeight = chatPrefab.GetComponent<RectTransform>().rect.height * 20;
+        maxChatHeight = panelHeight;
+        currentChatHeight = 0;
         float currentHeight = chatPanel.GetComponent<RectTransform>().rect.height;
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, panelHeight);
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
@@ -93,21 +96,21 @@ public class LobbyManager : MonoBehaviour {
 
     void OnPlayerConnected(NetworkPlayer player)
     {
-        Debug.Log("Player Connected!" + player.ipAddress);
         if (Network.isServer)
         {
             RefreshList();
+            networkView.RPC("RetrieveChatMessage", RPCMode.All, "Server", playerNameList[playerList.IndexOf(player)] + " has joined.", Color.green.r, Color.green.g, Color.green.b);
         }
     }
 
     void OnPlayerDisconnected(NetworkPlayer player)
     {
-        Debug.Log("Player Disconnected!" + player.ipAddress);
         if (Network.isServer)
         {
             playerNameList.RemoveAt(playerList.IndexOf(player));
             playerList.Remove(player);
             UpdatePlayerLabels(playerList);
+            networkView.RPC("RetrieveChatMessage", RPCMode.All, "Server", playerNameList[playerList.IndexOf(player)] + " has disconnected.", Color.green.r, Color.green.g, Color.green.b);
         }
     }
 
@@ -149,30 +152,18 @@ public class LobbyManager : MonoBehaviour {
 
     public void SendChatMessage(string message)
     {
-        networkView.RPC("RetrieveChatMessage", RPCMode.All, networkManager.GetComponent<NetworkManager>().playerName, message);
+        networkView.RPC("RetrieveChatMessage", RPCMode.All, networkManager.GetComponent<NetworkManager>().playerName, message, 0.2f, 0.2f, 0.2f);
     }
 
-    [RPC] void RetrieveChatMessage(string player, string message)
+    [RPC] void RetrieveChatMessage(string player, string message, float r, float g, float b)
     {
-        if (chatMessages.Count >= 20)
-        {
-            Destroy(chatMessages[0]);
-            chatMessages.RemoveAt(0); 
-        }
-        for (int i = 0; i < chatMessages.Count; i++)
-        {
-            chatMessages[i].GetComponent<RectTransform>().anchorMax = new Vector2(1, (1f / 20f) * (1 + chatMessages.Count - i));
-            chatMessages[i].GetComponent<RectTransform>().anchorMin = new Vector2(0, (1f / 20f) * (chatMessages.Count - i));
-        }
-        float chatHeight = chatPrefab.GetComponent<RectTransform>().rect.height * chatMessages.Count;
-        float panelHeight = chatPanel.GetComponent<RectTransform>().rect.height;
-        chatPanel.GetComponent<ScrollRect>().enabled = (chatHeight > panelHeight);
         GameObject chat = (GameObject)Instantiate(chatPrefab);
         chat.transform.SetParent(chatPanel.transform.FindChild("ChatScrolling"), false);
         chat.GetComponentInChildren<Text>().font = font;
         chat.transform.FindChild("NameText").GetComponent<Text>().text = player;
+        chat.transform.FindChild("ChatText").GetComponent<Text>().color = new Color(r, g, b);
         chat.transform.FindChild("ChatText").GetComponent<Text>().text = message;
-        chat.GetComponent<RectTransform>().anchorMax = new Vector2(1, (1f / 20f));
+        chat.GetComponent<RectTransform>().anchorMax = new Vector2(1, chat.transform.FindChild("ChatText").GetComponent<Text>().preferredHeight / maxChatHeight);
         chat.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
         chat.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
         chat.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
@@ -185,6 +176,19 @@ public class LobbyManager : MonoBehaviour {
             chat.GetComponent<Image>().color = new UnityEngine.Color(0.6f, 0.6f, 0.6f, 0.7f);
         }
         chatMessages.Add(chat);
+        for (int i = chatMessages.Count - 2; i >= 0; i--)
+        {
+            chatMessages[i].GetComponent<RectTransform>().anchorMax = new Vector2(1, chatMessages[i+1].GetComponent<RectTransform>().anchorMax.y + (chatMessages[i].transform.FindChild("ChatText").GetComponent<Text>().preferredHeight / maxChatHeight));
+            chatMessages[i].GetComponent<RectTransform>().anchorMin = new Vector2(0, chatMessages[i+1].GetComponent<RectTransform>().anchorMax.y);
+        }
+        currentChatHeight += chat.transform.FindChild("ChatText").GetComponent<Text>().preferredHeight;
+        float panelHeight = chatPanel.GetComponent<RectTransform>().rect.height;
+        chatPanel.GetComponent<ScrollRect>().enabled = (currentChatHeight > panelHeight);
+        while (currentChatHeight > maxChatHeight)
+        {
+            Destroy(chatMessages[0]);
+            chatMessages.RemoveAt(0);
+        }
     }
 
     [RPC] void RetrieveServerInfo(string info)
@@ -233,7 +237,6 @@ public class LobbyManager : MonoBehaviour {
     {
         playerNameList.Add(playerName);
 		UpdatePlayerLabels (playerList);
-		Debug.Log (playerName);
     }
 
     [RPC]
