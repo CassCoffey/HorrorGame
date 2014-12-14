@@ -752,7 +752,6 @@ GameObject:
   m_Component:
   - 224: {fileID: 22400088}
   - 114: {fileID: 11400096}
-  - 114: {fileID: 11400098}
   m_Layer: 5
   m_Name: MasterSlider
   m_TagString: Untagged
@@ -2197,17 +2196,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &11400098
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7396294998b30934d89a2a3b033d9344, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400100
 MonoBehaviour:
   m_ObjectHideFlags: 1

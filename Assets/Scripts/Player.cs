@@ -6,6 +6,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     public Canvas Menu;
+    public GameObject player;
 
     [SerializeField]private float runSpeed = 8f;                                       // The speed at which we want the character to move
     [SerializeField]private float strafeSpeed = 4f;                                    // The speed at which we want the character to be able to strafe
