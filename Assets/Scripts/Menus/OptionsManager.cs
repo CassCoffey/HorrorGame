@@ -23,18 +23,7 @@ public class OptionsManager : MonoBehaviour {
         playerTextBox.GetComponent<Text>().text = PlayerPrefs.GetString("UserName");
         CurrentResolution = Screen.currentResolution;
         CreateResolutionList();
-        if (PlayerPrefs.HasKey("Master"))
-        {
-            audioPanel.transform.FindChild("MasterSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Master");
-            audioPanel.transform.FindChild("MusicSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Music");
-            audioPanel.transform.FindChild("VoiceSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Voice");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("Master", 1f);
-            PlayerPrefs.SetFloat("Music", 1f);
-            PlayerPrefs.SetFloat("Voice", 1f);
-        }
+        SetVolumeSliders();
     }
 
     // Tab Management
@@ -62,6 +51,10 @@ public class OptionsManager : MonoBehaviour {
         currentButton = button;
         currentButton.image.color = Color.grey;
         currentPanel.SetActive(true);
+        if (panel == "AudioPanel")
+        {
+            SetVolumeSliders();
+        }
     }
 
     // Graphics Options
@@ -128,20 +121,39 @@ public class OptionsManager : MonoBehaviour {
     }
 
     // Audio Options
+    public void SetVolumeSliders()
+    {
+        if (PlayerPrefs.HasKey("Master"))
+        {
+            audioPanel.transform.FindChild("MasterSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Master");
+            audioPanel.transform.FindChild("MusicSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Music");
+            audioPanel.transform.FindChild("VoiceSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Voice");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("Master", 1f);
+            PlayerPrefs.SetFloat("Music", 1f);
+            PlayerPrefs.SetFloat("Voice", 1f);
+        }
+    }
+
     public void ChangeMasterVolume(float value)
     {
         AudioListener.volume = value;
         PlayerPrefs.SetFloat("Master", value);
+        PlayerPrefs.Save();
     }
 
     public void ChangeMusicVolume(float value)
     {
         Camera.main.transform.FindChild("Music").GetComponent<AudioSource>().volume = value;
         PlayerPrefs.SetFloat("Music", value);
+        PlayerPrefs.Save();
     }
     public void ChangeVoiceVolume(float value)
     {
         Camera.main.transform.FindChild("Voice").GetComponent<AudioSource>().volume = value;
         PlayerPrefs.SetFloat("Voice", value);
+        PlayerPrefs.Save();
     }
 }
