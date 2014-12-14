@@ -5375,7 +5375,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 335173963}
   m_Direction: 2
   m_Value: 0
-  m_Size: .999953628
+  m_Size: .999967456
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9714,8 +9714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dcd2ff54a3f1242a7e0c49ed1adf52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PushToTalkKey: 102
-  DataSendSize: 1000
+  PushToTalkKey: 9
+  DataSendSize: 2000
   MaxTimeTalking: 100
 --- !u!82 &1857510445
 AudioSource:
@@ -10438,6 +10438,14 @@ Prefab:
     - target: {fileID: 11400000, guid: 0e5f8aeae443d434a84598a724251a5c, type: 2}
       propertyPath: MaxTimeTalking
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0e5f8aeae443d434a84598a724251a5c, type: 2}
+      propertyPath: DataSendSize
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0e5f8aeae443d434a84598a724251a5c, type: 2}
+      propertyPath: PushToTalkKey
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e5f8aeae443d434a84598a724251a5c, type: 2}

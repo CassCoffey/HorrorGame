@@ -99,7 +99,6 @@ public class LobbyManager : MonoBehaviour {
         if (Network.isServer)
         {
             RefreshList();
-            networkView.RPC("RetrieveChatMessage", RPCMode.All, "Server", playerNameList[playerList.IndexOf(player)] + " has joined.", Color.green.r, Color.green.g, Color.green.b);
         }
     }
 
@@ -107,10 +106,10 @@ public class LobbyManager : MonoBehaviour {
     {
         if (Network.isServer)
         {
+            networkView.RPC("RetrieveChatMessage", RPCMode.All, "Server", playerNameList[playerList.IndexOf(player)] + " has disconnected.", Color.green.r, Color.green.g, Color.green.b);
             playerNameList.RemoveAt(playerList.IndexOf(player));
             playerList.Remove(player);
             UpdatePlayerLabels(playerList);
-            networkView.RPC("RetrieveChatMessage", RPCMode.All, "Server", playerNameList[playerList.IndexOf(player)] + " has disconnected.", Color.green.r, Color.green.g, Color.green.b);
         }
     }
 
@@ -186,6 +185,7 @@ public class LobbyManager : MonoBehaviour {
         chatPanel.GetComponent<ScrollRect>().enabled = (currentChatHeight > panelHeight);
         while (currentChatHeight > maxChatHeight)
         {
+            currentChatHeight -= chatMessages[0].transform.FindChild("ChatText").GetComponent<Text>().preferredHeight;
             Destroy(chatMessages[0]);
             chatMessages.RemoveAt(0);
         }
@@ -237,6 +237,7 @@ public class LobbyManager : MonoBehaviour {
     {
         playerNameList.Add(playerName);
 		UpdatePlayerLabels (playerList);
+        networkView.RPC("RetrieveChatMessage", RPCMode.All, "Server", playerName + " has joined.", Color.green.r, Color.green.g, Color.green.b);
     }
 
     [RPC]
