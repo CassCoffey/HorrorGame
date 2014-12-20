@@ -6889,10 +6889,10 @@ RectTransform:
   - {fileID: 689349875}
   m_Father: {fileID: 2040180143}
   m_RootOrder: 0
-  m_AnchorMin: {x: .0877376646, y: .223555893}
-  m_AnchorMax: {x: .91485554, y: .747000039}
-  m_AnchoredPosition: {x: -.153298557, y: -.0996845216}
-  m_SizeDelta: {x: -.233903587, y: -.0893242657}
+  m_AnchorMin: {x: .0877337381, y: .355000019}
+  m_AnchorMax: {x: .909591317, y: .5}
+  m_AnchoredPosition: {x: -.0105881691, y: 1.33514404e-05}
+  m_SizeDelta: {x: -.0994825363, y: .000112295151}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1232725133
 MonoBehaviour:
