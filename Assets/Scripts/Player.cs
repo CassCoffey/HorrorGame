@@ -28,6 +28,11 @@ public class Player : MonoBehaviour {
     private Vector2 input;
     private CapsuleCollider capsule;
 
+    public GameObject currentWeapon = null;
+    public GameObject sheathedWeapon = null;
+    public GameObject weaponLoc;
+    public GameObject sheathedLoc;
+
     [SerializeField]private AdvancedSettings advanced = new AdvancedSettings();
     [System.Serializable]
     public class AdvancedSettings                                                       // The advanced settings
@@ -214,9 +219,17 @@ public class Player : MonoBehaviour {
 
     private void KeyInput()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && (currentWeapon == null || sheathedWeapon == null))
         {
             PickupItem();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SwapWeapons();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            DropWeapon();
         }
     }
 
@@ -232,10 +245,64 @@ public class Player : MonoBehaviour {
         {
             if (hits[i].collider.gameObject.tag == "Item")
             {
-                hits[i].transform.position = transform.FindChild("WeaponLoc").position;
-                hits[i].transform.rotation = transform.FindChild("WeaponLoc").rotation;
-                hits[i].transform.SetParent(transform.FindChild("WeaponLoc"));
-                hits[i].rigidbody.isKinematic = true;
+                if (currentWeapon == null)
+                {
+                    SetCurrentWeapon(hits[i].collider.gameObject);
+                }
+                else
+                {
+                    SetSheathedWeapon(hits[i].collider.gameObject);
+                }
+                return;
+            }
+        }
+    }
+
+    public void SetCurrentWeapon(GameObject weapon)
+    {
+        currentWeapon = weapon;
+        if (weapon != null)
+        {
+            weapon.collider.enabled = false;
+            weapon.transform.position = weaponLoc.transform.position;
+            weapon.transform.rotation = weaponLoc.transform.rotation;
+            weapon.transform.SetParent(weaponLoc.transform);
+            weapon.rigidbody.isKinematic = true;
+        }
+    }
+
+    public void SetSheathedWeapon(GameObject weapon)
+    {
+        sheathedWeapon = weapon;
+        if (weapon != null)
+        {
+            weapon.collider.enabled = false;
+            weapon.transform.position = sheathedLoc.transform.position;
+            weapon.transform.rotation = sheathedLoc.transform.rotation;
+            weapon.transform.SetParent(sheathedLoc.transform);
+            weapon.rigidbody.isKinematic = true;
+        }
+    }
+
+    public void SwapWeapons()
+    {
+        GameObject tempWeapon = currentWeapon;
+        SetCurrentWeapon(sheathedWeapon);
+        SetSheathedWeapon(tempWeapon);
+    }
+
+    public void DropWeapon()
+    {
+        if (currentWeapon != null)
+        {
+            currentWeapon.transform.parent = null;
+            currentWeapon.collider.enabled = true;
+            currentWeapon.rigidbody.isKinematic = false;
+            currentWeapon = null;
+            if (sheathedWeapon != null)
+            {
+                SetCurrentWeapon(sheathedWeapon);
+                sheathedWeapon = null;
             }
         }
     }
