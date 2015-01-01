@@ -243,8 +243,9 @@ public class Player : MonoBehaviour {
         System.Array.Sort(hits, rayHitComparer);
         for (int i = 0; i < hits.Length; i++)
         {
-            if (hits[i].collider.gameObject.tag == "Item")
+            if (hits[i].collider.gameObject.tag == "Item" && !hits[i].transform.GetComponent<Weapon>().isEquipped)
             {
+                hits[i].transform.GetComponent<Weapon>().isEquipped = true;
                 if (currentWeapon == null)
                 {
                     SetCurrentWeapon(hits[i].collider.gameObject);
@@ -295,6 +296,7 @@ public class Player : MonoBehaviour {
     {
         if (currentWeapon != null)
         {
+            currentWeapon.GetComponent<Weapon>().isEquipped = false;
             currentWeapon.transform.parent = null;
             currentWeapon.collider.enabled = true;
             currentWeapon.rigidbody.isKinematic = false;
