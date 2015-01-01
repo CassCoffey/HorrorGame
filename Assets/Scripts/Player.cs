@@ -20,6 +20,8 @@ public class Player : MonoBehaviour {
     private float syncTime = 0f;
     private Vector3 syncStartPosition = Vector3.zero;
     private Vector3 syncEndPosition = Vector3.zero;
+    private Quaternion syncStartRotation = Quaternion.identity;
+    private Quaternion syncEndRotation = Quaternion.identity;
     private Vector3 mousePosPrev;
     public bool grounded { get; private set; }
     private IComparer rayHitComparer;
@@ -80,6 +82,8 @@ public class Player : MonoBehaviour {
     {
         Vector3 syncPosition = Vector3.zero;
         Vector3 syncVelocity = Vector3.zero;
+        Quaternion syncRotation = Quaternion.identity;
+        Vector3 syncAngularVelocity = Vector3.zero;
         if (stream.isWriting)
         {
             syncPosition = rigidbody.position;
@@ -87,11 +91,19 @@ public class Player : MonoBehaviour {
 
             syncVelocity = rigidbody.velocity;
             stream.Serialize(ref syncVelocity);
+
+            syncRotation = rigidbody.rotation;
+            stream.Serialize(ref syncRotation);
+
+            syncAngularVelocity = rigidbody.angularVelocity;
+            stream.Serialize(ref syncAngularVelocity);
         }
         else
         {
             stream.Serialize(ref syncPosition);
             stream.Serialize(ref syncVelocity);
+            stream.Serialize(ref syncRotation);
+            stream.Serialize(ref syncAngularVelocity);
 
             syncTime = 0f;
             syncDelay = Time.time - lastSynchronizationTime;
@@ -99,6 +111,8 @@ public class Player : MonoBehaviour {
 
             syncEndPosition = syncPosition + syncVelocity * syncDelay;
             syncStartPosition = rigidbody.position;
+            syncEndRotation = syncRotation * Quaternion.Euler(syncAngularVelocity * syncDelay * Mathf.Rad2Deg);
+            syncStartRotation = rigidbody.rotation;
         }
     }
 
@@ -206,6 +220,7 @@ public class Player : MonoBehaviour {
     {
         syncTime += Time.deltaTime;
         rigidbody.position = Vector3.Lerp(syncStartPosition, syncEndPosition, syncTime / syncDelay);
+        rigidbody.rotation = Quaternion.Lerp(syncStartRotation, syncEndRotation, syncTime / syncDelay);
     }
 
     private void MenuInput()

@@ -19,7 +19,7 @@ Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\M
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.793 seconds
+- Completed reload, in  0.787 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -46,7 +46,7 @@ Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\M
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.064 seconds
+- Completed reload, in  0.070 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -76,33 +76,31 @@ Server Joined
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 33.921429 ms
-Unloading 4 Unused Serialized files (Serialized files now lUadnd:o 0 / Di 31.2207i98 msd 
-files: 0)
+UnloadTime: 9.945495 ms
+UnloadTime: 7.368031 ms
+Unloading 4 Unused SerialUzed files (S4 enrialized flles iozed files (Serializede ifiles now loaded:
 
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 620.
-Total: 6.366468 ms (FindLiveObjects: 0.079971 ms CreateObjectMapping: 0.035922 ms MarkObjects: 0.796717 ms  DeleteObjects: 2.879386 ms)
+Unloadrty s2 ueurialized sfiles: 0) m
+Uemory usa72 u nused AOssets to re 620.
+Total : age. 11oad5d6 bjs cts nowiv 620jec
+Total.:262.393420 msms (FtenObjectMapping:00.013821 ms CreateOects: 0.295n9350.0  De9leteObjects: 1.072981 ms)
 
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+s  DeleteObjects: 1.033209 ms)
 
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 620.
-Total: 5.905031 ms (FindLiveObjects: 0.063720 ms CreateObjectMapping: 0.035495 ms MarkObjects: 0.765926 ms  DeleteObjects: 2.665988 ms)
-
-Spawning Player
+Spawwning Player
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(
+Filenamme: e:/:uiC:dAgentA/ework/d63dfc638538511090b60/artifacts/StdaloaePdalonrGenayrerGenUeratEed/neniebug.gcneDeLiuge:cp49)
 
-Spawning Player
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+p Line: 49)
 
-Instantiating local player view.
+IIstantiatintg locala pllayer iew.w
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Instantiating local player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(
+Fileenname: :C:/BuiAldAg/work/d6/3dfc6385190b60/artitacifacts/StandalonePlayerGenerated/UnitineDebug.cpp Line: 49)
+
+9)
 
 Instantiating remote player view.
  
@@ -116,7 +114,19 @@ Successfully terminated connection to server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
+UnloadTime: 19.976095 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 264 unused Assets to reduce memory usage. Loaded Objects now: 999.
+Total: 6.458413 ms (FindLiveObjects: 0.203562 ms CreateObjectMapping: 0.093655 ms MarkObjects: 2.450023 ms  DeleteObjects: 1.325296 ms)
+
 Successfully shut down server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 22.521484 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 264 unused Assets to reduce memory usage. Loaded Objects now: 999.
+Total: 5.943519 ms (FindLiveObjects: 0.152672 ms CreateObjectMapping: 0.070990 ms MarkObjects: 2.364065 ms  DeleteObjects: 1.500206 ms)
 
