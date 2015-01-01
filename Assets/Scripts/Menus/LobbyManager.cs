@@ -59,6 +59,9 @@ public class LobbyManager : MonoBehaviour {
         }
         chatMessages.Clear();
         float panelHeight = chatPrefab.GetComponent<RectTransform>().rect.height * 20;
+        maxChatHeight = panelHeight;
+        currentChatHeight = 0;
+        float currentHeight = chatPanel.GetComponent<RectTransform>().rect.height;
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, panelHeight);
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
     }

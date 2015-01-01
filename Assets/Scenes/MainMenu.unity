@@ -3751,7 +3751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverPrefab: {fileID: 100002, guid: f1256c563cdf73b428cbcdf343a64b7e, type: 2}
   serverListPanel: {fileID: 1762167761}
-  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
   lobby: {fileID: 1912312847}
   screenManager: {fileID: 827992458}
   pingUpdate: 1
@@ -10406,9 +10406,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dcd2ff54a3f1242a7e0c49ed1adf52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PushToTalkKey: 9
+  PushToTalkKey: 102
   DataSendSize: 1000
-  MaxTimeTalking: 100
+  MaxTimeTalking: 30
 --- !u!82 &1857510445
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11139,7 +11139,7 @@ MonoBehaviour:
   resolutionPanel: {fileID: 1506812214}
   playerTextBox: {fileID: 58828340}
   audioPanel: {fileID: 1584284834}
-  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
 --- !u!95 &1914386437
 Animator:
   serializedVersion: 3
