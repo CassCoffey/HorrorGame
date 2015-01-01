@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
     public bool grounded { get; private set; }
     private IComparer rayHitComparer;
     private const float jumpRayLength = 0.7f;
+    private const float playerReach = 1f;
     private Vector2 input;
     private CapsuleCollider capsule;
 
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour {
         if (networkView.isMine)
         {
             MenuInput();
+            KeyInput();
         }
     }
 
@@ -207,6 +209,34 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
+        }
+    }
+
+    private void KeyInput()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PickupItem();
+        }
+    }
+
+    private void PickupItem()
+    {
+        // Create a ray that points down from the centre of the character.
+        Ray ray = new Ray(transform.FindChild("Player Camera").position, transform.FindChild("Player Camera").forward);
+
+        // Raycast slightly further than the capsule (as determined by jumpRayLength)
+        RaycastHit[] hits = Physics.RaycastAll(ray, capsule.height * playerReach);
+        System.Array.Sort(hits, rayHitComparer);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].collider.gameObject.tag == "Item")
+            {
+                hits[i].transform.position = transform.FindChild("WeaponLoc").position;
+                hits[i].transform.rotation = transform.FindChild("WeaponLoc").rotation;
+                hits[i].transform.SetParent(transform.FindChild("WeaponLoc"));
+                hits[i].rigidbody.isKinematic = true;
+            }
         }
     }
 

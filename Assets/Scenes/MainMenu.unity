@@ -2055,7 +2055,6 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
@@ -3751,7 +3750,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverPrefab: {fileID: 100002, guid: f1256c563cdf73b428cbcdf343a64b7e, type: 2}
   serverListPanel: {fileID: 1762167761}
-  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
+  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   lobby: {fileID: 1912312847}
   screenManager: {fileID: 827992458}
   pingUpdate: 1
@@ -9514,7 +9513,6 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
@@ -9675,7 +9673,6 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
@@ -10660,7 +10657,6 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
