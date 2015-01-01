@@ -245,6 +245,7 @@ public class Player : MonoBehaviour {
         {
             if (hits[i].collider.gameObject.tag == "Item" && !hits[i].transform.GetComponent<Weapon>().isEquipped)
             {
+                networkView.RPC("SyncPickup", RPCMode.OthersBuffered, hits[i].transform.networkView.viewID);
                 hits[i].transform.GetComponent<Weapon>().isEquipped = true;
                 if (currentWeapon == null)
                 {
@@ -287,6 +288,7 @@ public class Player : MonoBehaviour {
 
     public void SwapWeapons()
     {
+        networkView.RPC("SyncSwap", RPCMode.OthersBuffered);
         GameObject tempWeapon = currentWeapon;
         SetCurrentWeapon(sheathedWeapon);
         SetSheathedWeapon(tempWeapon);
@@ -294,6 +296,7 @@ public class Player : MonoBehaviour {
 
     public void DropWeapon()
     {
+        networkView.RPC("SyncDrop", RPCMode.OthersBuffered);
         if (currentWeapon != null)
         {
             currentWeapon.GetComponent<Weapon>().isEquipped = false;
@@ -338,6 +341,44 @@ public class Player : MonoBehaviour {
             GetComponent<MouseLook>().enabled = false;
             GetComponentInChildren<MouseLook>().enabled = false;
             GetComponentInChildren<Camera>().GetComponent<MouseLook>().enabled = false;
+        }
+    }
+
+    [RPC] void SyncPickup(NetworkViewID viewID)
+    {
+        GameObject weapon = NetworkView.Find(viewID).gameObject;
+        weapon.transform.GetComponent<Weapon>().isEquipped = true;
+        if (currentWeapon == null)
+        {
+            SetCurrentWeapon(weapon.collider.gameObject);
+        }
+        else
+        {
+            SetSheathedWeapon(weapon.collider.gameObject);
+        }
+    }
+
+    [RPC] void SyncSwap()
+    {
+        GameObject tempWeapon = currentWeapon;
+        SetCurrentWeapon(sheathedWeapon);
+        SetSheathedWeapon(tempWeapon);
+    }
+
+    [RPC] void SyncDrop()
+    {
+        if (currentWeapon != null)
+        {
+            currentWeapon.GetComponent<Weapon>().isEquipped = false;
+            currentWeapon.transform.parent = null;
+            currentWeapon.collider.enabled = true;
+            currentWeapon.rigidbody.isKinematic = false;
+            currentWeapon = null;
+            if (sheathedWeapon != null)
+            {
+                SetCurrentWeapon(sheathedWeapon);
+                sheathedWeapon = null;
+            }
         }
     }
 

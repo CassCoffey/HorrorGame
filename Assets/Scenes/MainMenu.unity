@@ -11135,7 +11135,7 @@ MonoBehaviour:
   resolutionPanel: {fileID: 1506812214}
   playerTextBox: {fileID: 58828340}
   audioPanel: {fileID: 1584284834}
-  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
+  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!95 &1914386437
 Animator:
   serializedVersion: 3

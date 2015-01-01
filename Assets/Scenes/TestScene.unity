@@ -149,7 +149,7 @@ Transform:
   m_Children:
   - {fileID: 2111005405}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!65 &107166113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -466,7 +466,7 @@ Transform:
   m_Children:
   - {fileID: 1992186171}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
 --- !u!54 &333101427
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -749,7 +749,7 @@ Transform:
   m_Children:
   - {fileID: 1219760090}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
 --- !u!1001 &1021211884
 Prefab:
   m_ObjectHideFlags: 0
@@ -1355,7 +1355,7 @@ Transform:
   m_Children:
   - {fileID: 133819665}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1001 &1709227098
 Prefab:
   m_ObjectHideFlags: 0

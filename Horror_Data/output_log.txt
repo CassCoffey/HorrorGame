@@ -1,7 +1,7 @@
-Initialize engine version: 4.6.0f3 (30840d631a27)
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 9.0c [nvd3dum.dll 9.18.13.4475]
+    Version:  Direct3D 9.0c [nvd3dum.dll 9.18.13.4709]
     Renderer: NVIDIA GeForce GT 755M
     Vendor:   NVIDIA
     VRAM:     1951 MB (via DXGI)
@@ -19,16 +19,16 @@ Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\M
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.043 seconds
+- Completed reload, in  0.793 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.dll (this message is harmless)
-Initialize engine version: 4.6.0f3 (30840d631a27)
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 9.0c [nvd3dum.dll 9.18.13.4475]
+    Version:  Direct3D 9.0c [nvd3dum.dll 9.18.13.4709]
     Renderer: NVIDIA GeForce GT 755M
     Vendor:   NVIDIA
     VRAM:     1951 MB (via DXGI)
@@ -46,25 +46,29 @@ Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\M
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.046 seconds
+- Completed reload, in  0.064 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.dll (this message is harmless)
 Server Initialized
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
+Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.dll (this message is harmless)
 Attempting to join server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Received pong from 192.168.56.1:7777
+Received pong from 192.168.56.1:25000
  
 (Filename:  Line: 836)
 
-Received pong from 192.168.1.117:7777
+Received pong from 192.168.1.118:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.1.116:25000
  
 (Filename:  Line: 836)
 
@@ -72,27 +76,27 @@ Server Joined
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 11.118105 ms
+UnloadTime: 33.921429 ms
+Unloading 4 Unused Serialized files (Serialized files now lUadnd:o 0 / Di 31.2207i98 msd 
+files: 0)
+
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 620.
+Total: 6.366468 ms (FindLiveObjects: 0.079971 ms CreateObjectMapping: 0.035922 ms MarkObjects: 0.796717 ms  DeleteObjects: 2.879386 ms)
+
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 554.
-Total: 1.903052 ms (FindLiveObjects: 0.017106 ms CreateObjectMapping: 0.011974 ms MarkObjects: 0.344687 ms  DeleteObjects: 1.000278 ms)
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 620.
+Total: 5.905031 ms (FindLiveObjects: 0.063720 ms CreateObjectMapping: 0.035495 ms MarkObjects: 0.765926 ms  DeleteObjects: 2.665988 ms)
 
-UnloadTime: 10.722528 ms
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 554.
-Total: 1.799561 ms (FindLiveObjects: 0.016678 ms CreateObjectMapping: 0.011546 ms MarkObjects: 0.260440 ms  DeleteObjects: 1.007121 ms)
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 Spawning Player
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 Instantiating local player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Spawning Player
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -112,19 +116,7 @@ Successfully terminated connection to server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 5.919563 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 254 unused Assets to reduce memory usage. Loaded Objects now: 1006.
-Total: 1.503625 ms (FindLiveObjects: 0.053456 ms CreateObjectMapping: 0.024376 ms MarkObjects: 0.585028 ms  DeleteObjects: 0.351530 ms)
-
 Successfully shut down server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-UnloadTime: 7.250417 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 254 unused Assets to reduce memory usage. Loaded Objects now: 1003.
-Total: 1.385165 ms (FindLiveObjects: 0.048752 ms CreateObjectMapping: 0.024376 ms MarkObjects: 0.553382 ms  DeleteObjects: 0.289520 ms)
 
