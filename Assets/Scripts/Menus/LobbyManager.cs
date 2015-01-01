@@ -65,6 +65,13 @@ public class LobbyManager : MonoBehaviour {
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, panelHeight);
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
     }
+
+	public void ClearPlayerList()
+	{
+		playerList.Clear();
+        playerNameList.Clear();
+	}
+
 	//Refreshes the chat, blocks access to settings and server info, removes the start game button, and adds the player that connected
     void OnConnectedToServer()
     {
