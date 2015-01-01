@@ -1,14 +1,35 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menus\LobbyManager.cs">
     <Files>
+      <File FileName="Assets\Scripts\Menus\LobbyManager.cs" Line="77" Column="123" />
       <File FileName="Assets\Scripts\Menus\ServerListManager.cs" Line="66" Column="59" />
-      <File FileName="Assets\Scripts\Menus\LobbyManager.cs" Line="86" Column="83" />
       <File FileName="Assets\Scripts\NetworkManager.cs" Line="24" Column="43" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Assembly-CSharp-Editor" expanded="True">
+            <Node name="Unity Assets" expanded="True">
+              <Node name="Sample Assets" expanded="True">
+                <Node name="Cameras" expanded="True">
+                  <Node name="Scripts" expanded="True">
+                    <Node name="Editor" expanded="True" />
+                  </Node>
+                </Node>
+                <Node name="Vehicles" expanded="True">
+                  <Node name="Car" expanded="True">
+                    <Node name="Scripts" expanded="True">
+                      <Node name="Editor" expanded="True">
+                        <Node name="WheelEditor.cs" selected="True" />
+                      </Node>
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
