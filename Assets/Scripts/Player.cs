@@ -67,7 +67,10 @@ public class Player : MonoBehaviour {
         if (networkView.isMine)
         {
             MenuInput();
-            KeyInput();
+            if (!Menu.enabled)
+            {
+                KeyInput();
+            }
         }
     }
 
@@ -277,10 +280,8 @@ public class Player : MonoBehaviour {
 
     private void PickupItem()
     {
-        // Create a ray that points down from the centre of the character.
         Ray ray = new Ray(transform.FindChild("Player Camera").position, transform.FindChild("Player Camera").forward);
 
-        // Raycast slightly further than the capsule (as determined by jumpRayLength)
         RaycastHit[] hits = Physics.RaycastAll(ray, capsule.height * playerReach);
         System.Array.Sort(hits, rayHitComparer);
         for (int i = 0; i < hits.Length; i++)
@@ -392,7 +393,7 @@ public class Player : MonoBehaviour {
     public void SwingWeapon()
     {
         networkView.RPC("SyncSwing", RPCMode.OthersBuffered);
-        if (currentWeapon != null && !Menu.enabled && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
             weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
         }
