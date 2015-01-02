@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
     public GameObject sheathedWeapon = null;
     public GameObject weaponLoc;
     public GameObject sheathedLoc;
+    public float throwForce = 1000;
 
     [SerializeField]private AdvancedSettings advanced = new AdvancedSettings();
     [System.Serializable]
@@ -246,6 +247,10 @@ public class Player : MonoBehaviour {
         {
             DropWeapon();
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            ThrowWeapon();
+        }
     }
 
     private void PickupItem()
@@ -262,6 +267,7 @@ public class Player : MonoBehaviour {
             {
                 networkView.RPC("SyncPickup", RPCMode.OthersBuffered, hits[i].transform.networkView.viewID);
                 hits[i].transform.GetComponent<Weapon>().isEquipped = true;
+                hits[i].transform.GetComponent<Weapon>().isStuck = false;
                 if (currentWeapon == null)
                 {
                     SetCurrentWeapon(hits[i].collider.gameObject);
@@ -281,9 +287,8 @@ public class Player : MonoBehaviour {
         if (weapon != null)
         {
             weapon.collider.enabled = false;
-            weapon.transform.position = weaponLoc.transform.position;
-            weapon.transform.rotation = weaponLoc.transform.rotation;
             weapon.transform.SetParent(weaponLoc.transform);
+            weapon.GetComponent<Weapon>().LerpTo(Vector3.zero, Quaternion.identity, 0.3f);
             weapon.rigidbody.isKinematic = true;
         }
     }
@@ -294,9 +299,8 @@ public class Player : MonoBehaviour {
         if (weapon != null)
         {
             weapon.collider.enabled = false;
-            weapon.transform.position = sheathedLoc.transform.position;
-            weapon.transform.rotation = sheathedLoc.transform.rotation;
             weapon.transform.SetParent(sheathedLoc.transform);
+            weapon.GetComponent<Weapon>().LerpTo(Vector3.zero, Quaternion.identity, 0.3f);
             weapon.rigidbody.isKinematic = true;
         }
     }
@@ -318,6 +322,26 @@ public class Player : MonoBehaviour {
             currentWeapon.transform.parent = null;
             currentWeapon.collider.enabled = true;
             currentWeapon.rigidbody.isKinematic = false;
+            currentWeapon = null;
+            if (sheathedWeapon != null)
+            {
+                SetCurrentWeapon(sheathedWeapon);
+                sheathedWeapon = null;
+            }
+        }
+    }
+
+    public void ThrowWeapon()
+    {
+        networkView.RPC("SyncThrow", RPCMode.OthersBuffered);
+        if (currentWeapon != null)
+        {
+            currentWeapon.GetComponent<Weapon>().isEquipped = false;
+            currentWeapon.transform.parent = null;
+            currentWeapon.collider.enabled = true;
+            currentWeapon.rigidbody.isKinematic = false;
+            currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce);
+            currentWeapon.rigidbody.AddRelativeTorque(throwForce * 10, 0, 0);
             currentWeapon = null;
             if (sheathedWeapon != null)
             {
@@ -363,6 +387,7 @@ public class Player : MonoBehaviour {
     {
         GameObject weapon = NetworkView.Find(viewID).gameObject;
         weapon.transform.GetComponent<Weapon>().isEquipped = true;
+        weapon.transform.GetComponent<Weapon>().isStuck = false;
         if (currentWeapon == null)
         {
             SetCurrentWeapon(weapon.collider.gameObject);
@@ -388,6 +413,25 @@ public class Player : MonoBehaviour {
             currentWeapon.transform.parent = null;
             currentWeapon.collider.enabled = true;
             currentWeapon.rigidbody.isKinematic = false;
+            currentWeapon = null;
+            if (sheathedWeapon != null)
+            {
+                SetCurrentWeapon(sheathedWeapon);
+                sheathedWeapon = null;
+            }
+        }
+    }
+
+    [RPC] void SyncThrow()
+    {
+        if (currentWeapon != null)
+        {
+            currentWeapon.GetComponent<Weapon>().isEquipped = false;
+            currentWeapon.transform.parent = null;
+            currentWeapon.collider.enabled = true;
+            currentWeapon.rigidbody.isKinematic = false;
+            currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce);
+            currentWeapon.rigidbody.AddRelativeTorque(throwForce / 2, 0, 0);
             currentWeapon = null;
             if (sheathedWeapon != null)
             {

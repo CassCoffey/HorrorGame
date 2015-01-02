@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 447880}
-  - 95: {fileID: 9547882}
   - 54: {fileID: 5447882}
   - 65: {fileID: 6547882}
   - 148: {fileID: 14889632}
   - 114: {fileID: 11488614}
+  - 23: {fileID: 2304820}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Item
@@ -62,6 +62,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 447880}
   m_RootOrder: 0
+--- !u!23 &2304820
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147880}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!23 &2347882
 Renderer:
   m_ObjectHideFlags: 1
@@ -114,23 +134,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .607486725, y: 15.0487309, z: 2.16591191}
-  m_Center: {x: -.000961887476, y: .713526785, z: .0130308503}
---- !u!95 &9547882
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 147880}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8f330b31d04a1ac4c9de82cca8227384, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_Size: {x: .603338659, y: 15.1693916, z: 2.28036332}
+  m_Center: {x: .018584393, y: .775792301, z: -.0305384081}
 --- !u!114 &11488614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEquipped: 0
+  isStuck: 0
+  isSharp: 1
 --- !u!148 &14889632
 NetworkView:
   m_ObjectHideFlags: 1
