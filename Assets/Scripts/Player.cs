@@ -34,7 +34,11 @@ public class Player : MonoBehaviour {
     public GameObject sheathedWeapon = null;
     public GameObject weaponLoc;
     public GameObject sheathedLoc;
-    public float throwForce = 1000;
+    public float throwForce = 1500;
+    private bool charging = false;
+    private float percentCharge;
+    private const float goalCharge = 0.15f;
+    private float startCharge;
 
     [SerializeField]private AdvancedSettings advanced = new AdvancedSettings();
     [System.Serializable]
@@ -249,7 +253,21 @@ public class Player : MonoBehaviour {
         }
         if (Input.GetMouseButtonDown(1))
         {
+            ChargeWeapon();
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
             ThrowWeapon();
+        }
+        if (charging)
+        {
+            float time = Time.time - startCharge;
+            percentCharge = time / goalCharge;
+            currentWeapon.transform.localPosition = Vector3.Lerp(Vector3.zero, Vector3.back * 0.06f, percentCharge);
+            if (percentCharge >= 1.0f)
+            {
+                ThrowWeapon();
+            }
         }
     }
 
@@ -331,17 +349,33 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void ChargeWeapon()
+    {
+        if (currentWeapon != null)
+        {
+            charging = true;
+            startCharge = Time.time;
+        }
+    }
+
     public void ThrowWeapon()
     {
         networkView.RPC("SyncThrow", RPCMode.OthersBuffered);
-        if (currentWeapon != null)
+        if (currentWeapon != null && charging)
         {
+            charging = false;
+            if (percentCharge <= 0.15f)
+            {
+                percentCharge = 0.15f;
+            }
             currentWeapon.GetComponent<Weapon>().isEquipped = false;
+            currentWeapon.GetComponent<Weapon>().EndLerp();
             currentWeapon.transform.parent = null;
             currentWeapon.collider.enabled = true;
             currentWeapon.rigidbody.isKinematic = false;
-            currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce);
-            currentWeapon.rigidbody.AddRelativeTorque(throwForce * 10, 0, 0);
+            currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percentCharge);
+            currentWeapon.rigidbody.maxAngularVelocity = 30;
+            currentWeapon.rigidbody.AddRelativeTorque(40 * percentCharge, 0, 0, ForceMode.VelocityChange);
             currentWeapon = null;
             if (sheathedWeapon != null)
             {

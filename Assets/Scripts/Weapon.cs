@@ -61,4 +61,14 @@ public class Weapon : MonoBehaviour {
         originRot = transform.localRotation;
         destinationRot = rotation;
     }
+
+    public void EndLerp()
+    {
+        if (moving)
+        {
+            transform.localPosition = destinationPos;
+            transform.localRotation = destinationRot;
+            moving = false;
+        }
+    }
 }
