@@ -251,7 +251,11 @@ public class Player : MonoBehaviour {
         {
             DropWeapon();
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
+        {
+            SwingWeapon();
+        }
+        if (Input.GetMouseButtonDown(1) && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
             ChargeWeapon();
         }
@@ -385,6 +389,15 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void SwingWeapon()
+    {
+        networkView.RPC("SyncSwing", RPCMode.OthersBuffered);
+        if (currentWeapon != null && !Menu.enabled && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        {
+            weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
+        }
+    }
+
     public void ToggleMenu()
     {
         Menu.enabled = !Menu.enabled;
@@ -479,6 +492,14 @@ public class Player : MonoBehaviour {
                 SetCurrentWeapon(sheathedWeapon);
                 sheathedWeapon = null;
             }
+        }
+    }
+
+    [RPC] void SyncSwing()
+    {
+        if (currentWeapon != null && !Menu.enabled && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        {
+            weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
         }
     }
 
