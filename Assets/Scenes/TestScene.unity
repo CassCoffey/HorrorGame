@@ -130,6 +130,7 @@ GameObject:
   - 65: {fileID: 107166113}
   - 148: {fileID: 107166116}
   - 114: {fileID: 107166117}
+  - 23: {fileID: 107166118}
   m_Layer: 0
   m_Name: MorningStar
   m_TagString: Item
@@ -221,6 +222,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEquipped: 0
+  isStuck: 0
+  isSharp: 0
+--- !u!23 &107166118
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2351228, guid: f66c0a50da5e1d34cacf132bba6e6fa2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1298877603}
+  m_GameObject: {fileID: 107166111}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1 &142242915
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +257,7 @@ GameObject:
   - 154: {fileID: 142242916}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -295,11 +319,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 231159884}
-  - 95: {fileID: 231159887}
   - 54: {fileID: 231159886}
   - 65: {fileID: 231159885}
   - 148: {fileID: 231159888}
   - 114: {fileID: 231159889}
+  - 23: {fileID: 231159887}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Item
@@ -331,8 +355,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .607486725, y: 15.0487309, z: 2.16591191}
-  m_Center: {x: -.000961887476, y: .713526785, z: .0130308503}
+  m_Size: {x: .603338659, y: 15.1693916, z: 2.28036332}
+  m_Center: {x: .018584393, y: .775792301, z: -.0305384081}
 --- !u!54 &231159886
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -349,22 +373,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &231159887
-Animator:
-  serializedVersion: 3
+--- !u!23 &231159887
+Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9547882, guid: b6abdd4da3332d14a9b16f1c10dbb4e8,
+  m_PrefabParentObject: {fileID: 2304820, guid: b6abdd4da3332d14a9b16f1c10dbb4e8,
     type: 2}
   m_PrefabInternal: {fileID: 1021211884}
   m_GameObject: {fileID: 231159883}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8f330b31d04a1ac4c9de82cca8227384, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!148 &231159888
 NetworkView:
   m_ObjectHideFlags: 0
@@ -391,6 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEquipped: 0
+  isStuck: 0
+  isSharp: 1
 --- !u!1 &333101424
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,11 +430,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 333101426}
-  - 95: {fileID: 333101425}
   - 54: {fileID: 333101427}
   - 65: {fileID: 333101428}
   - 148: {fileID: 333101429}
   - 114: {fileID: 333101430}
+  - 23: {fileID: 333101425}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Item
@@ -411,22 +442,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &333101425
-Animator:
-  serializedVersion: 3
+--- !u!23 &333101425
+Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9547882, guid: b6abdd4da3332d14a9b16f1c10dbb4e8,
+  m_PrefabParentObject: {fileID: 2304820, guid: b6abdd4da3332d14a9b16f1c10dbb4e8,
     type: 2}
   m_PrefabInternal: {fileID: 903194974}
   m_GameObject: {fileID: 333101424}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8f330b31d04a1ac4c9de82cca8227384, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!4 &333101426
 Transform:
   m_ObjectHideFlags: 0
@@ -467,8 +503,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .607486725, y: 15.0487309, z: 2.16591191}
-  m_Center: {x: -.000961887476, y: .713526785, z: .0130308503}
+  m_Size: {x: .603338659, y: 15.1693916, z: 2.28036332}
+  m_Center: {x: .018584393, y: .775792301, z: -.0305384081}
 --- !u!148 &333101429
 NetworkView:
   m_ObjectHideFlags: 0
@@ -495,6 +531,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEquipped: 0
+  isStuck: 0
+  isSharp: 1
 --- !u!1 &748435013
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,11 +541,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 748435017}
-  - 95: {fileID: 748435016}
   - 54: {fileID: 748435015}
   - 65: {fileID: 748435014}
   - 148: {fileID: 748435018}
   - 114: {fileID: 748435019}
+  - 23: {fileID: 748435016}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Item
@@ -526,8 +564,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .607486725, y: 15.0487309, z: 2.16591191}
-  m_Center: {x: -.000961887476, y: .713526785, z: .0130308503}
+  m_Size: {x: .603338659, y: 15.1693916, z: 2.28036332}
+  m_Center: {x: .018584393, y: .775792301, z: -.0305384081}
 --- !u!54 &748435015
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -544,22 +582,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &748435016
-Animator:
-  serializedVersion: 3
+--- !u!23 &748435016
+Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9547882, guid: b6abdd4da3332d14a9b16f1c10dbb4e8,
+  m_PrefabParentObject: {fileID: 2304820, guid: b6abdd4da3332d14a9b16f1c10dbb4e8,
     type: 2}
   m_PrefabInternal: {fileID: 1709227098}
   m_GameObject: {fileID: 748435013}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8f330b31d04a1ac4c9de82cca8227384, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!4 &748435017
 Transform:
   m_ObjectHideFlags: 0
@@ -599,6 +642,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEquipped: 0
+  isStuck: 0
+  isSharp: 1
 --- !u!1001 &903194974
 Prefab:
   m_ObjectHideFlags: 0
@@ -744,6 +789,7 @@ GameObject:
   - 65: {fileID: 1038578814}
   - 148: {fileID: 1038578817}
   - 114: {fileID: 1038578818}
+  - 23: {fileID: 1038578819}
   m_Layer: 0
   m_Name: MorningStar
   m_TagString: Item
@@ -835,6 +881,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEquipped: 0
+  isStuck: 0
+  isSharp: 0
+--- !u!23 &1038578819
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2351228, guid: f66c0a50da5e1d34cacf132bba6e6fa2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1363654180}
+  m_GameObject: {fileID: 1038578812}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1 &1106282553
 GameObject:
   m_ObjectHideFlags: 0
