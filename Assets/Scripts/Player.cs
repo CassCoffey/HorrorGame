@@ -258,7 +258,7 @@ public class Player : MonoBehaviour {
         {
             SwingWeapon();
         }
-        if (Input.GetMouseButtonDown(1) && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        if (Input.GetMouseButtonDown(1))
         {
             ChargeWeapon();
         }
@@ -330,10 +330,13 @@ public class Player : MonoBehaviour {
 
     public void SwapWeapons()
     {
-        networkView.RPC("SyncSwap", RPCMode.OthersBuffered);
-        GameObject tempWeapon = currentWeapon;
-        SetCurrentWeapon(sheathedWeapon);
-        SetSheathedWeapon(tempWeapon);
+        if (sheathedWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        {
+            networkView.RPC("SyncSwap", RPCMode.OthersBuffered);
+            GameObject tempWeapon = currentWeapon;
+            SetCurrentWeapon(sheathedWeapon);
+            SetSheathedWeapon(tempWeapon);
+        }
     }
 
     public void DropWeapon()
@@ -356,7 +359,7 @@ public class Player : MonoBehaviour {
 
     public void ChargeWeapon()
     {
-        if (currentWeapon != null)
+        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
             charging = true;
             startCharge = Time.time;
@@ -366,7 +369,7 @@ public class Player : MonoBehaviour {
     public void ThrowWeapon()
     {
         networkView.RPC("SyncThrow", RPCMode.OthersBuffered, percentCharge);
-        if (currentWeapon != null && charging)
+        if (currentWeapon != null && charging && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
             charging = false;
             if (percentCharge <= 0.15f)
@@ -393,7 +396,7 @@ public class Player : MonoBehaviour {
     public void SwingWeapon()
     {
         networkView.RPC("SyncSwing", RPCMode.OthersBuffered);
-        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentWeapon.transform.localPosition == Vector3.zero)
         {
             weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
         }
@@ -448,14 +451,17 @@ public class Player : MonoBehaviour {
 
     [RPC] void SyncSwap()
     {
-        GameObject tempWeapon = currentWeapon;
-        SetCurrentWeapon(sheathedWeapon);
-        SetSheathedWeapon(tempWeapon);
+        if (sheathedWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        {
+            GameObject tempWeapon = currentWeapon;
+            SetCurrentWeapon(sheathedWeapon);
+            SetSheathedWeapon(tempWeapon);
+        }
     }
 
     [RPC] void SyncDrop()
     {
-        if (currentWeapon != null)
+        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
             currentWeapon.GetComponent<Weapon>().isEquipped = false;
             currentWeapon.transform.parent = null;
@@ -472,7 +478,7 @@ public class Player : MonoBehaviour {
 
     [RPC] void SyncThrow(float percent)
     {
-        if (currentWeapon != null)
+        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
             charging = false;
             if (percent <= 0.15f)
@@ -498,7 +504,7 @@ public class Player : MonoBehaviour {
 
     [RPC] void SyncSwing()
     {
-        if (currentWeapon != null && !Menu.enabled && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentWeapon.transform.localPosition == Vector3.zero)
         {
             weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
         }

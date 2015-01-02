@@ -26,6 +26,8 @@ public class Weapon : MonoBehaviour {
             if (percentage >= 1.0f)
             {
                 moving = false;
+                transform.localRotation = destinationRot;
+                transform.localPosition = destinationPos;
             }
         }
     }
