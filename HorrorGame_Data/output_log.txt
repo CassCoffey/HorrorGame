@@ -1,4 +1,4 @@
-Initialize engine version: 4.6.0f3 (30840d631a27)
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4475]
@@ -9,22 +9,161 @@ Direct3D:
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
-Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.116 seconds
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
+- Completed reload, in  0.092 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4475]
+    Renderer: NVIDIA GeForce GTX 675M
+    Vendor:   NVIDIA
+    VRAM:     3072 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
+- Completed reload, in  0.048 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4475]
+    Renderer: NVIDIA GeForce GTX 675M
+    Vendor:   NVIDIA
+    VRAM:     3072 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
+- Completed reload, in  0.054 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4475]
+    Renderer: NVIDIA GeForce GTX 675M
+    Vendor:   NVIDIA
+    VRAM:     3072 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
+- Completed reload, in  0.040 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4475]
+    Renderer: NVIDIA GeForce GTX 675M
+    Vendor:   NVIDIA
+    VRAM:     3072 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
+- Completed reload, in  0.042 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvumdshim.dll 9.18.13.4475]
+    Renderer: NVIDIA GeForce GTX 675M
+    Vendor:   NVIDIA
+    VRAM:     3072 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
+Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
+- Completed reload, in  0.043 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
+Server Initialized
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
 Attempting to join server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
@@ -33,11 +172,275 @@ Server Joined
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Server Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Server Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Server Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Server Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 8.857923 ms
+Unloanloadi 12ng2505 Unuse0 Sms
+erialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 617.
+Total: 2.138171 ms (FindLiveObjects: 0.027748 ms CreateObjectMapping: 0.012163 ms MarkObjects: 0.384300 ms  DeleteObjects: 0.940415 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 617.
+Total: 2.305044 ms (FindLiveObjects: 0.029649 ms CreateObjectMapping: 0.021666 ms MarkObjects: 0.379359 ms  DeleteObjects: 1.181031 ms)
+
+UnloadTime: 12.012534 ms
+UnloadTime: 11.641918 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 72 unused Assets to reduce memory usagen.oaLoadme: O13.8ts now: s
+17.
+Total: 2.493963 ms (FindLiveObjects: 0.033830 ms CreateObjectMapping: 0.021666 ms MarkObjects: 0.422692 ms  DeleteObjects: 1.258955 ms)
+
+UnloadTime: 14.124098 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloadnng 4lUousdeng Se2 unureda Azsdseilses (rerdualce m filey usags. Low ed Objd:c 0 n w:  6r17 ser
+Taoited ail:Us: 4)
+i
+22Umnl( d nnL ee7bejernuss ez.0A 8f1s 8  mSereiasce  mfereresObjacgoaw Loaa ed 02 j2 tirty se k17li
+cTe: 0i3e32:  m
+ 4
+  llet(iFbjectun sbd3Acsset 0s)
+9
+386ce memroaty bjsage.M Loadg:  .01j30c tss arkOb je7ct
+T: tal.3 24.883ms550DemseteFbiecdL: 0.Obj5093 m0.0
+
+18245 ms CreateObjectMapping: 0.013304 ms MarkObjects: 0.297253 ms  DeleteObjects: 0.923690 ms)
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpsp Line: ng l
+o
+cal player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating local player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineIebsuagt.acpnp lLoiale: play
+
+ view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc638S1a0b6w/nitifacts/Stn 
+(Filenamye: gCn/Baueit
+ld
+(gFnnttnEmgineDedfc6cdAge0ibwe:ra4d6
+f
+acts/Standa0/onrtPlfactrGenerated/UPltyEngineDebug.cpp Line: 4in)
+
+ebug.cpp Line: 49)
+
+Instantiating local player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+InstantiItnstalocal plg local pl.
+ 
+(Filenam
+ 
+ (:Filename:nt/:work/d63dfc6385190b60/artifacts60/artifacts/SataerGaloenelryerGeneriated/UnityEugi.ecebug.cpp Line:
+ 
+49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating rImnte platyarnviating ew.
+  (Filename: C:
+/B
+uildAgent/work/dildAge6t/work/d63dfc6385190b60/arInsactstStatiat1negla0erGe elater vanetlEn
+gi
+neDeruamn: C:/neai49)g
+
+nt/workUni3dtc638519yEng/naDebug.cpp Line: StandalonePl4yerG
+e
+nerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiatinstantiating remote player view.
+ 
+(Filenamn: C:/BuildAgent/work/d63dfc6385190b60/arIifgcts/StandalonePlayerGens vieeia
+Un
+iFiremiotte play.c p Li.e
+:
+
+4
+9)l
+e
+namee: C:/BuildAgent/work/d63ddfe6385190b60/artifacts/StandalonePlayerGeneratnamUniC:/tyEngineDtbwgrk/d63ine:389)
+
+
+60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlag remroeteea pdlanieyr giine
+ eb
+ug.cppa e:in:: /Bui
+
+ldAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remoteInlsyerntiaw.in
+g
+(FilenanptlanCietiuviewdA
+ge
+te/leaakee  3i:c6Bu
+ l(90genameo factB/Sla6dgelt/n0ork/d63ifac3ate19tb60/yEnniaelay/erGnenlriane:a/Unrt
+y
+EngineDebug.cpp Line: 49)
+
+pp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Successfully terminated connection to server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
 The server has disconnected from the client. Most likely the server has shut down.
  
 (Filename:  Line: 745)
 
 Successfully terminated connection to server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+The server has disconnected from the client. Most likely the server has shut down.
+ 
+(Filename:  Line: 745)
+
+Successfully terminated connection to server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+The server has disconnected from the client. Most likely the server has shut down.
+ 
+(Filename:  Line: 745)
+
+Successfully terminated connection to server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+The server has disconnected from the client. Most likely the server has shut down.
+ 
+(Filename:  Line: 745)
+
+Successfully terminated connection to server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Successfully shut down server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
