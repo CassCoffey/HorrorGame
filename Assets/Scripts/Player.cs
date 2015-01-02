@@ -360,7 +360,7 @@ public class Player : MonoBehaviour {
 
     public void ThrowWeapon()
     {
-        networkView.RPC("SyncThrow", RPCMode.OthersBuffered);
+        networkView.RPC("SyncThrow", RPCMode.OthersBuffered, percentCharge);
         if (currentWeapon != null && charging)
         {
             charging = false;
@@ -456,16 +456,23 @@ public class Player : MonoBehaviour {
         }
     }
 
-    [RPC] void SyncThrow()
+    [RPC] void SyncThrow(float percent)
     {
         if (currentWeapon != null)
         {
+            charging = false;
+            if (percent <= 0.15f)
+            {
+                percent = 0.15f;
+            }
             currentWeapon.GetComponent<Weapon>().isEquipped = false;
+            currentWeapon.GetComponent<Weapon>().EndLerp();
             currentWeapon.transform.parent = null;
             currentWeapon.collider.enabled = true;
             currentWeapon.rigidbody.isKinematic = false;
-            currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce);
-            currentWeapon.rigidbody.AddRelativeTorque(throwForce / 2, 0, 0);
+            currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percent);
+            currentWeapon.rigidbody.maxAngularVelocity = 30;
+            currentWeapon.rigidbody.AddRelativeTorque(40 * percent, 0, 0, ForceMode.VelocityChange);
             currentWeapon = null;
             if (sheathedWeapon != null)
             {
