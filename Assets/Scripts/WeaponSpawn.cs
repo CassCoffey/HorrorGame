@@ -7,6 +7,7 @@ public class WeaponSpawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	    
+        GameObject weapon = (GameObject)Instantiate(weapons[Random.Range(0, weapons.Length)]);
+        weapon.transform.position = transform.position;
 	}
 }

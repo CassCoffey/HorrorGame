@@ -266,7 +266,7 @@ public class Player : MonoBehaviour {
         {
             ThrowWeapon();
         }
-        if (charging)
+        if (charging && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
             float time = Time.time - startCharge;
             percentCharge = time / goalCharge;
@@ -275,6 +275,10 @@ public class Player : MonoBehaviour {
             {
                 ThrowWeapon();
             }
+        }
+        else
+        {
+            charging = false;
         }
     }
 
@@ -398,6 +402,7 @@ public class Player : MonoBehaviour {
         networkView.RPC("SyncSwing", RPCMode.OthersBuffered);
         if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentWeapon.transform.localPosition == Vector3.zero)
         {
+            charging = false;
             weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
         }
     }
@@ -506,6 +511,7 @@ public class Player : MonoBehaviour {
     {
         if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentWeapon.transform.localPosition == Vector3.zero)
         {
+            charging = false;
             weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
         }
     }
