@@ -6,7 +6,9 @@ TagManager:
   - Item
   - Terrain
   - WeaponSpawn
+  - MonsterSpawn
   - 
+  - Ground
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

@@ -23,7 +23,9 @@ public class SpawnManager : MonoBehaviour {
 		{
 			playerList.Add (Network.connections[i]);
 		}
-
+		Debug.Log (playerList[1].ipAddress);
+		Debug.Log (playerList);
+		Debug.Log (playerList.Count);
 		int monsterIndex = Random.Range (0, playerList.Count-1);
 		Debug.Log ("Creating Monster...");
 		if (playerList [monsterIndex] == Network.player) 
@@ -35,7 +37,6 @@ public class SpawnManager : MonoBehaviour {
 			networkView.RPC("SpawnPlayer", playerList[monsterIndex], "Monster");
 		}
 		playerList.RemoveAt(monsterIndex);
-
 
 		if (playerList.Count >= 6) 
 		{
@@ -50,7 +51,6 @@ public class SpawnManager : MonoBehaviour {
 				networkView.RPC("SpawnPlayer", playerList[monsterIndex], "Cultist");
 			}
 			playerList.RemoveAt(cultistIndex);
-
 		}
 
 		int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
@@ -59,7 +59,8 @@ public class SpawnManager : MonoBehaviour {
 			Debug.Log ("Generating Special Roles...");
 			int specialIndex = Random.Range(0,playerList.Count-1);
 			int role = Random.Range (0,100);
-			if(role < 50){
+			if(role < 50)
+			{
 				Debug.Log ("Creating Priest...");
 				if (playerList [specialIndex] == Network.player) 
 				{
@@ -70,7 +71,8 @@ public class SpawnManager : MonoBehaviour {
 					networkView.RPC("SpawnPlayer", playerList[specialIndex], "Priest");
 				}
 			}
-			if(role >= 50){
+			if(role >= 50)
+			{
 				Debug.Log ("Creating Assassin...");
 				if (playerList [specialIndex] == Network.player) 
 				{
@@ -83,12 +85,12 @@ public class SpawnManager : MonoBehaviour {
 			}
 			playerList.RemoveAt(specialIndex);
 		}
-
 		while (playerList.Count > 0) 
 		{
 			int normIndex = Random.Range (0,playerList.Count);
 			int normRole = Random.Range (0,100);
-			if(normRole < 50){
+			if(normRole < 50)
+			{
 				Debug.Log ("Creating Peasant...");
 				if (playerList [normIndex] == Network.player) 
 				{
@@ -99,7 +101,8 @@ public class SpawnManager : MonoBehaviour {
 					networkView.RPC("SpawnPlayer", playerList[normIndex], "Peasant");
 				}
 			}
-			if(normRole >= 50){
+			if(normRole >= 50)
+			{
 				Debug.Log ("Creating Survivor...");
 				if (playerList [normIndex] == Network.player) 
 				{
