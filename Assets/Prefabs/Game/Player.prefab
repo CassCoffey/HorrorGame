@@ -1017,7 +1017,7 @@ GameObject:
   - 222: {fileID: 22276648}
   - 114: {fileID: 11476648}
   m_Layer: 5
-  m_Name: Text
+  m_Name: RoleDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1034,7 +1034,7 @@ GameObject:
   - 222: {fileID: 22276650}
   - 114: {fileID: 11476650}
   m_Layer: 5
-  m_Name: Text
+  m_Name: RoleName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1081,7 +1081,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.67999983, y: 1.5, z: -3.63000011}
+  m_LocalPosition: {x: -13.25, y: 2.36999989, z: 5.78000021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -3149,7 +3149,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You are a normal role that got ship-rekt on this perfect island.
+  m_Text: Null
 --- !u!114 &11476650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3175,7 +3175,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Peasant
+  m_Text: Null
 --- !u!114 &11476652
 MonoBehaviour:
   m_ObjectHideFlags: 1
