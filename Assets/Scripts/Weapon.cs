@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour {
 
     public bool isEquipped = false;
     public bool isStuck = false;
     public bool isSharp;
+    public GameObject equippedTo;
+    public int damage;
 
     private bool moving = false;
     private float startTime = 0;
@@ -50,6 +52,14 @@ public class Weapon : MonoBehaviour {
                 rigidbody.isKinematic = true;
                 Physics.IgnoreCollision(collider, collision.collider);
             }
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject != equippedTo && other.GetComponent<Vitals>() != null)
+        {
+            other.GetComponent<Vitals>().TakeDamage(damage);
         }
     }
 

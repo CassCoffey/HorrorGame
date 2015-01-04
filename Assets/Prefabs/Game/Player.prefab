@@ -15,6 +15,7 @@ GameObject:
   - 114: {fileID: 11400126}
   - 114: {fileID: 11400000}
   - 148: {fileID: 14800000}
+  - 114: {fileID: 11469464}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -111,7 +112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1017,7 @@ GameObject:
   - 4: {fileID: 449468}
   - 148: {fileID: 14815342}
   - 95: {fileID: 9525088}
+  - 114: {fileID: 11469462}
   m_Layer: 0
   m_Name: WeaponLoc
   m_TagString: Untagged
@@ -1305,7 +1307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db24dc40cce042d4caa4c9783a5612d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Menu: {fileID: 22300000}
+  Menu: {fileID: 100010}
   player: {fileID: 100000}
   runSpeed: 8
   strafeSpeed: 4
@@ -3109,6 +3111,31 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &11469462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68dd7502f19cccd40af836f57816368a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11469464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894a62801f132a84a933540b07d9084a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  stamina: 100
+  scent: 0
 --- !u!114 &11476648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3535,7 +3562,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 0
   m_Camera: {fileID: 2000000}

@@ -27,9 +27,18 @@ public class SpawnManager : MonoBehaviour {
 		}
 		if (Network.isServer && Network.connections.Length == 0)
 		{
+            ChooseWeapons();
 			ChooseRole();
 		}
 	}
+
+    private void ChooseWeapons()
+    {
+        foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("WeaponSpawn"))
+        {
+            spawn.GetComponent<WeaponSpawn>().SpawnWeapon();
+        }
+    }
 
 	void ChooseRole()
 	{
@@ -39,7 +48,6 @@ public class SpawnManager : MonoBehaviour {
 			{
 				playerList.Add (Network.connections[i]);
 			}
-			Debug.Log(playerList.Count);
 			int monsterIndex = Random.Range (0, playerList.Count);
 			Debug.Log ("Creating Monster...");
 			if (playerList [monsterIndex] == Network.player) 
@@ -143,6 +151,7 @@ public class SpawnManager : MonoBehaviour {
 		readyList.Add(player);
 		if (readyList.Count == Network.connections.Length) 
 		{
+            ChooseWeapons();
 			ChooseRole();
 		}
 	}
@@ -204,8 +213,8 @@ public class SpawnManager : MonoBehaviour {
 			case "Priest":
                 SetRoleText(player, "Priest", "You're a Priest");
 				break;
-                case "Assassin":
-                SetRoleText(player, "Assassin", "You're a Assassin");
+            case "Assassin":
+                SetRoleText(player, "Assassin", "You're an Assassin");
 				break;
 			}
 		}

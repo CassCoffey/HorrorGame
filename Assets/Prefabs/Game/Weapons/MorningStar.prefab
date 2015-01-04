@@ -166,6 +166,8 @@ MonoBehaviour:
   isEquipped: 0
   isStuck: 0
   isSharp: 0
+  equippedTo: {fileID: 0}
+  damage: 10
 --- !u!148 &14886406
 NetworkView:
   m_ObjectHideFlags: 1

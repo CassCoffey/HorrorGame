@@ -5,7 +5,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public Canvas Menu;
+    public GameObject Menu;
     public GameObject player;
 
     [SerializeField]private float runSpeed = 8f;                                       // The speed at which we want the character to move
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour {
         if (networkView.isMine)
         {
             MenuInput();
-            if (!Menu.enabled)
+            if (!Menu.activeSelf)
             {
                 KeyInput();
             }
@@ -295,6 +295,7 @@ public class Player : MonoBehaviour {
                 networkView.RPC("SyncPickup", RPCMode.OthersBuffered, hits[i].transform.networkView.viewID);
                 hits[i].transform.GetComponent<Weapon>().isEquipped = true;
                 hits[i].transform.GetComponent<Weapon>().isStuck = false;
+                hits[i].transform.GetComponent<Weapon>().equippedTo = gameObject;
                 if (currentWeapon == null)
                 {
                     SetCurrentWeapon(hits[i].collider.gameObject);
@@ -409,11 +410,11 @@ public class Player : MonoBehaviour {
 
     public void ToggleMenu()
     {
-        Menu.enabled = !Menu.enabled;
-        Screen.showCursor = Menu.enabled;
+        Menu.SetActive(!Menu.activeSelf);
+        Screen.showCursor = Menu.activeSelf;
         foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
         {
-            mouseLook.enabled = !Menu.enabled;
+            mouseLook.enabled = !Menu.activeSelf;
         }
     }
 
@@ -444,6 +445,7 @@ public class Player : MonoBehaviour {
         GameObject weapon = NetworkView.Find(viewID).gameObject;
         weapon.transform.GetComponent<Weapon>().isEquipped = true;
         weapon.transform.GetComponent<Weapon>().isStuck = false;
+        weapon.transform.GetComponent<Weapon>().equippedTo = gameObject;
         if (currentWeapon == null)
         {
             SetCurrentWeapon(weapon.collider.gameObject);

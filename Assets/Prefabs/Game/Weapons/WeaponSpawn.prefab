@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 497166}
   - 114: {fileID: 11497166}
+  - 148: {fileID: 14897112}
   m_Layer: 0
   m_Name: WeaponSpawn
   m_TagString: WeaponSpawn
@@ -42,6 +43,18 @@ MonoBehaviour:
   weapons:
   - {fileID: 147880, guid: b6abdd4da3332d14a9b16f1c10dbb4e8, type: 2}
   - {fileID: 140106, guid: f66c0a50da5e1d34cacf132bba6e6fa2, type: 2}
+--- !u!148 &14897112
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197166}
+  m_Enabled: 1
+  m_StateSynchronization: 0
+  m_Observed: {fileID: 497166}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
