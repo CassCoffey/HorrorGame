@@ -18,9 +18,11 @@ public class SpawnManager : MonoBehaviour {
 	private List<NetworkPlayer> readyList = new List<NetworkPlayer>();
 
 	// Use this for initialization
-	void Start () {
+    void OnNetworkLoadedLevel()
+    {
 		if (Network.isClient) 
 		{
+            Debug.Log("Is client");
 			networkView.RPC("ClientReady", RPCMode.Server, Network.player);
 		}
 		if (Network.isServer && Network.connections.Length == 0)
@@ -133,7 +135,7 @@ public class SpawnManager : MonoBehaviour {
 	[RPC] void ClientReady(NetworkPlayer player)
 	{
 		readyList.Add(player);
-		if (readyList.Count == playerList.Count) 
+		if (readyList.Count == Network.connections.Length) 
 		{
 			ChooseRole();
 		}
