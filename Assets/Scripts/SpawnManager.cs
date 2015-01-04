@@ -76,7 +76,7 @@ public class SpawnManager : MonoBehaviour {
 			}
 			
 			int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
-			while (playerList.Count < numOfRoles) 
+			for(int i = 0; i < numOfRoles; i++)
 			{
 				Debug.Log ("Generating Special Roles...");
 				int specialIndex = Random.Range(0,playerList.Count);
