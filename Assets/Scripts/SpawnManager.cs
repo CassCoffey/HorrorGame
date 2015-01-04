@@ -18,107 +18,107 @@ public class SpawnManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerList.Add (Network.player);
-		for (int i = 0; i < Network.connections.Length; i++) 
-		{
-			playerList.Add (Network.connections[i]);
-		}
-		Debug.Log (playerList[1].ipAddress);
-		Debug.Log (playerList);
-		Debug.Log (playerList.Count);
-		int monsterIndex = Random.Range (0, playerList.Count-1);
-		Debug.Log ("Creating Monster...");
-		if (playerList [monsterIndex] == Network.player) 
-		{
-			SpawnPlayer("Monster");
-		}
-		else
-		{
-			networkView.RPC("SpawnPlayer", playerList[monsterIndex], "Monster");
-		}
-		playerList.RemoveAt(monsterIndex);
-
-		if (playerList.Count >= 6) 
-		{
-			int cultistIndex = Random.Range(0,playerList.Count-1);
-			Debug.Log ("Creating Cultist...");
-			if (playerList [cultistIndex] == Network.player) 
+		if(Network.isServer){
+			playerList.Add (Network.player);
+			for (int i = 0; i < Network.connections.Length; i++) 
 			{
-				SpawnPlayer("Cultist");
+				playerList.Add (Network.connections[i]);
+			}
+
+			int monsterIndex = Random.Range (0, playerList.Count-1);
+			Debug.Log ("Creating Monster...");
+			if (playerList [monsterIndex] == Network.player) 
+			{
+				SpawnPlayer("Monster");
 			}
 			else
 			{
-				networkView.RPC("SpawnPlayer", playerList[monsterIndex], "Cultist");
+				networkView.RPC("SpawnPlayer", playerList[monsterIndex], "Monster");
 			}
-			playerList.RemoveAt(cultistIndex);
-		}
+			playerList.RemoveAt(monsterIndex);
 
-		int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
-		while (playerList.Count > numOfRoles) 
-		{
-			Debug.Log ("Generating Special Roles...");
-			int specialIndex = Random.Range(0,playerList.Count-1);
-			int role = Random.Range (0,100);
-			if(role < 50)
+			if (playerList.Count >= 6) 
 			{
-				Debug.Log ("Creating Priest...");
-				if (playerList [specialIndex] == Network.player) 
+				int cultistIndex = Random.Range(0,playerList.Count-1);
+				Debug.Log ("Creating Cultist...");
+				if (playerList [cultistIndex] == Network.player) 
 				{
-					SpawnPlayer("Priest");
+					SpawnPlayer("Cultist");
 				}
 				else
 				{
-					networkView.RPC("SpawnPlayer", playerList[specialIndex], "Priest");
+					networkView.RPC("SpawnPlayer", playerList[cultistIndex], "Cultist");
 				}
+				playerList.RemoveAt(cultistIndex);
 			}
-			if(role >= 50)
+
+			int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
+			while (playerList.Count < numOfRoles) 
 			{
-				Debug.Log ("Creating Assassin...");
-				if (playerList [specialIndex] == Network.player) 
+				Debug.Log ("Generating Special Roles...");
+				int specialIndex = Random.Range(0,playerList.Count-1);
+				int role = Random.Range (0,100);
+				if(role < 50)
 				{
-					SpawnPlayer("Assassin");
+					Debug.Log ("Creating Priest...");
+					if (playerList [specialIndex] == Network.player) 
+					{
+						SpawnPlayer("Priest");
+					}
+					else
+					{
+						networkView.RPC("SpawnPlayer", playerList[specialIndex], "Priest");
+					}
 				}
-				else
+				if(role >= 50)
 				{
-					networkView.RPC("SpawnPlayer", playerList[specialIndex], "Assassin");
+					Debug.Log ("Creating Assassin...");
+					if (playerList [specialIndex] == Network.player) 
+					{
+						SpawnPlayer("Assassin");
+					}
+					else
+					{
+						networkView.RPC("SpawnPlayer", playerList[specialIndex], "Assassin");
+					}
 				}
+				playerList.RemoveAt(specialIndex);
 			}
-			playerList.RemoveAt(specialIndex);
-		}
-		while (playerList.Count > 0) 
-		{
-			int normIndex = Random.Range (0,playerList.Count);
-			int normRole = Random.Range (0,100);
-			if(normRole < 50)
+			while (playerList.Count > 0) 
 			{
-				Debug.Log ("Creating Peasant...");
-				if (playerList [normIndex] == Network.player) 
+				int normIndex = Random.Range (0,playerList.Count);
+				int normRole = Random.Range (0,100);
+				if(normRole < 50)
 				{
-					SpawnPlayer("Peasant");
+					Debug.Log ("Creating Peasant...");
+					if (playerList [normIndex] == Network.player) 
+					{
+						SpawnPlayer("Peasant");
+					}
+					else
+					{
+						networkView.RPC("SpawnPlayer", playerList[normIndex], "Peasant");
+					}
 				}
-				else
+				if(normRole >= 50)
 				{
-					networkView.RPC("SpawnPlayer", playerList[normIndex], "Peasant");
+					Debug.Log ("Creating Survivor...");
+					if (playerList [normIndex] == Network.player) 
+					{
+						SpawnPlayer("Survivor");
+					}
+					else
+					{
+						networkView.RPC("SpawnPlayer", playerList[normIndex], "Survivor");
+					}
 				}
+				playerList.RemoveAt(normIndex);
 			}
-			if(normRole >= 50)
-			{
-				Debug.Log ("Creating Survivor...");
-				if (playerList [normIndex] == Network.player) 
-				{
-					SpawnPlayer("Survivor");
-				}
-				else
-				{
-					networkView.RPC("SpawnPlayer", playerList[normIndex], "Survivor");
-				}
-			}
-			playerList.RemoveAt(normIndex);
 		}
 	}
 	
 	// Create a player object.
-	[RPC] private void SpawnPlayer(string role)
+	[RPC] void SpawnPlayer(string role)
 	{
 		if (role == "Monster") 
 		{
