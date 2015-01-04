@@ -132,6 +132,12 @@ public class SpawnManager : MonoBehaviour {
 		}
 	}
 
+    public void SetRoleText(GameObject player, string roleName, string roleDescription)
+    {
+        player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleNamePanel").FindChild("RoleName").GetComponent<Text>().text = roleName;
+        player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleDescriptionPanel").FindChild("RoleDescription").GetComponent<Text>().text = roleDescription;
+    }
+
 	[RPC] void ClientReady(NetworkPlayer player)
 	{
 		readyList.Add(player);
@@ -164,8 +170,7 @@ public class SpawnManager : MonoBehaviour {
 			}
 			Debug.Log("Spawning Player");
 			GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
-			player.transform.FindChild ("Menu").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text>().text = "Monster";
-			player.transform.FindChild ("Menu").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text>().text = "You're a Monster";
+            SetRoleText(player, "Monster", "You're a monster!");
 		}
 		else
 		{
@@ -188,24 +193,19 @@ public class SpawnManager : MonoBehaviour {
 			switch (role) 
 			{
 			case "Cultist":
-				player.transform.FindChild ("Menu").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text>().text = "Cultist";
-				player.transform.FindChild ("Menu").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text>().text = "You're a Cultist";
+                SetRoleText(player, "Cultist", "You're a Cultist");
 				break;
 			case "Peasant":
-				player.transform.FindChild ("Menu").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text>().text = "Peasant";
-				player.transform.FindChild ("Menu").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text>().text = "You're a Peasant";
+                SetRoleText(player, "Peasant", "You're a Peasant");
 				break;
 			case "Survivor":
-				player.transform.FindChild ("Menu").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text>().text = "Survivor";
-				player.transform.FindChild ("Menu").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text>().text = "You're a Survivor";
+                SetRoleText(player, "Survivor", "You're a Survivor");
 				break;
 			case "Priest":
-				player.transform.FindChild ("Menu").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text>().text = "Priest";
-				player.transform.FindChild ("Menu").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text>().text = "You're a Priest";
+                SetRoleText(player, "Priest", "You're a Priest");
 				break;
-			case "Assassin":
-				player.transform.FindChild ("Menu").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text>().text = "Assassin";
-				player.transform.FindChild ("Menu").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text>().text = "You're a Assassin";
+                case "Assassin":
+                SetRoleText(player, "Assassin", "You're a Assassin");
 				break;
 			}
 		}
