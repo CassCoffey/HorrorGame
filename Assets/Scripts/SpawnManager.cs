@@ -15,17 +15,30 @@ public class SpawnManager : MonoBehaviour {
 	private float radiusCheck = 1.5f;
 	private int maxSpawnAttempts = 50;
 	private List<NetworkPlayer> playerList = new List<NetworkPlayer>();
+	private List<NetworkPlayer> readyList = new List<NetworkPlayer>();
 
 	// Use this for initialization
 	void Start () {
+		if (Network.isClient) 
+		{
+			networkView.RPC("ClientReady", RPCMode.Server, Network.player);
+		}
+		if (Network.isServer && Network.connections.Length == 0)
+		{
+			ChooseRole();
+		}
+	}
+
+	void ChooseRole()
+	{
 		if(Network.isServer){
 			playerList.Add (Network.player);
 			for (int i = 0; i < Network.connections.Length; i++) 
 			{
 				playerList.Add (Network.connections[i]);
 			}
-
-			int monsterIndex = Random.Range (0, playerList.Count-1);
+			Debug.Log(playerList.Count);
+			int monsterIndex = Random.Range (0, playerList.Count);
 			Debug.Log ("Creating Monster...");
 			if (playerList [monsterIndex] == Network.player) 
 			{
@@ -36,10 +49,10 @@ public class SpawnManager : MonoBehaviour {
 				networkView.RPC("SpawnPlayer", playerList[monsterIndex], "Monster");
 			}
 			playerList.RemoveAt(monsterIndex);
-
+			
 			if (playerList.Count >= 6) 
 			{
-				int cultistIndex = Random.Range(0,playerList.Count-1);
+				int cultistIndex = Random.Range(0,playerList.Count);
 				Debug.Log ("Creating Cultist...");
 				if (playerList [cultistIndex] == Network.player) 
 				{
@@ -51,12 +64,12 @@ public class SpawnManager : MonoBehaviour {
 				}
 				playerList.RemoveAt(cultistIndex);
 			}
-
+			
 			int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
 			while (playerList.Count < numOfRoles) 
 			{
 				Debug.Log ("Generating Special Roles...");
-				int specialIndex = Random.Range(0,playerList.Count-1);
+				int specialIndex = Random.Range(0,playerList.Count);
 				int role = Random.Range (0,100);
 				if(role < 50)
 				{
@@ -116,7 +129,18 @@ public class SpawnManager : MonoBehaviour {
 			}
 		}
 	}
-	
+
+	[RPC] void ClientReady(NetworkPlayer player)
+	{
+		readyList.Add(player);
+		if (readyList.Count == playerList.Count) 
+		{
+			ChooseRole();
+		}
+	}
+
+
+
 	// Create a player object.
 	[RPC] void SpawnPlayer(string role)
 	{
@@ -166,11 +190,11 @@ public class SpawnManager : MonoBehaviour {
 				player.transform.FindChild ("Menu").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text>().text = "You're a Cultist";
 				break;
 			case "Peasant":
-				player.transform.FindChild ("Menu").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text>().text = "Survivor";
-				player.transform.FindChild ("Menu").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text>().text = "You're a Survivor";
+				player.transform.FindChild ("Menu").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text>().text = "Peasant";
+				player.transform.FindChild ("Menu").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text>().text = "You're a Peasant";
 				break;
 			case "Survivor":
-				player.transform.FindChild ("Menu").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text>().text = "Cultist";
+				player.transform.FindChild ("Menu").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text>().text = "Survivor";
 				player.transform.FindChild ("Menu").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text>().text = "You're a Survivor";
 				break;
 			case "Priest":
