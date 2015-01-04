@@ -19,7 +19,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.106 seconds
+- Completed reload, in  0.092 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -46,7 +46,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.056 seconds
+- Completed reload, in  0.055 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -71,7 +71,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.056 seconds
+- Completed reload, in  0.072 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -96,7 +96,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.062 seconds
+- Completed reload, in  0.070 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -146,7 +146,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.073 seconds
+- Completed reload, in  0.062 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -171,7 +171,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.064 seconds
+- Completed reload, in  0.079 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -203,6 +203,42 @@ Server Joined
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[UnityEngine.GameObject].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at LobbyManager.UpdatePing (Int32 index, Int32 ping) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[UnityEngine.GameObject].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at LobbyManager.UpdatePing (Int32 index, Int32 ping) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[UnityEngine.GameObject].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at LobbyManager.UpdatePing (Int32 index, Int32 ping) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[UnityEngine.GameObject].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at LobbyManager.UpdatePing (Int32 index, Int32 ping) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Server Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
 Attempting to join server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
@@ -235,59 +271,48 @@ Server Joined
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Attempting to join server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Server Joined
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-UnloadTime: 18.015001 ms
-UnloadTime: 19.856298 ms
+UnloadTime: 11.981746 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 647.
-Total: 3.193763 ms (FindLiveObjects: 0.041433 ms CreateObjectMapping: 0.018625 ms MarkObjects: 0.444739 mU  Dloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+Total: 3.129903 ms (FindLiveObjects: 0.044473 ms CreateObjectMapping: 0.018245 ms MarkObjects: 0.477049 ms  DeleteObjects: 1.820772 ms)
 
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 647.
-Total: 3.120780 ms (FindLiveObjects: 0.103012 ms CreateObjectMapping: 0.063099 ms MarkObjects: 0.497576 ms  DeleeteObjects: 1.975480 ms)
+UnUoadUnloadTinoeoeim2:m 52 00972mm
+5
+7463
+1 ms
+Unnoaoddnn  4 UnUuseeu eri Selizd dffiilds (Seri(l files les niowwilzeddei fni0/ DTniwo ldee d2e.d z zei3tiy  rey
+: 00)
+re
+Ualfidld s:il2s : 
+unse
+d 
+dinoass7tg r2 ucnusmd Asysetagee rLdade mOmUntslsow:wm: :64o0.d
+5ed Oa6jec4. 2 56n4 ms (FindLiveObjects: 0.045994 ms CreateObjectMapping: 4ow:..0
+2128T mstMar As3.ts to6 ms (FineL  DeleteObjects: 1.531501 ms)
 
-5682 ms)
+1 ms
+ 647.
+Total: 4.3ory usage. Loaded Objects now: 647.
+Total: 4.219706 ms (FindLiveObjects: 0.038392 ms CreateObUnloading jseUctuis917 me n(t0
+r4L
+0Fvi4ej67f sOCj(/Btaid6Ajmgdt0M/wtmi  b6 enc06.eaad:81. 0. s0M20k66 s/
+s
+ Msl i.4dif7s:e/0tan04
 
-UnloadTime: 25.14U140o ms
-me: 20.422297 ms
-Unloadining UnusnededSUenliailiTimd:fes 1i36s 14eri
-lizees niwlloaded: 0 / Diety sew aloaddedile0s: 0i)r
-
-Unsloaading 7 files: 0)
-
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 647.
-Total: 3.256un40 ms (FindLiveObjs to reduce memocy s: age. Loa6 ed Objects now: 6M7.
-pTogt 0.:33350 ms1M71k7b emss (F.i45765 ms  Dele: 0.04t655 ms Crea1e.bjec996 mppin
+Un onedlnDel2teObjectnus1.4A3457  ms )nDr
+eleteObjemctd: r/.5U4162Engsa
 g
-: 0.023947 ms MarkObjects: 0.607050 ms  DeleteObjects: 1.521618l ms)
-g
- 4 Unused Serialized files (Serialized files now loUdnd: 0 / oDdTrty s erialize2 files: 0)
-
-Unloading 72 unused Assets to reduce memory usage. Loa2.98 Objemct
-s now: 647.
-Total: 4.206401 ms (FindLiveObjects: 0.054357 ms CreateObjectMapping: 0.021286 ms MarkObjects: 0.968164 ms  DeleteObjects: 1.462699 ms)
+e. Loaded Obje: 49)
+w
+: 647.
+Total: 6.162116 ms (FindLiveObjects: 0.041433 ms CreateObjectMapping: 0.023567 ms MarkObjects: 1.080679 ms  DeleteObjects: 2.324430 ms)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 647.
-Total: 3.627479 ms (FindLiveObjects: 0.038011 ms CreateObjectMapping: 0.023567 ms MarkObjects: 0.584243 ms  DeleteObjects: 2.007790 ms)
+Total: 5.717376 ms (FindLiveObjects: 0.037631 ms CreateObjectMapping: 0.019386 ms MarkObjects: 0.797490 ms  DeleteObjects: 3.877218 ms)
 
-Is c client
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGeiente
- 
-aFilenUnityEngineDebug.cpp enine: /w9)
-
-ork/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-UnloadTime: 28.863991 ms
 Is client
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
@@ -298,312 +323,258 @@ Is client
 
 Is client
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerUenloadinge4aten/UnitSEngineDebug.cpp Linee 49)
-
-ls client
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StaIdal client
  
-(Filename:iC:d/ BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-erialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 647.
-Total: 10.093311 ms (FindLiveObjects: 0.078684 ms CreateObjectMapping: 0.026988 ms MarkObjects: 2.109662 ms  DeleteObjects: 3.310460 ms)
-
-Is client
+(Filename: C:/BuildAgent/work/d63dfc6385190bs 0/Plrent
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Spawning Player
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Spawning Player
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating local player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating local player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Spawning Player
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Spawning Player
- 
-(Filename: C:/BuildAgent/worS/p63dfc63 Player
- 
-(Filename6 0:/auildAgent/work/d6rtif6a85190b60/artonefPlayerGandaloenelayerGrated/ed/UUntyEngineDebuitygngineDebug.cpp Line: 49)
-
-.cpp Line: 49)
-
-Instantiating local player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating local player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalInnstantiaenenated/UnityEngineDaebug.cpp Line: 49)
-
-w.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63Ifc6t3ntia9tb60/ rtifote playedalonew.
-l ye
-(Filename: CnityEngineDebug.cpp Line: 49)
-
-0b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Spawning Player
- 
-(Filename: C:/BuildAgent/work/d63dfc63S51awning Player
- 
-(Filename: C:/9uildAgent/wark/d63d/fc6385190b60ayerGfacts/StandalonePlayerGeneraatedted/UnEngineDebug.cpp Line: 49)
-
-)
-
-Instantiating localIpnayer viating lo
-ca
-l planer veew.
- 
-(Filename: C:/:uildAgent/ oCk/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineD:bug.cpp Line: 49)
-
-/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc638519Ibn0/arttiacts/gt nemoda llonePlayerGe
-ne
-(raleeam/eniC:/BuildeDeebug.cpp Line: 63851
-
-90b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StaIdnstantiating remote player view.
- 
-(FilenameI C:ta/tuildAgenePlayerGenerated/UnityEngiIen/turatpd6a3iing r4motb)
-6
-la/erartifac
- 
-(Filets/ttandalonePlgegye woeemote ner3layea 5itw.ed/U9
-nb6
-0/ariiayme: C:D/Bui.tc/gpnta/wda: onePl
-ay
-rGenerated/UnityEngineDebug.cpp Line: 49)
-
-ork/d63dfc6385I90btantia0ing remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Innstantiating retiote player remote 
-pl
-ayir vieename: w:/BuildAgent/work/
-d6
-3dfce/aarti0ef60/arti acts/StandalonePlayeCGe:/Buated/UnityEldinenDebag.cppcLine: 49)
-0b
-60/artifacts/StanIalotantiating remotnePlayer everated/UwityEng.
- 
-(Fil.tnndamonePla:erGenerated/gcnitynngi eDne:6493) 
-
-ic6385190b60/artifactsnSt:andal
-o
-nePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)I
-
-nstantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player vIestan.
-iat
-ing remote  playiedA view.
- /woilk/dme: C:/BufldA3ent/w8rk/d63dfc6385190b60/arIi190b60/attafdatmonetlalaeaGeneiated/lnia
- yeg
-ineDebug.cpp n rne/BudldA
-g
-ient/wineDebug.cpp Line: 49)
-artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line:Insta
-
-ntiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating renstanpiaayer view.
- 
-(layename: C.
- 
-(Filename: C:/B:ildAgent/wogk/d6/w3dfc6385190b60/artifacts6StandalonePlayefGc6eI85ed90nitatigg ricte/Dtanyer view.e
-erG
-eFirened/U ityEngineDebug.cpp LC:/Build
+iFilaeneatae:e ndd/Unityalongni/work/d63dfc6385190b60/artifactn/StandglonePlayerGenerated/U.ityEngine:ebug.cpp Line: 49)
 
  49)
 
-Agent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+nePlayerGenerated/UnitIEns ceDient
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/Unibug.cpp Line: 49)
 
-Instantiating remote pllyere vview.
- w
+tyEngineDebug.cpp Line: 49)
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating local player view.
+ 
+(Filename: C:/BuildAgent/work/Spawnin3 Pai9s
+ 
+(File0b60: C:/BauildAgent/work/d63dfc6385190d/Unirtifacts/StandalonePlaye49)n
+
+ated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/i6atfc638ing0b60m/artifacts/Standa
+lo
+nePlayerGenerated/Unienytngwork/bug3dfc6 38519 49)
+
+artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+InstantIastaitnitaning tingot  player view.r
+ 
+(Fil
+en
+ame:nC:/BuildAgent/work/d63dfc6385190b60Faitifactl/etIadsl:n tllptyarGengenl Ip a
+(dd6vinwin8
+remleea6mp/aC:trifoaikgt63
+dfw
+oFk
+l
+d1i3enanarti3f5l1y9er6e0dt/work/ds63tdfdcl6385190b60/arrateiderated/UniteDebunlaye uGine:r4iner G4nery
+E
+ngineDebung.cpp Line: 49)
+
+e: 49)
+
+Inntantiating remote player view.
 .
- l
-(Fnime:name: C:/BuildAwork/dI3dst6n8datinb6r8/artifacteasrtSplatstatiealo
-ne
-PliPenGee:rC:/d/indiUnityEwork/deg3df.c38519 b6:/
-a9
-)
 
-facts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(
+Filename: C:/BuildAggent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating local player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating nstantiating remote
+ p
+laylera e: C:/B
+ui
+ldAgent/eork/d63dfc63gent/w0rk/d63dtifacts/StandalonePacts/Standalone/UniyerGeneratedu/.cpptyEngineDebu
+g
+.cpp Line: 49)
 
 Instantiating remote player view.
  
-(Filename: C:Instantgiatting rem3te player view.
- 
-(Falcnam/StandaluildAgent/work/d63dfc6385190ne0/artifacts/Sns d49)
-
-atiantilayeremote pladerUnityE.n
-gi
-neDebname: C:/Build49A
-
-ent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 Instantiating remote player view.
  
-(Filename: C:IBustantiating remote player view.
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
  
-(Agent/work/d63dfc6385190bFilartifname/S C:/andaloBuPlayerGenerated/UnityEngineDebug.cpp Lin/: 49)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+InstaItnstang remogtremote plavier v
+ie
+w.
+ 
+(FilenameB uildAgenAgent/wor63dfc6385190b60/artifracts/StandalonePlayerGenGenerated/UnityEngineDebug.cpp Line: 44)
+
+
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating local player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/I63dfc6385190b60/nstantiatiSngndaloneIlnseraeniriteg U
+em
+(ttileinamer vi wp:
+Bi
+nFildAgent/work/d63d)c6385190b60/arti
 
 cts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+lename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 Instantiating remote player view.
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenIrasetantitatinigeDremote player view.
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(Filename: C:/BeiludAgentLine: 493dfc6385190b60/arti)a
+t
+s/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 Instantiating remote player view.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Instantiating remote player view.
+Successfully terminated connection to serverucc
+s
+(Fifllenatmrmena ed:connection to sre/r6ver.
+ 
+8519ebname: C:acts/StandalonePlayerdfc6385ted/U0ityEngineDeSSg.cdalonenP:t49)r
+
+Gaeederated cnityEngineDebug.cpp Line: 4nnect)
+
+ to server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Instantiating remote player view.
+Sucuescesullyltelmi naredicnnnection to server.
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
+(Filenama: t:ed connection tko sedver.
  
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnItysEantgaiingeDeebuegp.ayer Line.:
- 
-49)
-
-name: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/nStattiandnalonmotPlaplerGene rieted
- Un
-ityEenameneDebug.ipp Line: nt/w
-o
-rk/d63dfc6385190b60/artIfascatsi/tingnremlte epllaeyeenerated
- 
-nFilenimt:yC:/BuildAgentD/work/dp6L3dfc638)1
-
-b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgenI/wotrkt/adin3dfc6m3te5190b6e/artifect./
-tan
-dallonePlaye:rBuiledaAeg/UnityEnk/ide6ebug.c3p5p90Line:r4i9a)ts
-
-/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(FiInstme:aC:tiating /emote pgeay/wrrk/d63dfc63
- 
-5190b60(Filefacns/mte: C:/nePBuyldAgenrateod/UnityEng385190bug./ap Lifacts/Sta
-n
-dalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+(c63len1ame: C:/BuildAgent/work/d63dac6rGe5nerb60/artifacts/Standbug.cpp Line: 4e9ate
+d
+/UnityEngineDebug.cpp Line: 49)
 
 Successfully terminated connection to server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Successfully terminated connection to server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Successfully terminated connection to server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-UnloadTime: 8.352744 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 314 unused Assets to reduce memory usage. Loaded Objects now: 1003.
-Total: 1.220183 ms (FindLiveObjects: 0.044093 ms CreateObjectMapping: 0.019766 ms MarkObjects: 0.467166 ms  DeleteObjects: 0.309037 ms)
-
-Successfully terminated connection to server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Successfully terminated connection to server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-UnloadTime: 7.630517 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 314 unused Assets to reduce memory usage. Loaded Objects now: 1003.
-Total: 1.242610 ms (FindLiveObjects: 0.042953 ms CreateObjectMapping: 0.018625 ms MarkObjects: 0.484272 ms  DeleteObjects: 0.328043 ms)
-
-Successfully terminated connection to server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-UnloadTime: 7.640020 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 314 unused Assets to reduce memory usage. Loaded Objects now: 1003.
-Total: 1.249832 ms (FindLiveObjects: 0.049415 ms CreateObjectMapping: 0.019386 ms MarkObjects: 0.473628 ms  DeleteObjects: 0.318920 ms)
 
 Successfully terminated connection to server.
  

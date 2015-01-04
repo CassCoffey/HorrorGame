@@ -16,10 +16,12 @@ public class SpawnManager : MonoBehaviour {
 	private int maxSpawnAttempts = 50;
 	private List<NetworkPlayer> playerList = new List<NetworkPlayer>();
 	private List<NetworkPlayer> readyList = new List<NetworkPlayer>();
+	private Hashtable playerNames = new Hashtable();
 
 	// Use this for initialization
     void OnNetworkLoadedLevel()
     {
+		networkView.RPC("CreateNameHashtable", RPCMode.All, Network.player, PlayerPrefs.GetString("UserName"));
 		if (Network.isClient) 
 		{
             Debug.Log("Is client");
@@ -74,68 +76,130 @@ public class SpawnManager : MonoBehaviour {
 				}
 				playerList.RemoveAt(cultistIndex);
 			}
-			
+
+			Debug.Log ("Generating Special Roles...");
 			int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
 			for(int i = 0; i < numOfRoles; i++)
 			{
-				Debug.Log ("Generating Special Roles...");
 				int specialIndex = Random.Range(0,playerList.Count);
-				int role = Random.Range (0,100);
-				if(role < 50)
+				NetworkPlayer specialPlayer = playerList[specialIndex];
+				int role;
+				if(numOfRoles >= 2)
+				{
+					role = Random.Range (0,100);
+				}
+				else
+				{
+					role = Random.Range (50,100);
+				}
+				if(role < 25)
+				{
+					Debug.Log ("Creating Lovers...");
+					int pairIndex = Random.Range(0,playerList.Count);
+					NetworkPlayer pairPlayer = playerList[pairIndex];
+					while(pairIndex == specialIndex){
+						pairIndex = Random.Range(0,playerList.Count);
+					}
+					if (specialPlayer == Network.player) 
+					{
+						SpawnPair("Lover", (string)playerNames[pairPlayer]);
+					}
+					else
+					{
+						networkView.RPC("SpawnPair", specialPlayer, "Lover", (string)playerNames[pairPlayer]);
+					}
+					if(pairPlayer == Network.player)
+					{
+						SpawnPair("Lover", (string)playerNames[specialPlayer]);
+					}
+					else
+					{
+						networkView.RPC("SpawnPair", pairPlayer, "Lover", (string)playerNames[specialPlayer]);
+					}
+					playerList.Remove(pairPlayer);
+				}
+				if(role >= 25 && role > 50)
+				{
+					Debug.Log ("Creating Thieves...");
+					int pairIndex = Random.Range(0,playerList.Count);
+					NetworkPlayer pairPlayer = playerList[pairIndex];
+					while(pairIndex == specialIndex){
+						pairIndex = Random.Range(0,playerList.Count);
+					}
+					if (specialPlayer == Network.player) 
+					{
+						SpawnPair("Thief", (string)playerNames[pairPlayer]);
+					}
+					else
+					{
+						networkView.RPC("SpawnPair", specialPlayer, "Thief", (string)playerNames[pairPlayer]);
+					}
+					if(pairPlayer == Network.player)
+					{
+						SpawnPair("Thief", (string)playerNames[specialPlayer]);
+					}
+					else
+					{
+						networkView.RPC("SpawnPair", pairPlayer, "Thief", (string)playerNames[specialPlayer]);
+					}
+					playerList.Remove(pairPlayer);
+				}
+				if(role >= 50 && role < 75)
 				{
 					Debug.Log ("Creating Priest...");
-					if (playerList [specialIndex] == Network.player) 
+					if (specialPlayer == Network.player) 
 					{
 						SpawnPlayer("Priest");
 					}
 					else
 					{
-						networkView.RPC("SpawnPlayer", playerList[specialIndex], "Priest");
+						networkView.RPC("SpawnPlayer", specialPlayer, "Priest");
 					}
 				}
-				if(role >= 50)
+				if(role >= 75)
 				{
 					Debug.Log ("Creating Assassin...");
-					if (playerList [specialIndex] == Network.player) 
+					if (specialPlayer == Network.player) 
 					{
 						SpawnPlayer("Assassin");
 					}
 					else
 					{
-						networkView.RPC("SpawnPlayer", playerList[specialIndex], "Assassin");
+						networkView.RPC("SpawnPlayer", specialPlayer, "Assassin");
 					}
 				}
-				playerList.RemoveAt(specialIndex);
+				playerList.Remove(specialPlayer);
 			}
 			while (playerList.Count > 0) 
 			{
 				int normIndex = Random.Range (0,playerList.Count);
+				NetworkPlayer normPlayer = playerList[normIndex];
 				int normRole = Random.Range (0,100);
 				if(normRole < 50)
 				{
 					Debug.Log ("Creating Peasant...");
-					if (playerList [normIndex] == Network.player) 
+					if (normPlayer == Network.player) 
 					{
 						SpawnPlayer("Peasant");
 					}
 					else
 					{
-						networkView.RPC("SpawnPlayer", playerList[normIndex], "Peasant");
+						networkView.RPC("SpawnPlayer", normPlayer, "Peasant");
 					}
 				}
 				if(normRole >= 50)
 				{
 					Debug.Log ("Creating Survivor...");
-					if (playerList [normIndex] == Network.player) 
+					if (normPlayer == Network.player) 
 					{
 						SpawnPlayer("Survivor");
 					}
 					else
 					{
-						networkView.RPC("SpawnPlayer", playerList[normIndex], "Survivor");
+						networkView.RPC("SpawnPlayer", normPlayer, "Survivor");
 					}
 				}
-				playerList.RemoveAt(normIndex);
+				playerList.Remove(normPlayer);
 			}
 		}
 	}
@@ -155,8 +219,6 @@ public class SpawnManager : MonoBehaviour {
 			ChooseRole();
 		}
 	}
-
-
 
 	// Create a player object.
 	[RPC] void SpawnPlayer(string role)
@@ -219,4 +281,39 @@ public class SpawnManager : MonoBehaviour {
 			}
 		}
 	}
-}	
+
+	[RPC] void SpawnPair(string role, string pair)
+	{
+		spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
+		int index = Random.Range(0, spawnPoints.Length);
+		Vector3 spawnPoint = spawnPoints[index].transform.position;
+		Vector3 spawn = new Vector3(spawnPoint.x + Random.Range(-spawnRadius, spawnRadius), spawnPoint.y, spawnPoint.z + Random.Range(-spawnRadius, spawnRadius));
+		for(int i = 0; i < maxSpawnAttempts; i++)
+		{
+			if(Physics.CheckSphere(spawn,radiusCheck))
+			{
+				spawn = new Vector3(spawnPoint.x + Random.Range(-spawnRadius, spawnRadius), spawnPoint.y, spawnPoint.z + Random.Range(-spawnRadius, spawnRadius));
+			}
+			else
+			{
+				break;
+			}
+		}
+		Debug.Log("Spawning Pairs");
+		GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
+		switch (role) 
+		{
+		case "Lover":
+			SetRoleText(player, "Lover", "You're in love with " + pair);
+			break;
+		case "Thief":
+			SetRoleText(player, "Thief", "You're a thief! There is another thief among you.");
+			break;
+		}
+	}
+
+	[RPC] void CreateNameHashtable(NetworkPlayer player, string name)
+	{
+		playerNames.Add(player, name);
+	}
+}
