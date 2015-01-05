@@ -6,6 +6,8 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     public GameObject Menu;
+    public GameObject Vitals;
+    public GameObject Chat;
     public GameObject player;
 
     [SerializeField]private float runSpeed = 8f;                                       // The speed at which we want the character to move
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour {
     private float percentCharge;
     private const float goalCharge = 0.15f;
     private float startCharge;
+    private bool chatting = false;
 
     [SerializeField]private AdvancedSettings advanced = new AdvancedSettings();
     [System.Serializable]
@@ -68,7 +71,7 @@ public class Player : MonoBehaviour {
         if (networkView.isMine)
         {
             MenuInput();
-            if (!Menu.activeSelf)
+            if (!Menu.activeSelf && !chatting)
             {
                 KeyInput();
             }
@@ -139,7 +142,12 @@ public class Player : MonoBehaviour {
 		float v = Input.GetAxis("Vertical");
 		bool jump = Input.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && !jumping;
 #endif
-
+        if (chatting)
+        {
+            h = 0;
+            v = 0;
+            jump = false;
+        }
 #if !MOBILE_INPUT
         if (jump)
         {
@@ -247,6 +255,11 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
+        }
+        if (Input.GetKeyUp(KeyCode.Return) && !Menu.activeSelf)
+        {
+            GetComponent<ChatScript>().SendChatMessage();
+            ToggleChat();
         }
     }
 
@@ -421,10 +434,24 @@ public class Player : MonoBehaviour {
     public void ToggleMenu()
     {
         Menu.SetActive(!Menu.activeSelf);
+        Chat.SetActive(!Menu.activeSelf);
+        Vitals.SetActive(!Menu.activeSelf);
         Screen.showCursor = Menu.activeSelf;
         foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
         {
             mouseLook.enabled = !Menu.activeSelf;
+        }
+        chatting = false;
+        GetComponent<ChatScript>().SetInactive();
+    }
+
+    public void ToggleChat()
+    {
+        chatting = !chatting;
+        GetComponent<ChatScript>().ToggleActive();
+        foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
+        {
+            mouseLook.enabled = !chatting;
         }
     }
 

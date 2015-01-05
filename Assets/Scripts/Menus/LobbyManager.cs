@@ -44,7 +44,7 @@ public class LobbyManager : MonoBehaviour {
             }
             pingTime += Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.Return) && chatInput.text != "" && EventSystem.current.currentSelectedGameObject.name == chatInput.name)
+        if (Input.GetKeyDown(KeyCode.Return) && chatInput.text != "" && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.name == chatInput.name)
         {
             SendChatMessage(chatInput.text);
             chatInput.text = "";
