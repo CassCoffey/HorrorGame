@@ -51,6 +51,10 @@ public class Weapon : MonoBehaviour {
                 rigidbody.angularVelocity = Vector3.zero;
                 rigidbody.isKinematic = true;
                 Physics.IgnoreCollision(collider, collision.collider);
+                if (collision.collider.GetComponent<Vitals>() != null)
+                {
+                    collision.collider.GetComponent<Vitals>().TakeDamage((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)));
+                }
             }
         }
     }

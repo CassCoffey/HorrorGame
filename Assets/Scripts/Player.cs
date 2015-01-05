@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
     private const float playerReach = 1f;
     private Vector2 input;
     private CapsuleCollider capsule;
+    private bool sprinting;
 
     public GameObject currentWeapon = null;
     public GameObject sheathedWeapon = null;
@@ -132,18 +133,27 @@ public class Player : MonoBehaviour {
 #if CROSS_PLATFORM_INPUT
         float h = CrossPlatformInput.GetAxis("Horizontal");
         float v = CrossPlatformInput.GetAxis("Vertical");
-        bool jump = CrossPlatformInput.GetButton("Jump");
+        bool jump = CrossPlatformInput.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && grounded;
 #else
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
-		bool jump = Input.GetButton("Jump");
+		bool jump = Input.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && !jumping;
 #endif
 
 #if !MOBILE_INPUT
+        if (jump)
+        {
+            transform.GetComponent<Vitals>().UseStamina(transform.GetComponent<Vitals>().jumpStamina);
+        }
 
         // On standalone builds, walk/run speed is modified by a key press.
         // We select appropriate speed based on whether we're walking by default, and whether the walk/run toggle button is pressed:
-        bool walkOrRun = Input.GetKey(KeyCode.LeftShift);
+        if (sprinting)
+        {
+            transform.GetComponent<Vitals>().UseStamina(Time.deltaTime);
+        }
+        bool walkOrRun = Input.GetKey(KeyCode.LeftShift) && transform.GetComponent<Vitals>().CanRun();
+        sprinting = walkOrRun;
         speed = walkByDefault ? (walkOrRun ? runSpeed : walkSpeed) : (walkOrRun ? walkSpeed : runSpeed);
 
         // On mobile, it's controlled in analogue fashion by the v input value, and therefore needs no special handling.
@@ -387,7 +397,7 @@ public class Player : MonoBehaviour {
             currentWeapon.collider.enabled = true;
             currentWeapon.rigidbody.isKinematic = false;
             currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percentCharge);
-            currentWeapon.rigidbody.maxAngularVelocity = 30;
+            currentWeapon.rigidbody.maxAngularVelocity = 35;
             currentWeapon.rigidbody.AddRelativeTorque(40 * percentCharge, 0, 0, ForceMode.VelocityChange);
             currentWeapon = null;
             if (sheathedWeapon != null)
