@@ -118,7 +118,7 @@ public class SpawnManager : MonoBehaviour {
 					}
 					playerList.Remove(pairPlayer);
 				}
-				if(role >= 25 && role > 50)
+				if(role >= 25 && role < 50)
 				{
 					Debug.Log ("Creating Thieves...");
 					int pairIndex = Random.Range(0,playerList.Count);
