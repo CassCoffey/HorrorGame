@@ -67,7 +67,10 @@ public class ChatScript : MonoBehaviour {
     {
         if (Input.GetKeyUp(KeyCode.Return) && chatInput.text != "" && chatInput.IsInteractable())
         {
-            networkView.RPC("RetrieveChatMessage", RPCMode.All, PlayerPrefs.GetString("UserName"), chatInput.text, 0.2f, 0.2f, 0.2f);
+            foreach (var go in FindObjectsOfType<ChatScript>())
+            {
+                go.networkView.RPC("RetrieveChatMessage", RPCMode.All, PlayerPrefs.GetString("UserName"), chatInput.text, 0.2f, 0.2f, 0.2f);
+            }
             chatInput.text = "";
         }
     }
@@ -76,6 +79,7 @@ public class ChatScript : MonoBehaviour {
     //Destroys any chat messages past the maximum chat height
     [RPC] void RetrieveChatMessage(string player, string message, float r, float g, float b)
     {
+        Debug.Log("Retrieving chat");
         GameObject chat = (GameObject)Instantiate(chatPrefab);
         chat.transform.SetParent(chatPanel.transform.FindChild("ChatScrolling"), false);
         chat.GetComponentInChildren<Text>().font = font;
