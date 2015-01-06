@@ -3,10 +3,14 @@ using System.Collections;
 
 public class NetworkCamera : MonoBehaviour {
 
+    // Variables for managing synced movement.
     private Vector3 syncPosition = Vector3.zero;
     private Quaternion syncRotation = Quaternion.identity;
 
-    // Makes sure to disable the camera for clients that are not my own.
+    /// <summary>
+    /// If the camera is mine, then make sure it and it's audio listener are enabled.
+    /// If it is another client's camera, then disable it and it's audio listener to avoid conflicts.
+    /// </summary>
     void OnNetworkInstantiate(NetworkMessageInfo info)
     {
         if (networkView.isMine)
@@ -21,6 +25,11 @@ public class NetworkCamera : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Syncs movement for cameras that aren't mine.
+    /// Why are we syncing movement for someone else's camera? 
+    /// Weapons are currently parented to the camera, so until we have proper models with head bones we can sync, we'll need to sync the cameras.
+    /// </summary>
     void Update()
     {
         if (!networkView.isMine)
@@ -29,6 +38,9 @@ public class NetworkCamera : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Manages the smooth lerping of the camera between points.
+    /// </summary>
     void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
     {
         Vector3 tempSyncPosition = Vector3.zero;
@@ -51,6 +63,9 @@ public class NetworkCamera : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Updates the sync position and rotation.
+    /// </summary>
     private void SyncedMovement()
     {
         transform.position = syncPosition;

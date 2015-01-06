@@ -17,6 +17,9 @@ public class Vitals : MonoBehaviour {
     private float currentRegen = 0;
     private bool regen = false;
 
+    /// <summary>
+    /// On start initialize all sliders.
+    /// </summary>
     public void Start()
     {
         if (networkView.isMine)
@@ -30,6 +33,9 @@ public class Vitals : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Regens stamina every update.
+    /// </summary>
     public void Update()
     {
         if (regen)
@@ -55,6 +61,26 @@ public class Vitals : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Checks if the player can run.
+    /// </summary>
+    public bool CanRun()
+    {
+        return !regen && stamina > 0;
+    }
+
+    /// <summary>
+    /// Checks if the player can jump.
+    /// </summary>
+    public bool CanJump()
+    {
+        return stamina >= jumpStamina;
+    }
+
+    /// <summary>
+    /// Handles taking damage.
+    /// </summary>
+    /// <param name="damage">The amount of health to lose.</param>
     public void TakeDamage(int damage)
     {
         Debug.Log("Taking Damage");
@@ -70,16 +96,10 @@ public class Vitals : MonoBehaviour {
         }
     }
 
-    public bool CanRun()
-    {
-        return !regen && stamina > 0;
-    }
-
-    public bool CanJump()
-    {
-        return stamina >= jumpStamina;
-    }
-
+    /// <summary>
+    /// Handles using stamina.
+    /// </summary>
+    /// <param name="staminaUse">The amount of stamina to use.</param>
     public void UseStamina(float staminaUse)
     {
         stamina -= staminaUse;

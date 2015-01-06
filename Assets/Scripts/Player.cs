@@ -5,6 +5,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+    // The player's menu objects.
     public GameObject Menu;
     public GameObject Vitals;
     public GameObject Chat;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour {
     [SerializeField]private bool walkByDefault = true;									// controls how the walk/run modifier key behaves.
     [SerializeField]private float walkSpeed = 3f;                                      // The speed at which we want the character to move
 #endif
+    // Synchronization variables.
     private float lastSynchronizationTime = 0f;
     private float syncDelay = 0f;
     private float syncTime = 0f;
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour {
     private Quaternion syncStartRotation = Quaternion.identity;
     private Quaternion syncEndRotation = Quaternion.identity;
     private Vector3 mousePosPrev;
+    // Variables for player movement.
     public bool grounded { get; private set; }
     private IComparer rayHitComparer;
     private const float jumpRayLength = 0.7f;
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour {
     private CapsuleCollider capsule;
     private bool sprinting;
 
+    // Variables for weapon use.
     public GameObject currentWeapon = null;
     public GameObject sheathedWeapon = null;
     public GameObject weaponLoc;
@@ -54,6 +58,9 @@ public class Player : MonoBehaviour {
         public float groundStickyEffect = 5f;											// power of 'stick to ground' effect - prevents bumping down slopes.
     }
 
+    /// <summary>
+    /// When this script wakes up, initialize some variables and lock the mouse cursor.
+    /// </summary>
     void Awake()
     {
         if (networkView.isMine)
@@ -66,6 +73,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// If this is my network view, look for input.
+    /// </summary>
     void Update()
     {
         if (networkView.isMine)
@@ -78,6 +88,10 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// If the network view is mine, handle movement.
+    /// If not, then sync movement.
+    /// </summary>
     void FixedUpdate()
     {
         if (networkView.isMine)
@@ -90,6 +104,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Sync position and lerp the player object smoothly between network updates.
+    /// </summary>
     void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
     {
         Vector3 syncPosition = Vector3.zero;
@@ -128,6 +145,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Handle input and movement for the player.
+    /// </summary>
     void InputMovement()
     {
         float speed = runSpeed;
@@ -136,12 +156,13 @@ public class Player : MonoBehaviour {
 #if CROSS_PLATFORM_INPUT
         float h = CrossPlatformInput.GetAxis("Horizontal");
         float v = CrossPlatformInput.GetAxis("Vertical");
-        bool jump = CrossPlatformInput.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && grounded;
+        bool jump = CrossPlatformInput.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && grounded;  // Makes sure the player has enough stamina.
 #else
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
 		bool jump = Input.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && !jumping;
 #endif
+        // Don't take movement if chatting.
         if (chatting)
         {
             h = 0;
@@ -149,21 +170,23 @@ public class Player : MonoBehaviour {
             jump = false;
         }
 #if !MOBILE_INPUT
+        // Use stamina if jumping.
         if (jump)
         {
             transform.GetComponent<Vitals>().UseStamina(transform.GetComponent<Vitals>().jumpStamina);
         }
 
-        // On standalone builds, walk/run speed is modified by a key press.
-        // We select appropriate speed based on whether we're walking by default, and whether the walk/run toggle button is pressed:
+        // Use stamina if sprinting.
         if (sprinting)
         {
             transform.GetComponent<Vitals>().UseStamina(Time.deltaTime);
         }
+
+        // On standalone builds, walk/run speed is modified by a key press.
+        // We select appropriate speed based on whether we're walking by default, and whether the walk/run toggle button is pressed:
         bool walkOrRun = Input.GetKey(KeyCode.LeftShift) && transform.GetComponent<Vitals>().CanRun();
         sprinting = walkOrRun;
         speed = walkByDefault ? (walkOrRun ? runSpeed : walkSpeed) : (walkOrRun ? walkSpeed : runSpeed);
-
         // On mobile, it's controlled in analogue fashion by the v input value, and therefore needs no special handling.
 
 
@@ -241,7 +264,9 @@ public class Player : MonoBehaviour {
         rigidbody.AddForce(Physics.gravity * (advanced.gravityMultiplier - 1));
     }
 
-    // Smoothly moves networked bodies.
+    /// <summary>
+    /// Smoothly moves networked bodies.
+    /// </summary>
     private void SyncedMovement()
     {
         syncTime += Time.deltaTime;
@@ -249,6 +274,9 @@ public class Player : MonoBehaviour {
         rigidbody.rotation = Quaternion.Lerp(syncStartRotation, syncEndRotation, syncTime / syncDelay);
     }
 
+    /// <summary>
+    /// Looks to see if the player has initiated the menu or chat.
+    /// </summary>
     private void MenuInput()
     {
         // Menu Options
@@ -263,6 +291,39 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Toggles the menu on.
+    /// </summary>
+    public void ToggleMenu()
+    {
+        Menu.SetActive(!Menu.activeSelf);
+        Chat.SetActive(!Menu.activeSelf);
+        Vitals.SetActive(!Menu.activeSelf);
+        Screen.showCursor = Menu.activeSelf;
+        foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
+        {
+            mouseLook.enabled = !Menu.activeSelf;
+        }
+        chatting = false;
+        GetComponent<ChatScript>().SetInactive();
+    }
+
+    /// <summary>
+    /// Toggles the chat.
+    /// </summary>
+    public void ToggleChat()
+    {
+        chatting = !chatting;
+        GetComponent<ChatScript>().ToggleActive();
+        foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
+        {
+            mouseLook.enabled = !chatting;
+        }
+    }
+
+    /// <summary>
+    /// Looks for key inputs.
+    /// </summary>
     private void KeyInput()
     {
         if (Input.GetKeyDown(KeyCode.E) && (currentWeapon == null || sheathedWeapon == null))
@@ -289,6 +350,7 @@ public class Player : MonoBehaviour {
         {
             ThrowWeapon();
         }
+        // Handle weapon charging.
         if (charging && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
             float time = Time.time - startCharge;
@@ -305,6 +367,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Pick up a weapon that is in front of you.
+    /// </summary>
     private void PickupItem()
     {
         Ray ray = new Ray(transform.FindChild("Player Camera").position, transform.FindChild("Player Camera").forward);
@@ -332,6 +397,10 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Sets the current weapon.
+    /// </summary>
+    /// <param name="weapon">The weapon being set.</param>
     public void SetCurrentWeapon(GameObject weapon)
     {
         currentWeapon = weapon;
@@ -344,6 +413,10 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Sets the sheathed weapon.
+    /// </summary>
+    /// <param name="weapon">The weapon being set.</param>
     public void SetSheathedWeapon(GameObject weapon)
     {
         sheathedWeapon = weapon;
@@ -356,6 +429,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Swaps current and sheathed weapons.
+    /// </summary>
     public void SwapWeapons()
     {
         if (sheathedWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
@@ -367,6 +443,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Drops your current weapon.
+    /// </summary>
     public void DropWeapon()
     {
         networkView.RPC("SyncDrop", RPCMode.OthersBuffered);
@@ -385,6 +464,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Begins charging weapon to be thrown.
+    /// </summary>
     public void ChargeWeapon()
     {
         if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
@@ -394,12 +476,16 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Throws the current weapon based on how long it has charged.
+    /// </summary>
     public void ThrowWeapon()
     {
         networkView.RPC("SyncThrow", RPCMode.OthersBuffered, percentCharge);
         if (currentWeapon != null && charging && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
             charging = false;
+            // Makes sure the charge is at least 15%.
             if (percentCharge <= 0.15f)
             {
                 percentCharge = 0.15f;
@@ -421,6 +507,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Plays the animation for swinging the weapon.
+    /// </summary>
     public void SwingWeapon()
     {
         networkView.RPC("SyncSwing", RPCMode.OthersBuffered);
@@ -431,31 +520,9 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void ToggleMenu()
-    {
-        Menu.SetActive(!Menu.activeSelf);
-        Chat.SetActive(!Menu.activeSelf);
-        Vitals.SetActive(!Menu.activeSelf);
-        Screen.showCursor = Menu.activeSelf;
-        foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
-        {
-            mouseLook.enabled = !Menu.activeSelf;
-        }
-        chatting = false;
-        GetComponent<ChatScript>().SetInactive();
-    }
-
-    public void ToggleChat()
-    {
-        chatting = !chatting;
-        GetComponent<ChatScript>().ToggleActive();
-        foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
-        {
-            mouseLook.enabled = !chatting;
-        }
-    }
-
-    // Sets up the player view based on if client or server.
+    /// <summary>
+    /// Sets up the player view based on if client or server.
+    /// </summary>
     void OnNetworkInstantiate(NetworkMessageInfo info)
     {
         if (networkView.isMine)
@@ -476,6 +543,12 @@ public class Player : MonoBehaviour {
             GetComponentInChildren<Camera>().GetComponent<MouseLook>().enabled = false;
         }
     }
+
+    //
+    /// <summary>
+    /// RPCs that sync all weapon movements across clients.
+    /// </summary>
+    //
 
     [RPC] void SyncPickup(NetworkViewID viewID)
     {
@@ -555,7 +628,10 @@ public class Player : MonoBehaviour {
         }
     }
 
-    // Used for comparing distances
+
+    /// <summary>
+    /// Used for comparing distances
+    /// </summary>
     class RayHitComparer : IComparer
     {
         public int Compare(object x, object y)

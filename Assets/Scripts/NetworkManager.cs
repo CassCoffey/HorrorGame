@@ -30,6 +30,9 @@ public class NetworkManager : MonoBehaviour {
     // Defines the prefix of the previous level.
     private int lastLevelPrefix = 0;
 
+    /// <summary>
+    /// When the script wakes up, update the player's username and change the group of this network view.
+    /// </summary>
     void Awake()
     {
         // Network level loading is done in a separate channel.
@@ -41,6 +44,10 @@ public class NetworkManager : MonoBehaviour {
         networkView.group = 1;
     }
 
+    /// <summary>
+    /// Sets the player's username.
+    /// </summary>
+    /// <param name="newName">The new username.</param>
     public void SetPlayerName(string newName)
     {
         playerName = newName;
@@ -48,7 +55,9 @@ public class NetworkManager : MonoBehaviour {
         PlayerPrefs.Save();
     }
 
-	// When creating the server, set a password and register it with the master server.
+	/// <summary>
+    /// When creating the server, set a password and register it with the master server.
+	/// </summary>
 	public void StartServer() 
     {
         Network.incomingPassword = password;
@@ -56,7 +65,10 @@ public class NetworkManager : MonoBehaviour {
         MasterServer.RegisterHost(appId, gameName);
 	}
 
-    // Called whenever a input field is changed that has to do with server creation.
+    /// <summary>
+    /// Called whenever a input field is changed that has to do with server creation.
+    /// </summary>
+    /// <param name="field">TThe field that has been changed.</param>
     public void SetOption(InputField field)
     {
         switch(field.name)
@@ -99,26 +111,34 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 	
-	// Debug info that server has started.
+	/// <summary>
+    /// Debug info that server has started.
+	/// </summary>
 	void OnServerInitialized() 
     {
         Debug.Log("Server Initialized");
 	}
 
-    // Disconnects the server and removes it from the master server list.
+    /// <summary>
+    /// Disconnects the server and removes it from the master server list.
+    /// </summary>
     public void ShutdownServer()
     {
         Network.Disconnect();
         MasterServer.UnregisterHost();
     }
 
-    // On connecting to a server
+    /// <summary>
+    /// On connecting to a server
+    /// </summary>
     void OnConnectedToServer()
     {
         Debug.Log("Server Joined");
     }
 
-    // Calls an RPC to load the level for all clients.
+    /// <summary>
+    /// Calls an RPC to load the level for all clients.
+    /// </summary>
     public void LoadLevel()
     {
         Network.RemoveRPCsInGroup(0);
@@ -126,7 +146,10 @@ public class NetworkManager : MonoBehaviour {
         networkView.RPC("LoadLevelRPC", RPCMode.AllBuffered, gameScene, lastLevelPrefix + 1);
     }
 
-    // Called when disconnected from a server. Will perform cleanup tasks.
+    /// <summary>
+    /// Called when disconnected from a server.
+    /// </summary>
+    /// <param name="info">Information about the disconnect.</param>
     void OnDisconnectedFromServer(NetworkDisconnection info)
     {
         if (Network.isServer)
@@ -146,7 +169,12 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
-    // The RPC that handles loading a level for all clients.
+    /// <summary>
+    /// The RPC that handles loading a level for all clients.
+    /// </summary>
+    /// <param name="level">The level to load.</param>
+    /// <param name="levelPrefix">The prefix of that level.</param>
+    /// <returns></returns>
     [RPC] IEnumerator LoadLevelRPC(string level, int levelPrefix)
     {
         lastLevelPrefix = levelPrefix;

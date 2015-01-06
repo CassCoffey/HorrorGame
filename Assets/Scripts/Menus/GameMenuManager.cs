@@ -6,7 +6,11 @@ public class GameMenuManager : MonoBehaviour {
     private Canvas previousCanvas;
     private Canvas nextCanvas;
 
-
+    /// <summary>
+    /// Handles dropdown panels.
+    /// </summary>
+    /// <param name="panel">The panel in question.</param>
+    /// <param name="isOpen">Whether to open or close it.</param>
     public void SetPanel(GameObject panel, bool isOpen)
     {
         if (networkView.isMine)
@@ -19,6 +23,10 @@ public class GameMenuManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Toggles a panel.
+    /// </summary>
+    /// <param name="panel">the panel to toggle.</param>
     public void TogglePanel(GameObject panel)
     {
         if (networkView.isMine)
@@ -27,6 +35,10 @@ public class GameMenuManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Closes a panel.
+    /// </summary>
+    /// <param name="panel">The panel to close.</param>
     public void ClosePanel(GameObject panel)
     {
         if (networkView.isMine)

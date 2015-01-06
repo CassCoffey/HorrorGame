@@ -18,6 +18,9 @@ public class InGameOptions : MonoBehaviour
     private List<GameObject> resolutionButtons = new List<GameObject>();
     private Resolution CurrentResolution;
 
+    /// <summary>
+    /// Initializes resolution options and volume sliders.
+    /// </summary>
     void Start()
     {
         CurrentResolution = Screen.currentResolution;
@@ -25,7 +28,9 @@ public class InGameOptions : MonoBehaviour
         SetVolumeSliders();
     }
 
-    // Tab Management
+    /// <summary>
+    /// Manages which tab is open.
+    /// </summary>
     public void SetTabButton(UnityEngine.UI.Button button)
     {
         switch (button.name)
@@ -42,6 +47,9 @@ public class InGameOptions : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes which tab is active.
+    /// </summary>
     private void ChangeTab(string panel, UnityEngine.UI.Button button)
     {
         currentPanel.SetActive(false);
@@ -56,12 +64,18 @@ public class InGameOptions : MonoBehaviour
         }
     }
 
-    // Graphics Options
+    /// <summary>
+    /// Makes the game fullscreen.
+    /// </summary>
+    /// <param name="fullscreen">Fullscreen or windowed?</param>
     public void SetFullscreen(bool fullscreen)
     {
         Screen.fullScreen = fullscreen;
     }
 
+    /// <summary>
+    /// Generates a list of possible resolutions based on your monitor.
+    /// </summary>
     private void CreateResolutionList()
     {
         Resolution[] resolutions = Screen.resolutions;
@@ -104,6 +118,9 @@ public class InGameOptions : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Makes it so that clicking on a resolution changes your resolution.
+    /// </summary>
     private void AddListener(UnityEngine.UI.Button button, Resolution resolution)
     {
         button.onClick.AddListener(() =>
@@ -119,7 +136,9 @@ public class InGameOptions : MonoBehaviour
         });
     }
 
-    // Audio Options
+    /// <summary>
+    /// Updates volume sliders to match your preferences.
+    /// </summary>
     public void SetVolumeSliders()
     {
         if (PlayerPrefs.HasKey("Master"))
@@ -136,6 +155,10 @@ public class InGameOptions : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Volume slider controls.
+    /// </summary>
+    
     public void ChangeMasterVolume(float value)
     {
         AudioListener.volume = value;

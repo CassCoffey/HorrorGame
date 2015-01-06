@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-
-
 public class SpawnManager : MonoBehaviour {
 
 	// The default player prefab.
@@ -18,22 +16,31 @@ public class SpawnManager : MonoBehaviour {
 	private List<NetworkPlayer> readyList = new List<NetworkPlayer>();
 	private Hashtable playerNames = new Hashtable();
 
-	// Use this for initialization
+	/// <summary>
+	/// Performs initialization after the network has loaded the level.
+	/// </summary>
     void OnNetworkLoadedLevel()
     {
+        // Begin building hashtable of all networkplayers and their names.
 		networkView.RPC("CreateNameHashtable", RPCMode.All, Network.player, PlayerPrefs.GetString("UserName"));
-		if (Network.isClient) 
+		if (Network.isClient)
 		{
+            // Tells the server when the client is ready to spawn.
             Debug.Log("Is client");
 			networkView.RPC("ClientReady", RPCMode.Server, Network.player);
 		}
 		if (Network.isServer && Network.connections.Length == 0)
 		{
+            Debug.Log("Singleplayer");
+            // If playing by yourself, just start the game.
             ChooseWeapons();
 			ChooseRole();
 		}
 	}
 
+    /// <summary>
+    /// Goes through all weapon spawns and tells them to spawn a weapon.
+    /// </summary>
     private void ChooseWeapons()
     {
         foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("WeaponSpawn"))
@@ -42,9 +49,13 @@ public class SpawnManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Handles weighted assignment of roles.
+    /// </summary>
 	void ChooseRole()
 	{
-		if(Network.isServer){
+		if(Network.isServer)
+        {
 			playerList.Add (Network.player);
 			for (int i = 0; i < Network.connections.Length; i++) 
 			{
@@ -204,12 +215,23 @@ public class SpawnManager : MonoBehaviour {
 		}
 	}
 
+    /// <summary>
+    /// Updates the text of a player's role description.
+    /// </summary>
+    /// <param name="player">The player whose text is being changed.</param>
+    /// <param name="roleName">The name of their role.</param>
+    /// <param name="roleDescription">The description of their role.</param>
     public void SetRoleText(GameObject player, string roleName, string roleDescription)
     {
         player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleNamePanel").FindChild("RoleName").GetComponent<Text>().text = roleName;
         player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleDescriptionPanel").FindChild("RoleDescription").GetComponent<Text>().text = roleDescription;
     }
 
+    /// <summary>
+    /// Sent to the server when a client is ready.
+    /// The server adds the readied player to a readyList and checks to see if the readyList contains all players.
+    /// </summary>
+    /// <param name="player">The player who is ready.</param>
 	[RPC] void ClientReady(NetworkPlayer player)
 	{
 		readyList.Add(player);
@@ -220,7 +242,10 @@ public class SpawnManager : MonoBehaviour {
 		}
 	}
 
-	// Create a player object.
+    /// <summary>
+    /// Create a player object.
+    /// </summary>
+    /// <param name="role">The role of that player.</param>
 	[RPC] void SpawnPlayer(string role)
 	{
 		if (role == "Monster") 
@@ -282,6 +307,11 @@ public class SpawnManager : MonoBehaviour {
 		}
 	}
 
+    /// <summary>
+    /// Create a player object.
+    /// </summary>
+    /// <param name="role">The role of that player.</param>
+    /// <param name="pair">That player's pair player name.</param>
 	[RPC] void SpawnPair(string role, string pair)
 	{
 		spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
@@ -312,6 +342,9 @@ public class SpawnManager : MonoBehaviour {
 		}
 	}
 
+    /// <summary>
+    /// Creates a hashtable of all the players and their names.
+    /// </summary>
 	[RPC] void CreateNameHashtable(NetworkPlayer player, string name)
 	{
 		playerNames.Add(player, name);

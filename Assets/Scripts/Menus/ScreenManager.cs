@@ -13,7 +13,6 @@ public class ScreenManager : MonoBehaviour {
     Vector3 startLocation;
     private Canvas previousCanvas;
     private Canvas nextCanvas;
-    private int previousRenderQueue = 0;
     bool move = false;
     float curTime = 0;
 
@@ -91,6 +90,10 @@ public class ScreenManager : MonoBehaviour {
                 {
                     camera.transform.parent.GetComponent<Animator>().enabled = true;
                 }
+                foreach (var go in FindObjectsOfType<GameObject>())
+                {
+                    go.SendMessage("OnCameraArrive", nextCanvas.transform.parent.gameObject, SendMessageOptions.DontRequireReceiver);
+                }  
             }
             else
             {

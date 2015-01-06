@@ -20,8 +20,8 @@ public class LobbyManager : MonoBehaviour {
 	public GameObject networkManager;
 	public string serverName;
 	public Font font;
+
 	private float pingTime;
-	
 	private List<NetworkPlayer> playerList = new List<NetworkPlayer>();
     private List<string> playerNameList = new List<string>();
 	private List<GameObject> playerLabels = new List<GameObject>();
@@ -29,7 +29,10 @@ public class LobbyManager : MonoBehaviour {
     private float maxChatHeight;
     private float currentChatHeight = 0;
 
-	// Update is called once per frame
+	/// <summary>
+	/// If you're the server, update ping for the players.
+    /// If enter is being pressed and text has been input, send a chat message.
+	/// </summary>
 	void Update () 
     {
 	    if (Network.isServer)
@@ -50,7 +53,19 @@ public class LobbyManager : MonoBehaviour {
             chatInput.text = "";
         }
 	}	
-	//Removes all chat messages and resizes the chat panel
+
+    public void OnCameraArrive(Object canvas)
+    {
+        if ((GameObject)canvas == gameObject)
+        {
+            RefreshChat();
+            RefreshList();
+        }
+    }
+
+	/// <summary>
+    /// Removes all chat messages and resizes the chat panel
+	/// </summary>
     void RefreshChat()
     {
         for (int i = 0; i < chatMessages.Count; i++)
@@ -66,13 +81,18 @@ public class LobbyManager : MonoBehaviour {
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
     }
 
+    /// <summary>
+    /// Clears the list of players and names.
+    /// </summary>
 	public void ClearPlayerList()
 	{
 		playerList.Clear();
         playerNameList.Clear();
 	}
 
-	//Refreshes the chat, blocks access to settings and server info, removes the start game button, and adds the player that connected
+	/// <summary>
+    /// Refreshes the chat, blocks access to settings and server info, removes the start game button, and adds the player that connected
+	/// </summary>
     void OnConnectedToServer()
     {
         RefreshChat();
@@ -84,7 +104,10 @@ public class LobbyManager : MonoBehaviour {
         startGameButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = false;
         networkView.RPC("AddPlayerName", RPCMode.Server, networkManager.GetComponent<NetworkManager>().playerName);
     }
-	//Clears the list of players, adds the player that connected, then goes through each connection and adds them to the list
+
+	/// <summary>
+    /// Clears the list of players, adds the player that connected, then goes through each connection and adds them to the list
+	/// </summary>
 	void RefreshList()
 	{
 		playerList.Clear ();
@@ -94,7 +117,10 @@ public class LobbyManager : MonoBehaviour {
 			playerList.Add (Network.connections[i]);
 		}
 	}
-	//When a player connects, it refreshes the list of players
+
+	/// <summary>
+    /// When a player connects, it refreshes the list of players
+	/// </summary>
     void OnPlayerConnected(NetworkPlayer player)
     {
         if (Network.isServer)
@@ -102,7 +128,10 @@ public class LobbyManager : MonoBehaviour {
             RefreshList();
         }
     }
-	//Removes the player from the game and updates the player labels
+
+	/// <summary>
+    /// Removes the player from the game and updates the player labels
+	/// </summary>
     void OnPlayerDisconnected(NetworkPlayer player)
     {
         if (Network.isServer)
@@ -113,7 +142,10 @@ public class LobbyManager : MonoBehaviour {
             UpdatePlayerLabels(playerList);
         }
     }
-	//Clears all of the labels, resizes the scrolling box, and adds a player label for each person connected
+
+	/// <summary>
+    /// Clears all of the labels, resizes the scrolling box, and adds a player label for each person connected
+	/// </summary>
 	void UpdatePlayerLabels(List<NetworkPlayer> serverPlayerList)
 	{
 		networkView.RPC ("ClearPlayerLabels", RPCMode.All);
@@ -123,8 +155,11 @@ public class LobbyManager : MonoBehaviour {
 			networkView.RPC("CreatePlayerLabel", RPCMode.All, playerNameList[i], Network.GetLastPing(serverPlayerList[i]).ToString(), serverPlayerList.Count, i);
 		}
 	}
-	//Refreshes the chat, enables settings and start game button for host, adds the host to the list of players and labels
-	//and sets the server name
+	
+	/// <summary>
+    /// Refreshes the chat, enables settings and start game button for host, adds the host to the list of players and labels
+    /// and sets the server name.
+    /// </summary>
     void OnServerInitialized()
     {
         RefreshChat();
@@ -141,22 +176,35 @@ public class LobbyManager : MonoBehaviour {
         networkView.RPC("UpdateServerName", RPCMode.AllBuffered, serverName);
     }
 
+    /// <summary>
+    /// Updatess the server info on clients.
+    /// </summary>
     public void UpdateServerInfo(string info)
     {
         networkView.RPC("RetrieveServerInfo", RPCMode.OthersBuffered, info);
     }
 
+    /// <summary>
+    /// Updatess the server options on clients.
+    /// </summary>
     public void UpdateServerOptions(GameObject option)
     {
         networkView.RPC("RetrieveServerOptions", RPCMode.OthersBuffered, option.name, option.transform.FindChild("Text").GetComponent<Text>().text);
     }
 
+    /// <summary>
+    /// Sends a chat message to everyone else.
+    /// </summary>
     public void SendChatMessage(string message)
     {
         networkView.RPC("RetrieveChatMessage", RPCMode.All, networkManager.GetComponent<NetworkManager>().playerName, message, 0.2f, 0.2f, 0.2f);
     }
-	//Adds the chat message to the chat message array and moves all chat messages up in the scrolling box.
-	//Destroys any chat messages past the maximum chat height
+
+	/// <summary>
+    /// Adds the chat message to the chat message array and moves all chat messages up in the scrolling box.
+    /// Destroys any chat messages past the maximum chat height
+    /// Allows changing color of messages.
+    /// </summary>
     [RPC] void RetrieveChatMessage(string player, string message, float r, float g, float b)
     {
         GameObject chat = (GameObject)Instantiate(chatPrefab);
@@ -194,6 +242,11 @@ public class LobbyManager : MonoBehaviour {
         }
     }
 
+
+    /// <summary>
+    /// RPCs for retrieving server info and options.
+    /// </summary>
+    
     [RPC] void RetrieveServerInfo(string info)
     {
         staticServerInfo.GetComponent<Text>().text = info;
@@ -203,7 +256,10 @@ public class LobbyManager : MonoBehaviour {
     {
         settingsPanel.transform.FindChild(option).FindChild("Text").GetComponent<Text>().text = value;
     }
-	//Resizes the player label scrolling box to the number of players connected
+
+	/// <summary>
+    /// Resizes the player label scrolling box to the number of players connected
+	/// </summary>
 	[RPC] void ResizeScrollingBox(int numOfPlayers)
 	{
 		float panelHeight = labelPrefab.GetComponent<RectTransform>().rect.height * numOfPlayers;
@@ -212,7 +268,10 @@ public class LobbyManager : MonoBehaviour {
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
 	}
-	//Adds a player label to the list of labels
+
+	/// <summary>
+    /// Adds a player label to the list of labels
+	/// </summary>
 	[RPC] void CreatePlayerLabel(string playerText,string playerPing, int numOfPlayers, int i)
     {
 		GameObject label = (GameObject)Instantiate(labelPrefab);
@@ -234,7 +293,10 @@ public class LobbyManager : MonoBehaviour {
 		}
 		playerLabels.Add(label);
 	}
-	//Adds the player that connected to the list and updates the labels
+
+	/// <summary>
+    /// Adds the player that connected to the list and updates the labels
+	/// </summary>
     [RPC] void AddPlayerName(string playerName)
     {
         playerNameList.Add(playerName);
@@ -242,16 +304,25 @@ public class LobbyManager : MonoBehaviour {
         networkView.RPC("RetrieveChatMessage", RPCMode.All, "Server", playerName + " has joined.", Color.green.r, Color.green.g, Color.green.b);
     }
 
+    /// <summary>
+    /// Updates the ping of that index.
+    /// </summary>
     [RPC] void UpdatePing(int index, int ping)
     {
         playerLabels[index].transform.FindChild("PlayerPing").GetComponent<Text>().text = ping.ToString();
     }
 
+    /// <summary>
+    /// Updates the server name.
+    /// </summary>
     [RPC] void UpdateServerName(string name)
     {
         serverNamePanel.transform.FindChild("ServerName").GetComponent<Text>().text = name;
     }
-	//Removes all player labels
+
+	/// <summary>
+    /// Removes all player labels
+	/// </summary>
     [RPC] void ClearPlayerLabels()
     {
         for (int i = 0; i < playerLabels.Count; i++)

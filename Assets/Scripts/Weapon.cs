@@ -17,6 +17,9 @@ public class Weapon : MonoBehaviour {
     private Quaternion originRot;
     private Quaternion destinationRot;
 
+    /// <summary>
+    /// If the weapon is being moved to a new position, handle Slerping.
+    /// </summary>
     public void FixedUpdate()
     {
         if (moving)
@@ -34,31 +37,43 @@ public class Weapon : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// When the weapon collides with something, if it is moving fast enough it will deal damage.
+    /// Also, if it is sharp it will stick.
+    /// </summary>
     public void OnCollisionEnter(Collision collision)
     {
-        if (!isEquipped && isSharp && !isStuck && collision.collider.transform.parent != transform && !collision.collider.isTrigger && collision.collider.transform != transform && collision.relativeVelocity.magnitude > 15)
+        if (!isEquipped && !isStuck && collision.collider.transform.parent != transform && !collision.collider.isTrigger && collision.collider.transform != transform && collision.relativeVelocity.magnitude > 15)
         {
-            if (collision.collider.tag == "Player" || collision.collider.tag == "Terrain")
+            if (isSharp)
             {
-                GetComponent<Weapon>().isStuck = true;
-                ContactPoint contact = collision.contacts[0];
-                transform.position = contact.point;
-                transform.localRotation = Quaternion.FromToRotation(Vector3.down, contact.normal);
-                Vector3 tempVector = transform.localPosition;
-                transform.localPosition = new Vector3(tempVector.x, tempVector.y - (renderer.bounds.size.y / 4), tempVector.z);
-                transform.SetParent(collision.collider.transform);
-                rigidbody.velocity = Vector3.zero;
-                rigidbody.angularVelocity = Vector3.zero;
-                rigidbody.isKinematic = true;
-                Physics.IgnoreCollision(collider, collision.collider);
-                if (collision.collider.GetComponent<Vitals>() != null)
+                // Only stick to players and terrain.
+                if (collision.collider.tag == "Player" || collision.collider.tag == "Terrain")
                 {
-                    collision.collider.GetComponent<Vitals>().TakeDamage((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)));
+                    GetComponent<Weapon>().isStuck = true;
+                    ContactPoint contact = collision.contacts[0];
+                    transform.position = contact.point;
+                    transform.localRotation = Quaternion.FromToRotation(Vector3.down, contact.normal);
+                    Vector3 tempVector = transform.localPosition;
+                    transform.localPosition = new Vector3(tempVector.x, tempVector.y - (renderer.bounds.size.y / 4), tempVector.z);
+                    transform.SetParent(collision.collider.transform);
+                    rigidbody.velocity = Vector3.zero;
+                    rigidbody.angularVelocity = Vector3.zero;
+                    rigidbody.isKinematic = true;
+                    Physics.IgnoreCollision(collider, collision.collider);
                 }
+            }
+            if (collision.collider.GetComponent<Vitals>() != null)
+            {
+                collision.collider.GetComponent<Vitals>().TakeDamage((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)));
             }
         }
     }
 
+    /// <summary>
+    /// When the weapon is swinging, its collider acts as a trigger.
+    /// When it is triggered, it deals damage.
+    /// </summary>
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject != equippedTo && other.GetComponent<Vitals>() != null)
@@ -67,6 +82,10 @@ public class Weapon : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Moves the weapon smoothly to a location. 
+    /// *Will eventually be deprecated with actual animations.*
+    /// </summary>
     public void LerpTo(Vector3 location, Quaternion rotation, float time)
     {
         moving = true;
@@ -78,6 +97,9 @@ public class Weapon : MonoBehaviour {
         destinationRot = rotation;
     }
 
+    /// <summary>
+    /// Ends the lerp early.
+    /// </summary>
     public void EndLerp()
     {
         if (moving)
