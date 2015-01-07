@@ -12,6 +12,7 @@ public class OptionsManager : MonoBehaviour {
     public GameObject resolutionPanel;
     public GameObject playerTextBox;
     public GameObject audioPanel;
+    public GameObject usernamePanel;
     public Font font;
 
     private Resolution[] resolutions;
@@ -23,10 +24,36 @@ public class OptionsManager : MonoBehaviour {
     /// </summary>
     void Start()
     {
-        playerTextBox.GetComponent<Text>().text = PlayerPrefs.GetString("UserName");
+        if (PlayerPrefs.HasKey("UserName"))
+        {
+            playerTextBox.GetComponent<Text>().text = PlayerPrefs.GetString("UserName");
+        }
+        else
+        {
+            usernamePanel.SetActive(true);
+        }
         CurrentResolution = Screen.currentResolution;
         CreateResolutionList();
         SetVolumeSliders();
+    }
+
+    /// <summary>
+    /// Called when the player presses "confirm" on the username panel
+    /// </summary>
+    public void UserNamePanelAccept()
+    {
+        if (PlayerPrefs.HasKey("UserName"))
+        {
+            usernamePanel.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Sets the player's username.
+    /// </summary>
+    public void SetUserName(string username)
+    {
+        PlayerPrefs.SetString("UserName", username);
     }
 
     /// <summary>
