@@ -67,14 +67,14 @@ public class Player : MonoBehaviour {
     {
         if (networkView.isMine)
         {
-            networkView.RPC("UpdateNameText", RPCMode.AllBuffered, Name);
-            transform.FindChild("NameCanvas").gameObject.SetActive(false);
             // Set up a reference to the capsule collider.
             capsule = collider as CapsuleCollider;
             grounded = true;
             Screen.lockCursor = true;
             rayHitComparer = new RayHitComparer();
             Name = GameObject.Find("SpawnManager").GetComponent<SpawnManager>().randomName;
+            networkView.RPC("UpdateNameText", RPCMode.AllBuffered, Name);
+            transform.FindChild("NameCanvas").gameObject.SetActive(false);
         }
     }
 

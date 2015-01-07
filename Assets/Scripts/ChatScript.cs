@@ -69,7 +69,7 @@ public class ChatScript : MonoBehaviour {
         {
             foreach (var go in FindObjectsOfType<ChatScript>())
             {
-                go.networkView.RPC("RetrieveChatMessage", RPCMode.All, PlayerPrefs.GetString("UserName"), chatInput.text, 0.2f, 0.2f, 0.2f);
+                go.networkView.RPC("RetrieveChatMessage", RPCMode.All, GameObject.Find("SpawnManager").GetComponent<SpawnManager>().randomName, chatInput.text, 0.2f, 0.2f, 0.2f);
             }
             chatInput.text = "";
         }
@@ -79,7 +79,6 @@ public class ChatScript : MonoBehaviour {
     //Destroys any chat messages past the maximum chat height
     [RPC] void RetrieveChatMessage(string player, string message, float r, float g, float b)
     {
-        Debug.Log("Retrieving chat");
         GameObject chat = (GameObject)Instantiate(chatPrefab);
         chat.transform.SetParent(chatPanel.transform.FindChild("ChatScrolling"), false);
         chat.GetComponentInChildren<Text>().font = font;
@@ -108,8 +107,6 @@ public class ChatScript : MonoBehaviour {
         currentChatHeight += chat.transform.FindChild("ChatText").GetComponent<Text>().preferredHeight;
         float panelHeight = chatPanel.GetComponent<RectTransform>().rect.height;
         chatPanel.GetComponent<ScrollRect>().enabled = (currentChatHeight > panelHeight);
-        Debug.Log(currentChatHeight);
-        Debug.Log(maxChatHeight);
         while (currentChatHeight > maxChatHeight)
         {
             currentChatHeight -= chatMessages[0].transform.FindChild("ChatText").GetComponent<Text>().preferredHeight;

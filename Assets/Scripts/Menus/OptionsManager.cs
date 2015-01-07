@@ -56,6 +56,7 @@ public class OptionsManager : MonoBehaviour {
     public void SetUserName(string username)
     {
         PlayerPrefs.SetString("UserName", username);
+        PlayerPrefs.Save();
     }
 
     /// <summary>

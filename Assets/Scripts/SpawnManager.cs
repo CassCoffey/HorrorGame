@@ -283,6 +283,7 @@ public class SpawnManager : MonoBehaviour {
 				}
 			}
 			Debug.Log("Spawning Player");
+            randomName = "Monster";
 			GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
             SetRoleText(player, "Monster", "You're a monster!");
 		}
