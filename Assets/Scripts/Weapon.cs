@@ -50,7 +50,7 @@ public class Weapon : MonoBehaviour {
                 // Only stick to players and terrain.
                 if (collision.collider.tag == "Player" || collision.collider.tag == "Terrain")
                 {
-                    collider.enabled = false;
+                    collider.isTrigger = true;
                     GetComponent<Weapon>().isStuck = true;
                     ContactPoint contact = collision.contacts[0];
                     transform.position = contact.point;
@@ -76,7 +76,7 @@ public class Weapon : MonoBehaviour {
     /// </summary>
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject != equippedTo && other.GetComponent<Vitals>() != null)
+        if (isEquipped && other.gameObject != equippedTo && other.GetComponent<Vitals>() != null)
         {
             other.GetComponent<Vitals>().TakeDamage(damage);
         }

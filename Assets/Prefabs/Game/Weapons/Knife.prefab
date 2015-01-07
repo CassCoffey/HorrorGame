@@ -159,7 +159,7 @@ NetworkView:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 147880}
   m_Enabled: 1
-  m_StateSynchronization: 2
+  m_StateSynchronization: 0
   m_Observed: {fileID: 447880}
   m_ViewID:
     m_ID: 0

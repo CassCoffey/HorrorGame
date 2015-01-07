@@ -453,6 +453,7 @@ public class Player : MonoBehaviour {
         {
             networkView.RPC("SyncDrop", RPCMode.OthersBuffered);
             currentWeapon.GetComponent<Weapon>().isEquipped = false;
+            currentWeapon.GetComponent<Weapon>().equippedTo = null;
             currentWeapon.transform.parent = null;
             currentWeapon.collider.enabled = true;
             currentWeapon.rigidbody.isKinematic = false;
@@ -492,6 +493,7 @@ public class Player : MonoBehaviour {
                 percentCharge = 0.15f;
             }
             currentWeapon.GetComponent<Weapon>().isEquipped = false;
+            currentWeapon.GetComponent<Weapon>().equippedTo = null;
             currentWeapon.GetComponent<Weapon>().EndLerp();
             currentWeapon.transform.parent = null;
             currentWeapon.collider.enabled = true;
@@ -584,6 +586,7 @@ public class Player : MonoBehaviour {
     [RPC] void SyncDrop()
     {
         currentWeapon.GetComponent<Weapon>().isEquipped = false;
+        currentWeapon.GetComponent<Weapon>().equippedTo = null;
         currentWeapon.transform.parent = null;
         currentWeapon.collider.enabled = true;
         currentWeapon.rigidbody.isKinematic = false;
@@ -603,6 +606,7 @@ public class Player : MonoBehaviour {
             percent = 0.15f;
         }
         currentWeapon.GetComponent<Weapon>().isEquipped = false;
+        currentWeapon.GetComponent<Weapon>().equippedTo = null;
         currentWeapon.GetComponent<Weapon>().EndLerp();
         currentWeapon.transform.parent = null;
         currentWeapon.collider.enabled = true;
