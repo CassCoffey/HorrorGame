@@ -300,6 +300,7 @@ public class Player : MonoBehaviour {
         Chat.SetActive(!Menu.activeSelf);
         Vitals.SetActive(!Menu.activeSelf);
         Screen.showCursor = Menu.activeSelf;
+        Screen.lockCursor = !Menu.activeSelf;
         foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
         {
             mouseLook.enabled = !Menu.activeSelf;
@@ -448,9 +449,9 @@ public class Player : MonoBehaviour {
     /// </summary>
     public void DropWeapon()
     {
-        networkView.RPC("SyncDrop", RPCMode.OthersBuffered);
         if (currentWeapon != null)
         {
+            networkView.RPC("SyncDrop", RPCMode.OthersBuffered);
             currentWeapon.GetComponent<Weapon>().isEquipped = false;
             currentWeapon.transform.parent = null;
             currentWeapon.collider.enabled = true;
@@ -481,9 +482,9 @@ public class Player : MonoBehaviour {
     /// </summary>
     public void ThrowWeapon()
     {
-        networkView.RPC("SyncThrow", RPCMode.OthersBuffered, percentCharge);
         if (currentWeapon != null && charging && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
+            networkView.RPC("SyncThrow", RPCMode.OthersBuffered, percentCharge);
             charging = false;
             // Makes sure the charge is at least 15%.
             if (percentCharge <= 0.15f)
@@ -497,7 +498,7 @@ public class Player : MonoBehaviour {
             currentWeapon.rigidbody.isKinematic = false;
             currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percentCharge);
             currentWeapon.rigidbody.maxAngularVelocity = 35;
-            currentWeapon.rigidbody.AddRelativeTorque(40 * percentCharge, 0, 0, ForceMode.VelocityChange);
+            currentWeapon.rigidbody.AddRelativeTorque(40 * percentCharge, 0, 0, ForceMode.Impulse);
             currentWeapon = null;
             if (sheathedWeapon != null)
             {
@@ -512,9 +513,9 @@ public class Player : MonoBehaviour {
     /// </summary>
     public void SwingWeapon()
     {
-        networkView.RPC("SyncSwing", RPCMode.OthersBuffered);
         if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentWeapon.transform.localPosition == Vector3.zero)
         {
+            networkView.RPC("SyncSwing", RPCMode.OthersBuffered);
             charging = false;
             weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
         }
@@ -575,64 +576,52 @@ public class Player : MonoBehaviour {
 
     [RPC] void SyncSwap()
     {
-        if (sheathedWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
-        {
-            GameObject tempWeapon = currentWeapon;
-            SetCurrentWeapon(sheathedWeapon);
-            SetSheathedWeapon(tempWeapon);
-        }
+        GameObject tempWeapon = currentWeapon;
+        SetCurrentWeapon(sheathedWeapon);
+        SetSheathedWeapon(tempWeapon);
     }
 
     [RPC] void SyncDrop()
     {
-        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        currentWeapon.GetComponent<Weapon>().isEquipped = false;
+        currentWeapon.transform.parent = null;
+        currentWeapon.collider.enabled = true;
+        currentWeapon.rigidbody.isKinematic = false;
+        currentWeapon = null;
+        if (sheathedWeapon != null)
         {
-            currentWeapon.GetComponent<Weapon>().isEquipped = false;
-            currentWeapon.transform.parent = null;
-            currentWeapon.collider.enabled = true;
-            currentWeapon.rigidbody.isKinematic = false;
-            currentWeapon = null;
-            if (sheathedWeapon != null)
-            {
-                SetCurrentWeapon(sheathedWeapon);
-                sheathedWeapon = null;
-            }
+            SetCurrentWeapon(sheathedWeapon);
+            sheathedWeapon = null;
         }
     }
 
     [RPC] void SyncThrow(float percent)
     {
-        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        charging = false;
+        if (percent <= 0.15f)
         {
-            charging = false;
-            if (percent <= 0.15f)
-            {
-                percent = 0.15f;
-            }
-            currentWeapon.GetComponent<Weapon>().isEquipped = false;
-            currentWeapon.GetComponent<Weapon>().EndLerp();
-            currentWeapon.transform.parent = null;
-            currentWeapon.collider.enabled = true;
-            currentWeapon.rigidbody.isKinematic = false;
-            currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percent);
-            currentWeapon.rigidbody.maxAngularVelocity = 30;
-            currentWeapon.rigidbody.AddRelativeTorque(40 * percent, 0, 0, ForceMode.VelocityChange);
-            currentWeapon = null;
-            if (sheathedWeapon != null)
-            {
-                SetCurrentWeapon(sheathedWeapon);
-                sheathedWeapon = null;
-            }
+            percent = 0.15f;
+        }
+        currentWeapon.GetComponent<Weapon>().isEquipped = false;
+        currentWeapon.GetComponent<Weapon>().EndLerp();
+        currentWeapon.transform.parent = null;
+        currentWeapon.collider.enabled = true;
+        currentWeapon.rigidbody.isKinematic = false;
+        currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percent);
+        currentWeapon.rigidbody.maxAngularVelocity = 30;
+        currentWeapon.rigidbody.AddRelativeTorque(40 * percent, 0, 0, ForceMode.Impulse);
+        currentWeapon = null;
+        if (sheathedWeapon != null)
+        {
+            SetCurrentWeapon(sheathedWeapon);
+            sheathedWeapon = null;
         }
     }
 
     [RPC] void SyncSwing()
     {
-        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentWeapon.transform.localPosition == Vector3.zero)
-        {
-            charging = false;
-            weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
-        }
+        charging = false;
+        weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
     }
 
 

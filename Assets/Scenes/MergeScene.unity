@@ -1869,7 +1869,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: NaN}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &587122744
@@ -4223,7 +4223,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 587122743}
   m_Direction: 2
   m_Value: 0
-  m_Size: .999999583
+  m_Size: .999999344
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5444,6 +5444,10 @@ Prefab:
     - target: {fileID: 14815342, guid: e0db9602c2ca16a43a2d3e019593317a, type: 2}
       propertyPath: m_ViewID.m_Type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22449542, guid: e0db9602c2ca16a43a2d3e019593317a, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: NaN
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0db9602c2ca16a43a2d3e019593317a, type: 2}
