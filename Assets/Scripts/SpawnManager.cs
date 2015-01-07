@@ -19,6 +19,7 @@ public class SpawnManager : MonoBehaviour {
 	private Hashtable playerNames = new Hashtable();
 
     public string randomName;
+    public GameObject myPlayer;
 
 	/// <summary>
 	/// Performs initialization after the network has loaded the level.
@@ -285,6 +286,7 @@ public class SpawnManager : MonoBehaviour {
 			Debug.Log("Spawning Player");
             randomName = "Monster";
 			GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
+            myPlayer = player;
             SetRoleText(player, "Monster", "You're a monster!");
 		}
 		else
@@ -305,6 +307,7 @@ public class SpawnManager : MonoBehaviour {
 			}
 			Debug.Log("Spawning Player");
 			GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
+            myPlayer = player;
 			switch (role) 
 			{
 			case "Cultist":
@@ -350,6 +353,7 @@ public class SpawnManager : MonoBehaviour {
 		}
 		Debug.Log("Spawning Pairs");
 		GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
+        myPlayer = player;
 		switch (role) 
 		{
 		case "Lover":

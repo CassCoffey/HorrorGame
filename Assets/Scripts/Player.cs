@@ -91,6 +91,10 @@ public class Player : MonoBehaviour {
                 KeyInput();
             }
         }
+        else
+        {
+            UpdateNamePosition();
+        }
     }
 
     /// <summary>
@@ -148,6 +152,24 @@ public class Player : MonoBehaviour {
             syncEndRotation = syncRotation * Quaternion.Euler(syncAngularVelocity * syncDelay * Mathf.Rad2Deg);
             syncStartRotation = rigidbody.rotation;
         }
+    }
+
+    private void UpdateNamePosition()
+    {
+        GameObject player = GameObject.Find("SpawnManager").GetComponent<SpawnManager>().myPlayer;
+        GameObject NamePlate = transform.FindChild("NameCanvas").gameObject;
+        NamePlate.transform.LookAt(player.transform.FindChild("CameraLocation"));
+        Color textColor = NamePlate.GetComponentInChildren<Text>().color;
+        float distance =  3 / Vector3.Distance(player.transform.position, transform.position);
+        if (distance > 1f)
+        {
+            distance = 1f;
+        }
+        if (distance < 0.15f)
+        {
+            distance = 0f;
+        }
+        NamePlate.GetComponentInChildren<Text>().color = new Color(textColor.r, textColor.g, textColor.b, distance);
     }
 
     /// <summary>
