@@ -25,7 +25,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 440106}
-  - 95: {fileID: 9540104}
   - 54: {fileID: 5440104}
   - 65: {fileID: 6540104}
   - 148: {fileID: 14886406}
@@ -117,7 +116,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140106}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 4
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -137,21 +136,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.77233601, y: 11.6925478, z: 4.18123055}
   m_Center: {x: .0474967062, y: 5.73824167, z: -.0566203669}
---- !u!95 &9540104
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 140106}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 934990c72e591fa438fe55c6f442402f, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11498286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,8 +159,8 @@ NetworkView:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140106}
   m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 440106}
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 5440104}
   m_ViewID:
     m_ID: 0
     m_Type: 0
