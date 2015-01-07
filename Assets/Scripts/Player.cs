@@ -408,6 +408,7 @@ public class Player : MonoBehaviour {
         if (weapon != null)
         {
             weapon.collider.enabled = false;
+            weapon.collider.isTrigger = false;
             weapon.transform.SetParent(weaponLoc.transform);
             weapon.GetComponent<Weapon>().LerpTo(Vector3.zero, Quaternion.identity, 0.3f);
             weapon.rigidbody.isKinematic = true;
@@ -424,6 +425,7 @@ public class Player : MonoBehaviour {
         if (weapon != null)
         {
             weapon.collider.enabled = false;
+            weapon.collider.isTrigger = false;
             weapon.transform.SetParent(sheathedLoc.transform);
             weapon.GetComponent<Weapon>().LerpTo(Vector3.zero, Quaternion.identity, 0.3f);
             weapon.rigidbody.isKinematic = true;
@@ -456,6 +458,7 @@ public class Player : MonoBehaviour {
             currentWeapon.GetComponent<Weapon>().equippedTo = null;
             currentWeapon.transform.parent = null;
             currentWeapon.collider.enabled = true;
+            currentWeapon.collider.isTrigger = false;
             currentWeapon.rigidbody.isKinematic = false;
             currentWeapon = null;
             if (sheathedWeapon != null)
@@ -497,6 +500,7 @@ public class Player : MonoBehaviour {
             currentWeapon.GetComponent<Weapon>().EndLerp();
             currentWeapon.transform.parent = null;
             currentWeapon.collider.enabled = true;
+            currentWeapon.collider.isTrigger = false;
             currentWeapon.rigidbody.isKinematic = false;
             currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percentCharge);
             currentWeapon.rigidbody.maxAngularVelocity = 35;
@@ -589,6 +593,7 @@ public class Player : MonoBehaviour {
         currentWeapon.GetComponent<Weapon>().equippedTo = null;
         currentWeapon.transform.parent = null;
         currentWeapon.collider.enabled = true;
+        currentWeapon.collider.isTrigger = false;
         currentWeapon.rigidbody.isKinematic = false;
         currentWeapon = null;
         if (sheathedWeapon != null)
@@ -610,6 +615,7 @@ public class Player : MonoBehaviour {
         currentWeapon.GetComponent<Weapon>().EndLerp();
         currentWeapon.transform.parent = null;
         currentWeapon.collider.enabled = true;
+        currentWeapon.collider.isTrigger = false;
         currentWeapon.rigidbody.isKinematic = false;
         currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percent);
         currentWeapon.rigidbody.maxAngularVelocity = 30;

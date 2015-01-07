@@ -69,36 +69,51 @@ public class ServerListManager : MonoBehaviour {
                 serverListPanel.GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
                 for (int i = 0; i < hostList.Length; i++)
                 {
-                    GameObject button = (GameObject)Instantiate(serverPrefab);
-                    button.transform.SetParent(serverListPanel.transform, false);
-                    UnityEngine.UI.Button buttonScript = button.GetComponent<UnityEngine.UI.Button>();
-                    foreach (Text text in button.GetComponentsInChildren<Text>())
+                    if (hostList[i].comment != "Closed")
                     {
-                        text.font = font;
-                    }
-                    button.transform.FindChild("NameText").GetComponent<Text>().text = hostList[i].gameName;
-                    button.transform.FindChild("PlayersText").GetComponent<Text>().text = hostList[i].connectedPlayers + "/" + hostList[i].playerLimit;
-                    button.transform.FindChild("PasswordText").GetComponent<Text>().text = hostList[i].passwordProtected.ToString();
-                    Ping serverPing = new Ping(hostList[i].ip[0]);
-                    serverPings.Add(button.transform.FindChild("PingText").GetComponent<Text>(), serverPing);
-                    button.transform.FindChild("PingText").GetComponent<Text>().text = "???";
-                    button.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f/(float)hostList.Length) * i));
-                    button.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)hostList.Length)) - ((1.0f / (float)hostList.Length) * i));
-                    button.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
-                    button.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
-                    HostData data = hostList[i];
-                    AddListener(buttonScript, data);
-                    if (i % 2 == 0)
-                    {
-                        button.GetComponent<Image>().color = new UnityEngine.Color(0.4f, 0.4f, 0.4f, 0.7f);
+                        GameObject button = (GameObject)Instantiate(serverPrefab);
+                        button.transform.SetParent(serverListPanel.transform, false);
+                        UnityEngine.UI.Button buttonScript = button.GetComponent<UnityEngine.UI.Button>();
+                        foreach (Text text in button.GetComponentsInChildren<Text>())
+                        {
+                            text.font = font;
+                        }
+                        button.transform.FindChild("NameText").GetComponent<Text>().text = hostList[i].gameName;
+                        button.transform.FindChild("PlayersText").GetComponent<Text>().text = hostList[i].connectedPlayers + "/" + hostList[i].playerLimit;
+                        button.transform.FindChild("PasswordText").GetComponent<Text>().text = hostList[i].passwordProtected.ToString();
+                        Ping serverPing = new Ping(hostList[i].ip[0]);
+                        serverPings.Add(button.transform.FindChild("PingText").GetComponent<Text>(), serverPing);
+                        button.transform.FindChild("PingText").GetComponent<Text>().text = "???";
+                        button.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)hostList.Length) * i));
+                        button.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)hostList.Length)) - ((1.0f / (float)hostList.Length) * i));
+                        button.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+                        button.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+                        HostData data = hostList[i];
+                        AddListener(buttonScript, data);
+                        servers.Add(button);
+                        if (servers.Count % 2 == 0)
+                        {
+                            button.GetComponent<Image>().color = new UnityEngine.Color(0.4f, 0.4f, 0.4f, 0.7f);
+                        }
+                        else
+                        {
+                            button.GetComponent<Image>().color = new UnityEngine.Color(0.6f, 0.6f, 0.6f, 0.7f);
+                        }
                     }
                     else
                     {
-                        button.GetComponent<Image>().color = new UnityEngine.Color(0.6f, 0.6f, 0.6f, 0.7f);
+                        i++;
                     }
-                    servers.Add(button);
                 }
             }
+        }
+    }
+
+    public void OnCameraArrive(Object canvas)
+    {
+        if ((GameObject)canvas == gameObject)
+        {
+            RefreshHostList();
         }
     }
 

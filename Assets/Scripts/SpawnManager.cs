@@ -27,6 +27,7 @@ public class SpawnManager : MonoBehaviour {
         {
             MasterServer.UnregisterHost();
             Network.maxConnections = 0;
+            MasterServer.RegisterHost(NetworkManager.AppId, GameObject.Find("NetworkManager").GetComponent<NetworkManager>().gameName, "Closed");
         }
 		if (Network.isClient)
 		{

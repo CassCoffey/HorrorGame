@@ -12,7 +12,7 @@ public class OptionsManager : MonoBehaviour {
     public GameObject resolutionPanel;
     public GameObject playerTextBox;
     public GameObject audioPanel;
-	public GameObject gameplayPanel;
+    public GameObject usernamePanel;
     public Font font;
 
     private Resolution[] resolutions;
@@ -24,11 +24,36 @@ public class OptionsManager : MonoBehaviour {
     /// </summary>
     void Start()
     {
-        playerTextBox.GetComponent<Text>().text = PlayerPrefs.GetString("UserName");
+        if (PlayerPrefs.HasKey("UserName"))
+        {
+            playerTextBox.GetComponent<Text>().text = PlayerPrefs.GetString("UserName");
+        }
+        else
+        {
+            usernamePanel.SetActive(true);
+        }
         CurrentResolution = Screen.currentResolution;
         CreateResolutionList();
         SetVolumeSliders();
-		SetSensitivitySlider ();
+    }
+
+    /// <summary>
+    /// Called when the player presses "confirm" on the username panel
+    /// </summary>
+    public void UserNamePanelAccept()
+    {
+        if (PlayerPrefs.HasKey("UserName"))
+        {
+            usernamePanel.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Sets the player's username.
+    /// </summary>
+    public void SetUserName(string username)
+    {
+        PlayerPrefs.SetString("UserName", username);
     }
 
     /// <summary>
@@ -44,8 +69,8 @@ public class OptionsManager : MonoBehaviour {
             case "AudioTab":
                 ChangeTab("AudioPanel", button);
                 break;
-            case "GameplayTab":
-                ChangeTab("GameplayPanel", button);
+            case "MultiplayerTab":
+                ChangeTab("MultiplayerPanel", button);
                 break;
         }
     }
@@ -158,18 +183,6 @@ public class OptionsManager : MonoBehaviour {
         }
     }
 
-	public void SetSensitivitySlider()
-	{
-		if (PlayerPrefs.HasKey("Sensitivity"))
-		{
-			gameplayPanel.transform.FindChild("MouseSensitivity").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity");
-		}
-		else
-		{
-			PlayerPrefs.SetFloat("Sensitivity", 15f);
-		}
-	}
-
     /// <summary>
     /// Volume slider controls.
     /// </summary>
@@ -193,9 +206,4 @@ public class OptionsManager : MonoBehaviour {
         PlayerPrefs.SetFloat("Voice", value);
         PlayerPrefs.Save();
     }
-	public void ChangeMouseSensitivity(float value)
-	{
-		PlayerPrefs.SetFloat ("Sensitivity", value);
-		PlayerPrefs.Save ();
-	}
 }
