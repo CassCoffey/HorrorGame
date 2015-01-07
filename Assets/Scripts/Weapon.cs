@@ -50,6 +50,7 @@ public class Weapon : MonoBehaviour {
                 // Only stick to players and terrain.
                 if (collision.collider.tag == "Player" || collision.collider.tag == "Terrain")
                 {
+                    collider.enabled = false;
                     GetComponent<Weapon>().isStuck = true;
                     ContactPoint contact = collision.contacts[0];
                     transform.position = contact.point;
@@ -60,7 +61,6 @@ public class Weapon : MonoBehaviour {
                     rigidbody.velocity = Vector3.zero;
                     rigidbody.angularVelocity = Vector3.zero;
                     rigidbody.isKinematic = true;
-                    Physics.IgnoreCollision(collider, collision.collider);
                 }
             }
             if (collision.collider.GetComponent<Vitals>() != null)
