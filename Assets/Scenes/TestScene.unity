@@ -267,6 +267,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 100000, guid: e0db9602c2ca16a43a2d3e019593317a, type: 2}
+  firstNames:
+  - Merek
+  - Carac
+  - Ulric
+  - Tybalt
+  - Borin
+  - Sadon
+  - Terrowin
+  - Rowan
+  - Forthwind
+  - Althalos
+  - Fendrel
+  - Brom
+  - Hadrian
+  - Benedict
+  - Gregory
+  - Peter
+  - Millicent
+  - Alys
+  - Ayleth
+  - Anastas
+  - Alianor
+  - Cedany
+  - Ellyn
+  - Arabella
+  - Mary
+  - Beatrix
+  - Margaret
+  - Juliana
+  - Guinevere
+  - Winifred
+  lastNames:
+  - Fiennes
+  - Dudley
+  - de Lacy
+  - Bigod
+  - Vaughan
+  - Lovell
+  - Quincey
+  - Vane
+  - de Montfort
+  - Picot
+  - Maignart
+  - Marci
+  - Hotot
+  - Le Barge
+  - Fitzalan
+  - d'Escalles
+  - "de Belli\xE8vre"
+  - Baliol
+  - Bauldry
+  - Cul de Louf
+  - Willoughby
+  - Vitalis
+  - Tournebulle
+  - Saint-Clair
+  - Sainte-d'Aignaux
+  - Reviers
+  - Omand
+  - Patris
+  - Guiffart
+  - Folet
 --- !u!4 &125729897
 Transform:
   m_ObjectHideFlags: 0

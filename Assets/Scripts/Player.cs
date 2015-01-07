@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
     public GameObject Chat;
     public GameObject player;
 
+    public string Name;
+
     [SerializeField]private float runSpeed = 8f;                                       // The speed at which we want the character to move
     [SerializeField]private float strafeSpeed = 4f;                                    // The speed at which we want the character to be able to strafe
     [SerializeField]private float jumpPower = 5f;                                      // The power behind the characters jump. increase for higher jumps
@@ -65,11 +67,14 @@ public class Player : MonoBehaviour {
     {
         if (networkView.isMine)
         {
+            networkView.RPC("UpdateNameText", RPCMode.AllBuffered, Name);
+            transform.FindChild("NameCanvas").gameObject.SetActive(false);
             // Set up a reference to the capsule collider.
             capsule = collider as CapsuleCollider;
             grounded = true;
             Screen.lockCursor = true;
             rayHitComparer = new RayHitComparer();
+            Name = GameObject.Find("SpawnManager").GetComponent<SpawnManager>().randomName;
         }
     }
 
@@ -556,6 +561,11 @@ public class Player : MonoBehaviour {
             GetComponentInChildren<MouseLook>().enabled = false;
             GetComponentInChildren<Camera>().GetComponent<MouseLook>().enabled = false;
         }
+    }
+
+    [RPC] void UpdateNameText(string name)
+    {
+        transform.FindChild("NameCanvas").GetComponentInChildren<Text>().text = name;
     }
 
     //

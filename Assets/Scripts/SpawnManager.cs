@@ -7,6 +7,8 @@ public class SpawnManager : MonoBehaviour {
 
 	// The default player prefab.
 	public GameObject playerPrefab;
+    public List<string> firstNames;
+    public List<string> lastNames;
 
 	private GameObject[] spawnPoints;
 	private float spawnRadius = 5f;
@@ -16,13 +18,16 @@ public class SpawnManager : MonoBehaviour {
 	private List<NetworkPlayer> readyList = new List<NetworkPlayer>();
 	private Hashtable playerNames = new Hashtable();
 
+    public string randomName;
+
 	/// <summary>
 	/// Performs initialization after the network has loaded the level.
 	/// </summary>
     void OnNetworkLoadedLevel()
     {
+        ChooseRandomName();
         // Begin building hashtable of all networkplayers and their names.
-		networkView.RPC("CreateNameHashtable", RPCMode.All, Network.player, PlayerPrefs.GetString("UserName"));
+		networkView.RPC("CreateNameHashtable", RPCMode.All, Network.player, randomName);
         if (Network.isServer)
         {
             MasterServer.UnregisterHost();
@@ -43,6 +48,13 @@ public class SpawnManager : MonoBehaviour {
 			ChooseRole();
 		}
 	}
+
+    private void ChooseRandomName()
+    {
+        randomName = firstNames[Random.Range(0, firstNames.Count)];
+        randomName += " ";
+        randomName += lastNames[Random.Range(0, firstNames.Count)];
+    }
 
     /// <summary>
     /// Goes through all weapon spawns and tells them to spawn a weapon.
@@ -295,19 +307,19 @@ public class SpawnManager : MonoBehaviour {
 			switch (role) 
 			{
 			case "Cultist":
-                SetRoleText(player, "Cultist", "You're a Cultist");
+                SetRoleText(player, "Cultist", "You're " + randomName + ", a Cultist");
 				break;
 			case "Peasant":
-                SetRoleText(player, "Peasant", "You're a Peasant");
+                SetRoleText(player, "Peasant", "You're " + randomName + ", a Peasant");
 				break;
 			case "Survivor":
-                SetRoleText(player, "Survivor", "You're a Survivor");
+                SetRoleText(player, "Survivor", "You're " + randomName + ", a Survivor");
 				break;
 			case "Priest":
-                SetRoleText(player, "Priest", "You're a Priest");
+                SetRoleText(player, "Priest", "You're " + randomName + ", a Priest");
 				break;
             case "Assassin":
-                SetRoleText(player, "Assassin", "You're an Assassin");
+                SetRoleText(player, "Assassin", "You're " + randomName + ", an Assassin");
 				break;
 			}
 		}
@@ -340,10 +352,10 @@ public class SpawnManager : MonoBehaviour {
 		switch (role) 
 		{
 		case "Lover":
-			SetRoleText(player, "Lover", "You're in love with " + pair);
+            SetRoleText(player, "Lover", "You're " + randomName + ", in love with " + pair);
 			break;
 		case "Thief":
-			SetRoleText(player, "Thief", "You're a thief! There is another thief among you.");
+            SetRoleText(player, "Thief", "You're " + randomName + ", a thief! There is another thief among you.");
 			break;
 		}
 	}
