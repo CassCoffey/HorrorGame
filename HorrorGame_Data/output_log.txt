@@ -19,31 +19,27 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.098 seconds
+- Completed reload, in  0.671 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
-Attempting to join server.
+Server Initialized
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Server Joined
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-UnloadTime: 23.041761 ms
+UnloadTime: 40.904381 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 70 unused Assets to reduce memory usage. Loaded Objects now: 742.
-Total: 30.384928 ms (FindLiveObjects: 9.797984 ms CreateObjectMapping: 0.049795 ms MarkObjects: 19.105614 ms  DeleteObjects: 0.921792 ms)
+Unloading 70 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 1.511358 ms (FindLiveObjects: 0.020906 ms CreateObjectMapping: 0.012924 ms MarkObjects: 0.290792 ms  DeleteObjects: 0.797492 ms)
 
-Is client
+Singleplayer
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Instantiating remote player view.
+Creating Monster...
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -55,13 +51,65 @@ Instantiating local player view.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Successfully terminated connection to server.
+Generating Special Roles...
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 8.961339 ms
+Successfully shut down server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 5.604496 ms
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 406 unused Assets to reduce memory usage. Loaded Objects now: 1002.
-Total: 1.953058 ms (FindLiveObjects: 0.104533 ms CreateObjectMapping: 0.033070 ms MarkObjects: 0.687257 ms  DeleteObjects: 0.477051 ms)
+Unloading 404 unused Assets to reduce memory usage. Loaded Objects now: 1027.
+Total: 1.289748 ms (FindLiveObjects: 0.049795 ms CreateObjectMapping: 0.021666 ms MarkObjects: 0.481992 ms  DeleteObjects: 0.350090 ms)
+
+Server Initialized
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Server Initialized
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 5.357797 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 69 unused Assets to reduce memory usage. Loaded Objects now: 744.
+Total: 4.042200 ms (FindLiveObjects: 0.017105 ms CreateObjectMapping: 0.013304 ms MarkObjects: 0.300675 ms  DeleteObjects: 3.326814 ms)
+
+Singleplayer
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Creating Monster...
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating local player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Generating Special Roles...
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Successfully shut down server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Successfully shut down server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 5.370341 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 404 unused Assets to reduce memory usage. Loaded Objects now: 1031.
+Total: 1.696857 ms (FindLiveObjects: 0.049035 ms CreateObjectMapping: 0.023947 ms MarkObjects: 0.468308 ms  DeleteObjects: 0.734392 ms)
 
