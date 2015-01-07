@@ -13,6 +13,7 @@ public class OptionsManager : MonoBehaviour {
     public GameObject playerTextBox;
     public GameObject audioPanel;
     public GameObject usernamePanel;
+	public GameObject gameplayPanel;
     public Font font;
 
     private Resolution[] resolutions;
@@ -35,6 +36,7 @@ public class OptionsManager : MonoBehaviour {
         CurrentResolution = Screen.currentResolution;
         CreateResolutionList();
         SetVolumeSliders();
+		SetSensitivitySlider();
     }
 
     /// <summary>
@@ -69,8 +71,8 @@ public class OptionsManager : MonoBehaviour {
             case "AudioTab":
                 ChangeTab("AudioPanel", button);
                 break;
-            case "MultiplayerTab":
-                ChangeTab("MultiplayerPanel", button);
+            case "GameplayTab":
+                ChangeTab("GameplayPanel", button);
                 break;
         }
     }
@@ -182,7 +184,17 @@ public class OptionsManager : MonoBehaviour {
             PlayerPrefs.SetFloat("Voice", 1f);
         }
     }
-
+	public void SetSensitivitySlider()
+	{
+		if (PlayerPrefs.HasKey("Sensitivity"))
+		{
+			gameplayPanel.transform.FindChild("MouseSensitivity").GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sensitivity");
+		}
+		else
+		{
+			PlayerPrefs.SetFloat("Sensitivity", 15f);
+		}
+	}
     /// <summary>
     /// Volume slider controls.
     /// </summary>
@@ -206,4 +218,9 @@ public class OptionsManager : MonoBehaviour {
         PlayerPrefs.SetFloat("Voice", value);
         PlayerPrefs.Save();
     }
+	public void ChangeMouseSensitivity(float value)
+	{
+		PlayerPrefs.SetFloat("Sensitivity", value);
+		PlayerPrefs.Save();
+	}
 }
