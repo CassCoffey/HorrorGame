@@ -23,6 +23,10 @@ public class SpawnManager : MonoBehaviour {
     {
         // Begin building hashtable of all networkplayers and their names.
 		networkView.RPC("CreateNameHashtable", RPCMode.All, Network.player, PlayerPrefs.GetString("UserName"));
+        if (Network.isServer)
+        {
+            MasterServer.UnregisterHost();
+        }
 		if (Network.isClient)
 		{
             // Tells the server when the client is ready to spawn.
