@@ -523,6 +523,13 @@ public class Player : MonoBehaviour {
     /// <summary>
     /// Sets up the player view based on if client or server.
     /// </summary>
+
+	void OnPlayerDisconnected(NetworkPlayer player)
+	{
+		Network.RemoveRPCs (player);
+		Network.DestroyPlayerObjects (player);
+	}
+
     void OnNetworkInstantiate(NetworkMessageInfo info)
     {
         if (networkView.isMine)

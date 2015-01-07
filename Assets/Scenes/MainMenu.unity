@@ -3665,10 +3665,10 @@ MonoBehaviour:
   m_ContentType: 0
   m_InputType: 0
   m_KeyboardType: 0
-  m_LineType: 0
+  m_LineType: 1
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 500
   m_EndEdit:
     m_PersistentCalls:
       m_Calls:
