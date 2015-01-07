@@ -26,6 +26,7 @@ public class SpawnManager : MonoBehaviour {
         if (Network.isServer)
         {
             MasterServer.UnregisterHost();
+            Network.maxConnections = 0;
         }
 		if (Network.isClient)
 		{
