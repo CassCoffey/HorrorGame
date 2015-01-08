@@ -26,7 +26,7 @@ public class Item : MonoBehaviour {
 
     public void PickUp(GameObject player)
     {
-        networkView.RPC("SyncPickup", RPCMode.OthersBuffered);
+        networkView.RPC("SyncPickup", RPCMode.OthersBuffered, player.networkView.viewID);
         isEquipped = true;
         equippedTo = player;
         collider.enabled = false;
@@ -132,10 +132,14 @@ public class Item : MonoBehaviour {
         }
     }
 
-    [RPC] void SyncPickup()
+    [RPC] void SyncPickup(NetworkViewID viewID)
     {
+        GameObject player = NetworkView.Find(viewID).gameObject;
         isEquipped = true;
-        equippedTo = gameObject;
+        equippedTo = player;
+        collider.enabled = false;
+        collider.isTrigger = false;
+        rigidbody.isKinematic = true;
         if (weapon != null)
         {
             weapon.isStuck = false;
