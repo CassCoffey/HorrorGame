@@ -29,13 +29,13 @@ public class VoiceChatManagerScript : MonoBehaviour
 		{
 			return;	//if you try to send RPC's without being connected to something, Unity cries.
 		}
-		if(Input.GetKeyDown(PushToTalkKey) && Microphone.devices.Count() > 0)
+		if(Input.GetButtonDown("Voice Chat") && Microphone.devices.Count() > 0)
 		{
 			lastPosition = 0;
 			clip = Microphone.Start(null, false, MaxTimeTalking, Frequency);	//null is your default device
 																				//you can get the others from the Microphone class
 		}
-		if(Input.GetKeyUp(PushToTalkKey) && Microphone.devices.Count() > 0)
+		if(Input.GetButtonUp("Voice Chat") && Microphone.devices.Count() > 0)
 		{
 			Microphone.End(null);	//same as above, just make sure these match up
 		}

@@ -83,12 +83,18 @@ public class Vitals : MonoBehaviour {
     /// <param name="damage">The amount of health to lose.</param>
     public void TakeDamage(int damage)
     {
-        Debug.Log("Taking Damage");
+        if (networkView.isMine)
+        {
+            Debug.Log("Taking Damage");
+        }
         health -= damage;
         if (health <= 0)
         {
             health = 0;
-            Debug.Log("You died.");
+            if (networkView.isMine)
+            {
+                Debug.Log("You died.");
+            }
         }
         if (networkView.isMine)
         {

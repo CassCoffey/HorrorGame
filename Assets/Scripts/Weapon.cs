@@ -43,7 +43,7 @@ public class Weapon : MonoBehaviour {
     /// </summary>
     public void OnCollisionEnter(Collision collision)
     {
-        if (!isEquipped && !isStuck && collision.collider.transform.parent != transform && !collision.collider.isTrigger && collision.collider.transform != transform && collision.relativeVelocity.magnitude > 15)
+        if (!isEquipped && !isStuck && collision.collider.transform.parent != transform && !collision.collider.isTrigger && collision.collider.transform != transform && collision.relativeVelocity.magnitude > (10 / rigidbody.mass) && rigidbody.velocity.magnitude > 2)
         {
             if (isSharp)
             {
@@ -65,7 +65,8 @@ public class Weapon : MonoBehaviour {
             }
             if (collision.collider.GetComponent<Vitals>() != null)
             {
-                collision.collider.GetComponent<Vitals>().TakeDamage((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)));
+                collision.collider.GetComponent<Vitals>().TakeDamage((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)) * (int)rigidbody.mass);
+                Debug.Log((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)) * (int)rigidbody.mass);
             }
         }
     }

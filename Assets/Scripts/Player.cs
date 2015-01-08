@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
     private IComparer rayHitComparer;
     private const float jumpRayLength = 0.7f;
     private const float playerReach = 1f;
+    private const float playerReachThickness = 0.25f;
     private Vector2 input;
     private CapsuleCollider capsule;
     private bool sprinting;
