@@ -58,8 +58,23 @@ public class LobbyManager : MonoBehaviour {
     {
         if ((GameObject)canvas == gameObject)
         {
-            RefreshChat();
-            RefreshList();
+            if (Network.isServer)
+            {
+                RefreshChat();
+                settingsBlocker.SetActive(false);
+                staticServerInfo.SetActive(false);
+                dynamicServerInfo.SetActive(true);
+                startGameButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
+                startGameButton.GetComponent<UnityEngine.UI.Image>().enabled = true;
+                startGameButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = true;
+                playerList.Add(Network.player);
+                playerNameList.Add(networkManager.GetComponent<NetworkManager>().playerName);
+                serverName = networkManager.GetComponent<NetworkManager>().gameName;
+                UpdateServerName(serverName);
+                ClearPlayerLabels();
+                ResizeScrollingBox(1);
+                CreatePlayerLabel(playerNameList[0], "0", 1, 0);
+            }
         }
     }
 
@@ -162,18 +177,7 @@ public class LobbyManager : MonoBehaviour {
     /// </summary>
     void OnServerInitialized()
     {
-        RefreshChat();
-        settingsBlocker.SetActive(false);
-        staticServerInfo.SetActive(false);
-        dynamicServerInfo.SetActive(true);
-        startGameButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
-        startGameButton.GetComponent<UnityEngine.UI.Image>().enabled = true;
-        startGameButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = true;
-        playerList.Add(Network.player);
-        playerNameList.Add(networkManager.GetComponent<NetworkManager>().playerName);
-        UpdatePlayerLabels(playerList);
-        serverName = networkManager.GetComponent<NetworkManager>().gameName;
-        networkView.RPC("UpdateServerName", RPCMode.AllBuffered, serverName);
+        
     }
 
     /// <summary>
@@ -264,6 +268,8 @@ public class LobbyManager : MonoBehaviour {
 	{
 		float panelHeight = labelPrefab.GetComponent<RectTransform>().rect.height * numOfPlayers;
 		float currentHeight = playerListPanel.GetComponent<RectTransform>().rect.height;
+        Debug.Log(panelHeight);
+        Debug.Log(currentHeight);
 		playerListPanel.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);

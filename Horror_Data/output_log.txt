@@ -19,75 +19,25 @@ Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\M
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.822 seconds
+- Completed reload, in  0.864 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.dll (this message is harmless)
-Attempting to join server.
+Server Initialized
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Received pong from 192.168.56.1:25000
- 
-(Filename:  Line: 836)
-
-Received pong from 192.168.1.118:25000
- 
-(Filename:  Line: 836)
-
-Server Joined
+25.4
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 11.419167 ms
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 70 unused Assets to reduce memory usage. Loaded Objects now: 749.
-Total: 2.224646 ms (FindLiveObjects: 0.038061 ms CreateObjectMapping: 0.015823 ms MarkObjects: 0.398144 ms  DeleteObjects: 1.169201 ms)
-
-Is client
+240
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Instantiating remote player view.
+Successfully shut down server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.UpdateNamePosition () [0x00000] in <filename unknown>:0 
-  at Player.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.UpdateNamePosition () [0x00000] in <filename unknown>:0 
-  at Player.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Spawning Player
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating local player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Successfully terminated connection to server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.UpdateNamePosition () [0x00000] in <filename unknown>:0 
-  at Player.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-UnloadTime: 15.056350 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 413 unused Assets to reduce memory usage. Loaded Objects now: 1061.
-Total: 1.809396 ms (FindLiveObjects: 0.062864 ms CreateObjectMapping: 0.026514 ms MarkObjects: 0.671413 ms  DeleteObjects: 0.487095 ms)
 

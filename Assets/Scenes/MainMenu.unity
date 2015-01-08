@@ -1530,7 +1530,19 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   m_OnValueChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1914386436}
+        m_MethodName: SetUserName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_SelectionColor: {r: .65882355, g: .807843149, b: 1, a: .752941191}
@@ -6863,7 +6875,7 @@ RectTransform:
   m_Father: {fileID: 1684561346}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: .400000006}
-  m_AnchorMax: {x: .499475062, y: .901236296}
+  m_AnchorMax: {x: .5, y: .899999976}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -8777,8 +8789,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1192546343}
   m_HandleRect: {fileID: 1192546342}
   m_Direction: 2
-  m_Value: 0
-  m_Size: .999972939
+  m_Value: .230061352
+  m_Size: .999971509
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
