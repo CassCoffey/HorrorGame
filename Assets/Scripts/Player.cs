@@ -187,7 +187,7 @@ public class Player : MonoBehaviour {
 #else
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
-		bool jump = Input.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && !jumping;
+        bool jump = Input.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && grounded;
 #endif
         // Don't take movement if chatting.
         if (chatting)
