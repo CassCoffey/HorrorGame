@@ -39,16 +39,13 @@ public class Player : MonoBehaviour {
     private CapsuleCollider capsule;
     private bool sprinting;
 
-    // Variables for weapon use.
-    public GameObject currentWeapon = null;
-    public GameObject sheathedWeapon = null;
+    // Variables for item use.
+    public GameObject currentItem = null;
+    public GameObject sheathedItem = null;
     public GameObject weaponLoc;
     public GameObject sheathedLoc;
     public float throwForce = 1750;
-    private bool charging = false;
-    private float percentCharge;
-    private const float goalCharge = 0.15f;
-    private float startCharge;
+    
     private bool chatting = false;
 
     [SerializeField]private AdvancedSettings advanced = new AdvancedSettings();
@@ -358,44 +355,25 @@ public class Player : MonoBehaviour {
     /// </summary>
     private void KeyInput()
     {
-        if (Input.GetButtonDown("Interact") && (currentWeapon == null || sheathedWeapon == null))
+        if (Input.GetButtonDown("Interact") && (currentItem == null || sheathedItem == null))
         {
             PickupItem();
         }
         if (Input.GetButtonDown("Swap Weapons"))
         {
-            SwapWeapons();
+            SwapItems();
         }
         if (Input.GetButtonDown("Drop Weapon"))
         {
-            DropWeapon();
+            DropItem();
         }
         if (Input.GetButton("Attack"))
         {
-            SwingWeapon();
+            ItemUse();
         }
-        if (Input.GetButtonDown("Throw Weapon"))
+        if (Input.GetButtonDown("Throw Weapon") || Input.GetButtonUp("Throw Weapon"))
         {
-            ChargeWeapon();
-        }
-        if (Input.GetButtonUp("Throw Weapon"))
-        {
-            ThrowWeapon();
-        }
-        // Handle weapon charging.
-        if (charging && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
-        {
-            float time = Time.time - startCharge;
-            percentCharge = time / goalCharge;
-            currentWeapon.transform.localPosition = Vector3.Lerp(Vector3.zero, Vector3.back * 0.06f, percentCharge);
-            if (percentCharge >= 1.0f)
-            {
-                ThrowWeapon();
-            }
-        }
-        else
-        {
-            charging = false;
+            AltItemUse();
         }
     }
 
@@ -410,19 +388,17 @@ public class Player : MonoBehaviour {
         System.Array.Sort(hits, rayHitComparer);
         for (int i = 0; i < hits.Length; i++)
         {
-            if (hits[i].collider.gameObject.tag == "Item" && !hits[i].transform.GetComponent<Weapon>().isEquipped)
+            if (hits[i].collider.gameObject.tag == "Item" && !hits[i].transform.GetComponent<Item>().isEquipped)
             {
                 networkView.RPC("SyncPickup", RPCMode.OthersBuffered, hits[i].transform.networkView.viewID);
-                hits[i].transform.GetComponent<Weapon>().isEquipped = true;
-                hits[i].transform.GetComponent<Weapon>().isStuck = false;
-                hits[i].transform.GetComponent<Weapon>().equippedTo = gameObject;
-                if (currentWeapon == null)
+                hits[i].transform.GetComponent<Item>().PickUp(gameObject);
+                if (currentItem == null)
                 {
-                    SetCurrentWeapon(hits[i].collider.gameObject);
+                    SetCurrentItem(hits[i].collider.gameObject);
                 }
                 else
                 {
-                    SetSheathedWeapon(hits[i].collider.gameObject);
+                    SetSheathedItem(hits[i].collider.gameObject);
                 }
                 return;
             }
@@ -430,72 +406,61 @@ public class Player : MonoBehaviour {
     }
 
     /// <summary>
-    /// Sets the current weapon.
+    /// Sets the current item.
     /// </summary>
-    /// <param name="weapon">The weapon being set.</param>
-    public void SetCurrentWeapon(GameObject weapon)
+    /// <param name="Item">The item being set.</param>
+    public void SetCurrentItem(GameObject Item)
     {
-        currentWeapon = weapon;
-        if (weapon != null)
+        currentItem = Item;
+        if (Item != null)
         {
-            weapon.collider.enabled = false;
-            weapon.collider.isTrigger = false;
-            weapon.transform.SetParent(weaponLoc.transform);
-            weapon.GetComponent<Weapon>().LerpTo(Vector3.zero, Quaternion.identity, 0.3f);
-            weapon.rigidbody.isKinematic = true;
+            Item.transform.SetParent(weaponLoc.transform);
+            Item.GetComponent<Item>().LerpTo(Vector3.zero, Quaternion.identity, 0.3f);
         }
     }
 
     /// <summary>
-    /// Sets the sheathed weapon.
+    /// Sets the sheathed item.
     /// </summary>
-    /// <param name="weapon">The weapon being set.</param>
-    public void SetSheathedWeapon(GameObject weapon)
+    /// <param name="Item">The item being set.</param>
+    public void SetSheathedItem(GameObject Item)
     {
-        sheathedWeapon = weapon;
-        if (weapon != null)
+        sheathedItem = Item;
+        if (Item != null)
         {
-            weapon.collider.enabled = false;
-            weapon.collider.isTrigger = false;
-            weapon.transform.SetParent(sheathedLoc.transform);
-            weapon.GetComponent<Weapon>().LerpTo(Vector3.zero, Quaternion.identity, 0.3f);
-            weapon.rigidbody.isKinematic = true;
+            Item.transform.SetParent(sheathedLoc.transform);
+            Item.GetComponent<Item>().LerpTo(Vector3.zero, Quaternion.identity, 0.3f);
         }
     }
 
     /// <summary>
-    /// Swaps current and sheathed weapons.
+    /// Swaps current and sheathed items.
     /// </summary>
-    public void SwapWeapons()
+    public void SwapItems()
     {
-        if (sheathedWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        if (sheathedItem != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentItem.GetComponent<Item>().CanSwitch())
         {
             networkView.RPC("SyncSwap", RPCMode.OthersBuffered);
-            GameObject tempWeapon = currentWeapon;
-            SetCurrentWeapon(sheathedWeapon);
-            SetSheathedWeapon(tempWeapon);
+            GameObject tempItem = currentItem;
+            SetCurrentItem(sheathedItem);
+            SetSheathedItem(tempItem);
         }
     }
 
     /// <summary>
     /// Drops your current weapon.
     /// </summary>
-    public void DropWeapon()
+    public void DropItem()
     {
-        if (currentWeapon != null)
+        if (currentItem != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
             networkView.RPC("SyncDrop", RPCMode.OthersBuffered);
-            currentWeapon.GetComponent<Weapon>().isEquipped = false;
-            currentWeapon.GetComponent<Weapon>().equippedTo = null;
-            currentWeapon.transform.parent = null;
-            currentWeapon.collider.enabled = true;
-            currentWeapon.collider.isTrigger = false;
-            currentWeapon.rigidbody.isKinematic = false;
-            currentWeapon = null;
-            if (sheathedWeapon != null)
+            currentItem.GetComponent<Item>().Drop();
+            currentItem = null;
+            if (sheathedItem != null)
             {
-                SetCurrentWeapon(sheathedWeapon);
-                sheathedWeapon = null;
+                SetCurrentItem(sheathedItem);
+                sheathedItem = null;
             }
         }
     }
@@ -503,44 +468,16 @@ public class Player : MonoBehaviour {
     /// <summary>
     /// Begins charging weapon to be thrown.
     /// </summary>
-    public void ChargeWeapon()
+    public void AltItemUse()
     {
-        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        if (currentItem != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
-            charging = true;
-            startCharge = Time.time;
-        }
-    }
-
-    /// <summary>
-    /// Throws the current weapon based on how long it has charged.
-    /// </summary>
-    public void ThrowWeapon()
-    {
-        if (currentWeapon != null && charging && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
-        {
-            networkView.RPC("SyncThrow", RPCMode.OthersBuffered, percentCharge);
-            charging = false;
-            // Makes sure the charge is at least 15%.
-            if (percentCharge <= 0.15f)
+            currentItem.GetComponent<Item>().AltUse();
+            networkView.RPC("Sync", RPCMode.OthersBuffered);
+            if (currentItem == null && sheathedItem != null)
             {
-                percentCharge = 0.15f;
-            }
-            currentWeapon.GetComponent<Weapon>().isEquipped = false;
-            currentWeapon.GetComponent<Weapon>().equippedTo = null;
-            currentWeapon.GetComponent<Weapon>().EndLerp();
-            currentWeapon.transform.parent = null;
-            currentWeapon.collider.enabled = true;
-            currentWeapon.collider.isTrigger = false;
-            currentWeapon.rigidbody.isKinematic = false;
-            currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percentCharge, ForceMode.Force);
-            currentWeapon.rigidbody.maxAngularVelocity = 35;
-            currentWeapon.rigidbody.AddRelativeTorque(150 * percentCharge, 0, 0, ForceMode.Force);
-            currentWeapon = null;
-            if (sheathedWeapon != null)
-            {
-                SetCurrentWeapon(sheathedWeapon);
-                sheathedWeapon = null;
+                SetCurrentItem(sheathedItem);
+                sheathedItem = null;
             }
         }
     }
@@ -548,13 +485,17 @@ public class Player : MonoBehaviour {
     /// <summary>
     /// Plays the animation for swinging the weapon.
     /// </summary>
-    public void SwingWeapon()
+    public void ItemUse()
     {
-        if (currentWeapon != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentWeapon.transform.localPosition == Vector3.zero)
+        if (currentItem != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentItem.transform.localPosition == Vector3.zero)
         {
-            networkView.RPC("SyncSwing", RPCMode.OthersBuffered);
-            charging = false;
-            weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
+            currentItem.GetComponent<Item>().Use();
+            networkView.RPC("Sync", RPCMode.OthersBuffered);
+            if (currentItem == null && sheathedItem != null)
+            {
+                SetCurrentItem(sheathedItem);
+                sheathedItem = null;
+            }
         }
     }
 
@@ -603,71 +544,40 @@ public class Player : MonoBehaviour {
     [RPC] void SyncPickup(NetworkViewID viewID)
     {
         GameObject weapon = NetworkView.Find(viewID).gameObject;
-        weapon.transform.GetComponent<Weapon>().isEquipped = true;
-        weapon.transform.GetComponent<Weapon>().isStuck = false;
-        weapon.transform.GetComponent<Weapon>().equippedTo = gameObject;
-        if (currentWeapon == null)
+        if (currentItem == null)
         {
-            SetCurrentWeapon(weapon.collider.gameObject);
+            SetCurrentItem(weapon.collider.gameObject);
         }
         else
         {
-            SetSheathedWeapon(weapon.collider.gameObject);
+            SetSheathedItem(weapon.collider.gameObject);
         }
     }
 
     [RPC] void SyncSwap()
     {
-        GameObject tempWeapon = currentWeapon;
-        SetCurrentWeapon(sheathedWeapon);
-        SetSheathedWeapon(tempWeapon);
+        GameObject tempWeapon = currentItem;
+        SetCurrentItem(sheathedItem);
+        SetSheathedItem(tempWeapon);
     }
 
     [RPC] void SyncDrop()
     {
-        currentWeapon.GetComponent<Weapon>().isEquipped = false;
-        currentWeapon.GetComponent<Weapon>().equippedTo = null;
-        currentWeapon.transform.parent = null;
-        currentWeapon.collider.enabled = true;
-        currentWeapon.collider.isTrigger = false;
-        currentWeapon.rigidbody.isKinematic = false;
-        currentWeapon = null;
-        if (sheathedWeapon != null)
+        currentItem = null;
+        if (sheathedItem != null)
         {
-            SetCurrentWeapon(sheathedWeapon);
-            sheathedWeapon = null;
+            SetCurrentItem(sheathedItem);
+            sheathedItem = null;
         }
     }
 
-    [RPC] void SyncThrow(float percent)
+    [RPC] void Sync()
     {
-        charging = false;
-        if (percent <= 0.15f)
+        if (currentItem == null && sheathedItem != null)
         {
-            percent = 0.15f;
+            SetCurrentItem(sheathedItem);
+            sheathedItem = null;
         }
-        currentWeapon.GetComponent<Weapon>().isEquipped = false;
-        currentWeapon.GetComponent<Weapon>().equippedTo = null;
-        currentWeapon.GetComponent<Weapon>().EndLerp();
-        currentWeapon.transform.parent = null;
-        currentWeapon.collider.enabled = true;
-        currentWeapon.collider.isTrigger = false;
-        currentWeapon.rigidbody.isKinematic = false;
-        currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percent);
-        currentWeapon.rigidbody.maxAngularVelocity = 30;
-        currentWeapon.rigidbody.AddRelativeTorque(40 * percent, 0, 0, ForceMode.Impulse);
-        currentWeapon = null;
-        if (sheathedWeapon != null)
-        {
-            SetCurrentWeapon(sheathedWeapon);
-            sheathedWeapon = null;
-        }
-    }
-
-    [RPC] void SyncSwing()
-    {
-        charging = false;
-        weaponLoc.GetComponent<Animator>().SetTrigger("Attack");
     }
 
 

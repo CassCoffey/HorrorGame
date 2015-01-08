@@ -11,6 +11,7 @@ GameObject:
   - 54: {fileID: 5447882}
   - 65: {fileID: 6547882}
   - 148: {fileID: 14889632}
+  - 114: {fileID: 11443576}
   - 114: {fileID: 11488614}
   - 23: {fileID: 2304820}
   m_Layer: 0
@@ -136,6 +137,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .603338659, y: 15.1693916, z: 2.28036332}
   m_Center: {x: .018584393, y: .775792301, z: -.0305384081}
+--- !u!114 &11443576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71b342f89fcbee43963a2432de1ecf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11488614}
+  isEquipped: 0
+  equippedTo: {fileID: 0}
 --- !u!114 &11488614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,11 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad20fd697cdf614ebe1cbcd3ecb2a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEquipped: 0
   isStuck: 0
   isSharp: 1
-  equippedTo: {fileID: 0}
   damage: 5
+  charging: 0
 --- !u!148 &14889632
 NetworkView:
   m_ObjectHideFlags: 1

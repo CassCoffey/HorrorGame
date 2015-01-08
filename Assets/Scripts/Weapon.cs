@@ -3,38 +3,54 @@ using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour {
 
-    public bool isEquipped = false;
     public bool isStuck = false;
     public bool isSharp;
-    public GameObject equippedTo;
     public int damage;
 
-    private bool moving = false;
-    private float startTime = 0;
-    private float totalTime = 0;
-    private Vector3 originPos;
-    private Vector3 destinationPos;
-    private Quaternion originRot;
-    private Quaternion destinationRot;
+    public bool charging = false;
+    private float percentCharge;
+    private const float goalCharge = 0.15f;
+    private float startCharge;
 
-    /// <summary>
-    /// If the weapon is being moved to a new position, handle Slerping.
-    /// </summary>
-    public void FixedUpdate()
+
+    public void Update()
     {
-        if (moving)
+        if (charging && percentCharge != 1.0f && transform.parent != null && transform.parent.GetComponent<Animator>() != null && transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {
-            float time = Time.time - startTime;
-            float percentage = time / totalTime;
-            transform.localPosition = Vector3.Slerp(originPos, destinationPos, percentage);
-            transform.localRotation = Quaternion.Slerp(originRot, destinationRot, percentage);
-            if (percentage >= 1.0f)
+            float time = Time.time - startCharge;
+            percentCharge = time / goalCharge;
+            transform.localPosition = Vector3.Lerp(Vector3.zero, Vector3.back * 0.06f, percentCharge);
+            if (percentCharge >= 1.0f)
             {
-                moving = false;
-                transform.localRotation = destinationRot;
-                transform.localPosition = destinationPos;
+                percentCharge = 1.0f;
+                //GetComponent<Item>().AltUse();
             }
         }
+        else if (transform.parent != null && transform.parent.GetComponent<Animator>() != null && !transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
+        {
+            charging = false;
+        }
+    }
+
+    public void Charge()
+    {
+        charging = true;
+        startCharge = Time.time;
+    }
+
+    public void Throw(float throwForce)
+    {
+        networkView.RPC("SyncThrow", RPCMode.OthersBuffered, percentCharge, throwForce);
+        charging = false;
+        // Makes sure the charge is at least 15%.
+        if (percentCharge <= 0.15f)
+        {
+            percentCharge = 0.15f;
+        }
+        rigidbody.AddRelativeForce(Vector3.forward * throwForce * percentCharge, ForceMode.Force);
+        rigidbody.maxAngularVelocity = 35;
+        rigidbody.AddRelativeTorque(150 * percentCharge, 0, 0, ForceMode.Force);
+        percentCharge = 0.0f;
     }
 
     /// <summary>
@@ -43,7 +59,7 @@ public class Weapon : MonoBehaviour {
     /// </summary>
     public void OnCollisionEnter(Collision collision)
     {
-        if (!isEquipped && !isStuck && collision.collider.transform.parent != transform && !collision.collider.isTrigger && collision.collider.transform != transform && collision.relativeVelocity.magnitude > (10 / rigidbody.mass) && rigidbody.velocity.magnitude > 2)
+        if (!isStuck && collision.collider.transform.parent != transform && !collision.collider.isTrigger && collision.collider.transform != transform && collision.relativeVelocity.magnitude > (10 / rigidbody.mass) && rigidbody.velocity.magnitude > 2)
         {
             if (isSharp)
             {
@@ -77,37 +93,21 @@ public class Weapon : MonoBehaviour {
     /// </summary>
     public void OnTriggerEnter(Collider other)
     {
-        if (isEquipped && other.gameObject != equippedTo && other.GetComponent<Vitals>() != null)
+        if (GetComponent<Item>().isEquipped && other.gameObject != GetComponent<Item>().equippedTo && other.GetComponent<Vitals>() != null)
         {
             other.GetComponent<Vitals>().TakeDamage(damage);
         }
     }
 
-    /// <summary>
-    /// Moves the weapon smoothly to a location. 
-    /// *Will eventually be deprecated with actual animations.*
-    /// </summary>
-    public void LerpTo(Vector3 location, Quaternion rotation, float time)
+    [RPC] void SyncThrow(float percent, float throwForce)
     {
-        moving = true;
-        startTime = Time.time;
-        totalTime = time;
-        originPos = transform.localPosition;
-        destinationPos = location;
-        originRot = transform.localRotation;
-        destinationRot = rotation;
-    }
-
-    /// <summary>
-    /// Ends the lerp early.
-    /// </summary>
-    public void EndLerp()
-    {
-        if (moving)
+        charging = false;
+        if (percent <= 0.15f)
         {
-            transform.localPosition = destinationPos;
-            transform.localRotation = destinationRot;
-            moving = false;
+            percent = 0.15f;
         }
+        rigidbody.AddRelativeForce(Vector3.forward * throwForce * percent);
+        rigidbody.maxAngularVelocity = 30;
+        rigidbody.AddRelativeTorque(40 * percent, 0, 0, ForceMode.Impulse);
     }
 }
