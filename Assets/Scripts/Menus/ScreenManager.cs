@@ -71,6 +71,15 @@ public class ScreenManager : MonoBehaviour {
         SetPanel(panel, false);
     }
 
+    public IEnumerator SendMessage()
+    {
+        yield return 0;
+        foreach (var go in FindObjectsOfType<GameObject>())
+        {
+            go.SendMessage("OnCameraArrive", nextCanvas.transform.parent.gameObject, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
     void Update()
     {
         if (move)
@@ -90,10 +99,7 @@ public class ScreenManager : MonoBehaviour {
                 {
                     camera.transform.parent.GetComponent<Animator>().enabled = true;
                 }
-                foreach (var go in FindObjectsOfType<GameObject>())
-                {
-                    go.SendMessage("OnCameraArrive", nextCanvas.transform.parent.gameObject, SendMessageOptions.DontRequireReceiver);
-                }  
+                StartCoroutine(SendMessage());
             }
             else
             {

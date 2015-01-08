@@ -42,7 +42,14 @@ public class LobbyManager : MonoBehaviour {
                 pingTime = 0;
                 for (int i = 0; i < playerList.Count; i++)
                 {
-                    networkView.RPC("UpdatePing", RPCMode.All, i, Network.GetLastPing(playerList[i]));
+                    if (playerList[i] == Network.player)
+                    {
+                        networkView.RPC("UpdatePing", RPCMode.All, i, 0);
+                    }
+                    else
+                    {
+                        networkView.RPC("UpdatePing", RPCMode.All, i, Network.GetLastPing(playerList[i]));
+                    }
                 }
             }
             pingTime += Time.deltaTime;
@@ -52,8 +59,12 @@ public class LobbyManager : MonoBehaviour {
             SendChatMessage(chatInput.text);
             chatInput.text = "";
         }
-	}	
+	}
 
+    /// <summary>
+    /// Refreshes the chat, enables settings and start game button for host, adds the host to the list of players and labels
+    /// and sets the server name.
+    /// </summary>
     public void OnCameraArrive(Object canvas)
     {
         if ((GameObject)canvas == gameObject)
@@ -170,15 +181,6 @@ public class LobbyManager : MonoBehaviour {
 			networkView.RPC("CreatePlayerLabel", RPCMode.All, playerNameList[i], Network.GetLastPing(serverPlayerList[i]).ToString(), serverPlayerList.Count, i);
 		}
 	}
-	
-	/// <summary>
-    /// Refreshes the chat, enables settings and start game button for host, adds the host to the list of players and labels
-    /// and sets the server name.
-    /// </summary>
-    void OnServerInitialized()
-    {
-        
-    }
 
     /// <summary>
     /// Updatess the server info on clients.
