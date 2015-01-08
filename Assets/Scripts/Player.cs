@@ -307,11 +307,11 @@ public class Player : MonoBehaviour {
     private void MenuInput()
     {
         // Menu Options
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonUp("Menu"))
         {
             ToggleMenu();
         }
-        if (Input.GetKeyUp(KeyCode.Return) && !Menu.activeSelf)
+        if (Input.GetButtonUp("Chat") && !Menu.activeSelf)
         {
             GetComponent<ChatScript>().SendChatMessage();
             ToggleChat();
@@ -357,27 +357,27 @@ public class Player : MonoBehaviour {
     /// </summary>
     private void KeyInput()
     {
-        if (Input.GetKeyDown(KeyCode.E) && (currentWeapon == null || sheathedWeapon == null))
+        if (Input.GetAxis("Interact") == 1 && (currentWeapon == null || sheathedWeapon == null))
         {
             PickupItem();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetAxis("Swap Weapons") == 1)
         {
             SwapWeapons();
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetAxis("Drop Weapon") == 1)
         {
             DropWeapon();
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetAxis("Attack") == 1)
         {
             SwingWeapon();
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetButtonDown("Throw Weapon"))
         {
             ChargeWeapon();
         }
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetButtonUp("Throw Weapon"))
         {
             ThrowWeapon();
         }

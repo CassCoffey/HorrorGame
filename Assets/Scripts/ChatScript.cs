@@ -107,7 +107,7 @@ public class ChatScript : MonoBehaviour {
 
     public void SendChatMessage()
     {
-        if (Input.GetKeyUp(KeyCode.Return) && chatInput.text != "" && chatInput.IsInteractable())
+        if (Input.GetButtonUp("Chat") && chatInput.text != "" && chatInput.IsInteractable())
         {
             foreach (var go in FindObjectsOfType<ChatScript>())
             {

@@ -54,7 +54,7 @@ public class LobbyManager : MonoBehaviour {
             }
             pingTime += Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.Return) && chatInput.text != "" && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.name == chatInput.name)
+        if (Input.GetButtonDown("Chat") && chatInput.text != "" && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.name == chatInput.name)
         {
             SendChatMessage(chatInput.text);
             chatInput.text = "";
@@ -270,8 +270,6 @@ public class LobbyManager : MonoBehaviour {
 	{
 		float panelHeight = labelPrefab.GetComponent<RectTransform>().rect.height * numOfPlayers;
 		float currentHeight = playerListPanel.GetComponent<RectTransform>().rect.height;
-        Debug.Log(panelHeight);
-        Debug.Log(currentHeight);
 		playerListPanel.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		playerListPanel.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
