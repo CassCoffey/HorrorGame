@@ -19,7 +19,109 @@ Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\M
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.805 seconds
+- Completed reload, in  0.873 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
+Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.dll (this message is harmless)
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Received pong from 192.168.56.1:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.1.118:25000
+ 
+(Filename:  Line: 836)
+
+Server Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Successfully terminated connection to server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Received pong from 192.168.56.1:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.1.118:25000
+ 
+(Filename:  Line: 836)
+
+The system we attempted to connect to is not accepting new connections.
+ 
+(Filename:  Line: 628)
+
+TooManyConnectedPlayers
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Received pong from 192.168.56.1:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.1.118:25000
+ 
+(Filename:  Line: 836)
+
+The system we attempted to connect to is not accepting new connections.
+ 
+(Filename:  Line: 628)
+
+TooManyConnectedPlayers
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Received pong from 192.168.56.1:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.1.118:25000
+ 
+(Filename:  Line: 836)
+
+The system we attempted to connect to is not accepting new connections.
+ 
+(Filename:  Line: 628)
+
+TooManyConnectedPlayers
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Received pong from 192.168.56.1:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.1.118:25000
+ 
+(Filename:  Line: 836)
+
+The system we attempted to connect to is not accepting new connections.
+ 
+(Filename:  Line: 628)
+
+TooManyConnectedPlayers
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
