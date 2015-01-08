@@ -2470,12 +2470,12 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
-    m_Strength: .400000006
-    m_Bias: .349999994
+    m_Strength: .822000027
+    m_Bias: .187000006
     m_Softness: 8
-    m_SoftnessFade: 1.89999998
+    m_SoftnessFade: 2.07999992
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_ActuallyLightmapped: 1

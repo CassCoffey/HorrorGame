@@ -404,10 +404,10 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
-    m_Strength: .400000006
-    m_Bias: .349999994
+    m_Strength: .859000027
+    m_Bias: .335999995
     m_Softness: 8
     m_SoftnessFade: 1.89999998
   m_Cookie: {fileID: 0}
