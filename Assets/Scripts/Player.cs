@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
     public GameObject sheathedWeapon = null;
     public GameObject weaponLoc;
     public GameObject sheathedLoc;
-    public float throwForce = 1500;
+    public float throwForce = 1750;
     private bool charging = false;
     private float percentCharge;
     private const float goalCharge = 0.15f;
@@ -357,19 +357,19 @@ public class Player : MonoBehaviour {
     /// </summary>
     private void KeyInput()
     {
-        if (Input.GetAxis("Interact") == 1 && (currentWeapon == null || sheathedWeapon == null))
+        if (Input.GetButtonDown("Interact") && (currentWeapon == null || sheathedWeapon == null))
         {
             PickupItem();
         }
-        if (Input.GetAxis("Swap Weapons") == 1)
+        if (Input.GetButtonDown("Swap Weapons"))
         {
             SwapWeapons();
         }
-        if (Input.GetAxis("Drop Weapon") == 1)
+        if (Input.GetButtonDown("Drop Weapon"))
         {
             DropWeapon();
         }
-        if (Input.GetAxis("Attack") == 1)
+        if (Input.GetButton("Attack"))
         {
             SwingWeapon();
         }
@@ -532,9 +532,9 @@ public class Player : MonoBehaviour {
             currentWeapon.collider.enabled = true;
             currentWeapon.collider.isTrigger = false;
             currentWeapon.rigidbody.isKinematic = false;
-            currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percentCharge);
+            currentWeapon.rigidbody.AddRelativeForce(Vector3.forward * throwForce * percentCharge, ForceMode.Force);
             currentWeapon.rigidbody.maxAngularVelocity = 35;
-            currentWeapon.rigidbody.AddRelativeTorque(40 * percentCharge, 0, 0, ForceMode.Impulse);
+            currentWeapon.rigidbody.AddRelativeTorque(150 * percentCharge, 0, 0, ForceMode.Force);
             currentWeapon = null;
             if (sheathedWeapon != null)
             {
