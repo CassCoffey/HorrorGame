@@ -324,7 +324,10 @@ public class Player : MonoBehaviour {
     public void ToggleMenu()
     {
         Menu.SetActive(!Menu.activeSelf);
-        Chat.SetActive(!Menu.activeSelf);
+        if (Menu.activeSelf == true)
+        {
+            GetComponent<ChatScript>().SetChat(false);
+        }
         Vitals.SetActive(!Menu.activeSelf);
         Screen.showCursor = Menu.activeSelf;
         Screen.lockCursor = !Menu.activeSelf;

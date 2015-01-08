@@ -1314,6 +1314,7 @@ GameObject:
   - 224: {fileID: 22449550}
   - 222: {fileID: 22249548}
   - 114: {fileID: 11449552}
+  - 225: {fileID: 22537490}
   m_Layer: 0
   m_Name: ChatPanel
   m_TagString: Untagged
@@ -3808,7 +3809,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22449542}
   m_Direction: 2
   m_Value: 0
-  m_Size: .999999583
+  m_Size: .999999702
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3884,7 +3885,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149550}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -4233,7 +4234,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -6223,6 +6224,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 1.29999995}
   m_SizeDelta: {x: 2, y: .400000006}
   m_Pivot: {x: .5, y: .5}
+--- !u!225 &22537490
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149550}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

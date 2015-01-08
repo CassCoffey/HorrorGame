@@ -15,10 +15,45 @@ public class ChatScript : MonoBehaviour {
     private float maxChatHeight;
     private float currentChatHeight = 0;
     private int totalMessages = 0;
+    private float opacity = 0.0f;
+    private bool visible = false;
+    private const float chatTime = 8.0f;
+    private float curTime = 0.0f;
 
     public void Start()
     {
         RefreshChat();
+    }
+
+    public void Update()
+    {
+        if (visible && opacity != 1.0f)
+        {
+            opacity += Time.deltaTime;
+            if (opacity > 1.0f)
+            {
+                opacity = 1.0f;
+            }
+            chatPanel.transform.parent.GetComponent<CanvasGroup>().alpha = opacity;
+        }
+        else if (!visible && opacity != 0.0f)
+        {
+            opacity -= Time.deltaTime;
+            if (opacity < 0.0f)
+            {
+                opacity = 0.0f;
+            }
+            chatPanel.transform.parent.GetComponent<CanvasGroup>().alpha = opacity;
+        }
+        if (visible && opacity == 1.0f && !chatInput.IsInteractable())
+        {
+            curTime += Time.deltaTime;
+            if (curTime >= chatTime)
+            {
+                curTime = 0.0f;
+                visible = false;
+            }
+        }
     }
 
     public void ToggleActive()
@@ -34,7 +69,13 @@ public class ChatScript : MonoBehaviour {
             chatInput.interactable = true;
             EventSystem.current.SetSelectedGameObject(chatInput.gameObject);
             chatInput.text = "";
+            visible = true;
         }
+    }
+
+    public void SetChat(bool chat)
+    {
+        visible = chat;
     }
 
     public void SetInactive()
@@ -44,6 +85,7 @@ public class ChatScript : MonoBehaviour {
             chatInput.text = "";
             chatInput.interactable = false;
             EventSystem.current.SetSelectedGameObject(null);
+            visible = false;
         }
     }
 
@@ -113,5 +155,6 @@ public class ChatScript : MonoBehaviour {
             Destroy(chatMessages[0]);
             chatMessages.RemoveAt(0);
         }
+        visible = true;
     }
 }
