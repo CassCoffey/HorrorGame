@@ -53,13 +53,17 @@ public class MouseLook : MonoBehaviour {
 			transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
 		}
 	}
-	
+	public void UpdateSensitivity()
+	{
+		Debug.Log ("Updating Sensitivity");
+		sensitivityY = PlayerPrefs.GetFloat("Sensitivity");
+		sensitivityX = PlayerPrefs.GetFloat("Sensitivity");
+	}
 	void Start ()
 	{
         if (PlayerPrefs.HasKey("Sensitivity"))
         {
-            sensitivityX = PlayerPrefs.GetFloat("Sensitivity");
-            sensitivityY = PlayerPrefs.GetFloat("Sensitivity");
+			UpdateSensitivity();
         }
 		// Make the rigid body not change rotation
 		if (GetComponent<Rigidbody>())
