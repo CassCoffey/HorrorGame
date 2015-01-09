@@ -1669,7 +1669,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 899.091003, y: 1.10099995, z: 989.419983}
+  m_LocalPosition: {x: 898.489014, y: 1.42900002, z: 991.468018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -3076,8 +3076,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 22400114}
   m_HandleRect: {fileID: 22400088}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 1
+  m_MaxValue: 30
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
