@@ -1591,7 +1591,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: .300000012
+  near clip plane: .200000003
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -1721,8 +1721,8 @@ MonoBehaviour:
   jumpPower: 10
   walkByDefault: 1
   walkSpeed: 3
-  currentWeapon: {fileID: 0}
-  sheathedWeapon: {fileID: 0}
+  currentItem: {fileID: 0}
+  sheathedItem: {fileID: 0}
   weaponLoc: {fileID: 149468}
   sheathedLoc: {fileID: 120318}
   throwForce: 1000
@@ -3809,8 +3809,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11449546}
   m_HandleRect: {fileID: 22449542}
   m_Direction: 2
-  m_Value: 0
-  m_Size: .999999702
+  m_Value: 1
+  m_Size: .999998689
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4727,7 +4727,7 @@ Canvas:
   serializedVersion: 2
   m_RenderMode: 1
   m_Camera: {fileID: 2000000}
-  m_PlaneDistance: .400000006
+  m_PlaneDistance: .300000012
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0

@@ -32,6 +32,7 @@ public class OptionsManager : MonoBehaviour {
         else
         {
             usernamePanel.SetActive(true);
+            usernamePanel.transform.parent.FindChild("BlockerPanel").gameObject.SetActive(true);
         }
         CurrentResolution = Screen.currentResolution;
         CreateResolutionList();
@@ -44,9 +45,13 @@ public class OptionsManager : MonoBehaviour {
     /// </summary>
     public void UserNamePanelAccept()
     {
+        Debug.Log("Button Pressed");
         if (PlayerPrefs.HasKey("UserName"))
         {
-            usernamePanel.SetActive(true);
+            Debug.Log("Username set");
+            usernamePanel.SetActive(false);
+            usernamePanel.transform.parent.FindChild("BlockerPanel").gameObject.SetActive(false);
+            GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName = PlayerPrefs.GetString("UserName");
         }
     }
 
@@ -57,6 +62,7 @@ public class OptionsManager : MonoBehaviour {
     {
         PlayerPrefs.SetString("UserName", username);
         PlayerPrefs.Save();
+        playerTextBox.GetComponent<Text>().text = PlayerPrefs.GetString("UserName");
     }
 
     /// <summary>

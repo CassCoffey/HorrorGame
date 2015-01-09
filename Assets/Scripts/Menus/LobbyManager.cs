@@ -61,14 +61,15 @@ public class LobbyManager : MonoBehaviour {
         }
 	}
 
-    /// <summary>
-    /// Refreshes the chat, enables settings and start game button for host, adds the host to the list of players and labels
-    /// and sets the server name.
-    /// </summary>
+    
     public void OnCameraArrive(Object canvas)
     {
         if ((GameObject)canvas == gameObject)
         {
+            /// <summary>
+            /// Refreshes the chat, enables settings and start game button for host, adds the host to the list of players and labels
+            /// and sets the server name.
+            /// </summary>
             if (Network.isServer)
             {
                 RefreshChat();
@@ -85,6 +86,20 @@ public class LobbyManager : MonoBehaviour {
                 ClearPlayerLabels();
                 ResizeScrollingBox(1);
                 CreatePlayerLabel(playerNameList[0], "0", 1, 0);
+            }
+            /// <summary>
+            /// Refreshes the chat, blocks access to settings and server info, removes the start game button, and adds the player that connected
+            /// </summary>
+            if (Network.isClient)
+            {
+                RefreshChat();
+                settingsBlocker.SetActive(true);
+                staticServerInfo.SetActive(true);
+                dynamicServerInfo.SetActive(false);
+                startGameButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
+                startGameButton.GetComponent<UnityEngine.UI.Image>().enabled = false;
+                startGameButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = false;
+                networkView.RPC("AddPlayerName", RPCMode.Server, networkManager.GetComponent<NetworkManager>().playerName);
             }
         }
     }
@@ -115,21 +130,6 @@ public class LobbyManager : MonoBehaviour {
 		playerList.Clear();
         playerNameList.Clear();
 	}
-
-	/// <summary>
-    /// Refreshes the chat, blocks access to settings and server info, removes the start game button, and adds the player that connected
-	/// </summary>
-    void OnConnectedToServer()
-    {
-        RefreshChat();
-        settingsBlocker.SetActive(true);
-        staticServerInfo.SetActive(true);
-        dynamicServerInfo.SetActive(false);
-        startGameButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
-        startGameButton.GetComponent<UnityEngine.UI.Image>().enabled = false;
-        startGameButton.GetComponentInChildren<UnityEngine.UI.Text>().enabled = false;
-        networkView.RPC("AddPlayerName", RPCMode.Server, networkManager.GetComponent<NetworkManager>().playerName);
-    }
 
 	/// <summary>
     /// Clears the list of players, adds the player that connected, then goes through each connection and adds them to the list

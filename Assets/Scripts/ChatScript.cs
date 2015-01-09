@@ -69,6 +69,7 @@ public class ChatScript : MonoBehaviour {
             chatInput.interactable = true;
             EventSystem.current.SetSelectedGameObject(chatInput.gameObject);
             chatInput.text = "";
+            curTime = 0.0f;
             visible = true;
         }
     }
@@ -155,6 +156,7 @@ public class ChatScript : MonoBehaviour {
             Destroy(chatMessages[0]);
             chatMessages.RemoveAt(0);
         }
+        curTime = 0.0f;
         visible = true;
     }
 }

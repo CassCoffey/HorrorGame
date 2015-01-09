@@ -509,6 +509,11 @@ public class Player : MonoBehaviour {
 		Network.DestroyPlayerObjects (player);
 	}
 
+    void OnDisconnectedFromServer(NetworkDisconnection disconnection)
+    {
+        Application.LoadLevel(0);
+    }
+
     void OnNetworkInstantiate(NetworkMessageInfo info)
     {
         if (networkView.isMine)
