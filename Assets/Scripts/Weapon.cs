@@ -59,7 +59,7 @@ public class Weapon : MonoBehaviour {
     /// </summary>
     public void OnCollisionEnter(Collision collision)
     {
-        if (!isStuck && collision.collider.transform.parent != transform && !collision.collider.isTrigger && collision.collider.transform != transform && collision.relativeVelocity.magnitude > (10 / rigidbody.mass) && rigidbody.velocity.magnitude > 2)
+        if (!isStuck && collision.collider.transform.parent != transform && !collision.collider.isTrigger && collision.collider.transform != transform && collision.relativeVelocity.magnitude > (10/rigidbody.mass))
         {
             if (isSharp)
             {
