@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour {
 
 	// The default player prefab.
 	public GameObject playerPrefab;
+	public GameObject monsterPrefab;
     public List<string> firstNames;
     public List<string> lastNames;
 
@@ -285,9 +286,9 @@ public class SpawnManager : MonoBehaviour {
 			}
 			Debug.Log("Spawning Player");
             randomName = "Monster";
-			GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
+			GameObject player = (GameObject)Network.Instantiate(monsterPrefab, spawn, Quaternion.identity, 0);
             myPlayer = player;
-            SetRoleText(player, "Monster", "You're a monster!");
+            SetRoleText(player, "Monster", "You're a monster! Kill everyone...");
 		}
 		else
 		{
