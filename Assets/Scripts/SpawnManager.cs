@@ -243,8 +243,15 @@ public class SpawnManager : MonoBehaviour {
     /// <param name="roleDescription">The description of their role.</param>
     public void SetRoleText(GameObject player, string roleName, string roleDescription)
     {
-        player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleNamePanel").FindChild("RoleName").GetComponent<Text>().text = roleName;
-        player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleDescriptionPanel").FindChild("RoleDescription").GetComponent<Text>().text = roleDescription;
+		if (roleName == "Monster") {
+			player.GetComponent<MonsterManager> ().Menu.transform.FindChild ("MainPanel").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text> ().text = roleName;
+			player.GetComponent<MonsterManager> ().Menu.transform.FindChild ("MainPanel").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text> ().text = roleDescription;
+		} 
+		else 
+		{
+			player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleNamePanel").FindChild("RoleName").GetComponent<Text>().text = roleName;
+			player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleDescriptionPanel").FindChild("RoleDescription").GetComponent<Text>().text = roleDescription;
+		}
     }
 
     /// <summary>
@@ -289,6 +296,11 @@ public class SpawnManager : MonoBehaviour {
 			GameObject player = (GameObject)Network.Instantiate(monsterPrefab, spawn, Quaternion.identity, 0);
             myPlayer = player;
             SetRoleText(player, "Monster", "You're a monster! Kill everyone...");
+			GameObject[] trails = GameObject.FindGameObjectsWithTag("Trail");
+			foreach(GameObject trail in trails)
+			{
+				Debug.Log ("Trail Enabled");
+			}
 		}
 		else
 		{

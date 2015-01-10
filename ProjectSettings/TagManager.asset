@@ -7,7 +7,7 @@ TagManager:
   - Terrain
   - WeaponSpawn
   - MonsterSpawn
-  - 
+  - Trail
   - Ground
   - 
   Builtin Layer 0: Default

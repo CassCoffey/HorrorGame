@@ -179,10 +179,10 @@ GameObject:
   - 54: {fileID: 5406684}
   - 114: {fileID: 11406498}
   - 114: {fileID: 11406606}
-  - 114: {fileID: 11406494}
   - 148: {fileID: 14806680}
   - 114: {fileID: 11406656}
   - 114: {fileID: 11406668}
+  - 114: {fileID: 11409784}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Player
@@ -1669,7 +1669,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 898.409973, y: .936999977, z: 990.791992}
+  m_LocalPosition: {x: 972.150024, y: 1.47000003, z: 1026.28003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 406676}
@@ -2136,37 +2136,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11406494
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db24dc40cce042d4caa4c9783a5612d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Menu: {fileID: 106526}
-  Vitals: {fileID: 106642}
-  Chat: {fileID: 106666}
-  player: {fileID: 106510}
-  Name: 
-  runSpeed: 14
-  strafeSpeed: 4
-  jumpPower: 15
-  walkByDefault: 1
-  walkSpeed: 2
-  currentItem: {fileID: 0}
-  sheathedItem: {fileID: 0}
-  weaponLoc: {fileID: 106656}
-  sheathedLoc: {fileID: 106518}
-  throwForce: 1000
-  advanced:
-    gravityMultiplier: 2
-    zeroFrictionMaterial: {fileID: 0}
-    highFrictionMaterial: {fileID: 0}
-    groundStickyEffect: 5
 --- !u!114 &11406496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2279,7 +2248,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11406494}
+      - m_Target: {fileID: 11409784}
         m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
@@ -4258,7 +4227,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11406646}
   m_HandleRect: {fileID: 22406656}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4727,6 +4696,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11409784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62b7f6c30e2a5c4ab6e1ab5ba6200bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Menu: {fileID: 106526}
+  Vitals: {fileID: 106642}
+  Chat: {fileID: 106666}
+  player: {fileID: 106510}
+  Name: 
+  runSpeed: 14
+  strafeSpeed: 4
+  jumpPower: 15
+  walkByDefault: 1
+  walkSpeed: 2
+  currentItem: {fileID: 0}
+  sheathedItem: {fileID: 0}
+  weaponLoc: {fileID: 106656}
+  sheathedLoc: {fileID: 106518}
+  throwForce: 1750
+  advanced:
+    gravityMultiplier: 2
+    zeroFrictionMaterial: {fileID: 0}
+    highFrictionMaterial: {fileID: 0}
+    groundStickyEffect: 5
 --- !u!124 &12406684
 Behaviour:
   m_ObjectHideFlags: 1
@@ -4755,7 +4755,7 @@ NetworkView:
   m_GameObject: {fileID: 106510}
   m_Enabled: 1
   m_StateSynchronization: 1
-  m_Observed: {fileID: 11406494}
+  m_Observed: {fileID: 11409784}
   m_ViewID:
     m_ID: 0
     m_Type: 0
