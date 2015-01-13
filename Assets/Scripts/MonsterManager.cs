@@ -70,15 +70,10 @@ public class MonsterManager : MonoBehaviour {
 			grounded = true;
 			Screen.lockCursor = true;
 			rayHitComparer = new RayHitComparer();
-			GameObject[] trails = GameObject.FindGameObjectsWithTag("Trail");
-			foreach(GameObject trail in trails)
-			{
-				trail.GetComponent<TrailRenderer>().enabled = true;
-				Debug.Log ("Trail Enabled");
-			}
 		}
 	}
-	
+
+
 	/// <summary>
 	/// If this is my network view, look for input.
 	/// </summary>
@@ -515,6 +510,7 @@ public class MonsterManager : MonoBehaviour {
 			GetComponentInChildren<Camera>().GetComponent<MouseLook>().enabled = false;
 		}
 	}
+
 	//
 	/// <summary>
 	/// RPCs that sync all weapon movements across clients.

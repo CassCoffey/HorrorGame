@@ -185,7 +185,7 @@ GameObject:
   - 114: {fileID: 11409784}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1669,7 +1669,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 972.150024, y: 1.47000003, z: 1026.28003}
+  m_LocalPosition: {x: 682.469971, y: 1.82000005, z: 780.140015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 406676}
@@ -4227,8 +4227,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11406646}
   m_HandleRect: {fileID: 22406656}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: .999999046
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

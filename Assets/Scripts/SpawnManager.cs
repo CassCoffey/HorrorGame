@@ -91,6 +91,7 @@ public class SpawnManager : MonoBehaviour {
 			{
 				networkView.RPC("SpawnPlayer", playerList[monsterIndex], "Monster");
 			}
+			NetworkPlayer Monster = playerList[monsterIndex];
 			playerList.RemoveAt(monsterIndex);
 			
 			if (playerList.Count >= 6) 
@@ -231,6 +232,14 @@ public class SpawnManager : MonoBehaviour {
 					}
 				}
 				playerList.Remove(normPlayer);
+				if(Network.player == Monster)
+				{
+					EnableTrails();
+				}
+				else
+				{
+					networkView.RPC("EnableTrails", Monster);
+				}
 			}
 		}
 	}
@@ -253,6 +262,16 @@ public class SpawnManager : MonoBehaviour {
 			player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleDescriptionPanel").FindChild("RoleDescription").GetComponent<Text>().text = roleDescription;
 		}
     }
+
+	[RPC] void EnableTrails()
+	{
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		foreach(GameObject human in players)
+		{
+			human.transform.FindChild("TrailRenderer").GetComponent<TrailRenderer>().enabled = true;
+			Debug.Log ("Trail Enabled");
+		}
+	}
 
     /// <summary>
     /// Sent to the server when a client is ready.
@@ -296,11 +315,6 @@ public class SpawnManager : MonoBehaviour {
 			GameObject player = (GameObject)Network.Instantiate(monsterPrefab, spawn, Quaternion.identity, 0);
             myPlayer = player;
             SetRoleText(player, "Monster", "You're a monster! Kill everyone...");
-			GameObject[] trails = GameObject.FindGameObjectsWithTag("Trail");
-			foreach(GameObject trail in trails)
-			{
-				Debug.Log ("Trail Enabled");
-			}
 		}
 		else
 		{
