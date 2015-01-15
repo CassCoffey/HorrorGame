@@ -18,7 +18,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.090 seconds
+- Completed reload, in  0.093 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -26,6 +26,14 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\System.dll (this message is harmless)
 WARNING: Shader Unsupported: 'Hidden/Nature/Tree Creator Leaves Optimized' - Pass '' shader state not supported
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+No host selected.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+No host selected.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
 Attempting to join server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
@@ -62,11 +70,11 @@ Parameter name: index
  
 (Filename:  Line: -1)
 
-UnloadTime: 24.490400 ms
+UnloadTime: 28.364273 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 1199.
-Total: 2.007796 ms (FindLiveObjects: 0.066901 ms CreateObjectMapping: 0.019766 ms MarkObjects: 0.554215 ms  DeleteObjects: 0.898984 ms)
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 1200.
+Total: 1.977391 ms (FindLiveObjects: 0.068041 ms CreateObjectMapping: 0.020526 ms MarkObjects: 0.504040 ms  DeleteObjects: 0.908109 ms)
 
 Is client
  
@@ -105,167 +113,17 @@ Successfully terminated connection to server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 23.898554 ms
+UnloadTime: 26.848730 ms
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 848 unused Assets to reduce memory usage. Loaded Objects now: 1075.
-Total: 1.457381 ms (FindLiveObjects: 0.062719 ms CreateObjectMapping: 0.024327 ms MarkObjects: 0.489975 ms  DeleteObjects: 0.516203 ms)
+Unloading 849 unused Assets to reduce memory usage. Loaded Objects now: 1076.
+Total: 1.475250 ms (FindLiveObjects: 0.061579 ms CreateObjectMapping: 0.026228 ms MarkObjects: 0.485795 ms  DeleteObjects: 0.540532 ms)
 
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-UnloadTime: 18.578388 ms
+UnloadTime: 18.839573 ms
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1079.
-Total: 1.447878 ms (FindLiveObjects: 0.042953 ms CreateObjectMapping: 0.019006 ms MarkObjects: 0.478191 ms  DeleteObjects: 0.515443 ms)
-
-WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-Attempting to join server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Server Joined
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Server Joined
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Server Joined
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-View ID SceneID: 3 Level Prefix: 0 not found during lookup. Strange behaviour may occur
- 
-(Filename:  Line: 1681)
-
-Received state update for view id' SceneID: 3 Level Prefix: 0' but the NetworkView doesn't exist
- 
-(Filename:  Line: 2474)
-
-View ID SceneID: 2 Level Prefix: 0 not found during lookup. Strange behaviour may occur
- 
-(Filename:  Line: 1681)
-
-Received state update for view id' SceneID: 2 Level Prefix: 0' but the NetworkView doesn't exist
- 
-(Filename:  Line: 2474)
-
-View ID SceneID: 2 Level Prefix: 0 not found during lookup. Strange behaviour may occur
- 
-(Filename:  Line: 1681)
-
-Could't invoke RPC function 'UpdatePing' because the networkView 'SceneID: 2 Level Prefix: 0' doesn't exist
- 
-(Filename:  Line: 2474)
-
-View ID SceneID: 2 Level Prefix: 0 not found during lookup. Strange behaviour may occur
- 
-(Filename:  Line: 1681)
-
-Could't invoke RPC function 'UpdatePing' because the networkView 'SceneID: 2 Level Prefix: 0' doesn't exist
- 
-(Filename:  Line: 2474)
-
-View ID SceneID: 2 Level Prefix: 0 not found during lookup. Strange behaviour may occur
- 
-(Filename:  Line: 1681)
-
-Could't invoke RPC function 'UpdatePing' because the networkView 'SceneID: 2 Level Prefix: 0' doesn't exist
- 
-(Filename:  Line: 2474)
-
-View ID SceneID: 2 Level Prefix: 0 not found during lookup. Strange behaviour may occur
- 
-(Filename:  Line: 1681)
-
-Could't invoke RPC function 'UpdatePing' because the networkView 'SceneID: 2 Level Prefix: 0' doesn't exist
- 
-(Filename:  Line: 2474)
-
-View ID SceneID: 2 Level Prefix: 0 not found during lookup. Strange behaviour may occur
- 
-(Filename:  Line: 1681)
-
-Could't invoke RPC function 'UpdatePing' because the networkView 'SceneID: 2 Level Prefix: 0' doesn't exist
- 
-(Filename:  Line: 2474)
-
-View ID SceneID: 2 Level Prefix: 0 not found during lookup. Strange behaviour may occur
- 
-(Filename:  Line: 1681)
-
-Could't invoke RPC function 'UpdatePing' because the networkView 'SceneID: 2 Level Prefix: 0' doesn't exist
- 
-(Filename:  Line: 2474)
-
-UnloadTime: 22.268215 ms
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 71 unused Assets to reduce memory usage. Loaded Objects now: 1207.
-Total: 2.020720 ms (FindLiveObjects: 0.056257 ms CreateObjectMapping: 0.026988 ms MarkObjects: 0.560677 ms  DeleteObjects: 0.908107 ms)
-
-Is client
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Spawning Player
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating local player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Updating Sensitivity
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Updating Sensitivity
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-Successfully terminated connection to server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Successfully terminated connection to server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Successfully terminated connection to server.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.UpdateNamePosition () [0x00000] in <filename unknown>:0 
-  at Player.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-UnloadTime: 24.131186 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 848 unused Assets to reduce memory usage. Loaded Objects now: 1084.
-Total: 2.256775 ms (FindLiveObjects: 0.064620 ms CreateObjectMapping: 0.034971 ms MarkObjects: 0.586525 ms  DeleteObjects: 1.082202 ms)
-
-WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-UnloadTime: 21.593502 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1088.
-Total: 1.470686 ms (FindLiveObjects: 0.053596 ms CreateObjectMapping: 0.020146 ms MarkObjects: 0.520004 ms  DeleteObjects: 0.426115 ms)
-
-WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-UnloadTime: 22.945210 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1092.
-Total: 1.666828 ms (FindLiveObjects: 0.045234 ms CreateObjectMapping: 0.021286 ms MarkObjects: 0.534069 ms  DeleteObjects: 0.615034 ms)
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1080.
+Total: 1.512502 ms (FindLiveObjects: 0.042953 ms CreateObjectMapping: 0.016725 ms MarkObjects: 0.527228 ms  DeleteObjects: 0.516584 ms)
 
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported

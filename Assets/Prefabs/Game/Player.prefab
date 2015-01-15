@@ -1685,7 +1685,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 683.887756, y: 0, z: 778.064453}
+  m_LocalPosition: {x: 736.338013, y: 1.41199994, z: 764.125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -1907,7 +1907,7 @@ TrailRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: e93e500e9cfd7f249a5bda342f6a81a5, type: 2}
+  - {fileID: 2100000, guid: ff6663d927968dc4482d24a8495316de, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1915,25 +1915,25 @@ TrailRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Time: 2
-  m_StartWidth: 2
-  m_EndWidth: .5
+  m_Time: 5
+  m_StartWidth: 1.25
+  m_EndWidth: 0
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4279111312
     m_Color[1]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4279111311
     m_Color[2]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4279111310
     m_Color[3]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4279111309
     m_Color[4]:
       serializedVersion: 2
-      rgba: 16777215
+      rgba: 921228
   m_MinVertexDistance: .100000001
   m_Autodestruct: 0
 --- !u!114 &11400000
@@ -4059,7 +4059,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22449542}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: .999998927
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
