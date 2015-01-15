@@ -1350,6 +1350,7 @@ GameObject:
   - 222: {fileID: 22271674}
   - 114: {fileID: 11471674}
   - 114: {fileID: 11479780}
+  - 114: {fileID: 11488310}
   m_Layer: 0
   m_Name: MessageBox
   m_TagString: Untagged
@@ -1685,7 +1686,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 736.338013, y: 1.41199994, z: 764.125}
+  m_LocalPosition: {x: 737.74884, y: 0, z: 768.542358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -3984,8 +3985,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11437090}
   m_HandleRect: {fileID: 22437092}
   m_Direction: 2
-  m_Value: 0
-  m_Size: .999998987
+  m_Value: 1
+  m_Size: .999999642
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4464,6 +4465,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11488310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!114 &11490472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6973,7 +6986,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149550}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

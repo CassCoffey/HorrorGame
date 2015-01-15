@@ -9,7 +9,7 @@ public class MonsterManager : MonoBehaviour {
 	public GameObject Menu;
 	public GameObject Vitals;
 	public GameObject Chat;
-	public GameObject player;
+	public GameObject monster;
 	
 	public string Name;
 	
@@ -38,13 +38,6 @@ public class MonsterManager : MonoBehaviour {
 	private Vector2 input;
 	private CapsuleCollider capsule;
 	private bool sprinting;
-	
-	// Variables for item use.
-	public GameObject currentItem = null;
-	public GameObject sheathedItem = null;
-	public GameObject weaponLoc;
-	public GameObject sheathedLoc;
-	public float throwForce = 1750;
 	
 	private bool chatting = false;
 	
@@ -331,148 +324,7 @@ public class MonsterManager : MonoBehaviour {
 	/// </summary>
 	private void KeyInput()
 	{
-		if (Input.GetButtonDown("Interact") && (currentItem == null || sheathedItem == null))
-		{
-			PickupItem();
-		}
-		if (Input.GetButtonDown("Swap Weapons"))
-		{
-			SwapItems();
-		}
-		if (Input.GetButtonDown("Drop Weapon"))
-		{
-			DropItem();
-		}
-		if (Input.GetButton("Attack"))
-		{
-			ItemUse();
-		}
-		if (Input.GetButtonDown("Throw Weapon") || Input.GetButtonUp("Throw Weapon"))
-		{
-			AltItemUse();
-		}
-	}
-	
-	/// <summary>
-	/// Pick up a weapon that is in front of you.
-	/// </summary>
-	private void PickupItem()
-	{
-		Ray ray = new Ray(transform.FindChild("Player Camera").position, transform.FindChild("Player Camera").forward);
-		
-		RaycastHit[] hits = Physics.RaycastAll(ray, capsule.height * playerReach);
-		System.Array.Sort(hits, rayHitComparer);
-		for (int i = 0; i < hits.Length; i++)
-		{
-			if (hits[i].collider.gameObject.tag == "Item" && !hits[i].transform.GetComponent<Item>().isEquipped)
-			{
-				networkView.RPC("SyncPickup", RPCMode.OthersBuffered, hits[i].transform.networkView.viewID);
-				hits[i].transform.GetComponent<Item>().PickUp(gameObject);
-				if (currentItem == null)
-				{
-					SetCurrentItem(hits[i].collider.gameObject);
-				}
-				else
-				{
-					SetSheathedItem(hits[i].collider.gameObject);
-				}
-				return;
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Sets the current item.
-	/// </summary>
-	/// <param name="Item">The item being set.</param>
-	public void SetCurrentItem(GameObject Item)
-	{
-		currentItem = Item;
-		if (Item != null)
-		{
-			Item.transform.SetParent(weaponLoc.transform);
-			Item.GetComponent<Item>().LerpTo(Vector3.zero, Quaternion.identity, 0.3f);
-		}
-	}
-	
-	/// <summary>
-	/// Sets the sheathed item.
-	/// </summary>
-	/// <param name="Item">The item being set.</param>
-	public void SetSheathedItem(GameObject Item)
-	{
-		sheathedItem = Item;
-		if (Item != null)
-		{
-			Item.transform.SetParent(sheathedLoc.transform);
-			Item.GetComponent<Item>().LerpTo(Vector3.zero, Quaternion.identity, 0.3f);
-		}
-	}
-	
-	/// <summary>
-	/// Swaps current and sheathed items.
-	/// </summary>
-	public void SwapItems()
-	{
-		if (sheathedItem != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentItem.GetComponent<Item>().CanSwitch())
-		{
-			networkView.RPC("SyncSwap", RPCMode.OthersBuffered);
-			GameObject tempItem = currentItem;
-			SetCurrentItem(sheathedItem);
-			SetSheathedItem(tempItem);
-		}
-	}
-	
-	/// <summary>
-	/// Drops your current weapon.
-	/// </summary>
-	public void DropItem()
-	{
-		if (currentItem != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
-		{
-			networkView.RPC("SyncDrop", RPCMode.OthersBuffered);
-			currentItem.GetComponent<Item>().Drop();
-			currentItem = null;
-			if (sheathedItem != null)
-			{
-				SetCurrentItem(sheathedItem);
-				sheathedItem = null;
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Begins charging weapon to be thrown.
-	/// </summary>
-	public void AltItemUse()
-	{
-		if (currentItem != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
-		{
-			currentItem.GetComponent<Item>().AltUse();
-			networkView.RPC("Sync", RPCMode.OthersBuffered);
-			if (currentItem == null && sheathedItem != null)
-			{
-				SetCurrentItem(sheathedItem);
-				sheathedItem = null;
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Plays the animation for swinging the weapon.
-	/// </summary>
-	public void ItemUse()
-	{
-		if (currentItem != null && weaponLoc.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default") && currentItem.transform.localPosition == Vector3.zero)
-		{
-			currentItem.GetComponent<Item>().Use();
-			networkView.RPC("Sync", RPCMode.OthersBuffered);
-			if (currentItem == null && sheathedItem != null)
-			{
-				SetCurrentItem(sheathedItem);
-				sheathedItem = null;
-			}
-		}
+		// add in monster attacks and abilities.
 	}
 	
 	/// <summary>
@@ -510,52 +362,6 @@ public class MonsterManager : MonoBehaviour {
 			GetComponentInChildren<Camera>().GetComponent<MouseLook>().enabled = false;
 		}
 	}
-
-	//
-	/// <summary>
-	/// RPCs that sync all weapon movements across clients.
-	/// </summary>
-	//
-	
-	[RPC] void SyncPickup(NetworkViewID viewID)
-	{
-		GameObject weapon = NetworkView.Find(viewID).gameObject;
-		if (currentItem == null)
-		{
-			SetCurrentItem(weapon.collider.gameObject);
-		}
-		else
-		{
-			SetSheathedItem(weapon.collider.gameObject);
-		}
-	}
-	
-	[RPC] void SyncSwap()
-	{
-		GameObject tempWeapon = currentItem;
-		SetCurrentItem(sheathedItem);
-		SetSheathedItem(tempWeapon);
-	}
-	
-	[RPC] void SyncDrop()
-	{
-		currentItem = null;
-		if (sheathedItem != null)
-		{
-			SetCurrentItem(sheathedItem);
-			sheathedItem = null;
-		}
-	}
-	
-	[RPC] void Sync()
-	{
-		if (currentItem == null && sheathedItem != null)
-		{
-			SetCurrentItem(sheathedItem);
-			sheathedItem = null;
-		}
-	}
-	
 	
 	/// <summary>
 	/// Used for comparing distances

@@ -64,7 +64,7 @@ public class Weapon : MonoBehaviour {
             if (isSharp)
             {
                 // Only stick to players and terrain.
-                if (collision.collider.tag == "Player" || collision.collider.tag == "Terrain")
+                if (collision.collider.tag == "Player" || collision.collider.tag == "Terrain" || collision.collider.tag == "Monster")
                 {
                     collider.isTrigger = true;
                     GetComponent<Weapon>().isStuck = true;
