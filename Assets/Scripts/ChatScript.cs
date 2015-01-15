@@ -23,6 +23,8 @@ public class ChatScript : MonoBehaviour {
     public void Start()
     {
         RefreshChat();
+        chatPanel.GetComponentInChildren<Scrollbar>().value = 0;
+        chatPanel.GetComponentInChildren<Scrollbar>().size = 0.2f;
     }
 
     public void Update()
@@ -63,6 +65,8 @@ public class ChatScript : MonoBehaviour {
             chatInput.interactable = false;
             EventSystem.current.SetSelectedGameObject(null);
             chatInput.text = "";
+            Screen.showCursor = false;
+            Screen.lockCursor = true;
         }
         else
         {
@@ -71,6 +75,8 @@ public class ChatScript : MonoBehaviour {
             chatInput.text = "";
             curTime = 0.0f;
             visible = true;
+            Screen.showCursor = true;
+            Screen.lockCursor = false;
         }
     }
 
@@ -149,7 +155,9 @@ public class ChatScript : MonoBehaviour {
         }
         currentChatHeight += chat.transform.FindChild("ChatText").GetComponent<Text>().preferredHeight;
         float panelHeight = chatPanel.GetComponent<RectTransform>().rect.height;
+        chatPanel.GetComponentInChildren<Scrollbar>().value = 0;
         chatPanel.GetComponent<ScrollRect>().enabled = (currentChatHeight > panelHeight);
+        chatPanel.GetComponentInChildren<Scrollbar>().enabled = (currentChatHeight > panelHeight);
         while (currentChatHeight > maxChatHeight)
         {
             currentChatHeight -= chatMessages[0].transform.FindChild("ChatText").GetComponent<Text>().preferredHeight;
