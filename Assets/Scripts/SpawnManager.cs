@@ -82,16 +82,16 @@ public class SpawnManager : MonoBehaviour {
 				playerList.Add (Network.connections[i]);
 			}
 			int monsterIndex = Random.Range (0, playerList.Count);
+			NetworkPlayer Monster = playerList[monsterIndex];
 			Debug.Log ("Creating Monster...");
 			if (playerList [monsterIndex] == Network.player) 
 			{
-				SpawnPlayer("Monster");
+				SpawnPlayer("Monster", Monster);
 			}
 			else
 			{
-				networkView.RPC("SpawnPlayer", playerList[monsterIndex], "Monster");
+				networkView.RPC("SpawnPlayer", playerList[monsterIndex], "Monster", Monster);
 			}
-			NetworkPlayer Monster = playerList[monsterIndex];
 			playerList.RemoveAt(monsterIndex);
 			
 			if (playerList.Count >= 6) 
@@ -100,11 +100,11 @@ public class SpawnManager : MonoBehaviour {
 				Debug.Log ("Creating Cultist...");
 				if (playerList [cultistIndex] == Network.player) 
 				{
-					SpawnPlayer("Cultist");
+					SpawnPlayer("Cultist", Monster);
 				}
 				else
 				{
-					networkView.RPC("SpawnPlayer", playerList[cultistIndex], "Cultist");
+					networkView.RPC("SpawnPlayer", playerList[cultistIndex], "Cultist", Monster);
 				}
 				playerList.RemoveAt(cultistIndex);
 			}
@@ -134,19 +134,19 @@ public class SpawnManager : MonoBehaviour {
 					}
 					if (specialPlayer == Network.player) 
 					{
-						SpawnPair("Lover", (string)playerNames[pairPlayer]);
+						SpawnPair("Lover", (string)playerNames[pairPlayer], Monster);
 					}
 					else
 					{
-						networkView.RPC("SpawnPair", specialPlayer, "Lover", (string)playerNames[pairPlayer]);
+						networkView.RPC("SpawnPair", specialPlayer, "Lover", (string)playerNames[pairPlayer], Monster);
 					}
 					if(pairPlayer == Network.player)
 					{
-						SpawnPair("Lover", (string)playerNames[specialPlayer]);
+						SpawnPair("Lover", (string)playerNames[specialPlayer], Monster);
 					}
 					else
 					{
-						networkView.RPC("SpawnPair", pairPlayer, "Lover", (string)playerNames[specialPlayer]);
+						networkView.RPC("SpawnPair", pairPlayer, "Lover", (string)playerNames[specialPlayer], Monster);
 					}
 					playerList.Remove(pairPlayer);
 				}
@@ -160,19 +160,19 @@ public class SpawnManager : MonoBehaviour {
 					}
 					if (specialPlayer == Network.player) 
 					{
-						SpawnPair("Thief", (string)playerNames[pairPlayer]);
+						SpawnPair("Thief", (string)playerNames[pairPlayer], Monster);
 					}
 					else
 					{
-						networkView.RPC("SpawnPair", specialPlayer, "Thief", (string)playerNames[pairPlayer]);
+						networkView.RPC("SpawnPair", specialPlayer, "Thief", (string)playerNames[pairPlayer], Monster);
 					}
 					if(pairPlayer == Network.player)
 					{
-						SpawnPair("Thief", (string)playerNames[specialPlayer]);
+						SpawnPair("Thief", (string)playerNames[specialPlayer], Monster);
 					}
 					else
 					{
-						networkView.RPC("SpawnPair", pairPlayer, "Thief", (string)playerNames[specialPlayer]);
+						networkView.RPC("SpawnPair", pairPlayer, "Thief", (string)playerNames[specialPlayer], Monster);
 					}
 					playerList.Remove(pairPlayer);
 				}
@@ -181,11 +181,11 @@ public class SpawnManager : MonoBehaviour {
 					Debug.Log ("Creating Priest...");
 					if (specialPlayer == Network.player) 
 					{
-						SpawnPlayer("Priest");
+						SpawnPlayer("Priest", Monster);
 					}
 					else
 					{
-						networkView.RPC("SpawnPlayer", specialPlayer, "Priest");
+						networkView.RPC("SpawnPlayer", specialPlayer, "Priest", Monster);
 					}
 				}
 				if(role >= 75)
@@ -193,11 +193,11 @@ public class SpawnManager : MonoBehaviour {
 					Debug.Log ("Creating Assassin...");
 					if (specialPlayer == Network.player) 
 					{
-						SpawnPlayer("Assassin");
+						SpawnPlayer("Assassin", Monster);
 					}
 					else
 					{
-						networkView.RPC("SpawnPlayer", specialPlayer, "Assassin");
+						networkView.RPC("SpawnPlayer", specialPlayer, "Assassin", Monster);
 					}
 				}
 				playerList.Remove(specialPlayer);
@@ -212,11 +212,11 @@ public class SpawnManager : MonoBehaviour {
 					Debug.Log ("Creating Peasant...");
 					if (normPlayer == Network.player) 
 					{
-						SpawnPlayer("Peasant");
+						SpawnPlayer("Peasant", Monster);
 					}
 					else
 					{
-						networkView.RPC("SpawnPlayer", normPlayer, "Peasant");
+						networkView.RPC("SpawnPlayer", normPlayer, "Peasant", Monster);
 					}
 				}
 				if(normRole >= 50)
@@ -224,22 +224,14 @@ public class SpawnManager : MonoBehaviour {
 					Debug.Log ("Creating Survivor...");
 					if (normPlayer == Network.player) 
 					{
-						SpawnPlayer("Survivor");
+						SpawnPlayer("Survivor", Monster);
 					}
 					else
 					{
-						networkView.RPC("SpawnPlayer", normPlayer, "Survivor");
+						networkView.RPC("SpawnPlayer", normPlayer, "Survivor", Monster);
 					}
 				}
 				playerList.Remove(normPlayer);
-				if(Network.player == Monster)
-				{
-					EnableTrails();
-				}
-				else
-				{
-					networkView.RPC("EnableTrails", Monster);
-				}
 			}
 		}
 	}
@@ -263,14 +255,11 @@ public class SpawnManager : MonoBehaviour {
 		}
     }
 
-	[RPC] void EnableTrails()
+	[RPC] void EnableTrails(NetworkViewID viewID)
 	{
-		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-		foreach(GameObject human in players)
-		{
-			human.transform.FindChild("TrailRenderer").GetComponent<TrailRenderer>().enabled = true;
-			Debug.Log ("Trail Enabled");
-		}
+		GameObject player = NetworkView.Find(viewID).gameObject;
+		player.transform.FindChild ("TrailRenderer").GetComponent<TrailRenderer>().enabled = true;
+		Debug.Log ("Trail Enabled");
 	}
 
     /// <summary>
@@ -292,7 +281,7 @@ public class SpawnManager : MonoBehaviour {
     /// Create a player object.
     /// </summary>
     /// <param name="role">The role of that player.</param>
-	[RPC] void SpawnPlayer(string role)
+	[RPC] void SpawnPlayer(string role, NetworkPlayer Monster)
 	{
 		if (role == "Monster") 
 		{
@@ -353,6 +342,7 @@ public class SpawnManager : MonoBehaviour {
                 SetRoleText(player, "Assassin", "You're " + randomName + ", an Assassin");
 				break;
 			}
+			networkView.RPC ("EnableTrails", Monster, player.networkView.viewID);
 		}
 	}
 
@@ -361,7 +351,7 @@ public class SpawnManager : MonoBehaviour {
     /// </summary>
     /// <param name="role">The role of that player.</param>
     /// <param name="pair">That player's pair player name.</param>
-	[RPC] void SpawnPair(string role, string pair)
+	[RPC] void SpawnPair(string role, string pair , NetworkPlayer Monster)
 	{
 		spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
 		int index = Random.Range(0, spawnPoints.Length);
@@ -390,6 +380,7 @@ public class SpawnManager : MonoBehaviour {
             SetRoleText(player, "Thief", "You're " + randomName + ", a thief! There is another thief among you.");
 			break;
 		}
+		networkView.RPC ("EnableTrails", Monster, player.networkView.viewID);
 	}
 
     /// <summary>
