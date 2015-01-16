@@ -9,6 +9,7 @@ public class PlayerMenu : MonoBehaviour {
     /// </summary>
 	public void Quit()
     {
+        Destroy(GameObject.Find("NetworkManager"));
         Network.Disconnect();
         Application.LoadLevel(0);
     }
