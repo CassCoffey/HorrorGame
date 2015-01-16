@@ -18,7 +18,7 @@ Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\M
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.933 seconds
+- Completed reload, in  0.883 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -34,7 +34,7 @@ Received pong from 192.168.56.1:25000
  
 (Filename:  Line: 836)
 
-Received pong from 192.168.1.102:25000
+Received pong from 192.168.1.119:25000
  
 (Filename:  Line: 836)
 
@@ -70,17 +70,13 @@ Parameter name: index
  
 (Filename:  Line: -1)
 
-UnloadTime: 39.097240 ms
+UnloadTime: 27.109322 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 770.
-Total: 2.121582 ms (FindLiveObjects: 0.047469 ms CreateObjectMapping: 0.013684 ms MarkObjects: 0.398999 ms  DeleteObjects: 1.041333 ms)
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 1202.
+Total: 2.281526 ms (FindLiveObjects: 0.065858 ms CreateObjectMapping: 0.017961 ms MarkObjects: 0.578186 ms  DeleteObjects: 1.022517 ms)
 
 Is client
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Instantiating remote player view.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -92,7 +88,30 @@ Instantiating local player view.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Updating Sensitivity
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Updating Sensitivity
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+Trail Enabled
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.GameObject:get_transform ()
+  at Player.UpdateNamePosition () [0x00000] in <filename unknown>:0 
+  at Player.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
 The server has disconnected from the client. Most likely the server has shut down.
  
 (Filename:  Line: 745)
@@ -101,17 +120,58 @@ Successfully terminated connection to server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 40.827522 ms
+UnloadTime: 27.386440 ms
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 420 unused Assets to reduce memory usage. Loaded Objects now: 1073.
-Total: 1.770479 ms (FindLiveObjects: 0.062009 ms CreateObjectMapping: 0.026514 ms MarkObjects: 0.627793 ms  DeleteObjects: 0.476832 ms)
+Unloading 851 unused Assets to reduce memory usage. Loaded Objects now: 1075.
+Total: 1.890651 ms (FindLiveObjects: 0.070135 ms CreateObjectMapping: 0.029508 ms MarkObjects: 0.578613 ms  DeleteObjects: 0.675263 ms)
 
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-UnloadTime: 21.211975 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1075.
-Total: 2.261852 ms (FindLiveObjects: 0.047041 ms CreateObjectMapping: 0.018816 ms MarkObjects: 0.607693 ms  DeleteObjects: 0.748818 ms)
+Received pong from 192.168.56.1:25000
+ 
+(Filename:  Line: 836)
 
-WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+Received pong from 192.168.1.119:25000
+ 
+(Filename:  Line: 836)
+
+Server Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[UnityEngine.GameObject].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at LobbyManager.UpdatePing (Int32 index, Int32 ping) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[UnityEngine.GameObject].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at LobbyManager.UpdatePing (Int32 index, Int32 ping) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[UnityEngine.GameObject].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at LobbyManager.UpdatePing (Int32 index, Int32 ping) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[UnityEngine.GameObject].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at LobbyManager.UpdatePing (Int32 index, Int32 ping) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Successfully terminated connection to server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+

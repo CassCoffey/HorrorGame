@@ -512,6 +512,7 @@ public class Player : MonoBehaviour {
     void OnDisconnectedFromServer(NetworkDisconnection disconnection)
     {
         Destroy(GameObject.Find("NetworkManager"));
+        Network.SetLevelPrefix(0);
         Application.LoadLevel(0);
     }
 

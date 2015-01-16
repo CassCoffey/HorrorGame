@@ -8,9 +8,23 @@ public class PlayerMenu : MonoBehaviour {
     /// This should be merged with another script.
     /// </summary>
 	public void Quit()
-    {
+    {  
         Destroy(GameObject.Find("NetworkManager"));
-        Network.Disconnect();
+        if (Network.isServer)
+        {
+            foreach (NetworkPlayer player in Network.connections)
+            {
+                Network.RemoveRPCs(player);
+                Network.DestroyPlayerObjects(player);
+            }
+            Network.Disconnect();
+            MasterServer.UnregisterHost();
+        }
+        else
+        {
+            Network.Disconnect();
+        }
+        Network.SetLevelPrefix(0);
         Application.LoadLevel(0);
     }
 }
