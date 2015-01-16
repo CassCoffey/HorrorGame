@@ -117,7 +117,6 @@ public class LobbyManager : MonoBehaviour {
         float panelHeight = chatPrefab.GetComponent<RectTransform>().rect.height * 20;
         maxChatHeight = panelHeight;
         currentChatHeight = 0;
-        float currentHeight = chatPanel.GetComponent<RectTransform>().rect.height;
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, panelHeight);
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
     }
@@ -143,17 +142,6 @@ public class LobbyManager : MonoBehaviour {
 			playerList.Add (Network.connections[i]);
 		}
 	}
-
-	/// <summary>
-    /// When a player connects, it refreshes the list of players
-	/// </summary>
-    void OnPlayerConnected(NetworkPlayer player)
-    {
-        if (Network.isServer)
-        {
-            RefreshList();
-        }
-    }
 
 	/// <summary>
     /// Removes the player from the game and updates the player labels
@@ -305,6 +293,7 @@ public class LobbyManager : MonoBehaviour {
 	/// </summary>
     [RPC] void AddPlayerName(string playerName)
     {
+        RefreshList();
         playerNameList.Add(playerName);
 		UpdatePlayerLabels (playerList);
         networkView.RPC("RetrieveChatMessage", RPCMode.All, "Server", playerName + " has joined.", Color.green.r, Color.green.g, Color.green.b);

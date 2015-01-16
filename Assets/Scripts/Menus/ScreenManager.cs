@@ -5,7 +5,7 @@ using System.Collections;
 
 public class ScreenManager : MonoBehaviour {
 
-    public Camera camera;
+    public Camera mainCamera;
     public float totalTime;
     Vector3 locationTo;
     Quaternion rotationTo;
@@ -22,33 +22,33 @@ public class ScreenManager : MonoBehaviour {
         {
             canvas.enabled = false;
         }
-        camera.transform.parent.GetComponentInChildren<Canvas>().enabled = true;
-        camera.transform.parent.GetComponentInChildren<Canvas>().worldCamera = camera;
-        camera.transform.parent.GetComponentInChildren<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
-        camera.transform.parent.GetComponentInChildren<Canvas>().planeDistance = 6;
-        if (camera.transform.parent.GetComponent<Animator>() != null)
+        mainCamera.transform.parent.GetComponentInChildren<Canvas>().enabled = true;
+        mainCamera.transform.parent.GetComponentInChildren<Canvas>().worldCamera = mainCamera;
+        mainCamera.transform.parent.GetComponentInChildren<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
+        mainCamera.transform.parent.GetComponentInChildren<Canvas>().planeDistance = 6;
+        if (mainCamera.transform.parent.GetComponent<Animator>() != null)
         {
-            camera.transform.parent.GetComponent<Animator>().enabled = true;
+            mainCamera.transform.parent.GetComponent<Animator>().enabled = true;
         }
     }
 
 	public void MoveCameraTo(GameObject Location)
     {
         // Enable the next canvas, and turn off the current one.
-        if (camera.transform.parent.GetComponent<Animator>() != null)
+        if (mainCamera.transform.parent.GetComponent<Animator>() != null)
         {
-            camera.transform.parent.GetComponent<Animator>().enabled = false;
+            mainCamera.transform.parent.GetComponent<Animator>().enabled = false;
         }
-        previousCanvas = camera.transform.parent.GetComponentInChildren<Canvas>();
+        previousCanvas = mainCamera.transform.parent.GetComponentInChildren<Canvas>();
         previousCanvas.renderMode = RenderMode.WorldSpace;
         nextCanvas = Location.transform.GetComponentInChildren<Canvas>();
         nextCanvas.enabled = true;
-        camera.transform.SetParent(Location.transform);
+        mainCamera.transform.SetParent(Location.transform);
 
         locationTo = Location.transform.position;
         rotationTo = Location.transform.rotation;
-        startLocation = camera.transform.position;
-        startRotation = camera.transform.rotation;
+        startLocation = mainCamera.transform.position;
+        startRotation = mainCamera.transform.rotation;
         move = true;
     }
 
@@ -89,22 +89,22 @@ public class ScreenManager : MonoBehaviour {
             {
                 previousCanvas.enabled = false;
                 time = 1;
-                camera.transform.position = Vector3.Lerp(startLocation, locationTo, Mathf.SmoothStep(0, 1, time));
-                camera.transform.rotation = Quaternion.Lerp(startRotation, rotationTo, Mathf.SmoothStep(0, 1, time));
+                mainCamera.transform.position = Vector3.Lerp(startLocation, locationTo, Mathf.SmoothStep(0, 1, time));
+                mainCamera.transform.rotation = Quaternion.Lerp(startRotation, rotationTo, Mathf.SmoothStep(0, 1, time));
                 curTime = 0;
                 move = false;
                 nextCanvas.renderMode = RenderMode.ScreenSpaceCamera;
                 nextCanvas.planeDistance = 6;
-                if (camera.transform.parent.GetComponent<Animator>() != null)
+                if (mainCamera.transform.parent.GetComponent<Animator>() != null)
                 {
-                    camera.transform.parent.GetComponent<Animator>().enabled = true;
+                    mainCamera.transform.parent.GetComponent<Animator>().enabled = true;
                 }
                 StartCoroutine(SendMessage());
             }
             else
             {
-                camera.transform.position = Vector3.Lerp(startLocation, locationTo, Mathf.SmoothStep(0, 1, time));
-                camera.transform.rotation = Quaternion.Lerp(startRotation, rotationTo, Mathf.SmoothStep(0, 1, time));
+                mainCamera.transform.position = Vector3.Lerp(startLocation, locationTo, Mathf.SmoothStep(0, 1, time));
+                mainCamera.transform.rotation = Quaternion.Lerp(startRotation, rotationTo, Mathf.SmoothStep(0, 1, time));
                 curTime += Time.deltaTime;
             }
         }
