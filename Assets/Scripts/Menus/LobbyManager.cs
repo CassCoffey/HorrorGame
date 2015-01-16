@@ -145,17 +145,6 @@ public class LobbyManager : MonoBehaviour {
 	}
 
 	/// <summary>
-    /// When a player connects, it refreshes the list of players
-	/// </summary>
-    void OnPlayerConnected(NetworkPlayer player)
-    {
-        if (Network.isServer)
-        {
-            RefreshList();
-        }
-    }
-
-	/// <summary>
     /// Removes the player from the game and updates the player labels
 	/// </summary>
     void OnPlayerDisconnected(NetworkPlayer player)
@@ -305,6 +294,7 @@ public class LobbyManager : MonoBehaviour {
 	/// </summary>
     [RPC] void AddPlayerName(string playerName)
     {
+        RefreshList();
         playerNameList.Add(playerName);
 		UpdatePlayerLabels (playerList);
         networkView.RPC("RetrieveChatMessage", RPCMode.All, "Server", playerName + " has joined.", Color.green.r, Color.green.g, Color.green.b);
