@@ -19,7 +19,6 @@ public class ServerListManager : MonoBehaviour {
     private HostData host;
     private UnityEngine.UI.Button selectedButton;
     private Dictionary<Text, Ping> serverPings = new Dictionary<Text,Ping>();
-    private float pingUpdateTime = 0;
     private string password = "";
     private bool cameraChild = false;
 
