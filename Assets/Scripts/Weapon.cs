@@ -82,7 +82,6 @@ public class Weapon : MonoBehaviour {
             if (collision.collider.GetComponent<Vitals>() != null)
             {
                 collision.collider.GetComponent<Vitals>().TakeDamage((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)) * (int)rigidbody.mass);
-                Debug.Log((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)) * (int)rigidbody.mass);
             }
         }
     }
