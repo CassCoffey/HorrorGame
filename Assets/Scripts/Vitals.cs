@@ -9,6 +9,7 @@ public class Vitals : MonoBehaviour {
     public float jumpStamina;
     public float staminaRegen;
     public GameObject vitalsPanel;
+	public GameObject trailRenderer;
     public int maxHealth;
 
     private int health;
@@ -99,6 +100,7 @@ public class Vitals : MonoBehaviour {
         if (networkView.isMine)
         {
             vitalsPanel.transform.FindChild("HealthSlider").GetComponent<Slider>().value = health;
+			trailRenderer.GetComponent<TrailSyncing>().SyncTrails(health);
         }
     }
 

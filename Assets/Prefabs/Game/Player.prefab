@@ -999,6 +999,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 427552}
   - 96: {fileID: 9627552}
+  - 114: {fileID: 11463416}
+  - 148: {fileID: 14897680}
   m_Layer: 0
   m_Name: TrailRenderer
   m_TagString: Trail
@@ -1686,7 +1688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 737.74884, y: 0, z: 768.542358}
+  m_LocalPosition: {x: 738.960022, y: 1.421, z: 758.874023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -1916,7 +1918,7 @@ TrailRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 15
   m_StartWidth: 1.25
   m_EndWidth: 0
   m_Colors:
@@ -3986,7 +3988,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22437092}
   m_Direction: 2
   m_Value: 1
-  m_Size: .999999642
+  m_Size: .999997973
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4151,6 +4153,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11463416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d367e11d8f14ef42a63adff26dfad6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trailTime: 15
+  player: {fileID: 100000}
 --- !u!114 &11469462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4177,6 +4192,7 @@ MonoBehaviour:
   jumpStamina: 1
   staminaRegen: 1
   vitalsPanel: {fileID: 134088}
+  trailRenderer: {fileID: 127552}
   maxHealth: 100
 --- !u!114 &11471674
 MonoBehaviour:
@@ -4863,6 +4879,18 @@ NetworkView:
   m_Enabled: 1
   m_StateSynchronization: 1
   m_Observed: {fileID: 449468}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14897680
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127552}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 11463416}
   m_ViewID:
     m_ID: 0
     m_Type: 0
