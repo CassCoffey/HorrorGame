@@ -6047,7 +6047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e7ac0871754f84c90bb9b7e91be253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 729088900}
+  mainCamera: {fileID: 729088900}
   totalTime: 2
 --- !u!4 &827992460
 Transform:
@@ -10624,7 +10624,7 @@ RectTransform:
   m_GameObject: {fileID: 1744256953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 100.000015}
-  m_LocalScale: {x: .25663054, y: .25663054, z: .25663054}
+  m_LocalScale: {x: .25663054, y: .25663054, z: .25663057}
   m_Children:
   - {fileID: 458081969}
   - {fileID: 1965158507}
