@@ -6047,7 +6047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e7ac0871754f84c90bb9b7e91be253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 729088900}
+  mainCamera: {fileID: 729088900}
   totalTime: 2
 --- !u!4 &827992460
 Transform:
