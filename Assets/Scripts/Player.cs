@@ -89,10 +89,6 @@ public class Player : MonoBehaviour {
                 KeyInput();
             }
         }
-        else
-        {
-            UpdateNamePosition();
-        }
     }
 
     /// <summary>
@@ -108,6 +104,7 @@ public class Player : MonoBehaviour {
         else
         {
             SyncedMovement();
+            UpdateNamePosition();
         }
     }
 
