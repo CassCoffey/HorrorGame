@@ -20,6 +20,7 @@ public class MonsterManager : MonoBehaviour {
 	[SerializeField]private bool walkByDefault = true;									// controls how the walk/run modifier key behaves.
 	[SerializeField]private float walkSpeed = 3f;                                      // The speed at which we want the character to move
 	#endif
+
 	// Synchronization variables.
 	private float lastSynchronizationTime = 0f;
 	private float syncDelay = 0f;
@@ -29,6 +30,7 @@ public class MonsterManager : MonoBehaviour {
 	private Quaternion syncStartRotation = Quaternion.identity;
 	private Quaternion syncEndRotation = Quaternion.identity;
 	private Vector3 mousePosPrev;
+
 	// Variables for player movement.
 	public bool grounded { get; private set; }
 	private IComparer rayHitComparer;
@@ -326,24 +328,28 @@ public class MonsterManager : MonoBehaviour {
 	{
 		// add in monster attacks and abilities.
 	}
-	
 	/// <summary>
-	/// Sets up the player view based on if client or server.
+	/// Destroys the player prefab and removes all rpcs from it.
 	/// </summary>
-	
 	void OnPlayerDisconnected(NetworkPlayer player)
 	{
 		Network.RemoveRPCs (player);
 		Network.DestroyPlayerObjects (player);
 	}
-	
+
+	/// <summary>
+	/// Removes the networkmanager, disconnects from the server, and returns to the main menu
+	/// </summary>
 	void OnDisconnectedFromServer(NetworkDisconnection disconnection)
 	{
         Destroy(GameObject.Find("NetworkManager"));
         Network.SetLevelPrefix(0);
 		Application.LoadLevel(0);
 	}
-	
+
+	/// <summary>
+	/// Enables camera and mouse for the correct networkview and disables it for the rest
+	/// </summary>
 	void OnNetworkInstantiate(NetworkMessageInfo info)
 	{
 		if (networkView.isMine)
