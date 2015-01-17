@@ -20,6 +20,9 @@ public class ChatScript : MonoBehaviour {
     private const float chatTime = 8.0f;
     private float curTime = 0.0f;
 
+    /// <summary>
+    /// Refreshes the chat and initializes the chat slider.
+    /// </summary>
     public void Start()
     {
         RefreshChat();
@@ -27,6 +30,9 @@ public class ChatScript : MonoBehaviour {
         chatPanel.GetComponentInChildren<Scrollbar>().size = 0.2f;
     }
 
+    /// <summary>
+    /// Manages fading in and out.
+    /// </summary>
     public void Update()
     {
         if (visible && opacity != 1.0f)
@@ -58,6 +64,9 @@ public class ChatScript : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Toggles the chat window.
+    /// </summary>
     public void ToggleActive()
     {
         if (chatInput.IsInteractable())
@@ -80,11 +89,17 @@ public class ChatScript : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Activates or deactivates chat.
+    /// </summary>
     public void SetChat(bool chat)
     {
         visible = chat;
     }
 
+    /// <summary>
+    /// Sets the chat inactive.
+    /// </summary>
     public void SetInactive()
     {
         if (chatInput.IsInteractable())
@@ -96,7 +111,9 @@ public class ChatScript : MonoBehaviour {
         }
     }
 
-    //Removes all chat messages and resizes the chat panel
+    /// <summary>
+    /// Removes all chat messages and resizes the chat panel
+    /// </summary>
     void RefreshChat()
     {
         for (int i = 0; i < chatMessages.Count; i++)
@@ -111,6 +128,9 @@ public class ChatScript : MonoBehaviour {
         chatPanel.transform.FindChild("ChatScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
     }
 
+    /// <summary>
+    /// Sends a chat message if text is in the input field.
+    /// </summary>
     public void SendChatMessage()
     {
         if (Input.GetButtonUp("Chat") && chatInput.text != "" && chatInput.IsInteractable())
@@ -123,8 +143,10 @@ public class ChatScript : MonoBehaviour {
         }
     }
 
-    //Adds the chat message to the chat message array and moves all chat messages up in the scrolling box.
-    //Destroys any chat messages past the maximum chat height
+    /// <summary>
+    /// Adds the chat message to the chat message array and moves all chat messages up in the scrolling box.
+    /// Destroys any chat messages past the maximum chat height
+    /// </summary>
     [RPC] void RetrieveChatMessage(string player, string message, float r, float g, float b)
     {
         GameObject chat = (GameObject)Instantiate(chatPrefab);
