@@ -1602,7 +1602,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1013.87085, y: -5.96046448e-08, z: 989.783875}
+  m_LocalPosition: {x: 2.31699991, y: 1.19200003, z: 3.13899994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 406676}
@@ -3237,6 +3237,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11406496}
+        m_MethodName: UpdateSensitivity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &11406590
@@ -4137,6 +4149,7 @@ MonoBehaviour:
   jumpStamina: 1
   staminaRegen: 1
   vitalsPanel: {fileID: 106642}
+  trailRenderer: {fileID: 0}
   maxHealth: 100
 --- !u!114 &11406658
 MonoBehaviour:
@@ -4502,7 +4515,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22453910}
   m_Direction: 2
   m_Value: 1
-  m_Size: .999999762
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
