@@ -4,8 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class SpawnManager : MonoBehaviour {
-
-	// The default player prefab.
+	
 	public GameObject playerPrefab;
 	public GameObject monsterPrefab;
     public List<string> firstNames;
@@ -50,7 +49,9 @@ public class SpawnManager : MonoBehaviour {
 			ChooseRole();
 		}
 	}
-
+	/// <summary>
+	/// Chooses a random name for the players when they spawn
+	/// </summary>
     private void ChooseRandomName()
     {
         randomName = firstNames[Random.Range(0, firstNames.Count)];
@@ -81,9 +82,10 @@ public class SpawnManager : MonoBehaviour {
 			{
 				playerList.Add (Network.connections[i]);
 			}
+
+			//Spawning the monster
 			int monsterIndex = Random.Range (0, playerList.Count);
 			NetworkPlayer Monster = playerList[monsterIndex];
-			Debug.Log ("Creating Monster...");
 			if (playerList [monsterIndex] == Network.player) 
 			{
 				SpawnPlayer("Monster", Monster);
@@ -93,11 +95,11 @@ public class SpawnManager : MonoBehaviour {
 				networkView.RPC("SpawnPlayer", playerList[monsterIndex], "Monster", Monster);
 			}
 			playerList.RemoveAt(monsterIndex);
-			
+
+			//Spawning the cultist if their are more than 6 players
 			if (playerList.Count >= 6) 
 			{
 				int cultistIndex = Random.Range(0,playerList.Count);
-				Debug.Log ("Creating Cultist...");
 				if (playerList [cultistIndex] == Network.player) 
 				{
 					SpawnPlayer("Cultist", Monster);
@@ -109,13 +111,14 @@ public class SpawnManager : MonoBehaviour {
 				playerList.RemoveAt(cultistIndex);
 			}
 
-			Debug.Log ("Generating Special Roles...");
+			//Spawning special roles by taking half of the amount of players left rounded up
 			int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
 			for(int i = 0; i < numOfRoles; i++)
 			{
 				int specialIndex = Random.Range(0,playerList.Count);
 				NetworkPlayer specialPlayer = playerList[specialIndex];
 				int role;
+				//If there are two roles left or more, allow the spawning of paired roles
 				if(numOfRoles >= 2)
 				{
 					role = Random.Range (0,100);
@@ -124,9 +127,9 @@ public class SpawnManager : MonoBehaviour {
 				{
 					role = Random.Range (50,100);
 				}
+				//Paired Roles
 				if(role < 25)
 				{
-					Debug.Log ("Creating Lovers...");
 					int pairIndex = Random.Range(0,playerList.Count);
 					NetworkPlayer pairPlayer = playerList[pairIndex];
 					while(pairIndex == specialIndex){
@@ -152,7 +155,6 @@ public class SpawnManager : MonoBehaviour {
 				}
 				if(role >= 25 && role < 50)
 				{
-					Debug.Log ("Creating Thieves...");
 					int pairIndex = Random.Range(0,playerList.Count);
 					NetworkPlayer pairPlayer = playerList[pairIndex];
 					while(pairIndex == specialIndex){
@@ -176,9 +178,9 @@ public class SpawnManager : MonoBehaviour {
 					}
 					playerList.Remove(pairPlayer);
 				}
+				//Singular Special Roles
 				if(role >= 50 && role < 75)
 				{
-					Debug.Log ("Creating Priest...");
 					if (specialPlayer == Network.player) 
 					{
 						SpawnPlayer("Priest", Monster);
@@ -190,7 +192,6 @@ public class SpawnManager : MonoBehaviour {
 				}
 				if(role >= 75)
 				{
-					Debug.Log ("Creating Assassin...");
 					if (specialPlayer == Network.player) 
 					{
 						SpawnPlayer("Assassin", Monster);
@@ -201,6 +202,8 @@ public class SpawnManager : MonoBehaviour {
 					}
 				}
 				playerList.Remove(specialPlayer);
+
+			//Spawns the rest of the normal roles
 			}
 			while (playerList.Count > 0) 
 			{
@@ -209,7 +212,6 @@ public class SpawnManager : MonoBehaviour {
 				int normRole = Random.Range (0,100);
 				if(normRole < 50)
 				{
-					Debug.Log ("Creating Peasant...");
 					if (normPlayer == Network.player) 
 					{
 						SpawnPlayer("Peasant", Monster);
@@ -221,7 +223,6 @@ public class SpawnManager : MonoBehaviour {
 				}
 				if(normRole >= 50)
 				{
-					Debug.Log ("Creating Survivor...");
 					if (normPlayer == Network.player) 
 					{
 						SpawnPlayer("Survivor", Monster);
