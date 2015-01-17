@@ -15,6 +15,9 @@ public class Item : MonoBehaviour {
     private Quaternion originRot;
     private Quaternion destinationRot;
 
+    /// <summary>
+    /// Returns true if this weapon is idle.
+    /// </summary>
     public bool CanSwitch()
     {
         if (weapon != null)
@@ -24,6 +27,10 @@ public class Item : MonoBehaviour {
         else return true;
     }
 
+    /// <summary>
+    /// Equips this item to the specified player.
+    /// </summary>
+    /// <param name="player">The player to equip to.</param>
     public void PickUp(GameObject player)
     {
         networkView.RPC("SyncPickup", RPCMode.OthersBuffered, player.networkView.viewID);
@@ -38,6 +45,9 @@ public class Item : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Unequips this item.
+    /// </summary>
     public void Drop()
     {
         networkView.RPC("SyncDrop", RPCMode.OthersBuffered);
@@ -55,6 +65,9 @@ public class Item : MonoBehaviour {
         rigidbody.isKinematic = false;
     }
 
+    /// <summary>
+    /// Activates the item based on it's type.
+    /// </summary>
     public void Use()
     {
         if (weapon != null)
@@ -66,6 +79,9 @@ public class Item : MonoBehaviour {
         
     }
 
+    /// <summary>
+    /// Activates the alternate use of the item based on it's type.
+    /// </summary>
     public void AltUse()
     {
         if (weapon != null)
@@ -85,7 +101,7 @@ public class Item : MonoBehaviour {
     }
 
     /// <summary>
-    /// Moves the weapon smoothly to a location. 
+    /// Moves the item smoothly to a location. 
     /// *Will eventually be deprecated with actual animations.*
     /// </summary>
     public void LerpTo(Vector3 location, Quaternion rotation, float time)
@@ -113,7 +129,7 @@ public class Item : MonoBehaviour {
     }
 
     /// <summary>
-    /// If the weapon is being moved to a new position, handle Slerping.
+    /// If the item is being moved to a new position, handle Slerping.
     /// </summary>
     public void FixedUpdate()
     {
@@ -131,6 +147,10 @@ public class Item : MonoBehaviour {
             }
         }
     }
+
+    /// <summary>
+    /// Code for syncing items
+    /// </summary>
 
     [RPC] void SyncPickup(NetworkViewID viewID)
     {
