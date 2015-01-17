@@ -1602,7 +1602,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.31699991, y: 1.19200003, z: 3.13899994}
+  m_LocalPosition: {x: 742.437012, y: 1.18099999, z: 760.27301}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 406676}
@@ -4149,7 +4149,7 @@ MonoBehaviour:
   jumpStamina: 1
   staminaRegen: 1
   vitalsPanel: {fileID: 106642}
-  trailRenderer: {fileID: 0}
+  player: {fileID: 106510}
   maxHealth: 100
 --- !u!114 &11406658
 MonoBehaviour:
