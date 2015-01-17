@@ -6,6 +6,7 @@ public class TrailSyncing : MonoBehaviour {
 	public int trailTime;
 	public GameObject player;
 
+	//Syncs up the trailtime between players and makes the trailrenderer time = the trailtime
 	private void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
 		if (stream.isWriting) 
@@ -18,8 +19,10 @@ public class TrailSyncing : MonoBehaviour {
 			player.transform.FindChild("TrailRenderer").GetComponent<TrailRenderer>().time = trailTime;
 		}
 	}
+
+	//The equation for the trailtime based on health
 	public void SyncTrails(int health)
 	{
-		trailTime = 15 + (20 / ((health/10) + 1));
+		trailTime = 15 + (30 / ((health/10) + 1));
 	}
 }
