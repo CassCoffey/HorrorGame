@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour {
     private float percentCharge;
     private const float goalCharge = 0.15f;
     private float startCharge;
+    private Vector3 previousVelocity;
 
 
     public void Update()
@@ -30,6 +31,11 @@ public class Weapon : MonoBehaviour {
         {
             charging = false;
         }
+    }
+
+    public void FixedUpdate()
+    {
+        previousVelocity = rigidbody.velocity;
     }
 
     public void Charge()
@@ -59,7 +65,7 @@ public class Weapon : MonoBehaviour {
     /// </summary>
     public void OnCollisionEnter(Collision collision)
     {
-        if (!isStuck && collision.collider.transform.parent != transform && !collision.collider.isTrigger && collision.collider.transform != transform && collision.relativeVelocity.magnitude > (10/rigidbody.mass))
+        if (!isStuck && collision.collider.transform.parent != transform && !collision.collider.isTrigger && collision.collider.transform != transform && collision.relativeVelocity.magnitude > (10/rigidbody.mass) && previousVelocity.magnitude > 5)
         {
             if (isSharp)
             {
