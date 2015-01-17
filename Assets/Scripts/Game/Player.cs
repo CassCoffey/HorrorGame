@@ -16,10 +16,10 @@ public class Player : MonoBehaviour {
     [SerializeField]private float runSpeed = 8f;                                       // The speed at which we want the character to move
     [SerializeField]private float strafeSpeed = 4f;                                    // The speed at which we want the character to be able to strafe
     [SerializeField]private float jumpPower = 5f;                                      // The power behind the characters jump. increase for higher jumps
-#if !MOBILE_INPUT
+    #if !MOBILE_INPUT
     [SerializeField]private bool walkByDefault = true;									// controls how the walk/run modifier key behaves.
     [SerializeField]private float walkSpeed = 3f;                                      // The speed at which we want the character to move
-#endif
+    #endif
     // Synchronization variables.
     private float lastSynchronizationTime = 0f;
     private float syncDelay = 0f;
@@ -57,6 +57,7 @@ public class Player : MonoBehaviour {
         public PhysicMaterial highFrictionMaterial;                                     // Material used for high friction ( can stop character sliding down slopes )
         public float groundStickyEffect = 5f;											// power of 'stick to ground' effect - prevents bumping down slopes.
     }
+
 
     /// <summary>
     /// When this script wakes up, initialize some variables and lock the mouse cursor.
@@ -149,6 +150,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Updates the location of this player object's name tage based on the client's location.
+    /// </summary>
     private void UpdateNamePosition()
     {
         GameObject player = GameObject.Find("SpawnManager").GetComponent<SpawnManager>().myPlayer;
@@ -175,15 +179,15 @@ public class Player : MonoBehaviour {
         float speed = runSpeed;
 
         // Read input
-#if CROSS_PLATFORM_INPUT
+    #if CROSS_PLATFORM_INPUT
         float h = CrossPlatformInput.GetAxis("Horizontal");
         float v = CrossPlatformInput.GetAxis("Vertical");
         bool jump = CrossPlatformInput.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && grounded;  // Makes sure the player has enough stamina.
-#else
+    #else
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
         bool jump = Input.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && grounded;
-#endif
+    #endif
         // Don't take movement if chatting.
         if (chatting)
         {
@@ -191,7 +195,7 @@ public class Player : MonoBehaviour {
             v = 0;
             jump = false;
         }
-#if !MOBILE_INPUT
+    #if !MOBILE_INPUT
         // Use stamina if jumping.
         if (jump)
         {
@@ -212,7 +216,7 @@ public class Player : MonoBehaviour {
         // On mobile, it's controlled in analogue fashion by the v input value, and therefore needs no special handling.
 
 
-#endif
+    #endif
 
         input = new Vector2(h, v);
 
@@ -497,15 +501,17 @@ public class Player : MonoBehaviour {
     }
 
     /// <summary>
-    /// Sets up the player view based on if client or server.
+    /// Cleans up after a disconnected player.
     /// </summary>
-
 	void OnPlayerDisconnected(NetworkPlayer player)
 	{
 		Network.RemoveRPCs (player);
 		Network.DestroyPlayerObjects (player);
 	}
 
+    /// <summary>
+    /// Goes back to the menu after disconnecting.
+    /// </summary>
     void OnDisconnectedFromServer(NetworkDisconnection disconnection)
     {
         Destroy(GameObject.Find("NetworkManager"));
@@ -513,6 +519,9 @@ public class Player : MonoBehaviour {
         Application.LoadLevel(0);
     }
 
+    /// <summary>
+    /// Sets up the player view based on if client or server.
+    /// </summary>
     void OnNetworkInstantiate(NetworkMessageInfo info)
     {
         if (networkView.isMine)
@@ -534,6 +543,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Updates this player's name label text.
+    /// </summary>
     [RPC] void UpdateNameText(string name)
     {
         transform.FindChild("NameCanvas").GetComponentInChildren<Text>().text = name;
@@ -541,7 +553,7 @@ public class Player : MonoBehaviour {
 
     //
     /// <summary>
-    /// RPCs that sync all weapon movements across clients.
+    /// RPCs that sync all item movements across clients.
     /// </summary>
     //
 
