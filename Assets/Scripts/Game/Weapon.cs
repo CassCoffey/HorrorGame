@@ -13,7 +13,9 @@ public class Weapon : MonoBehaviour {
     private float startCharge;
     private Vector3 previousVelocity;
 
-
+    /// <summary>
+    /// Manage charge levels.
+    /// </summary>
     public void Update()
     {
         if (charging && percentCharge != 1.0f && transform.parent != null && transform.parent.GetComponent<Animator>() != null && transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Default"))
@@ -33,17 +35,27 @@ public class Weapon : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Keep track of the previous velocity in order to check collision speeds.
+    /// </summary>
     public void FixedUpdate()
     {
         previousVelocity = rigidbody.velocity;
     }
 
+    /// <summary>
+    /// Begins charging the weapon.
+    /// </summary>
     public void Charge()
     {
         charging = true;
         startCharge = Time.time;
     }
 
+    /// <summary>
+    /// Throws the weapon.
+    /// </summary>
+    /// <param name="throwForce">The force with which to throw.</param>
     public void Throw(float throwForce)
     {
         networkView.RPC("SyncThrow", RPCMode.OthersBuffered, percentCharge, throwForce);
@@ -85,6 +97,7 @@ public class Weapon : MonoBehaviour {
                     rigidbody.isKinematic = true;
                 }
             }
+            // If you collided with something that has vitals, hurt said vitals.
             if (collision.collider.GetComponent<Vitals>() != null)
             {
                 collision.collider.GetComponent<Vitals>().TakeDamage((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)) * (int)rigidbody.mass);
@@ -104,6 +117,11 @@ public class Weapon : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Synchronizes the throw for all instances of the weapon.
+    /// </summary>
+    /// <param name="percent">The chrge percent.</param>
+    /// <param name="throwForce">The throw force.</param>
     [RPC] void SyncThrow(float percent, float throwForce)
     {
         charging = false;
