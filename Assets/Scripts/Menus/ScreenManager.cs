@@ -26,6 +26,7 @@ public class ScreenManager : MonoBehaviour {
         mainCamera.transform.parent.GetComponentInChildren<Canvas>().worldCamera = mainCamera;
         mainCamera.transform.parent.GetComponentInChildren<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
         mainCamera.transform.parent.GetComponentInChildren<Canvas>().planeDistance = 6;
+        mainCamera.transform.parent.GetComponentInChildren<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         if (mainCamera.transform.parent.GetComponent<Animator>() != null)
         {
             mainCamera.transform.parent.GetComponent<Animator>().enabled = true;
@@ -95,6 +96,7 @@ public class ScreenManager : MonoBehaviour {
                 move = false;
                 nextCanvas.renderMode = RenderMode.ScreenSpaceCamera;
                 nextCanvas.planeDistance = 6;
+                nextCanvas.transform.GetComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
                 if (mainCamera.transform.parent.GetComponent<Animator>() != null)
                 {
                     mainCamera.transform.parent.GetComponent<Animator>().enabled = true;
