@@ -1688,7 +1688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 741.192749, y: 0, z: 759.253113}
+  m_LocalPosition: {x: 992.68103, y: 1.28600001, z: 1014.91602}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -1924,19 +1924,19 @@ TrailRenderer:
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
-      rgba: 4279111312
+      rgba: 4294638330
     m_Color[1]:
       serializedVersion: 2
-      rgba: 4279111311
+      rgba: 4294375158
     m_Color[2]:
       serializedVersion: 2
-      rgba: 4279111310
+      rgba: 4294835709
     m_Color[3]:
       serializedVersion: 2
-      rgba: 4279111309
+      rgba: 4294901502
     m_Color[4]:
       serializedVersion: 2
-      rgba: 921228
+      rgba: 16777215
   m_MinVertexDistance: .100000001
   m_Autodestruct: 0
 --- !u!114 &11400000
@@ -4000,7 +4000,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22437092}
   m_Direction: 2
   m_Value: 1
-  m_Size: .999999583
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4177,6 +4177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailTime: 15
+  trailGreen: 0
+  trailRed: 0
   player: {fileID: 100000}
 --- !u!114 &11469462
 MonoBehaviour:
