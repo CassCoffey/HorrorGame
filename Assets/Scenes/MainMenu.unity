@@ -5341,7 +5341,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1417490315}
   m_Direction: 2
   m_Value: 1
-  m_Size: .999999642
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6757,7 +6757,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 335173963}
   m_Direction: 2
   m_Value: 0
-  m_Size: .999967515
+  m_Size: .999983728
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8507,6 +8507,7 @@ GameObject:
   - 222: {fileID: 1310808542}
   - 114: {fileID: 1310808541}
   - 95: {fileID: 1310808543}
+  - 114: {fileID: 1310808544}
   m_Layer: 5
   m_Name: ServerPanel
   m_TagString: Untagged
@@ -8579,6 +8580,18 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1310808544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1310808539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &1346020572
 GameObject:
   m_ObjectHideFlags: 0
@@ -8973,7 +8986,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1192546342}
   m_Direction: 2
   m_Value: 0
-  m_Size: .999978065
+  m_Size: .999988735
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10329,7 +10342,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1684561345}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1.00000012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5.99999619}
   m_LocalScale: {x: .0115470057, y: .0115470057, z: .0115470057}
   m_Children:
@@ -11919,7 +11932,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 373050729}
   m_Direction: 2
   m_Value: 0
-  m_Size: .999998748
+  m_Size: .999999881
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12030,7 +12043,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2111052466}
   m_Direction: 2
   m_Value: 1
-  m_Size: .999999046
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
