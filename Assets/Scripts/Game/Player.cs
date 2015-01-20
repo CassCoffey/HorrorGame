@@ -516,6 +516,8 @@ public class Player : MonoBehaviour {
     {
         Destroy(GameObject.Find("NetworkManager"));
         Network.SetLevelPrefix(0);
+        Screen.showCursor = true;
+        Screen.lockCursor = false;
         Application.LoadLevel(0);
     }
 
