@@ -19,6 +19,19 @@ public class NetworkManager : MonoBehaviour {
             appId = value;
         }
     }
+    // Version number management
+    private static string version = "v0.01";
+    public static string Version
+    {
+        get
+        {
+            return version;
+        }
+        private set
+        {
+            version = value;
+        }
+    }
     // Fields for defining the server.
     public string gameScene = "TestScene";
     public string gameName = "ServerName";
@@ -26,6 +39,8 @@ public class NetworkManager : MonoBehaviour {
     public int maxPlayers = 4;
     public int port = 25000;
     public string playerName = "Player Name";
+
+    public Text versionText;
 
     // Defines the prefix of the previous level.
     private int lastLevelPrefix = 0;
@@ -45,6 +60,7 @@ public class NetworkManager : MonoBehaviour {
         {
             playerName = PlayerPrefs.GetString("UserName");
         }
+        versionText.text = Version;
         DontDestroyOnLoad(this);
     }
 
@@ -66,7 +82,7 @@ public class NetworkManager : MonoBehaviour {
     {
         Network.incomingPassword = password;
         Network.InitializeServer(maxPlayers - 1, port, !Network.HavePublicAddress());
-        MasterServer.RegisterHost(appId, gameName);
+        MasterServer.RegisterHost(appId, gameName, Version);
 	}
 
     /// <summary>

@@ -68,7 +68,7 @@ public class ServerListManager : MonoBehaviour {
                 serverListPanel.GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
                 for (int i = 0; i < hostList.Length; i++)
                 {
-                    if (hostList[i].comment != "Closed")
+                    if (hostList[i].comment != "Closed" && hostList[i].comment == NetworkManager.Version)
                     {
                         GameObject button = (GameObject)Instantiate(serverPrefab);
                         button.transform.SetParent(serverListPanel.transform, false);
