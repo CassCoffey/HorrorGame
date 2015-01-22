@@ -4178,7 +4178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailTime: 15
-  trailGreen: 0
+  trailGreen: 1
   trailRed: 0
   player: {fileID: 100000}
 --- !u!114 &11469462
