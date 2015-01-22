@@ -3237,7 +3237,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11400048}
         m_MethodName: SetFullscreen
         m_Mode: 0
         m_Arguments:
@@ -3351,7 +3351,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11400048}
         m_MethodName: ChangeVoiceVolume
         m_Mode: 0
         m_Arguments:
@@ -3564,7 +3564,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11400048}
         m_MethodName: ChangeMusicVolume
         m_Mode: 0
         m_Arguments:
@@ -4680,7 +4680,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11400048}
         m_MethodName: ChangeMasterVolume
         m_Mode: 0
         m_Arguments:
