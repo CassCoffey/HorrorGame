@@ -98,6 +98,11 @@ public class Vitals : MonoBehaviour {
                 {
                     player.GetComponent<Player>().Die();
                 }
+                if (player.tag == "Monster")
+                {
+                    player.GetComponent<MonsterManager>().Respawn();
+                    health = maxHealth;
+                }
                 Debug.Log("You died.");
             }
         }

@@ -285,6 +285,10 @@ public class MonsterManager : MonoBehaviour {
 			GetComponent<ChatScript>().SendChatMessage();
 			ToggleChat();
 		}
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Respawn();  // Debug Killswitch
+        }
 	}
 	
 	/// <summary>
@@ -370,6 +374,25 @@ public class MonsterManager : MonoBehaviour {
 			GetComponentInChildren<Camera>().GetComponent<MouseLook>().enabled = false;
 		}
 	}
+
+    public void Respawn()
+    {
+        networkView.RPC("SyncRespawn", RPCMode.OthersBuffered);
+        foreach (Weapon weapon in GetComponentsInChildren<Weapon>())
+        {
+            weapon.Unstick();
+        }
+        transform.position = GameObject.FindWithTag("MonsterSpawn").transform.position;
+    }
+
+    [RPC] void SyncRespawn()
+    {
+        foreach (Weapon weapon in GetComponentsInChildren<Weapon>())
+        {
+            weapon.Unstick();
+        }
+        transform.position = GameObject.FindWithTag("MonsterSpawn").transform.position;
+    }
 	
 	/// <summary>
 	/// Used for comparing distances
