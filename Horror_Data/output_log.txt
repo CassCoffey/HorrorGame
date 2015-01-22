@@ -4,7 +4,7 @@ Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
     Renderer: NVIDIA GeForce GT 755M (ID=0xfcd)
     Vendor:   NVIDIA
-    VRAM:     1951 MB
+    VRAM:     1985 MB
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\UnityEngine.dll into Unity Child Domain
@@ -18,7 +18,7 @@ Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\M
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.874 seconds
+- Completed reload, in  0.952 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -26,25 +26,83 @@ Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\M
 Platform assembly: C:\Users\HyperNinjaPenguin\Documents\HorrorGame\Horror_Data\Managed\System.dll (this message is harmless)
 WARNING: Shader Unsupported: 'Hidden/Nature/Tree Creator Leaves Optimized' - Pass '' shader state not supported
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-NullReferenceException
-  at (wrapper managed-to-native) UnityEngine.RectTransform:INTERNAL_set_anchorMin (UnityEngine.Vector2&)
-  at UnityEngine.RectTransform.set_anchorMin (Vector2 value) [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.Slider.UpdateVisuals () [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.Slider.OnRectTransformDimensionsChange () [0x00000] in <filename unknown>:0 
-UnityEngine.Canvas:set_scaleFactor(Single)
-UnityEngine.UI.CanvasScaler:SetScaleFactor(Single)
-UnityEngine.UI.CanvasScaler:OnDisable()
+Attempting to join server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Received pong from 192.168.56.1:25000
+ 
+(Filename:  Line: 836)
+
+Received pong from 192.168.1.114:25000
+ 
+(Filename:  Line: 836)
+
+Server Joined
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[UnityEngine.GameObject].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at LobbyManager.UpdatePing (Int32 index, Int32 ping) [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
 
-NullReferenceException
-  at (wrapper managed-to-native) UnityEngine.RectTransform:INTERNAL_set_anchorMin (UnityEngine.Vector2&)
-  at UnityEngine.RectTransform.set_anchorMin (Vector2 value) [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.Slider.UpdateVisuals () [0x00000] in <filename unknown>:0 
-  at UnityEngine.UI.Slider.OnRectTransformDimensionsChange () [0x00000] in <filename unknown>:0 
-UnityEngine.Canvas:set_scaleFactor(Single)
-UnityEngine.UI.CanvasScaler:SetScaleFactor(Single)
-UnityEngine.UI.CanvasScaler:OnDisable()
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[UnityEngine.GameObject].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at LobbyManager.UpdatePing (Int32 index, Int32 ping) [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
 
+UnloadTime: 27.903900 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 1453.
+Total: 2.545815 ms (FindLiveObjects: 0.076977 ms CreateObjectMapping: 0.028225 ms MarkObjects: 0.767636 ms  DeleteObjects: 1.063571 ms)
+
+Is client
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Spawning Player
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating local player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Updating Sensitivity
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Updating Sensitivity
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+Trail Enabled
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+The server has disconnected from the client. Most likely the server has shut down.
+ 
+(Filename:  Line: 745)
+
+Successfully terminated connection to server.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 28.205822 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1136 unused Assets to reduce memory usage. Loaded Objects now: 1047.
+Total: 2.485088 ms (FindLiveObjects: 0.081253 ms CreateObjectMapping: 0.032073 ms MarkObjects: 0.640623 ms  DeleteObjects: 0.888234 ms)
+
+WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported

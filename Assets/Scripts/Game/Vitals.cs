@@ -94,6 +94,10 @@ public class Vitals : MonoBehaviour {
             health = 0;
             if (networkView.isMine)
             {
+                if (player.tag == "Player")
+                {
+                    player.GetComponent<Player>().Die();
+                }
                 Debug.Log("You died.");
             }
         }

@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
     public GameObject Chat;
     public GameObject player;
 
+    public GameObject Spectator;
+
     public string Name;
 
     [SerializeField]private float runSpeed = 8f;                                       // The speed at which we want the character to move
@@ -543,6 +545,22 @@ public class Player : MonoBehaviour {
             GetComponentInChildren<MouseLook>().enabled = false;
             GetComponentInChildren<Camera>().GetComponent<MouseLook>().enabled = false;
         }
+    }
+
+    public void Die()
+    {
+        networkView.RPC("SyncDie", RPCMode.OthersBuffered);
+        DropItem();
+        DropItem();
+        Instantiate(Spectator, transform.position, transform.rotation);
+        Destroy(this.gameObject);
+    }
+
+    [RPC] void SyncDie()
+    {
+        DropItem();
+        DropItem();
+        Destroy(this.gameObject);
     }
 
     /// <summary>
