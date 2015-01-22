@@ -18,7 +18,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.093 seconds
+- Completed reload, in  0.087 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -48,11 +48,11 @@ Parameter name: index
  
 (Filename:  Line: -1)
 
-UnloadTime: 24.604000 ms
+UnloadTime: 25.691523 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 1154.
-Total: 2.809463 ms (FindLiveObjects: 0.110994 ms CreateObjectMapping: 0.031930 ms MarkObjects: 0.747315 ms  DeleteObjects: 1.268839 ms)
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 1461.
+Total: 2.123728 ms (FindLiveObjects: 0.073743 ms CreateObjectMapping: 0.024327 ms MarkObjects: 0.663688 ms  DeleteObjects: 0.900883 ms)
 
 Is client
  
@@ -83,13 +83,6 @@ Trail Enabled
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-NullReferenceException
-  at (wrapper managed-to-native) UnityEngine.GameObject:get_transform ()
-  at Player.UpdateNamePosition () [0x00000] in <filename unknown>:0 
-  at Player.FixedUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
 The server has disconnected from the client. Most likely the server has shut down.
  
 (Filename:  Line: 745)
@@ -98,10 +91,17 @@ Successfully terminated connection to server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 39.490246 ms
+UnloadTime: 26.725449 ms
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 838 unused Assets to reduce memory usage. Loaded Objects now: 1044.
-Total: 1.637555 ms (FindLiveObjects: 0.063479 ms CreateObjectMapping: 0.027748 ms MarkObjects: 0.498716 ms  DeleteObjects: 0.645062 ms)
+Unloading 1137 unused Assets to reduce memory usage. Loaded Objects now: 1046.
+Total: 1.613987 ms (FindLiveObjects: 0.078684 ms CreateObjectMapping: 0.027368 ms MarkObjects: 0.486553 ms  DeleteObjects: 0.635940 ms)
+
+WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+UnloadTime: 19.215425 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1046.
+Total: 2.212296 ms (FindLiveObjects: 0.065000 ms CreateObjectMapping: 0.022046 ms MarkObjects: 0.810795 ms  DeleteObjects: 0.630998 ms)
 
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported

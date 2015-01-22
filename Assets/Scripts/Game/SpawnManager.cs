@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour {
 	public GameObject monsterPrefab;
     public List<string> firstNames;
     public List<string> lastNames;
+	public int playersAlive;
 
 	private GameObject[] spawnPoints;
 	private float spawnRadius = 5f;
@@ -110,6 +111,7 @@ public class SpawnManager : MonoBehaviour {
 				}
 				playerList.RemoveAt(cultistIndex);
 			}
+			playersAlive = playerList.Count;
 
 			//Spawning special roles by taking half of the amount of players left rounded up
 			int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
@@ -255,6 +257,11 @@ public class SpawnManager : MonoBehaviour {
 			player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleDescriptionPanel").FindChild("RoleDescription").GetComponent<Text>().text = roleDescription;
 		}
     }
+
+	public void playerDeath()
+	{
+		playersAlive -= 1;
+	}
 
 	[RPC] void EnableTrails(NetworkViewID viewID)
 	{

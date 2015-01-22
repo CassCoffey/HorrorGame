@@ -554,6 +554,7 @@ public class Player : MonoBehaviour {
     public void Die()
     {
         networkView.RPC("SyncDie", RPCMode.OthersBuffered);
+		GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playerDeath();
         DropItem();
         DropItem();
         Instantiate(Spectator, transform.position, transform.rotation);
