@@ -378,6 +378,10 @@ public class Player : MonoBehaviour {
         {
             AltItemUse();
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Die();
+        }
     }
 
     /// <summary>
@@ -553,6 +557,10 @@ public class Player : MonoBehaviour {
         DropItem();
         DropItem();
         Instantiate(Spectator, transform.position, transform.rotation);
+        foreach (Weapon weapon in GetComponentsInChildren<Weapon>())
+        {
+            weapon.Unstick();
+        }
         Destroy(this.gameObject);
     }
 
@@ -560,6 +568,10 @@ public class Player : MonoBehaviour {
     {
         DropItem();
         DropItem();
+        foreach (Weapon weapon in GetComponentsInChildren<Weapon>())
+        {
+            weapon.Unstick();
+        }
         Destroy(this.gameObject);
     }
 

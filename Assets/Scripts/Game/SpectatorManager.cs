@@ -129,11 +129,7 @@ public class SpectatorManager : MonoBehaviour {
         }
         Screen.showCursor = Menu.activeSelf;
         Screen.lockCursor = !Menu.activeSelf;
-        foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
-        {
-            mouseLook.enabled = !Menu.activeSelf;
-        }
-        chatting = false;
+        GetComponent<MouseLook>().enabled = !Menu.activeSelf;
         GetComponent<ChatScript>().SetInactive();
     }
 
@@ -144,9 +140,6 @@ public class SpectatorManager : MonoBehaviour {
     {
         chatting = !chatting;
         GetComponent<ChatScript>().ToggleActive();
-        foreach (MouseLook mouseLook in GetComponentsInChildren<MouseLook>())
-        {
-            mouseLook.enabled = !chatting;
-        }
+        GetComponent<MouseLook>().enabled = !chatting;
     }
 }

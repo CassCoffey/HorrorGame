@@ -105,6 +105,14 @@ public class Weapon : MonoBehaviour {
         }
     }
 
+    public void Unstick()
+    {
+        collider.isTrigger = false;
+        GetComponent<Weapon>().isStuck = false;
+        transform.SetParent(null);
+        rigidbody.isKinematic = false;
+    }
+
     /// <summary>
     /// When the weapon is swinging, its collider acts as a trigger.
     /// When it is triggered, it deals damage.
