@@ -9,6 +9,7 @@ public class TrailSyncing : MonoBehaviour {
 	public GameObject player;
 
 	//Syncs up the trailtime between players and makes the trailrenderer time = the trailtime
+	//Syncs up color as well
 	private void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
 		if (stream.isWriting) 
@@ -27,7 +28,7 @@ public class TrailSyncing : MonoBehaviour {
 		}
 	}
 
-	//The equation for the trailtime based on health
+	//The equation for the trailtime and color based on health
 	public void SyncTrails(int health)
 	{
 		trailTime = 15 + (30 / ((health/10) + 1));

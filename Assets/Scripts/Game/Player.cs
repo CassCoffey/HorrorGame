@@ -551,6 +551,8 @@ public class Player : MonoBehaviour {
         }
     }
 
+	//When the player dies, drops all items, unsticks weapon, and destroys the player game object
+	//Also calls for syncing and keeping track of deaths
     public void Die()
     {
         networkView.RPC("SyncDie", RPCMode.OthersBuffered);
@@ -565,6 +567,7 @@ public class Player : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
+	//Syncs up the player dying for everyone else
     [RPC] void SyncDie()
     {
         DropItem();
