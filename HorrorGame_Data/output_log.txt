@@ -18,7 +18,7 @@ Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Manag
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\Ionic.Zlib.dll into Unity Child Domain
 Platform assembly: C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll (this message is harmless)
 Loading C:\Users\jonat_000\Documents\HorrorGame\HorrorGame_Data\Managed\NSpeex.dll into Unity Child Domain
-- Completed reload, in  0.087 seconds
+- Completed reload, in  0.132 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -48,13 +48,21 @@ Parameter name: index
  
 (Filename:  Line: -1)
 
-UnloadTime: 25.691523 ms
+UnloadTime: 24.293444 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 1461.
-Total: 2.123728 ms (FindLiveObjects: 0.073743 ms CreateObjectMapping: 0.024327 ms MarkObjects: 0.663688 ms  DeleteObjects: 0.900883 ms)
+Total: 2.028318 ms (FindLiveObjects: 0.052076 ms CreateObjectMapping: 0.024327 ms MarkObjects: 0.635179 ms  DeleteObjects: 0.846906 ms)
+
+Player's Win!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 Is client
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Instantiating remote player view.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -66,10 +74,6 @@ Instantiating local player view.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Instantiating remote player view.
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
 Updating Sensitivity
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
@@ -79,29 +83,57 @@ Updating Sensitivity
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-Trail Enabled
+Player's Win!
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-The server has disconnected from the client. Most likely the server has shut down.
+Player's Win!
  
-(Filename:  Line: 745)
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player's Win!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player's Win!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player's Win!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player's Win!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player's Win!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player's Win!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Throwing
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player's Win!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Player's Win!
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
 Successfully terminated connection to server.
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 26.725449 ms
+UnloadTime: 29.995617 ms
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 1137 unused Assets to reduce memory usage. Loaded Objects now: 1046.
-Total: 1.613987 ms (FindLiveObjects: 0.078684 ms CreateObjectMapping: 0.027368 ms MarkObjects: 0.486553 ms  DeleteObjects: 0.635940 ms)
+Unloading 1136 unused Assets to reduce memory usage. Loaded Objects now: 1053.
+Total: 1.714719 ms (FindLiveObjects: 0.100731 ms CreateObjectMapping: 0.028889 ms MarkObjects: 0.510120 ms  DeleteObjects: 0.687256 ms)
 
-WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-UnloadTime: 19.215425 ms
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1046.
-Total: 2.212296 ms (FindLiveObjects: 0.065000 ms CreateObjectMapping: 0.022046 ms MarkObjects: 0.810795 ms  DeleteObjects: 0.630998 ms)
-
-WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
