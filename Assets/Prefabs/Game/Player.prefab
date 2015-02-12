@@ -1479,7 +1479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &190474
 GameObject:
   m_ObjectHideFlags: 1
@@ -1688,7 +1688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1004.29187, y: 0, z: 1003.47284}
+  m_LocalPosition: {x: 1004.04797, y: 1.12899995, z: 1004.659}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -4415,8 +4415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailTime: 20
-  trailGreen: 160
-  trailRed: 20
+  trailGreen: 1
+  trailRed: 0
   player: {fileID: 100000}
 --- !u!114 &11479780
 MonoBehaviour:
@@ -4869,7 +4869,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 0
   InitialModule:
     enabled: 1
