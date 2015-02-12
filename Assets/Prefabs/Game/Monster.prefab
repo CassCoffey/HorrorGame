@@ -411,7 +411,6 @@ GameObject:
   - 114: {fileID: 11406528}
   - 114: {fileID: 11406526}
   - 114: {fileID: 11487480}
-  - 114: {fileID: 11478838}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -4554,17 +4553,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11478838
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11487480
 MonoBehaviour:
   m_ObjectHideFlags: 1
