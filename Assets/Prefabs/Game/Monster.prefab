@@ -1601,7 +1601,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 852.119995, y: .99000001, z: 751.702026}
+  m_LocalPosition: {x: 1010.95435, y: 0, z: 1032.4259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 406676}
@@ -4503,7 +4503,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22453910}
   m_Direction: 2
   m_Value: 1
-  m_Size: .999999881
+  m_Size: .999999225
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
