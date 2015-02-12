@@ -410,6 +410,7 @@ GameObject:
   - 222: {fileID: 22206580}
   - 114: {fileID: 11406528}
   - 114: {fileID: 11406526}
+  - 114: {fileID: 11423414}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -1601,7 +1602,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1010.95435, y: 0, z: 1032.4259}
+  m_LocalPosition: {x: 2.31699991, y: 1.19200003, z: 3.13899994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 406676}
@@ -2434,7 +2435,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11423414}
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -4464,6 +4465,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &11423414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2338af96b867c4dbb045158b3a19e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11453910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4502,8 +4514,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11453912}
   m_HandleRect: {fileID: 22453910}
   m_Direction: 2
-  m_Value: 1
-  m_Size: .999999225
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
