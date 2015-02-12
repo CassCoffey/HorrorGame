@@ -9,7 +9,7 @@ public class WinManager : MonoBehaviour
 	void Start()
 	{
 		playersInZone = 0;
-		InvokeRepeating("CheckForWin", 0, 2);
+		InvokeRepeating("CheckForWin", 1, 2);
 	}
 	//Checks to see if everyone alive is in the winzone
 	void CheckForWin()
