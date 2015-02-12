@@ -82,6 +82,7 @@ public class InGameOptions : MonoBehaviour
     {
         Resolution[] resolutions = Screen.resolutions;
         resolutionPanel.transform.parent.GetComponent<Animator>().SetBool("Open", true);
+        // Begin generation of scrolling list.
         if (resolutions != null)
         {
             float panelHeight = buttonPrefab.GetComponent<RectTransform>().rect.height * resolutions.Length;
@@ -156,6 +157,10 @@ public class InGameOptions : MonoBehaviour
             PlayerPrefs.SetFloat("Voice", 1f);
         }
     }
+
+    /// <summary>
+    /// Updates the sensitivity slider to match your preferences.
+    /// </summary>
 	public void SetSensitivitySlider()
 	{
 		if (PlayerPrefs.HasKey("Sensitivity"))
@@ -168,9 +173,8 @@ public class InGameOptions : MonoBehaviour
 		}
 	}
 
-    /// <summary>
-    /// Volume slider controls.
-    /// </summary>
+
+    // Begin Slider Controls
     
     public void ChangeMasterVolume(float value)
     {
@@ -185,15 +189,19 @@ public class InGameOptions : MonoBehaviour
         PlayerPrefs.SetFloat("Music", value);
         PlayerPrefs.Save();
     }
+
     public void ChangeVoiceVolume(float value)
     {
         Camera.main.transform.FindChild("Voice").GetComponent<AudioSource>().volume = value;
         PlayerPrefs.SetFloat("Voice", value);
         PlayerPrefs.Save();
     }
+
 	public void ChangeMouseSensitivity(float value)
 	{
 		PlayerPrefs.SetFloat("Sensitivity", value);
 		PlayerPrefs.Save();
 	}
+
+    // End Slider Controls
 }

@@ -13,7 +13,6 @@ public class SpectatorManager : MonoBehaviour {
     private Vector2 input;
 
     private bool chatting = false;
-    private bool sprinting;
 
 	// Use this for initialization
 	void Start() 
@@ -73,7 +72,6 @@ public class SpectatorManager : MonoBehaviour {
         // On standalone builds, walk/run speed is modified by a key press.
         // We select appropriate speed based on whether we're walking by default, and whether the walk/run toggle button is pressed:
         bool walkOrRun = Input.GetKey(KeyCode.LeftShift);
-        sprinting = walkOrRun;
         speed = walkByDefault ? (walkOrRun ? flySpeed : walkSpeed) : (walkOrRun ? walkSpeed : flySpeed);
         // On mobile, it's controlled in analogue fashion by the v input value, and therefore needs no special handling.
 

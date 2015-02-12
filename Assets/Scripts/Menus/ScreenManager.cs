@@ -7,15 +7,19 @@ public class ScreenManager : MonoBehaviour {
 
     public Camera mainCamera;
     public float totalTime;
-    Vector3 locationTo;
-    Quaternion rotationTo;
-    Quaternion startRotation;
-    Vector3 startLocation;
+
+    private Vector3 locationTo;
+    private Quaternion rotationTo;
+    private Quaternion startRotation;
+    private Vector3 startLocation;
     private Canvas previousCanvas;
     private Canvas nextCanvas;
-    bool move = false;
-    float curTime = 0;
+    private bool move = false;
+    private float curTime = 0;
 
+    /// <summary>
+    /// Disables all other canvases except the current one. If the current canvas has an animation, play it.
+    /// </summary>
     void Start()
     {
         foreach (Canvas canvas in FindObjectsOfType<Canvas>())
@@ -33,6 +37,10 @@ public class ScreenManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Moves the camera to the designated location.
+    /// </summary>
+    /// <param name="Location">The location to move the camera to.</param>
 	public void MoveCameraTo(GameObject Location)
     {
         // Enable the next canvas, and turn off the current one.
@@ -53,25 +61,9 @@ public class ScreenManager : MonoBehaviour {
         move = true;
     }
 
-    public void SetPanel(GameObject panel, bool isOpen)
-    {
-        panel.GetComponent<Animator>().SetBool("Open", isOpen);
-        foreach (UnityEngine.UI.Button button in panel.GetComponentsInChildren<UnityEngine.UI.Button>())
-        {
-            button.enabled = isOpen;
-        }
-    }
-
-    public void TogglePanel(GameObject panel)
-    {
-        SetPanel(panel, !panel.GetComponent<Animator>().GetBool("Open"));
-    }
-
-    public void ClosePanel(GameObject panel)
-    {
-        SetPanel(panel, false);
-    }
-
+    /// <summary>
+    /// Sends a message to all objects when the camera arrives.
+    /// </summary>
     public IEnumerator SendMessage()
     {
         yield return 0;
@@ -81,6 +73,9 @@ public class ScreenManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Manages lerping the camera between locations.
+    /// </summary>
     void Update()
     {
         if (move)

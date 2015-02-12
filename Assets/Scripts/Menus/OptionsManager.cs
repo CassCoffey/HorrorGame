@@ -191,6 +191,10 @@ public class OptionsManager : MonoBehaviour {
             PlayerPrefs.SetFloat("Voice", 1f);
         }
     }
+
+    /// <summary>
+    /// Updates sensitivity slider to match your preferences.
+    /// </summary>
 	public void SetSensitivitySlider()
 	{
 		if (PlayerPrefs.HasKey("Sensitivity"))
@@ -202,9 +206,9 @@ public class OptionsManager : MonoBehaviour {
 			PlayerPrefs.SetFloat("Sensitivity", 15f);
 		}
 	}
-    /// <summary>
-    /// Volume slider controls.
-    /// </summary>
+
+
+    // Begin Slider controls.
 
     public void ChangeMasterVolume(float value)
     {
@@ -230,4 +234,6 @@ public class OptionsManager : MonoBehaviour {
 		PlayerPrefs.SetFloat("Sensitivity", value);
 		PlayerPrefs.Save();
 	}
+
+    // End Slider Controls
 }

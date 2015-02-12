@@ -20,7 +20,7 @@ public class NetworkManager : MonoBehaviour {
         }
     }
     // Version number management
-    private static string version = "v0.01";
+    private static string version = "v0.02";
     public static string Version
     {
         get
@@ -46,7 +46,7 @@ public class NetworkManager : MonoBehaviour {
     private int lastLevelPrefix = 0;
 
     /// <summary>
-    /// When the script wakes up, update the player's username and change the group of this network view.
+    /// When the script wakes up, change the group of this network view.
     /// </summary>
     void Awake()
     {
@@ -54,6 +54,9 @@ public class NetworkManager : MonoBehaviour {
         networkView.group = 1;
     }
 
+    /// <summary>
+    /// On start, update the player's username and version text.
+    /// </summary>
     void Start()
     {
         if (PlayerPrefs.HasKey("UserName"))
@@ -191,6 +194,7 @@ public class NetworkManager : MonoBehaviour {
 
     /// <summary>
     /// The RPC that handles loading a level for all clients.
+    /// http://docs.unity3d.com/Manual/net-NetworkLevelLoad.html
     /// </summary>
     /// <param name="level">The level to load.</param>
     /// <param name="levelPrefix">The prefix of that level.</param>

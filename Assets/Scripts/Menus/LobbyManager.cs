@@ -61,7 +61,9 @@ public class LobbyManager : MonoBehaviour {
         }
 	}
 
-    
+    /// <summary>
+    /// Called when the camera arrives to this menu.
+    /// </summary>
     public void OnCameraArrive(Object canvas)
     {
         if ((GameObject)canvas == gameObject)
@@ -251,6 +253,7 @@ public class LobbyManager : MonoBehaviour {
         settingsPanel.transform.FindChild(option).FindChild("Text").GetComponent<Text>().text = value;
     }
 
+
 	/// <summary>
     /// Resizes the player label scrolling box to the number of players connected
 	/// </summary>
@@ -304,7 +307,10 @@ public class LobbyManager : MonoBehaviour {
     /// </summary>
     [RPC] void UpdatePing(int index, int ping)
     {
-        playerLabels[index].transform.FindChild("PlayerPing").GetComponent<Text>().text = ping.ToString();
+        if (playerLabels.Count > index)
+        {
+            playerLabels[index].transform.FindChild("PlayerPing").GetComponent<Text>().text = ping.ToString();
+        }
     }
 
     /// <summary>

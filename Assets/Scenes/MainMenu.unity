@@ -772,7 +772,7 @@ Prefab:
     - target: {fileID: 11400054, guid: 90b35641f9a20f4418baf761d3c5dd2d, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 827992459}
+      objectReference: {fileID: 827992461}
     - target: {fileID: 11400002, guid: 90b35641f9a20f4418baf761d3c5dd2d, type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3742,7 +3742,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 827992459}
+      - m_Target: {fileID: 827992461}
         m_MethodName: TogglePanel
         m_Mode: 2
         m_Arguments:
@@ -6066,7 +6066,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 827992459}
+      - m_Target: {fileID: 827992461}
         m_MethodName: TogglePanel
         m_Mode: 2
         m_Arguments:
@@ -6118,6 +6118,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 827992460}
   - 114: {fileID: 827992459}
+  - 114: {fileID: 827992461}
   m_Layer: 0
   m_Name: ScreenManager
   m_TagString: Untagged
@@ -6150,6 +6151,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &827992461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827992458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d5207bf6beca5439eee7633c3f029f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &842209652
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameMenuManager : MonoBehaviour {
-
-    private Canvas previousCanvas;
-    private Canvas nextCanvas;
+public class PanelManager : MonoBehaviour {
 
     /// <summary>
     /// Handles dropdown panels.
@@ -26,7 +23,7 @@ public class GameMenuManager : MonoBehaviour {
     /// <summary>
     /// Toggles a panel.
     /// </summary>
-    /// <param name="panel">the panel to toggle.</param>
+    /// <param name="panel">The panel to toggle.</param>
     public void TogglePanel(GameObject panel)
     {
         if (networkView.isMine)

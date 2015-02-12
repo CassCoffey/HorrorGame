@@ -22,7 +22,9 @@ public class ServerListManager : MonoBehaviour {
     private string password = "";
     private bool cameraChild = false;
 
-    // Refreshes the list of hosts.
+    /// <summary>
+    /// Gets a new host list from the master server.
+    /// </summary>
     public void RefreshHostList()
     {
         host = null;
@@ -34,11 +36,19 @@ public class ServerListManager : MonoBehaviour {
         MasterServer.RequestHostList(NetworkManager.AppId);
     }
 
+    /// <summary>
+    /// Adds a listener to the host buttons.
+    /// </summary>
+    /// <param name="button">The button to add a listener to.</param>
+    /// <param name="data">The host to associate that button with.</param>
     public void AddListener(UnityEngine.UI.Button button, HostData data)
     {
         button.onClick.AddListener(() => setHost(data, button));
     }
 
+    /// <summary>
+    /// Checks the pings of the servers.
+    /// </summary>
     public string CheckPing(Text text)
     {
         Ping ping = serverPings[text];
@@ -53,7 +63,10 @@ public class ServerListManager : MonoBehaviour {
         }
     }
 
-    // Called by the master server.
+    /// <summary>
+    /// Called when the master server returns the host list.
+    /// Populates the server list.
+    /// </summary>
     void OnMasterServerEvent(MasterServerEvent msEvent)
     {
         if (msEvent == MasterServerEvent.HostListReceived)
@@ -108,6 +121,10 @@ public class ServerListManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Called when the camera arrives at this menu.
+    /// Refreshes the list.
+    /// </summary>
     public void OnCameraArrive(Object canvas)
     {
         if ((GameObject)canvas == gameObject)
@@ -116,7 +133,9 @@ public class ServerListManager : MonoBehaviour {
         }
     }
 
-    // Joins the specified host.
+    /// <summary>
+    /// Joins the currently selected host.
+    /// </summary>
     public void JoinServer()
     {
         if (host != null)
