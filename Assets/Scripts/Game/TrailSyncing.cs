@@ -17,6 +17,7 @@ public class TrailSyncing : MonoBehaviour {
 			stream.Serialize(ref trailTime);
 			stream.Serialize(ref trailGreen);
 			stream.Serialize(ref trailRed);
+			Debug.Log ("Writing");
 		}
 		else
 		{
@@ -34,7 +35,7 @@ public class TrailSyncing : MonoBehaviour {
 	//The equation for the trailtime and color based on health
 	public void SyncTrails(int health)
 	{
-		trailTime = 15 + (30 / ((health/10) + 1));
+		trailTime = 20 + (30 / ((health/10) + 1));
 		trailRed = 1f/(((float)health / 10f) + 1f);
 		trailGreen = ((float)health/100f);
 	}
