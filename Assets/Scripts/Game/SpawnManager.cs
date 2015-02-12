@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour {
 	public GameObject monsterPrefab;
     public List<string> firstNames;
     public List<string> lastNames;
-	public int playersAlive;
+	public int playersAlive = -1;
 
 	private GameObject[] spawnPoints;
 	private float spawnRadius = 5f;
@@ -111,7 +111,7 @@ public class SpawnManager : MonoBehaviour {
 				}
 				playerList.RemoveAt(cultistIndex);
 			}
-			playersAlive = playerList.Count;
+			networkView.RPC ("SyncPlayersAlive", RPCMode.All, playerList.Count);
 
 			//Spawning special roles by taking half of the amount of players left rounded up
 			int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
@@ -261,6 +261,11 @@ public class SpawnManager : MonoBehaviour {
 	public void playerDeath()
 	{
 		playersAlive -= 1;
+	}
+
+	[RPC] void SyncPlayersAlive(int players)
+	{
+		playersAlive = players;
 	}
 
 	[RPC] void EnableTrails(NetworkViewID viewID)
