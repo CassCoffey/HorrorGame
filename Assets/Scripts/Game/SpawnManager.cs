@@ -266,7 +266,7 @@ public class SpawnManager : MonoBehaviour {
 	[RPC] void EnableTrails(NetworkViewID viewID)
 	{
 		GameObject player = NetworkView.Find(viewID).gameObject;
-		player.transform.FindChild ("TrailRenderer").GetComponent<TrailRenderer>().enabled = true;
+		player.transform.FindChild ("TrailParticles").gameObject.SetActive(true);
 		Debug.Log ("Trail Enabled");
 	}
 
