@@ -266,7 +266,7 @@ public class SpawnManager : MonoBehaviour {
 	[RPC] void EnableTrails(NetworkViewID viewID)
 	{
 		GameObject player = NetworkView.Find(viewID).gameObject;
-		player.transform.FindChild ("TrailParticles").gameObject.SetActive(true);
+		player.transform.FindChild ("TrailParticles").particleSystem.enableEmission = true;
 		Debug.Log ("Trail Enabled");
 	}
 
