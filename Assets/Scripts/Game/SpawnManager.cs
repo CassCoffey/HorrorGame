@@ -258,16 +258,25 @@ public class SpawnManager : MonoBehaviour {
 		}
     }
 
+    /// <summary>
+    /// Keeps track of the living players.
+    /// </summary>
 	public void playerDeath()
 	{
 		playersAlive -= 1;
 	}
 
+    /// <summary>
+    /// Syncs the number of living players.
+    /// </summary>
 	[RPC] void SyncPlayersAlive(int players)
 	{
 		playersAlive = players;
 	}
 
+    /// <summary>
+    /// Enables the trails on the specified player.
+    /// </summary>
 	[RPC] void EnableTrails(NetworkViewID viewID)
 	{
 		GameObject player = NetworkView.Find(viewID).gameObject;

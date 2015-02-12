@@ -14,7 +14,9 @@ public class SpectatorManager : MonoBehaviour {
 
     private bool chatting = false;
 
-	// Use this for initialization
+	/// <summary>
+	/// Turns off all other cameras, and enables the spectator camera.
+	/// </summary>
 	void Start() 
     {
         GameObject.FindObjectOfType<Camera>().GetComponent<Camera>().enabled = false;
@@ -27,17 +29,25 @@ public class SpectatorManager : MonoBehaviour {
         GetComponent<Camera>().GetComponent<MouseLook>().enabled = true;
 	}
 
+    /// <summary>
+    /// When the spectator awaks, re-lock the cursor.
+    /// </summary>
     void Awake()
     {
         Screen.lockCursor = true;
     }
 	
-	// Update is called once per frame
+	/// <summary>
+	/// Checks for menu input.
+	/// </summary>
 	void Update() 
     {
         MenuInput();
 	}
 
+    /// <summary>
+    /// Checks for movement input.
+    /// </summary>
     void FixedUpdate()
     {
         if (!Menu.activeSelf && !chatting)
@@ -46,6 +56,9 @@ public class SpectatorManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Manages movement.
+    /// </summary>
     void InputMovement()
     {
         float speed = flySpeed;

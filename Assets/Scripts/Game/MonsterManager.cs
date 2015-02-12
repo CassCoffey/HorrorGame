@@ -375,6 +375,9 @@ public class MonsterManager : MonoBehaviour {
 		}
 	}
 
+    /// <summary>
+    /// Called on death. Respawns the monster.
+    /// </summary>
     public void Respawn()
     {
         networkView.RPC("SyncRespawn", RPCMode.OthersBuffered);
@@ -385,6 +388,9 @@ public class MonsterManager : MonoBehaviour {
         transform.position = GameObject.FindWithTag("MonsterSpawn").transform.position;
     }
 
+    /// <summary>
+    /// Syncs the respawn across all clients.
+    /// </summary>
     [RPC] void SyncRespawn()
     {
         foreach (Weapon weapon in GetComponentsInChildren<Weapon>())

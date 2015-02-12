@@ -105,6 +105,9 @@ public class Weapon : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Removes the weapon from whatever it is currently stuck to.
+    /// </summary>
     public void Unstick()
     {
         collider.isTrigger = false;

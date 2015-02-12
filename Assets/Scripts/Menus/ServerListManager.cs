@@ -156,17 +156,26 @@ public class ServerListManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Joins a server and submits a password.
+    /// </summary>
     public void JoinPasswordedServer()
     {
         Network.Connect(host, password);
         passwordPanel.SetActive(false);
     }
 
+    /// <summary>
+    /// When connected to the server, move to the lobby.
+    /// </summary>
     void OnConnectedToServer()
     {
         screenManager.GetComponent<ScreenManager>().MoveCameraTo(lobby);
     }
 
+    /// <summary>
+    /// Debug logs for possible connection errors.
+    /// </summary>
     void OnFailedToConnect(NetworkConnectionError error)
     {
         if (error == NetworkConnectionError.InvalidPassword)
@@ -179,6 +188,9 @@ public class ServerListManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Sets the current selected host.
+    /// </summary>
     public void setHost(HostData data, UnityEngine.UI.Button button)
     {
         if (selectedButton != null && selectedButton != button)
@@ -200,11 +212,17 @@ public class ServerListManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Called when the user enters a password.
+    /// </summary>
     public void setPassword(string newPassword)
     {
         password = newPassword;
     }
 
+    /// <summary>
+    /// Checks ping.
+    /// </summary>
     void Update()
     {
         if (cameraChild && Camera.main.transform.parent != this.transform)
