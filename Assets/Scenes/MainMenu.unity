@@ -869,6 +869,14 @@ Prefab:
       propertyPath: m_AnchorMax.x
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 22400090, guid: 90b35641f9a20f4418baf761d3c5dd2d, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22400090, guid: 90b35641f9a20f4418baf761d3c5dd2d, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: .999999821
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90b35641f9a20f4418baf761d3c5dd2d, type: 2}
   m_RootGameObject: {fileID: 842209652}
