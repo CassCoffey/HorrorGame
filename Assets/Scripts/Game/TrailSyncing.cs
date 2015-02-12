@@ -23,6 +23,9 @@ public class TrailSyncing : MonoBehaviour {
 			stream.Serialize(ref trailTime);
 			stream.Serialize(ref trailGreen);
 			stream.Serialize(ref trailRed);
+			Debug.Log("Time" + trailTime);
+			Debug.Log ("Red" + trailRed);
+			Debug.Log ("Green" + trailGreen);
 			player.transform.FindChild("TrailParticles").particleSystem.startLifetime = trailTime;
 			player.transform.FindChild("TrailParticles").particleSystem.startColor = new Color(trailRed,trailGreen, 0, 1);
 		}
