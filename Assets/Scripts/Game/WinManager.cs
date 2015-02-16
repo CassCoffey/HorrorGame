@@ -27,6 +27,7 @@ public class WinManager : MonoBehaviour
 		if(GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playersAlive == playersInZone)
 		{
 			Debug.Log ("Player's Win!");
+			resultsCamera.SetActive(true);
 			currCamera.GetComponent<Camera>().enabled = false;
 			resultsCamera.GetComponent<Camera>().enabled = true;
 			Screen.lockCursor = false;

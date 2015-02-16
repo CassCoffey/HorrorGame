@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour {
     public List<string> firstNames;
     public List<string> lastNames;
 	public int playersAlive = -1;
+	public List<GameObject> playerGameObjectList;
 
 	private GameObject[] spawnPoints;
 	private float spawnRadius = 5f;
@@ -20,6 +21,7 @@ public class SpawnManager : MonoBehaviour {
 	private Hashtable playerNames = new Hashtable();
 
     public string randomName;
+	public string myRole;
     public GameObject myPlayer;
 
 	/// <summary>
@@ -320,11 +322,13 @@ public class SpawnManager : MonoBehaviour {
 					break;
 				}
 			}
-			Debug.Log("Spawning Player");
+			Debug.Log("Spawning Monster");
             randomName = "Monster";
 			GameObject player = (GameObject)Network.Instantiate(monsterPrefab, spawn, Quaternion.identity, 0);
             myPlayer = player;
+			myRole = role;
             SetRoleText(player, "Monster", "You're a monster! Kill everyone...");
+			playerGameObjectList.Add(player);
 		}
 		else
 		{
@@ -345,6 +349,7 @@ public class SpawnManager : MonoBehaviour {
 			Debug.Log("Spawning Player");
 			GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
             myPlayer = player;
+			myRole = role;
 			switch (role) 
 			{
 			case "Cultist":
@@ -364,6 +369,7 @@ public class SpawnManager : MonoBehaviour {
 				break;
 			}
 			networkView.RPC ("EnableTrails", Monster, player.networkView.viewID);
+			playerGameObjectList.Add(player);
 		}
 	}
 
@@ -392,6 +398,7 @@ public class SpawnManager : MonoBehaviour {
 		Debug.Log("Spawning Pairs");
 		GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
         myPlayer = player;
+		myRole = role;
 		switch (role) 
 		{
 		case "Lover":
@@ -402,6 +409,7 @@ public class SpawnManager : MonoBehaviour {
 			break;
 		}
 		networkView.RPC ("EnableTrails", Monster, player.networkView.viewID);
+		playerGameObjectList.Add(player);
 	}
 
     /// <summary>

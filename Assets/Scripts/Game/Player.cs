@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
     public GameObject Spectator;
 
     public string Name;
+	public string Role;
 
     [SerializeField]private float runSpeed = 8f;                                       // The speed at which we want the character to move
     [SerializeField]private float strafeSpeed = 4f;                                    // The speed at which we want the character to be able to strafe
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour {
             Screen.lockCursor = true;
             rayHitComparer = new RayHitComparer();
             Name = GameObject.Find("SpawnManager").GetComponent<SpawnManager>().randomName;
+			Role = GameObject.Find("SpawnManager").GetComponent<SpawnManager>().myRole;
             networkView.RPC("UpdateNameText", RPCMode.AllBuffered, Name);
             transform.FindChild("NameCanvas").gameObject.SetActive(false);
         }

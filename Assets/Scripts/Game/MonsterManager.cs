@@ -11,7 +11,8 @@ public class MonsterManager : MonoBehaviour {
 	public GameObject Chat;
 	public GameObject monster;
 	
-	public string Name;
+	public string Name = "Monster";
+	public string Role = "Monster";
 	
 	[SerializeField]private float runSpeed = 8f;                                       // The speed at which we want the character to move
 	[SerializeField]private float strafeSpeed = 4f;                                    // The speed at which we want the character to be able to strafe
