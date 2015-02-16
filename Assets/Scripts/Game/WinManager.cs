@@ -4,6 +4,8 @@ using System.Collections;
 public class WinManager : MonoBehaviour 
 {
 	public int playersInZone;
+	public GameObject currCamera;
+	public GameObject resultsCamera;
 
 	/// <summary>
     /// When the winzone spawns, set the amount of players in the winzone to 0
@@ -23,6 +25,10 @@ public class WinManager : MonoBehaviour
 		if(GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playersAlive == playersInZone)
 		{
 			Debug.Log ("Player's Win!");
+			currCamera.GetComponent<Camera>().enabled = false;
+			resultsCamera.GetComponent<Camera>().enabled = true;
+			Screen.showCursor = true;
+			CancelInvoke();
 		}
 	}
 
