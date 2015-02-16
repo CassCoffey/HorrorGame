@@ -84,6 +84,7 @@ MonoBehaviour:
   playersInZone: 0
   currCamera: {fileID: 100004, guid: e0db9602c2ca16a43a2d3e019593317a, type: 2}
   resultsCamera: {fileID: 0}
+  lobbyButton: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

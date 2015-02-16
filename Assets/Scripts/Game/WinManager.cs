@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class WinManager : MonoBehaviour 
 {
 	public int playersInZone;
 	public GameObject currCamera;
 	public GameObject resultsCamera;
+	public GameObject lobbyButton;
 
 	/// <summary>
     /// When the winzone spawns, set the amount of players in the winzone to 0
@@ -27,8 +29,13 @@ public class WinManager : MonoBehaviour
 			Debug.Log ("Player's Win!");
 			currCamera.GetComponent<Camera>().enabled = false;
 			resultsCamera.GetComponent<Camera>().enabled = true;
+			Screen.lockCursor = false;
 			Screen.showCursor = true;
 			CancelInvoke();
+			if(Network.isServer)
+			{
+				lobbyButton.SetActive(true);
+			}
 		}
 	}
 
