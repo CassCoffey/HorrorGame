@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22400000}
+  - 222: {fileID: 22200000}
+  - 114: {fileID: 11400002}
+  m_Layer: 5
+  m_Name: PlayerList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &151960
 GameObject:
   m_ObjectHideFlags: 1
@@ -62,7 +79,7 @@ GameObject:
   - 222: {fileID: 22251966}
   - 114: {fileID: 11451966}
   m_Layer: 5
-  m_Name: AwardsText
+  m_Name: PlayersText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &151978
 GameObject:
   m_ObjectHideFlags: 1
@@ -184,7 +201,7 @@ GameObject:
   - 222: {fileID: 22251980}
   - 114: {fileID: 11451984}
   m_Layer: 5
-  m_Name: Awards
+  m_Name: Players
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -271,6 +288,7 @@ GameObject:
   - 124: {fileID: 12451952}
   - 92: {fileID: 9251952}
   - 81: {fileID: 8151952}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: ResultsCamera
   m_TagString: Untagged
@@ -348,6 +366,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b415b5c746fd0c4ebb925cd6eeae07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: .39199999}
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692920cc5015a4b029256ffeb3f5b192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyButton: {fileID: 151976}
 --- !u!114 &11451960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -420,7 +471,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Awards
+  m_Text: 'Players
 
 '
 --- !u!114 &11451966
@@ -819,6 +870,12 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151990}
   m_Enabled: 1
+--- !u!222 &22200000
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
 --- !u!222 &22251960
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -920,6 +977,23 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!224 &22400000
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22451980}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: .89822799}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
 --- !u!224 &22451960
 RectTransform:
   m_ObjectHideFlags: 1
@@ -1106,6 +1180,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22451966}
+  - {fileID: 22400000}
   m_Father: {fileID: 22451986}
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .0992005318}

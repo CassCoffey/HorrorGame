@@ -32,6 +32,6 @@ public class QuitScript : MonoBehaviour {
             Network.Disconnect();
         }
         Network.SetLevelPrefix(0);
-        Application.LoadLevel(0);
+        Application.LoadLevel("MainMenu");
     }
 }
