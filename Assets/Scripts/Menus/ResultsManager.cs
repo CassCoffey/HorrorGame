@@ -5,19 +5,21 @@ using System.Collections.Generic;
 
 
 public class ResultsManager : MonoBehaviour {
-
+	
 	public GameObject lobbyButton;
 	public GameObject playersList;
 	public GameObject playerLabel;
 	public Font font;
 	public List<GameObject> playerPrefabs;
-
+	
 	void Start()
 	{
 		playerPrefabs = GameObject.Find ("SpawnManager").GetComponent<SpawnManager> ().playerGameObjectList;
+		ResizeScrollingBox (playerPrefabs.Count);
 		int i = 0;
 		foreach (GameObject player in playerPrefabs) 
 		{
+			Debug.Log ("Player" + i);
 			if(player.tag == "Monster")
 			{
 				CreatePlayerLable(player.GetComponent<MonsterManager>().Name,player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
@@ -29,7 +31,7 @@ public class ResultsManager : MonoBehaviour {
 			i++;
 		}
 	}
-
+	
 	void CreatePlayerLable(string playerName, string playerRole, int num, int i)
 	{
 		GameObject label = (GameObject)Instantiate (playerLabel);
@@ -41,8 +43,25 @@ public class ResultsManager : MonoBehaviour {
 		label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)num)) - ((1.0f / (float)num) * i));
 		label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		label.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+		if (i % 2 == 0)
+		{
+			label.GetComponent<Image>().color = new UnityEngine.Color(0.4f, 0.4f, 0.4f, 0.7f);
+		}
+		else
+		{
+			label.GetComponent<Image>().color = new UnityEngine.Color(0.6f, 0.6f, 0.6f, 0.7f);
+		}
 	}
-
+	
+	void ResizeScrollingBox(int numOfPlayers)
+	{
+		float panelHeight = playerLabel.GetComponent<RectTransform>().rect.height * numOfPlayers;
+		float currentHeight = playersList.GetComponent<RectTransform>().rect.height;
+		playersList.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
+		playersList.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+		playersList.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
+	}
+	
 	public void GoToLobby()
 	{
 		Application.LoadLevel ("MainMenu");
@@ -51,7 +70,7 @@ public class ResultsManager : MonoBehaviour {
 			networkView.RPC("EnableLobby",RPCMode.All);
 		}
 	}
-
+	
 	[RPC] public void EnableLobby()
 	{
 		lobbyButton.SetActive (true);
