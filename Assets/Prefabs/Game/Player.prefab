@@ -1861,7 +1861,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &9200000
 Behaviour:
   m_ObjectHideFlags: 1
@@ -1916,6 +1916,7 @@ MonoBehaviour:
   player: {fileID: 100000}
   Spectator: {fileID: 157116, guid: f5c3296444c314f468dc1590bbb27af6, type: 2}
   Name: 
+  Role: 
   runSpeed: 8
   strafeSpeed: 4
   jumpPower: 10

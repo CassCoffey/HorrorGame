@@ -5,7 +5,6 @@ using System.Collections;
 public class WinManager : MonoBehaviour 
 {
 	public int playersInZone;
-	public GameObject currCamera;
 	public GameObject resultsCamera;
 	public GameObject lobbyButton;
 
@@ -28,7 +27,8 @@ public class WinManager : MonoBehaviour
 		{
 			Debug.Log ("Player's Win!");
 			resultsCamera.SetActive(true);
-			currCamera.GetComponent<Camera>().enabled = false;
+			Camera.main.GetComponent<AudioListener>().enabled = false;
+			Camera.main.GetComponent<Camera>().enabled = false;
 			resultsCamera.GetComponent<Camera>().enabled = true;
 			Screen.lockCursor = false;
 			Screen.showCursor = true;

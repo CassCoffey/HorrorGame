@@ -19,7 +19,6 @@ public class ResultsManager : MonoBehaviour {
 		int i = 0;
 		foreach (GameObject player in playerPrefabs) 
 		{
-			Debug.Log ("Player" + i);
 			if(player.tag == "Monster")
 			{
 				CreatePlayerLable(player.GetComponent<MonsterManager>().Name,player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
