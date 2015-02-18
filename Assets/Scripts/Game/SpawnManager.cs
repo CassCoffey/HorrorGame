@@ -341,6 +341,7 @@ public class SpawnManager : MonoBehaviour {
 			GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
             myPlayer = player;
 			myRole = role;
+            Debug.Log("role - " + role + ", myRole - " + myRole);
 			switch (role) 
 			{
 			case "Cultist":

@@ -79,6 +79,7 @@ public class Player : MonoBehaviour {
             Debug.Log(Role);
             networkView.RPC("UpdateNameText", RPCMode.AllBuffered, Name);
             transform.FindChild("NameCanvas").gameObject.SetActive(false);
+            networkView.RPC("SyncNameAndRole", RPCMode.OthersBuffered, Name, Role);
         }
     }
 
@@ -568,6 +569,12 @@ public class Player : MonoBehaviour {
             weapon.Unstick();
         }
         Destroy(this.gameObject);
+    }
+
+    [RPC] void SyncNameAndRole(string sName, string sRole)
+    {
+        Name = sName;
+        Role = sRole;
     }
 
 	//Syncs up the player dying for everyone else
