@@ -63,6 +63,8 @@ public class ResultsManager : MonoBehaviour {
 	
 	public void GoToLobby()
 	{
+        Destroy(GameObject.Find("NetworkManager"));
+        Network.SetLevelPrefix(0);
 		Application.LoadLevel ("MainMenu");
 		if (Network.isServer) 
 		{
