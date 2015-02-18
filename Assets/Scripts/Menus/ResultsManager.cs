@@ -63,13 +63,12 @@ public class ResultsManager : MonoBehaviour {
 	
 	public void GoToLobby()
 	{
-        Destroy(GameObject.Find("NetworkManager"));
-        Network.SetLevelPrefix(0);
-		Application.LoadLevel ("MainMenu");
-		if (Network.isServer) 
-		{
-			networkView.RPC("EnableLobby",RPCMode.All);
-		}
+        Debug.Log("Pressed go to lobby.");
+        if (Network.isServer)
+        {
+            networkView.RPC("EnableLobby", RPCMode.Others);
+        }
+        GameObject.Find("NetworkManager").GetComponent<NetworkManager>().ReturnToLobby();
 	}
 	
 	[RPC] public void EnableLobby()

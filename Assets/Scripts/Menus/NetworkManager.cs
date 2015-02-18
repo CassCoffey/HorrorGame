@@ -194,7 +194,30 @@ public class NetworkManager : MonoBehaviour {
 
     public void ReturnToLobby()
     {
+        Debug.Log("Returning to Lobby");
+        if (Network.isServer)
+        {
+            Network.SetLevelPrefix(0);
+        }
+        Network.RemoveRPCsInGroup(0);
+        Network.RemoveRPCsInGroup(1);
+        StartCoroutine(ReturnedToLobby());
+    }
 
+    [RPC] IEnumerator ReturnedToLobby()
+    {
+        Application.LoadLevel("MainMenu");
+
+        yield return null;
+        yield return null;
+
+        MasterServer.UnregisterHost();
+        Network.maxConnections = maxPlayers;
+        MasterServer.RegisterHost(NetworkManager.AppId, gameName, version);
+
+        GameObject.Find("ScreenManager").GetComponent<ScreenManager>().MoveCameraTo(GameObject.Find("Lobby"));
+
+        Destroy(gameObject);
     }
 
     /// <summary>
