@@ -36,6 +36,7 @@ public class ResultsManager : MonoBehaviour {
 		log = GameObject.Find ("GameManager").GetComponent<DeathLog> ();
 		deathList = log.deaths;
 		ResizeScrollingBox (playerPrefabs.Count);
+		ResizeDeathsScrollingBox (deathList.Count);
 		int i = 0;
 		int j = 0;
 		foreach (GameObject player in playerPrefabs) 
@@ -101,7 +102,16 @@ public class ResultsManager : MonoBehaviour {
 		playersList.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		playersList.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
 	}
-	
+
+	void ResizeDeathsScrollingBox(int numOfDeaths)
+	{
+		float panelHeight = deathLabel.GetComponent<RectTransform>().rect.height * numOfDeaths;
+		float currentHeight = deathLabel.GetComponent<RectTransform>().rect.height;
+		deathsLog.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
+		deathsLog.transform.FindChild("DeathsScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+		deathsLog.transform.FindChild("DeathsScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
+	}
+
 	public void GoToLobby()
 	{
         if (Network.isServer)
