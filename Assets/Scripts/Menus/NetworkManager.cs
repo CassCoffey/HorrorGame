@@ -202,14 +202,6 @@ public class NetworkManager : MonoBehaviour {
 
     [RPC] IEnumerator ReturnedToLobby()
     {
-        // There is no reason to send any more data over the network on the default channel,
-        // because we are about to load the level, thus all those objects will get deleted anyway
-        Network.SetSendingEnabled(0, false);
-
-        // We need to stop receiving because first the level must be loaded first.
-        // Once the level is loaded, rpc's and other state update attached to objects in the level are allowed to fire
-        Network.isMessageQueueRunning = false;
-
         Network.SetLevelPrefix(0);
         Application.LoadLevel("MainMenu");
 

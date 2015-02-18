@@ -76,13 +76,21 @@ public class ResultsManager : MonoBehaviour {
         Debug.Log("Pressed go to lobby.");
         if (Network.isServer)
         {
-            networkView.RPC("EnableLobby", RPCMode.Others);
+            networkView.RPC("EnableLobby", RPCMode.All);
         }
         GameObject.Find("NetworkManager").GetComponent<NetworkManager>().ReturnToLobby();
 	}
 	
 	[RPC] public void EnableLobby()
 	{
+        // There is no reason to send any more data over the network on the default channel,
+        // because we are about to load the level, thus all those objects will get deleted anyway
+        Network.SetSendingEnabled(0, false);
+
+        // We need to stop receiving because first the level must be loaded first.
+        // Once the level is loaded, rpc's and other state update attached to objects in the level are allowed to fire
+        Network.isMessageQueueRunning = false;
+
 		lobbyButton.SetActive (true);
 	}
 }
