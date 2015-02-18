@@ -192,6 +192,11 @@ public class NetworkManager : MonoBehaviour {
         }
     }
 
+    public void ReturnToLobby()
+    {
+
+    }
+
     /// <summary>
     /// The RPC that handles loading a level for all clients.
     /// http://docs.unity3d.com/Manual/net-NetworkLevelLoad.html
