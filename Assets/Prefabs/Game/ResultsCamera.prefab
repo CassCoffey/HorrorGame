@@ -623,8 +623,8 @@ MonoBehaviour:
   lobbyButton: {fileID: 151976}
   playersList: {fileID: 100000}
   playerLabel: {fileID: 100004, guid: aa6d6f307fb844635a717504e409f87b, type: 2}
-  deathsLog: {fileID: 151978}
-  deathLabel: {fileID: 100002}
+  deathsLog: {fileID: 100002}
+  deathLabel: {fileID: 100002, guid: a68a926fc07624636b79b1084f42cc45, type: 2}
   font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   playerPrefabs: []
 --- !u!114 &11400006
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22400006}
   m_Direction: 3
   m_Value: 1
-  m_Size: 1
+  m_Size: .999999881
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -944,7 +944,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 22400022}
   m_Direction: 3
   m_Value: 1
-  m_Size: 1
+  m_Size: .99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1457,7 +1457,6 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
