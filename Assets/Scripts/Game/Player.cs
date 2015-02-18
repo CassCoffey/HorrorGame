@@ -383,7 +383,7 @@ public class Player : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Die();  // Debug Killswitch
+            GetComponent<Vitals>().TakeDamage(1000);  // Debug Killswitch
         }
     }
 

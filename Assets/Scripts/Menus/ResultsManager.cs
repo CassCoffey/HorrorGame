@@ -19,6 +19,12 @@ public class ResultsManager : MonoBehaviour {
 	
 	void Start()
 	{
+        Camera.SetupCurrent(GetComponent<Camera>());
+        Camera.main.gameObject.SetActive(false);
+        GetComponent<AudioListener>().enabled = true;
+        GetComponent<Camera>().enabled = true;
+        Screen.lockCursor = false;
+        Screen.showCursor = true;
         if (Network.isServer)
         {
             players.Add(Network.player);
@@ -102,18 +108,11 @@ public class ResultsManager : MonoBehaviour {
 
     [RPC] void CreateList(NetworkPlayer[] networkPlayers)
     {
+        players = new List<NetworkPlayer>();
         foreach (NetworkPlayer player in networkPlayers)
         {
             players.Add(player);
         }
-        Camera.SetupCurrent(GetComponent<Camera>());
-        GameObject.FindObjectOfType<Camera>().GetComponent<Camera>().enabled = false;
-        GameObject.FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = false;
-        GetComponent<AudioListener>().enabled = true;
-        GetComponent<Camera>().enabled = true;
-        camera.enabled = true;
-        Screen.lockCursor = false;
-        Screen.showCursor = true;
         if (Network.isServer)
         {
             lobbyButton.SetActive(true);
