@@ -63,11 +63,11 @@ public class ResultsManager : MonoBehaviour {
 	
 	public void GoToLobby()
 	{
-		Application.LoadLevel ("MainMenu");
 		if (Network.isServer) 
 		{
 			networkView.RPC("EnableLobby",RPCMode.All);
 		}
+		Application.LoadLevel ("MainMenu");
 	}
 	
 	[RPC] public void EnableLobby()
