@@ -23,7 +23,10 @@ public class ResultsManager : MonoBehaviour {
         {
             lobbyButton.SetActive(true);
         }
-		playerPrefabs = GameObject.FindGameObjectsWithTag ("Player");
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            playerPrefabs.Add(player);
+        }
 		playerPrefabs.Add(GameObject.FindGameObjectWithTag("Monster"));
 		ResizeScrollingBox (playerPrefabs.Count);
 		int i = 0;
