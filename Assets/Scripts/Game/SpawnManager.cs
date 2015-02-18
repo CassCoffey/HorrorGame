@@ -11,6 +11,8 @@ public class SpawnManager : MonoBehaviour {
     public List<string> lastNames;
 	public int playersAlive = -1;
     public Hashtable userNames = new Hashtable();
+    public Hashtable playerNames = new Hashtable();
+    public Hashtable roles = new Hashtable();
 
 	private GameObject[] spawnPoints;
 	private float spawnRadius = 5f;
@@ -18,7 +20,6 @@ public class SpawnManager : MonoBehaviour {
 	private int maxSpawnAttempts = 50;
 	private List<NetworkPlayer> playerList = new List<NetworkPlayer>();
 	private List<NetworkPlayer> readyList = new List<NetworkPlayer>();
-	private Hashtable playerNames = new Hashtable();
 
     public string randomName;
 	public string myRole;
@@ -299,6 +300,7 @@ public class SpawnManager : MonoBehaviour {
 	[RPC] void SpawnPlayer(string role, NetworkPlayer Monster)
 	{
         myRole = role;
+        networkView.RPC("CreateRoleHashtable", RPCMode.All, Network.player, myRole);
 		if (role == "Monster") 
 		{
 			spawnPoints = GameObject.FindGameObjectsWithTag("MonsterSpawn");
@@ -371,6 +373,7 @@ public class SpawnManager : MonoBehaviour {
 	[RPC] void SpawnPair(string role, string pair , NetworkPlayer Monster)
 	{
         myRole = role;
+        networkView.RPC("CreateRoleHashtable", RPCMode.All, Network.player, myRole);
 		spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
 		int index = Random.Range(0, spawnPoints.Length);
 		Vector3 spawnPoint = spawnPoints[index].transform.position;
@@ -409,4 +412,9 @@ public class SpawnManager : MonoBehaviour {
 		playerNames.Add(player, name);
         userNames.Add(player, username);
 	}
+
+    [RPC] void CreateRoleHashtable(NetworkPlayer player, string role)
+    {
+        roles.Add(player, role);
+    }
 }

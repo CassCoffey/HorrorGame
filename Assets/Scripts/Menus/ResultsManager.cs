@@ -19,8 +19,11 @@ public class ResultsManager : MonoBehaviour {
 	
 	void Start()
 	{
-        Camera.main.GetComponent<AudioListener>().enabled = false;
-        Camera.main.GetComponent<Camera>().enabled = false;
+        Camera.SetupCurrent(GetComponent<Camera>());
+        GameObject.FindObjectOfType<Camera>().GetComponent<Camera>().enabled = false;
+        GameObject.FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = false;
+        GetComponent<AudioListener>().enabled = true;
+        GetComponent<Camera>().enabled = true;
         camera.enabled = true;
         Screen.lockCursor = false;
         Screen.showCursor = true;
@@ -32,6 +35,10 @@ public class ResultsManager : MonoBehaviour {
 		{
 			playerPrefabs.Add (player);
 		}
+        foreach (GameObject spectator in GameObject.FindGameObjectsWithTag("Spectator"))
+        {
+            playerPrefabs.Add(spectator);
+        }
 		playerPrefabs.Add(GameObject.FindGameObjectWithTag("Monster"));
 		log = GameObject.Find ("GameManager").GetComponent<DeathLog> ();
 		deathList = log.deaths;
@@ -43,11 +50,11 @@ public class ResultsManager : MonoBehaviour {
 		{
 			if(player.tag == "Monster")
 			{
-				CreatePlayerLabel(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<MonsterManager>().Name, player.GetComponent<MonsterManager>().Role, i);
+				CreatePlayerLabel((string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().userNames[player.networkView.owner], "Monster", player.GetComponent<MonsterManager>().Role, i);
 			}
 			else
 			{
-				CreatePlayerLabel(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<Player>().Name, player.GetComponent<Player>().Role, i);
+                CreatePlayerLabel((string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().userNames[player.networkView.owner], (string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playerNames[player.networkView.owner], (string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().roles[player.networkView.owner], i);
 			}
 			i++;
 		}

@@ -19,12 +19,15 @@ public class SpectatorManager : MonoBehaviour {
 	/// </summary>
 	void Start() 
     {
-        Camera.SetupCurrent(GetComponent<Camera>());
-        GameObject.FindObjectOfType<Camera>().GetComponent<Camera>().enabled = false;
-        GameObject.FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = false;
-        GetComponent<Camera>().enabled = true;
-        GetComponent<AudioListener>().enabled = true;
-        GetComponent<MouseLook>().enabled = true;
+        if (networkView.isMine)
+        {
+            Camera.SetupCurrent(GetComponent<Camera>());
+            GameObject.FindObjectOfType<Camera>().GetComponent<Camera>().enabled = false;
+            GameObject.FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = false;
+            GetComponent<Camera>().enabled = true;
+            GetComponent<AudioListener>().enabled = true;
+            GetComponent<MouseLook>().enabled = true;
+        }
 	}
 
     /// <summary>
@@ -40,15 +43,18 @@ public class SpectatorManager : MonoBehaviour {
 	/// </summary>
 	void Update() 
     {
-        MenuInput();
-	}
+        if (networkView.isMine)
+        {
+            MenuInput();
+        }
+    }
 
     /// <summary>
     /// Checks for movement input.
     /// </summary>
     void FixedUpdate()
     {
-        if (!Menu.activeSelf && !chatting)
+        if (networkView.isMine && !Menu.activeSelf && !chatting)
         {
             InputMovement();
         }
