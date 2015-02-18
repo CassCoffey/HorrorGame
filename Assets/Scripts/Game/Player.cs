@@ -76,7 +76,6 @@ public class Player : MonoBehaviour {
             rayHitComparer = new RayHitComparer();
             Name = GameObject.Find("SpawnManager").GetComponent<SpawnManager>().randomName;
 			Role = GameObject.Find("SpawnManager").GetComponent<SpawnManager>().myRole;
-            Debug.Log(Role);
             networkView.RPC("UpdateNameText", RPCMode.AllBuffered, Name);
             transform.FindChild("NameCanvas").gameObject.SetActive(false);
             networkView.RPC("SyncNameAndRole", RPCMode.OthersBuffered, Name, Role);

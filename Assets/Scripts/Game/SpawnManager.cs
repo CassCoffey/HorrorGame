@@ -298,6 +298,7 @@ public class SpawnManager : MonoBehaviour {
     /// <param name="role">The role of that player.</param>
 	[RPC] void SpawnPlayer(string role, NetworkPlayer Monster)
 	{
+        myRole = role;
 		if (role == "Monster") 
 		{
 			spawnPoints = GameObject.FindGameObjectsWithTag("MonsterSpawn");
@@ -318,7 +319,6 @@ public class SpawnManager : MonoBehaviour {
             randomName = "Monster";
 			GameObject player = (GameObject)Network.Instantiate(monsterPrefab, spawn, Quaternion.identity, 0);
             myPlayer = player;
-			myRole = role;
             SetRoleText(player, "Monster", "You're a monster! Kill everyone...");
 		}
 		else
@@ -340,7 +340,6 @@ public class SpawnManager : MonoBehaviour {
 			Debug.Log("Spawning Player");
 			GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
             myPlayer = player;
-			myRole = role;
             Debug.Log("role - " + role + ", myRole - " + myRole);
 			switch (role) 
 			{
@@ -371,6 +370,7 @@ public class SpawnManager : MonoBehaviour {
     /// <param name="pair">That player's pair player name.</param>
 	[RPC] void SpawnPair(string role, string pair , NetworkPlayer Monster)
 	{
+        myRole = role;
 		spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
 		int index = Random.Range(0, spawnPoints.Length);
 		Vector3 spawnPoint = spawnPoints[index].transform.position;
@@ -389,7 +389,6 @@ public class SpawnManager : MonoBehaviour {
 		Debug.Log("Spawning Pairs");
 		GameObject player = (GameObject)Network.Instantiate(playerPrefab, spawn, Quaternion.identity, 0);
         myPlayer = player;
-		myRole = role;
 		switch (role) 
 		{
 		case "Lover":
