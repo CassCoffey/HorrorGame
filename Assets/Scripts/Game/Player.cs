@@ -560,8 +560,18 @@ public class Player : MonoBehaviour {
     {
         networkView.RPC("SyncDie", RPCMode.OthersBuffered);
 		GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playerDeath();
-        DropItem();
-        DropItem();
+        if (currentItem != null)
+        {
+            currentItem.GetComponent<Item>().Drop();
+            currentItem = null;
+            if (sheathedItem != null)
+            {
+                SetCurrentItem(sheathedItem);
+                sheathedItem = null;
+                currentItem.GetComponent<Item>().Drop();
+                currentItem = null;
+            }
+        }
         Instantiate(Spectator, transform.position, transform.rotation);
         foreach (Weapon weapon in GetComponentsInChildren<Weapon>())
         {
@@ -580,6 +590,18 @@ public class Player : MonoBehaviour {
     [RPC] void SyncDie()
     {
         GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playerDeath();
+        if (currentItem != null)
+        {
+            currentItem.GetComponent<Item>().Drop();
+            currentItem = null;
+            if (sheathedItem != null)
+            {
+                SetCurrentItem(sheathedItem);
+                sheathedItem = null;
+                currentItem.GetComponent<Item>().Drop();
+                currentItem = null;
+            }
+        }
         foreach (Weapon weapon in GetComponentsInChildren<Weapon>())
         {
             weapon.Unstick();

@@ -19,14 +19,12 @@ public class SpectatorManager : MonoBehaviour {
 	/// </summary>
 	void Start() 
     {
+        Camera.SetupCurrent(GetComponent<Camera>());
         GameObject.FindObjectOfType<Camera>().GetComponent<Camera>().enabled = false;
         GameObject.FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = false;
         GetComponent<Camera>().enabled = true;
         GetComponent<AudioListener>().enabled = true;
-        Camera.SetupCurrent(GetComponent<Camera>());
-        GetComponent<Camera>().enabled = true;
         GetComponent<MouseLook>().enabled = true;
-        GetComponent<Camera>().GetComponent<MouseLook>().enabled = true;
 	}
 
     /// <summary>
