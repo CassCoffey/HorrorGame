@@ -23,14 +23,15 @@ public class ResultsManager : MonoBehaviour {
         {
             lobbyButton.SetActive(true);
         }
-		playerPrefabs = GameObject.Find ("SpawnManager").GetComponent<SpawnManager> ().playerGameObjectList;
+		playerPrefabs = GameObject.FindGameObjectsWithTag ("Player");
+		playerPrefabs.Add(GameObject.FindGameObjectWithTag("Monster");
 		ResizeScrollingBox (playerPrefabs.Count);
 		int i = 0;
 		foreach (GameObject player in playerPrefabs) 
 		{
 			if(player.tag == "Monster")
 			{
-				CreatePlayerLable(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<MonsterManager>().Name,player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
+				CreatePlayerLable(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<MonsterManager>().Name, player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
 			}
 			else
 			{

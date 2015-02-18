@@ -10,7 +10,6 @@ public class SpawnManager : MonoBehaviour {
     public List<string> firstNames;
     public List<string> lastNames;
 	public int playersAlive = -1;
-	public List<GameObject> playerGameObjectList;
 
 	private GameObject[] spawnPoints;
 	private float spawnRadius = 5f;
@@ -113,7 +112,7 @@ public class SpawnManager : MonoBehaviour {
 				}
 				playerList.RemoveAt(cultistIndex);
 			}
-            playersAlive = playerList.Count;
+			networkView.RPC ("SyncPlayersAlive", RPCMode.All, playerList.Count);
 
 			//Spawning special roles by taking half of the amount of players left rounded up
 			int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
@@ -320,7 +319,6 @@ public class SpawnManager : MonoBehaviour {
             myPlayer = player;
 			myRole = role;
             SetRoleText(player, "Monster", "You're a monster! Kill everyone...");
-			playerGameObjectList.Add(player);
 		}
 		else
 		{
@@ -361,7 +359,6 @@ public class SpawnManager : MonoBehaviour {
 				break;
 			}
 			networkView.RPC ("EnableTrails", Monster, player.networkView.viewID);
-			playerGameObjectList.Add(player);
 		}
 	}
 
@@ -401,7 +398,6 @@ public class SpawnManager : MonoBehaviour {
 			break;
 		}
 		networkView.RPC ("EnableTrails", Monster, player.networkView.viewID);
-		playerGameObjectList.Add(player);
 	}
 
     /// <summary>
