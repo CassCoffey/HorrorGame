@@ -579,6 +579,7 @@ public class Player : MonoBehaviour {
 	//Syncs up the player dying for everyone else
     [RPC] void SyncDie()
     {
+        GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playerDeath();
         DropItem();
         DropItem();
         foreach (Weapon weapon in GetComponentsInChildren<Weapon>())
