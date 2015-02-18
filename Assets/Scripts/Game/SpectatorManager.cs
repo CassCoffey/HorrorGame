@@ -19,15 +19,12 @@ public class SpectatorManager : MonoBehaviour {
 	/// </summary>
 	void Start() 
     {
-        if (networkView.isMine)
-        {
-            Camera.SetupCurrent(GetComponent<Camera>());
-            GameObject.FindObjectOfType<Camera>().GetComponent<Camera>().enabled = false;
-            GameObject.FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = false;
-            GetComponent<Camera>().enabled = true;
-            GetComponent<AudioListener>().enabled = true;
-            GetComponent<MouseLook>().enabled = true;
-        }
+        Camera.SetupCurrent(GetComponent<Camera>());
+        GameObject.FindObjectOfType<Camera>().GetComponent<Camera>().enabled = false;
+        GameObject.FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = false;
+        GetComponent<Camera>().enabled = true;
+        GetComponent<AudioListener>().enabled = true;
+        GetComponent<MouseLook>().enabled = true;
 	}
 
     /// <summary>
@@ -35,10 +32,7 @@ public class SpectatorManager : MonoBehaviour {
     /// </summary>
     void Awake()
     {
-        if (networkView.isMine)
-        {
-            Screen.lockCursor = true;
-        }
+        Screen.lockCursor = true;
     }
 	
 	/// <summary>
@@ -46,10 +40,7 @@ public class SpectatorManager : MonoBehaviour {
 	/// </summary>
 	void Update() 
     {
-        if (networkView.isMine)
-        {
-            MenuInput();
-        }
+        MenuInput();
     }
 
     /// <summary>
@@ -57,10 +48,7 @@ public class SpectatorManager : MonoBehaviour {
     /// </summary>
     void FixedUpdate()
     {
-        if (networkView.isMine && !Menu.activeSelf && !chatting)
-        {
-            InputMovement();
-        }
+        InputMovement();
     }
 
     /// <summary>
