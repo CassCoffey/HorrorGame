@@ -82,9 +82,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersInZone: 0
-  currCamera: {fileID: 100004, guid: e0db9602c2ca16a43a2d3e019593317a, type: 2}
-  resultsCamera: {fileID: 0}
-  lobbyButton: {fileID: 0}
+  resultsCameraPrefab: {fileID: 151990, guid: eb732e766b6f69c46a84128cd09f3bbf, type: 2}
+  resultsEmpty: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

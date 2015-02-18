@@ -5,8 +5,8 @@ using System.Collections;
 public class WinManager : MonoBehaviour 
 {
 	public int playersInZone;
-	public GameObject resultsCamera;
-	public GameObject lobbyButton;
+	public GameObject resultsCameraPrefab;
+    public GameObject resultsEmpty;
 
 	/// <summary>
     /// When the winzone spawns, set the amount of players in the winzone to 0
@@ -14,8 +14,11 @@ public class WinManager : MonoBehaviour
 	/// </summary>
 	void Start()
 	{
-		playersInZone = 0;
-		InvokeRepeating("CheckForWin", 1, 2);
+        if (Network.isServer)
+        {
+            playersInZone = 0;
+            InvokeRepeating("CheckForWin", 1, 2);
+        }
 	}
 
 	/// <summary>
@@ -26,17 +29,8 @@ public class WinManager : MonoBehaviour
 		if(GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playersAlive == playersInZone)
 		{
 			Debug.Log ("Player's Win!");
-			resultsCamera.SetActive(true);
-			Camera.main.GetComponent<AudioListener>().enabled = false;
-			Camera.main.GetComponent<Camera>().enabled = false;
-			resultsCamera.GetComponent<Camera>().enabled = true;
-			Screen.lockCursor = false;
-			Screen.showCursor = true;
-			CancelInvoke();
-			if(Network.isServer)
-			{
-				lobbyButton.SetActive(true);
-			}
+            Network.Instantiate(resultsCameraPrefab, resultsEmpty.transform.position, Quaternion.identity, 0);
+            CancelInvoke();
 		}
 	}
 

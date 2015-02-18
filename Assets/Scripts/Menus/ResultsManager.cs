@@ -14,6 +14,15 @@ public class ResultsManager : MonoBehaviour {
 	
 	void Start()
 	{
+        Camera.main.GetComponent<AudioListener>().enabled = false;
+        Camera.main.GetComponent<Camera>().enabled = false;
+        GetComponent<Camera>().enabled = true;
+        Screen.lockCursor = false;
+        Screen.showCursor = true;
+        if (Network.isServer)
+        {
+            lobbyButton.SetActive(true);
+        }
 		playerPrefabs = GameObject.Find ("SpawnManager").GetComponent<SpawnManager> ().playerGameObjectList;
 		ResizeScrollingBox (playerPrefabs.Count);
 		int i = 0;
