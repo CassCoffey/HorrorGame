@@ -106,7 +106,7 @@ public class ResultsManager : MonoBehaviour {
 	void ResizeDeathsScrollingBox(int numOfDeaths)
 	{
 		float panelHeight = deathLabel.GetComponent<RectTransform>().rect.height * numOfDeaths;
-		float currentHeight = deathLabel.GetComponent<RectTransform>().rect.height;
+		float currentHeight = deathsLog.GetComponent<RectTransform>().rect.height;
 		deathsLog.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
 		deathsLog.transform.FindChild("DeathsScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		deathsLog.transform.FindChild("DeathsScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);

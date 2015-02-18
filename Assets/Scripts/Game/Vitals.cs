@@ -139,6 +139,6 @@ public class Vitals : MonoBehaviour {
 
     [RPC] void SyncDeathLog(float deathTime, NetworkViewID ID, string player, string killer, int damage, Vector3 position)
     {
-        GameObject.Find("GameManager").GetComponent<DeathLog>().LogDeath(deathTime, ID, name, killer, damage, position);
+        GameObject.Find("GameManager").GetComponent<DeathLog>().LogDeath(deathTime, ID, player, killer, damage, position);
     }
 }
