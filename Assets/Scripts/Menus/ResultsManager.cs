@@ -34,7 +34,7 @@ public class ResultsManager : MonoBehaviour {
 		{
 			if(player.tag == "Monster")
 			{
-				CreatePlayerLabel((string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().userNames[player.networkView.owner], player.GetComponent<MonsterManager>().Name, player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
+				CreatePlayerLabel((string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().userNames[player.networkView.owner], "Funyarinpa", player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
 			}
 			else
 			{
