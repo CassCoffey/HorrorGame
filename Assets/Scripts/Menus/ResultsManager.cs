@@ -77,7 +77,6 @@ public class ResultsManager : MonoBehaviour {
 	
 	public void GoToLobby()
 	{
-        Debug.Log("Pressed go to lobby.");
         if (Network.isServer)
         {
             networkView.RPC("EnableLobby", RPCMode.All);
