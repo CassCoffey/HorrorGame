@@ -96,12 +96,12 @@ public class Vitals : MonoBehaviour {
             {
                 if (player.tag == "Player")
                 {
-                    networkView.RPC("SyncDeathLog", RPCMode.AllBuffered, Time.time, player.networkView.viewID, player.GetComponent<Player>().Name, attacker, damage, player.transform.position);
+                    networkView.RPC("SyncDeathLog", RPCMode.AllBuffered, Time.timeSinceLevelLoad, player.networkView.viewID, player.GetComponent<Player>().Name, attacker, damage, player.transform.position);
                     player.GetComponent<Player>().Die();
                 }
                 if (player.tag == "Monster")
                 {
-                    networkView.RPC("SyncDeathLog", RPCMode.AllBuffered, Time.time, player.networkView.viewID, "Monster", attacker, damage, player.transform.position);
+                    networkView.RPC("SyncDeathLog", RPCMode.AllBuffered, Time.timeSinceLevelLoad, player.networkView.viewID, "Monster", attacker, damage, player.transform.position);
                     player.GetComponent<MonsterManager>().Respawn();
                     health = maxHealth;
                 }
