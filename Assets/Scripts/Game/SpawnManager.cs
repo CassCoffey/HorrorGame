@@ -113,7 +113,7 @@ public class SpawnManager : MonoBehaviour {
 				}
 				playerList.RemoveAt(cultistIndex);
 			}
-			networkView.RPC ("SyncPlayersAlive", RPCMode.All, playerList.Count);
+            playersAlive = playerList.Count;
 
 			//Spawning special roles by taking half of the amount of players left rounded up
 			int numOfRoles = Mathf.FloorToInt(playerList.Count / 2);
@@ -266,14 +266,6 @@ public class SpawnManager : MonoBehaviour {
 	public void playerDeath()
 	{
 		playersAlive -= 1;
-	}
-
-    /// <summary>
-    /// Syncs the number of living players.
-    /// </summary>
-	[RPC] void SyncPlayersAlive(int players)
-	{
-		playersAlive = players;
 	}
 
     /// <summary>

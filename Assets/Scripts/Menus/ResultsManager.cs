@@ -16,7 +16,7 @@ public class ResultsManager : MonoBehaviour {
 	{
         Camera.main.GetComponent<AudioListener>().enabled = false;
         Camera.main.GetComponent<Camera>().enabled = false;
-        GetComponent<Camera>().enabled = true;
+        camera.enabled = true;
         Screen.lockCursor = false;
         Screen.showCursor = true;
         if (Network.isServer)
