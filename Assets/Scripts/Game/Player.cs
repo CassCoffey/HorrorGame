@@ -580,8 +580,6 @@ public class Player : MonoBehaviour {
     [RPC] void SyncDie()
     {
         GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playerDeath();
-        DropItem();
-        DropItem();
         foreach (Weapon weapon in GetComponentsInChildren<Weapon>())
         {
             weapon.Unstick();
