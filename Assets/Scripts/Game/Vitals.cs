@@ -82,7 +82,7 @@ public class Vitals : MonoBehaviour {
     /// Handles taking damage.
     /// </summary>
     /// <param name="damage">The amount of health to lose.</param>
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, string attacker)
     {
         if (networkView.isMine)
         {
@@ -96,12 +96,12 @@ public class Vitals : MonoBehaviour {
             {
                 if (player.tag == "Player")
                 {
-                    networkView.RPC("SyncDeathLog", RPCMode.AllBuffered, Time.time, player.networkView.viewID, player.GetComponent<Player>().Name, "thing", damage, player.transform.position);
+                    networkView.RPC("SyncDeathLog", RPCMode.AllBuffered, Time.time, player.networkView.viewID, player.GetComponent<Player>().Name, attacker, damage, player.transform.position);
                     player.GetComponent<Player>().Die();
                 }
                 if (player.tag == "Monster")
                 {
-                    networkView.RPC("SyncDeathLog", RPCMode.AllBuffered, Time.time, player.networkView.viewID, "Monster", "thing", damage, player.transform.position);
+                    networkView.RPC("SyncDeathLog", RPCMode.AllBuffered, Time.time, player.networkView.viewID, "Monster", attacker, damage, player.transform.position);
                     player.GetComponent<MonsterManager>().Respawn();
                     health = maxHealth;
                 }

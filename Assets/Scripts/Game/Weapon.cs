@@ -100,7 +100,7 @@ public class Weapon : MonoBehaviour {
             // If you collided with something that has vitals, hurt said vitals.
             if (collision.collider.GetComponent<Vitals>() != null)
             {
-                collision.collider.GetComponent<Vitals>().TakeDamage((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)) * (int)rigidbody.mass);
+                collision.collider.GetComponent<Vitals>().TakeDamage((int)(damage * (float)(collision.relativeVelocity.magnitude / 20)) * (int)rigidbody.mass, GetComponent<Item>().equippedTo.GetComponent<Player>().Name);
             }
         }
     }
@@ -124,7 +124,7 @@ public class Weapon : MonoBehaviour {
     {
         if (GetComponent<Item>().isEquipped && other.gameObject != GetComponent<Item>().equippedTo && other.GetComponent<Vitals>() != null)
         {
-            other.GetComponent<Vitals>().TakeDamage(damage);
+            other.GetComponent<Vitals>().TakeDamage(damage, GetComponent<Item>().equippedTo.GetComponent<Player>().Name);
         }
     }
 

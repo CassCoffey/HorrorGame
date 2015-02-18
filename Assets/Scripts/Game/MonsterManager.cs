@@ -288,7 +288,7 @@ public class MonsterManager : MonoBehaviour {
 		}
         if (Input.GetKeyDown(KeyCode.P))
         {
-            GetComponent<Vitals>().TakeDamage(1000);  // Debug Killswitch
+            GetComponent<Vitals>().TakeDamage(1000, "Nightmare");  // Debug Killswitch
         }
 	}
 	
