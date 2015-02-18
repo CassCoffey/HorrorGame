@@ -28,7 +28,6 @@ public class WinManager : MonoBehaviour
 	{
 		if(GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playersAlive == playersInZone)
 		{
-			Debug.Log ("Player's Win!");
             Network.Instantiate(resultsCameraPrefab, resultsEmpty.transform.position, Quaternion.identity, 0);
             CancelInvoke();
 		}

@@ -96,12 +96,12 @@ public class Vitals : MonoBehaviour {
             {
                 if (player.tag == "Player")
                 {
-                    GameObject.Find("GameManager").GetComponent<DeathLog>().LogDeath(Time.time, player.networkView.viewID, "thing", damage, player.transform.position);
+                    networkView.RPC("SyncDeathLog", RPCMode.AllBuffered, Time.time, player.networkView.viewID, player.GetComponent<Player>().Name, "thing", damage, player.transform.position);
                     player.GetComponent<Player>().Die();
                 }
                 if (player.tag == "Monster")
                 {
-                    GameObject.Find("GameManager").GetComponent<DeathLog>().LogDeath(Time.time, player.networkView.viewID, "thing", damage, player.transform.position);
+                    networkView.RPC("SyncDeathLog", RPCMode.AllBuffered, Time.time, player.networkView.viewID, "Monster", "thing", damage, player.transform.position);
                     player.GetComponent<MonsterManager>().Respawn();
                     health = maxHealth;
                 }
@@ -135,5 +135,10 @@ public class Vitals : MonoBehaviour {
         {
             vitalsPanel.transform.FindChild("StaminaSlider").GetComponent<Slider>().value = stamina;
         }
+    }
+
+    [RPC] void SyncDeathLog(float deathTime, NetworkViewID ID, string player, string killer, int damage, Vector3 position)
+    {
+        GameObject.Find("GameManager").GetComponent<DeathLog>().LogDeath(deathTime, ID, name, killer, damage, position);
     }
 }

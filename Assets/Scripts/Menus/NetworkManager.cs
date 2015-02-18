@@ -194,7 +194,6 @@ public class NetworkManager : MonoBehaviour {
 
     public void ReturnToLobby()
     {
-        Debug.Log("Returning to Lobby");
         Network.RemoveRPCsInGroup(0);
         Network.RemoveRPCsInGroup(1);
         StartCoroutine(ReturnedToLobby());

@@ -13,9 +13,9 @@ public class DeathLog : MonoBehaviour {
     /// <param name="killer">The killer's name.</param>
     /// <param name="damage">The damage taken from the killing blow.</param>
     /// <param name="location">The location of death.</param>
-    public void LogDeath(float time, NetworkViewID player, string killer, int damage, Vector3 location)
+    public void LogDeath(float time, NetworkViewID player, string Name, string killer, int damage, Vector3 location)
     {
-        Death death = new Death(time, player, killer, damage, location);
+        Death death = new Death(time, player, Name, killer, damage, location);
         deaths.Add(death);
     }
 
@@ -27,14 +27,16 @@ public class DeathLog : MonoBehaviour {
     {
         public float DeathTime { get; private set; }
         public NetworkViewID Player { get; private set; }
+        public string PlayerName { get; private set; }
         public string Killer { get; private set; }
         public int Damage { get; private set; }
         public Vector3 Location { get; private set; }
 
-        public Death(float time, NetworkViewID player, string killer, int damage, Vector3 location)
+        public Death(float time, NetworkViewID player, string Name, string killer, int damage, Vector3 location)
         {
             DeathTime = time;
             Player = player;
+            PlayerName = Name;
             Killer = killer;
             Damage = damage;
             Location = location;
