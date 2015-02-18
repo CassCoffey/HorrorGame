@@ -148,7 +148,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497166, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 14897112, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_ViewID.m_ID
@@ -417,7 +417,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497166, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 14897112, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_ViewID.m_ID
@@ -590,7 +590,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497166, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 14875128, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_ViewID.m_ID
@@ -816,7 +816,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497166, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 14897112, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_ViewID.m_ID
@@ -2791,7 +2791,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497166, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 14875128, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_ViewID.m_ID
@@ -2987,6 +2987,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 151990, guid: eb732e766b6f69c46a84128cd09f3bbf, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22400004, guid: eb732e766b6f69c46a84128cd09f3bbf, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb732e766b6f69c46a84128cd09f3bbf, type: 2}
   m_RootGameObject: {fileID: 2023883356}
@@ -3113,7 +3121,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9687e174f12bc184eadff9d5f2f436a1, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 9687e174f12bc184eadff9d5f2f436a1, type: 2}
       propertyPath: m_TagString
@@ -3173,6 +3181,7 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
@@ -3427,7 +3436,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9687e174f12bc184eadff9d5f2f436a1, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 9687e174f12bc184eadff9d5f2f436a1, type: 2}
       propertyPath: m_TagString
@@ -3710,7 +3719,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497166, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 14875128, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_ViewID.m_ID
@@ -3770,7 +3779,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497166, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 14875128, guid: 22929089bbf73924db6e4b8134da419f, type: 2}
       propertyPath: m_ViewID.m_ID
@@ -4147,7 +4156,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1715673306}
   m_Direction: 3
   m_Value: 0
-  m_Size: .999998808
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4302,8 +4311,8 @@ NetworkView:
   m_StateSynchronization: 1
   m_Observed: {fileID: 2023883361}
   m_ViewID:
-    m_ID: 0
-    m_Type: 0
+    m_ID: 18
+    m_Type: 1
 --- !u!1 &2034708680
 GameObject:
   m_ObjectHideFlags: 0

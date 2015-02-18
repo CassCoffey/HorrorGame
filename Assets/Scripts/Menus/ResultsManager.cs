@@ -21,21 +21,22 @@ public class ResultsManager : MonoBehaviour {
 		{
 			if(player.tag == "Monster")
 			{
-				CreatePlayerLable(player.GetComponent<MonsterManager>().Name,player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
+				CreatePlayerLable(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<MonsterManager>().Name,player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
 			}
 			else
 			{
-				CreatePlayerLable(player.GetComponent<Player>().Name, player.GetComponent<Player>().Role, playerPrefabs.Count, i);
+				CreatePlayerLable(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<Player>().Name, player.GetComponent<Player>().Role, playerPrefabs.Count, i);
 			}
 			i++;
 		}
 	}
 	
-	void CreatePlayerLable(string playerName, string playerRole, int num, int i)
+	void CreatePlayerLable(string userName, string playerName, string playerRole, int num, int i)
 	{
 		GameObject label = (GameObject)Instantiate (playerLabel);
 		label.transform.SetParent(playersList.transform.FindChild("PlayersScrolling"), false);
 		label.GetComponentInChildren<Text>().font = font;
+		label.transform.FindChild ("UserName").GetComponent<Text> ().text = userName;
 		label.transform.FindChild ("PlayerName").GetComponent<Text> ().text = playerName;
 		label.transform.FindChild ("PlayerRole").GetComponent<Text> ().text = playerRole;
 		label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)num) * i));
