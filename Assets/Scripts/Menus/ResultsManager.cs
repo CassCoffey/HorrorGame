@@ -9,6 +9,8 @@ public class ResultsManager : MonoBehaviour {
 	public GameObject lobbyButton;
 	public GameObject playersList;
 	public GameObject playerLabel;
+	public GameObject deathsLog;
+	public GameObject deathLabel;
 	public Font font;
 	public List<GameObject> playerPrefabs;
 	
@@ -23,10 +25,10 @@ public class ResultsManager : MonoBehaviour {
         {
             lobbyButton.SetActive(true);
         }
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            playerPrefabs.Add(player);
-        }
+		foreach (GameObject player in GameObject.FindGameObjectsWithTag ("Player")) 
+		{
+			playerPrefabs.Add (player);
+		}
 		playerPrefabs.Add(GameObject.FindGameObjectWithTag("Monster"));
 		ResizeScrollingBox (playerPrefabs.Count);
 		int i = 0;
@@ -34,11 +36,11 @@ public class ResultsManager : MonoBehaviour {
 		{
 			if(player.tag == "Monster")
 			{
-				CreatePlayerLabel((string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().userNames[player.networkView.owner], "Funyarinpa", player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
+				CreatePlayerLabel(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<MonsterManager>().Name, player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
 			}
 			else
 			{
-                CreatePlayerLabel((string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().userNames[player.networkView.owner], player.GetComponent<Player>().Name, player.GetComponent<Player>().Role, playerPrefabs.Count, i);
+				CreatePlayerLabel(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<Player>().Name, player.GetComponent<Player>().Role, playerPrefabs.Count, i);
 			}
 			i++;
 		}
@@ -65,6 +67,11 @@ public class ResultsManager : MonoBehaviour {
 			label.GetComponent<Image>().color = new UnityEngine.Color(0.6f, 0.6f, 0.6f, 0.7f);
 		}
 	}
+
+	void CreateDeathLabel(float time, string player, string killer)
+	{
+		GameObject label = (GameObject)Instantiate (deathLabel);
+	}
 	
 	void ResizeScrollingBox(int numOfPlayers)
 	{
@@ -77,7 +84,6 @@ public class ResultsManager : MonoBehaviour {
 	
 	public void GoToLobby()
 	{
-        Debug.Log("Pressed go to lobby.");
         if (Network.isServer)
         {
             networkView.RPC("EnableLobby", RPCMode.All);
