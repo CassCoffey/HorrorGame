@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour {
     public List<string> firstNames;
     public List<string> lastNames;
 	public int playersAlive = -1;
+    public Hashtable userNames = new Hashtable();
 
 	private GameObject[] spawnPoints;
 	private float spawnRadius = 5f;
@@ -30,7 +31,7 @@ public class SpawnManager : MonoBehaviour {
     {
         ChooseRandomName();
         // Begin building hashtable of all networkplayers and their names.
-		networkView.RPC("CreateNameHashtable", RPCMode.All, Network.player, randomName);
+        networkView.RPC("CreateNameHashtable", RPCMode.All, Network.player, randomName, GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName);
         if (Network.isServer)
         {
             MasterServer.UnregisterHost();
@@ -403,8 +404,9 @@ public class SpawnManager : MonoBehaviour {
     /// <summary>
     /// Creates a hashtable of all the players and their names.
     /// </summary>
-	[RPC] void CreateNameHashtable(NetworkPlayer player, string name)
+	[RPC] void CreateNameHashtable(NetworkPlayer player, string name, string username)
 	{
 		playerNames.Add(player, name);
+        userNames.Add(player, username);
 	}
 }
