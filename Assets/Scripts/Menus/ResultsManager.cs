@@ -13,6 +13,9 @@ public class ResultsManager : MonoBehaviour {
 	public GameObject deathLabel;
 	public Font font;
 	public List<GameObject> playerPrefabs;
+	public List<Death> deathList;
+
+	private DeathLog log;
 	
 	void Start()
 	{
@@ -30,24 +33,33 @@ public class ResultsManager : MonoBehaviour {
 			playerPrefabs.Add (player);
 		}
 		playerPrefabs.Add(GameObject.FindGameObjectWithTag("Monster"));
+		log = GameObject.Find ("GameManager").GetComponent<DeathLog> ();
+		deathList = log.deaths;
 		ResizeScrollingBox (playerPrefabs.Count);
 		int i = 0;
+		int j = 0;
 		foreach (GameObject player in playerPrefabs) 
 		{
 			if(player.tag == "Monster")
 			{
-				CreatePlayerLabel(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<MonsterManager>().Name, player.GetComponent<MonsterManager>().Role, playerPrefabs.Count, i);
+				CreatePlayerLabel(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<MonsterManager>().Name, player.GetComponent<MonsterManager>().Role, i);
 			}
 			else
 			{
-				CreatePlayerLabel(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<Player>().Name, player.GetComponent<Player>().Role, playerPrefabs.Count, i);
+				CreatePlayerLabel(GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName, player.GetComponent<Player>().Name, player.GetComponent<Player>().Role, i);
 			}
 			i++;
 		}
+		foreach (Death death in deathList) 
+		{
+			CreateDeathLabel(death.DeathTime,death.PlayerName, death.Killer, j);
+			j++;
+		}
 	}
 	
-	void CreatePlayerLabel(string userName, string playerName, string playerRole, int num, int i)
+	void CreatePlayerLabel(string userName, string playerName, string playerRole, int i)
 	{
+		int num = playerPrefabs.Count;
 		GameObject label = (GameObject)Instantiate (playerLabel);
 		label.transform.SetParent(playersList.transform.FindChild("PlayersScrolling"), false);
 		label.GetComponentInChildren<Text>().font = font;
@@ -68,9 +80,17 @@ public class ResultsManager : MonoBehaviour {
 		}
 	}
 
-	void CreateDeathLabel(float time, string player, string killer)
+	void CreateDeathLabel(float time, string player, string killer, int i)
 	{
+		int num = deathList.Count;
 		GameObject label = (GameObject)Instantiate (deathLabel);
+		label.transform.SetParent(deathsLog.transform.FindChild("DeathsScrolling"), false);
+		label.GetComponentInChildren<Text>().font = font;
+		label.transform.FindChild ("DeathDescription").GetComponent<Text> ().text = "Time: " + time + " Player: " + player + " Killer: " + killer;
+		label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)num) * i));
+		label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)num)) - ((1.0f / (float)num) * i));
+		label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+		label.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
 	}
 	
 	void ResizeScrollingBox(int numOfPlayers)
