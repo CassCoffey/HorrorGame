@@ -1254,7 +1254,6 @@ GameObject:
   - 54: {fileID: 5457268}
   - 114: {fileID: 11457268}
   - 114: {fileID: 11451558}
-  - 148: {fileID: 14817050}
   m_Layer: 0
   m_Name: SpectatorCamera
   m_TagString: Untagged
@@ -3747,18 +3746,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157116}
   m_Enabled: 1
---- !u!148 &14817050
-NetworkView:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157116}
-  m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 11457096}
-  m_ViewID:
-    m_ID: 0
-    m_Type: 0
 --- !u!222 &22240382
 CanvasRenderer:
   m_ObjectHideFlags: 1

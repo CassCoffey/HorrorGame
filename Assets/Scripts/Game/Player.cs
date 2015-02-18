@@ -572,7 +572,7 @@ public class Player : MonoBehaviour {
                 currentItem = null;
             }
         }
-        Network.Instantiate(Spectator, transform.position, transform.rotation, 0);
+        Instantiate(Spectator, transform.position, transform.rotation);
         foreach (Weapon weapon in GetComponentsInChildren<Weapon>())
         {
             weapon.Unstick();

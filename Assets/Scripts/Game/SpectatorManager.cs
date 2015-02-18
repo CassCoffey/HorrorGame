@@ -35,7 +35,10 @@ public class SpectatorManager : MonoBehaviour {
     /// </summary>
     void Awake()
     {
-        Screen.lockCursor = true;
+        if (networkView.isMine)
+        {
+            Screen.lockCursor = true;
+        }
     }
 	
 	/// <summary>

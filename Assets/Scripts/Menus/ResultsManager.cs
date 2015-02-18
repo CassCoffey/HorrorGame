@@ -12,67 +12,39 @@ public class ResultsManager : MonoBehaviour {
 	public GameObject deathsLog;
 	public GameObject deathLabel;
 	public Font font;
-	public List<GameObject> playerPrefabs;
+	public List<NetworkPlayer> players = new List<NetworkPlayer>();
 	public List<Death> deathList;
 
 	private DeathLog log;
 	
 	void Start()
 	{
-        Camera.SetupCurrent(GetComponent<Camera>());
-        GameObject.FindObjectOfType<Camera>().GetComponent<Camera>().enabled = false;
-        GameObject.FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = false;
-        GetComponent<AudioListener>().enabled = true;
-        GetComponent<Camera>().enabled = true;
-        camera.enabled = true;
-        Screen.lockCursor = false;
-        Screen.showCursor = true;
         if (Network.isServer)
         {
-            lobbyButton.SetActive(true);
+            players.Add(Network.player);
+            foreach (NetworkPlayer player in Network.connections)
+            {
+                players.Add(player);
+            }
+            networkView.RPC("CreateList", RPCMode.AllBuffered, players.ToArray());
         }
-		foreach (GameObject player in GameObject.FindGameObjectsWithTag ("Player")) 
-		{
-			playerPrefabs.Add (player);
-		}
-        foreach (GameObject spectator in GameObject.FindGameObjectsWithTag("Spectator"))
-        {
-            playerPrefabs.Add(spectator);
-        }
-		playerPrefabs.Add(GameObject.FindGameObjectWithTag("Monster"));
-		log = GameObject.Find ("GameManager").GetComponent<DeathLog> ();
-		deathList = log.deaths;
-		ResizeScrollingBox (playerPrefabs.Count);
-		ResizeDeathsScrollingBox (deathList.Count);
-		int i = 0;
-		int j = 0;
-		foreach (GameObject player in playerPrefabs) 
-		{
-			if(player.tag == "Monster")
-			{
-				CreatePlayerLabel((string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().userNames[player.networkView.owner], "Monster", player.GetComponent<MonsterManager>().Role, i);
-			}
-			else
-			{
-                CreatePlayerLabel((string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().userNames[player.networkView.owner], (string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playerNames[player.networkView.owner], (string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().roles[player.networkView.owner], i);
-			}
-			i++;
-		}
-		foreach (Death death in deathList) 
-		{
-			CreateDeathLabel(death.DeathTime,death.PlayerName, death.Killer, j);
-			j++;
-		}
 	}
 	
 	void CreatePlayerLabel(string userName, string playerName, string playerRole, int i)
 	{
-		int num = playerPrefabs.Count;
+		int num = players.Count;
 		GameObject label = (GameObject)Instantiate (playerLabel);
 		label.transform.SetParent(playersList.transform.FindChild("PlayersScrolling"), false);
 		label.GetComponentInChildren<Text>().font = font;
 		label.transform.FindChild ("UserName").GetComponent<Text> ().text = userName;
-		label.transform.FindChild ("PlayerName").GetComponent<Text> ().text = playerName;
+        if (playerRole == "Monster")
+        {
+            label.transform.FindChild("PlayerName").GetComponent<Text>().text = "Monster";
+        }
+		else
+        {
+            label.transform.FindChild("PlayerName").GetComponent<Text>().text = playerName;
+        }
 		label.transform.FindChild ("PlayerRole").GetComponent<Text> ().text = playerRole;
 		label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)num) * i));
 		label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)num)) - ((1.0f / (float)num) * i));
@@ -127,6 +99,42 @@ public class ResultsManager : MonoBehaviour {
         }
         GameObject.Find("NetworkManager").GetComponent<NetworkManager>().ReturnToLobby();
 	}
+
+    [RPC] void CreateList(NetworkPlayer[] networkPlayers)
+    {
+        foreach (NetworkPlayer player in networkPlayers)
+        {
+            players.Add(player);
+        }
+        Camera.SetupCurrent(GetComponent<Camera>());
+        GameObject.FindObjectOfType<Camera>().GetComponent<Camera>().enabled = false;
+        GameObject.FindObjectOfType<Camera>().GetComponent<AudioListener>().enabled = false;
+        GetComponent<AudioListener>().enabled = true;
+        GetComponent<Camera>().enabled = true;
+        camera.enabled = true;
+        Screen.lockCursor = false;
+        Screen.showCursor = true;
+        if (Network.isServer)
+        {
+            lobbyButton.SetActive(true);
+        }
+        log = GameObject.Find("GameManager").GetComponent<DeathLog>();
+        deathList = log.deaths;
+        ResizeScrollingBox(players.Count);
+        ResizeDeathsScrollingBox(deathList.Count);
+        int i = 0;
+        int j = 0;
+        foreach (NetworkPlayer player in players)
+        {
+            CreatePlayerLabel((string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().userNames[player], (string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playerNames[player], (string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().roles[player], i);
+            i++;
+        }
+        foreach (Death death in deathList)
+        {
+            CreateDeathLabel(death.DeathTime, death.PlayerName, death.Killer, j);
+            j++;
+        }
+    }
 	
 	[RPC] public void EnableLobby()
 	{
