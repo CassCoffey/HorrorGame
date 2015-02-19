@@ -666,7 +666,7 @@ public class Player : MonoBehaviour {
     /// <summary>
     /// Used for comparing distances
     /// </summary>
-    class RayHitComparer : IComparer
+    public class RayHitComparer : IComparer
     {
         public int Compare(object x, object y)
         {

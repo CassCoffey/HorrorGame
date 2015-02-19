@@ -10,6 +10,8 @@ public class MonsterManager : MonoBehaviour {
 	public GameObject Vitals;
 	public GameObject Chat;
 	public GameObject monster;
+    public GameObject leftClaw;
+    public GameObject rightClaw;
 	
 	public string Name = "Monster";
 	public string Role = "Monster";
@@ -348,6 +350,18 @@ public class MonsterManager : MonoBehaviour {
 	private void KeyInput()
 	{
 		// add in monster attacks and abilities.
+        if (Input.GetButtonDown("Attack"))
+        {
+            networkView.RPC("SyncAttack", RPCMode.OthersBuffered, true);
+            rightClaw.GetComponent<Animator>().SetBool("Attack", true);
+            leftClaw.GetComponent<Animator>().SetBool("Attack", true);
+        }
+        if (Input.GetButtonUp("Attack"))
+        {
+            networkView.RPC("SyncAttack", RPCMode.OthersBuffered, false);
+            rightClaw.GetComponent<Animator>().SetBool("Attack", false);
+            leftClaw.GetComponent<Animator>().SetBool("Attack", false);
+        }
 	}
 	/// <summary>
 	/// Destroys the player prefab and removes all rpcs from it.
@@ -403,6 +417,12 @@ public class MonsterManager : MonoBehaviour {
             weapon.Unstick();
         }
         transform.position = GameObject.FindWithTag("MonsterSpawn").transform.position;
+    }
+
+    [RPC] void SyncAttack(bool attack)
+    {
+        rightClaw.GetComponent<Animator>().SetBool("Attack", attack);
+        leftClaw.GetComponent<Animator>().SetBool("Attack", attack);
     }
 
     /// <summary>
