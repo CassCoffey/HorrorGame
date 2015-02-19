@@ -1554,6 +1554,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 410050}
   - 95: {fileID: 9510060}
+  - 114: {fileID: 11411244}
   m_Layer: 0
   m_Name: Rawr
   m_TagString: Untagged
@@ -1658,6 +1659,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 410062}
   - 95: {fileID: 9510064}
+  - 114: {fileID: 11411246}
   m_Layer: 0
   m_Name: Rawr
   m_TagString: Untagged
@@ -4898,6 +4900,28 @@ MonoBehaviour:
   isSharp: 0
   damage: 10
   charging: 0
+--- !u!114 &11411244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ded530bd5bf7143b115559f7ffa5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11411246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ded530bd5bf7143b115559f7ffa5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11412518
 MonoBehaviour:
   m_ObjectHideFlags: 1
