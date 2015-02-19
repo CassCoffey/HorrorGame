@@ -9,13 +9,13 @@ public class ClawScript : MonoBehaviour {
     {
         Ray ray = new Ray(transform.parent.parent.position, transform.parent.parent.forward);
 
-        RaycastHit[] hits = Physics.RaycastAll(ray, 0.5f);
+        RaycastHit[] hits = Physics.RaycastAll(ray, 1f);
         System.Array.Sort(hits, rayHitComparer);
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].collider.gameObject.tag == "Player")
             {
-                hits[i].collider.gameObject.GetComponent<Vitals>().TakeDamage(10, "Monstar");
+                hits[i].collider.gameObject.GetComponent<Vitals>().TakeDamage(10, "Funyarinpa");
             }
         }
     }
