@@ -20,6 +20,7 @@ public class MonsterManager : MonoBehaviour {
 	#if !MOBILE_INPUT
 	[SerializeField]private bool walkByDefault = true;									// controls how the walk/run modifier key behaves.
 	[SerializeField]private float walkSpeed = 3f;                                      // The speed at which we want the character to move
+	[SerializeField]private bool lunge = false;
 	#endif
 
 	// Synchronization variables.
@@ -78,10 +79,6 @@ public class MonsterManager : MonoBehaviour {
 		if (networkView.isMine)
 		{
 			MenuInput();
-			if (!Menu.activeSelf && !chatting)
-			{
-				KeyInput();
-			}
 		}
 	}
 	
@@ -94,6 +91,10 @@ public class MonsterManager : MonoBehaviour {
 		if (networkView.isMine)
 		{
 			InputMovement();
+			if (!Menu.activeSelf && !chatting)
+			{
+				KeyInput();
+			}
 		}
 		else
 		{
@@ -199,6 +200,7 @@ public class MonsterManager : MonoBehaviour {
 		
 		// preserving current y velocity (for falling, gravity)
 		float yv = rigidbody.velocity.y;
+		float xv = rigidbody.velocity.magnitude;
 		
 		// add jump power
 		if (grounded && jump)
@@ -206,10 +208,23 @@ public class MonsterManager : MonoBehaviour {
 			yv += jumpPower;
 			grounded = false;
 		}
-		
+
+		if (Input.GetButtonDown ("Throw Weapon") && sprinting && grounded) 
+		{
+			lunge = true;
+			grounded = false;
+			yv += jumpPower;
+			xv += jumpPower;
+			Debug.Log ("Lunging");
+			rigidbody.velocity = Vector3.up * yv + transform.forward * xv;
+			transform.GetComponent<Vitals>().UseStamina(transform.GetComponent<Vitals>().jumpStamina);
+		}
+
 		// Set the rigidbody's velocity according to the ground angle and desired move
-		rigidbody.velocity = desiredMove + Vector3.up * yv;
-		
+		if (!lunge) 
+		{
+			rigidbody.velocity = desiredMove + Vector3.up * yv;
+		} 
 		// Use low/high friction depending on whether we're moving or not
 		if (desiredMove.magnitude > 0 || !grounded)
 		{
@@ -243,6 +258,7 @@ public class MonsterManager : MonoBehaviour {
 				{
 					// The character is grounded, and we store the ground angle (calculated from the normal)
 					grounded = true;
+					lunge = false;
 					
 					// stick to surface - helps character stick to ground - specially when running down slopes
 					//if (rigidbody.velocity.y <= 0) {
