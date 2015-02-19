@@ -17,7 +17,7 @@ public class WinManager : MonoBehaviour
         if (Network.isServer)
         {
             playersInZone = 0;
-            //InvokeRepeating("CheckForWin", 1, 2);
+            InvokeRepeating("CheckForWin", 1, 2);
         }
 	}
 
