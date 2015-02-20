@@ -12,6 +12,7 @@ public class MonsterManager : MonoBehaviour {
 	public GameObject monster;
     public GameObject leftClaw;
     public GameObject rightClaw;
+    public LayerMask mask;
 	
 	public string Name = "Monster";
 	public string Role = "Monster";
@@ -44,6 +45,7 @@ public class MonsterManager : MonoBehaviour {
 	private Vector2 input;
 	private CapsuleCollider capsule;
 	private bool sprinting;
+    private bool climbing;
 	
 	private bool chatting = false;
 	
@@ -150,13 +152,20 @@ public class MonsterManager : MonoBehaviour {
 	/// </summary>
 	void InputMovement()
 	{
+        climbing = Physics.CheckCapsule(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(transform.position.x, transform.position.y + capsule.height, transform.position.z), 0.9f, mask);
+        if (climbing)
+        {
+            grounded = true;
+            lunge = false;
+        }
+        rigidbody.useGravity = !climbing;
 		float speed = runSpeed;
 		
 		// Read input
 		#if CROSS_PLATFORM_INPUT
 		float h = CrossPlatformInput.GetAxis("Horizontal");
 		float v = CrossPlatformInput.GetAxis("Vertical");
-		bool jump = CrossPlatformInput.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && grounded;  // Makes sure the player has enough stamina.
+		bool jump = CrossPlatformInput.GetButton("Jump") && transform.GetComponent<Vitals>().CanJump() && grounded && !climbing;  // Makes sure the player has enough stamina.
 		#else
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
@@ -196,9 +205,20 @@ public class MonsterManager : MonoBehaviour {
 		
 		// normalize input if it exceeds 1 in combined length:
 		if (input.sqrMagnitude > 1) input.Normalize();
-		
+
+        Vector3 desiredMove;
 		// Get a vector which is desired move as a world-relative direction, including speeds
-		Vector3 desiredMove = transform.forward * input.y * speed + transform.right * input.x * strafeSpeed;
+        if (climbing)
+        {
+            Debug.Log("Climbing");
+            int climbUp = 0;
+            if (CrossPlatformInput.GetButton("Jump")) { climbUp = 1; }
+            desiredMove = GetComponentInChildren<Camera>().transform.up * climbUp * speed + GetComponentInChildren<Camera>().transform.forward * input.y * speed + GetComponentInChildren<Camera>().transform.right * input.x * strafeSpeed;
+        }
+        else
+        {
+            desiredMove = transform.forward * input.y * speed + transform.right * input.x * strafeSpeed;
+        }
 		
 		// preserving current y velocity (for falling, gravity)
 		float yv = rigidbody.velocity.y;
@@ -207,7 +227,7 @@ public class MonsterManager : MonoBehaviour {
 		// add jump power
 		if (grounded && jump)
 		{
-			yv += jumpPower;
+            yv += jumpPower;
 			grounded = false;
 		}
 
@@ -218,14 +238,28 @@ public class MonsterManager : MonoBehaviour {
 			yv += jumpPower;
 			xv += jumpPower;
 			Debug.Log ("Lunging");
-			rigidbody.velocity = Vector3.up * yv + transform.forward * xv;
+            if (climbing)
+            {
+                rigidbody.velocity = GetComponentInChildren<Camera>().transform.up * yv + GetComponentInChildren<Camera>().transform.forward * xv;
+            }
+            else
+            {
+                rigidbody.velocity = Vector3.up * yv + transform.forward * xv;
+            }
 			transform.GetComponent<Vitals>().UseStamina(transform.GetComponent<Vitals>().jumpStamina);
 		}
 
 		// Set the rigidbody's velocity according to the ground angle and desired move
 		if (!lunge) 
 		{
-			rigidbody.velocity = desiredMove + Vector3.up * yv;
+            if (climbing)
+            {
+                rigidbody.velocity = desiredMove;
+            }
+            else
+            {
+                rigidbody.velocity = desiredMove + Vector3.up * yv;
+            }
 		} 
 		// Use low/high friction depending on whether we're moving or not
 		if (desiredMove.magnitude > 0 || !grounded)
@@ -248,7 +282,7 @@ public class MonsterManager : MonoBehaviour {
 		System.Array.Sort(hits, rayHitComparer);
 		
 		
-		if (grounded || rigidbody.velocity.y < jumpPower * .5f)
+		if ((grounded || rigidbody.velocity.y < jumpPower * .5f) && !climbing)
 		{
 			// Default value if nothing is detected:
 			grounded = false;
@@ -276,7 +310,10 @@ public class MonsterManager : MonoBehaviour {
 		
 		
 		// add extra gravity
-		rigidbody.AddForce(Physics.gravity * (advanced.gravityMultiplier - 1));
+        if (!climbing)
+        {
+            rigidbody.AddForce(Physics.gravity * (advanced.gravityMultiplier - 1));
+        }
 	}
 	
 	/// <summary>

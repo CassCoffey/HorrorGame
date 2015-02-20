@@ -428,7 +428,7 @@ GameObject:
   - 4: {fileID: 142242918}
   - 114: {fileID: 142242917}
   - 154: {fileID: 142242916}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -855,7 +855,7 @@ GameObject:
   - 4: {fileID: 1013305953}
   - 198: {fileID: 1013305955}
   - 199: {fileID: 1013305954}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2381,7 +2381,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1520762831}
   - 182: {fileID: 1520762832}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WindZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2617,6 +2617,75 @@ NetworkView:
   m_ViewID:
     m_ID: 14
     m_Type: 1
+--- !u!1 &1859098084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1859098088}
+  - 33: {fileID: 1859098087}
+  - 65: {fileID: 1859098086}
+  - 23: {fileID: 1859098085}
+  m_Layer: 10
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1859098085
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1859098084}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &1859098086
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1859098084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1859098087
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1859098084}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1859098088
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1859098084}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 977.700012, y: 25.2999992, z: 970.200012}
+  m_LocalScale: {x: 9.28071213, y: 57.8896408, z: 9.28071594}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
 --- !u!1 &1903387228
 GameObject:
   m_ObjectHideFlags: 0
@@ -2653,7 +2722,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2082305839}
   - 108: {fileID: 2082305838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Directional light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
