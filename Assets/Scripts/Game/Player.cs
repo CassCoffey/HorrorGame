@@ -636,6 +636,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+	/// <summary>
+	/// Syncs the swap between weapons.
+	/// </summary>
     [RPC] void SyncSwap()
     {
         GameObject tempWeapon = currentItem;
@@ -643,6 +646,9 @@ public class Player : MonoBehaviour {
         SetSheathedItem(tempWeapon);
     }
 
+	/// <summary>
+	/// Syncs the dropping of weapons.
+	/// </summary>
     [RPC] void SyncDrop()
     {
         currentItem = null;
@@ -653,6 +659,9 @@ public class Player : MonoBehaviour {
         }
     }
 
+	/// <summary>
+	/// Syncs the player switching to a sheathed item when they have nothing in their hands.
+	/// </summary>
     [RPC] void Sync()
     {
         if (currentItem == null && sheathedItem != null)

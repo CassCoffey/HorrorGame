@@ -136,7 +136,15 @@ public class Vitals : MonoBehaviour {
             vitalsPanel.transform.FindChild("StaminaSlider").GetComponent<Slider>().value = stamina;
         }
     }
-
+	/// <summary>
+	/// Syncs the death log so everyone has the same list of deaths.
+	/// </summary>
+	/// <param name="time">The time of death.</param>
+	/// <param name="player">The networkview person who died.</param>
+	/// <param name="Name">The Name of the person who died.</param>
+	/// <param name="killer">The killer.</param>
+	/// <param name="damage">The amount of damage it did.</param>
+	/// <param name="location">The location the player died.</param>
     [RPC] void SyncDeathLog(float deathTime, NetworkViewID ID, string player, string killer, int damage, Vector3 position)
     {
         GameObject.Find("GameManager").GetComponent<DeathLog>().LogDeath(deathTime, ID, player, killer, damage, position);

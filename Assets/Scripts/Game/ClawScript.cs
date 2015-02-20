@@ -5,6 +5,9 @@ public class ClawScript : MonoBehaviour {
 
     private IComparer rayHitComparer = new RayHitComparer();
 
+	/// <summary>
+	/// Checks for any collisions with any player.
+	/// </summary>
 	public void Attack()
     {
         Ray ray = new Ray(transform.parent.parent.position, transform.parent.parent.forward);
