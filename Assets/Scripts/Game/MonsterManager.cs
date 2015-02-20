@@ -456,6 +456,10 @@ public class MonsterManager : MonoBehaviour {
         transform.position = GameObject.FindWithTag("MonsterSpawn").transform.position;
     }
 
+	/// <summary>
+	/// Syncs the attack animation.
+	/// </summary>
+	/// <param name="attack">If set to <c>true</c> attack.</param>
     [RPC] void SyncAttack(bool attack)
     {
         rightClaw.GetComponent<Animator>().SetBool("Attack", attack);

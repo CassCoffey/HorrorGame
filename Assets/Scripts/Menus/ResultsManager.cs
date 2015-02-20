@@ -16,7 +16,10 @@ public class ResultsManager : MonoBehaviour {
 	public List<Death> deathList;
 
 	private DeathLog log;
-	
+
+	/// <summary>
+	/// Is called when the game is over. Sets the camera to the results camera and creates the player list.
+	/// </summary>
 	void Start()
 	{
         Camera.SetupCurrent(GetComponent<Camera>());
@@ -35,7 +38,14 @@ public class ResultsManager : MonoBehaviour {
             networkView.RPC("CreateList", RPCMode.AllBuffered, players.ToArray());
         }
 	}
-	
+
+	/// <summary>
+	/// Creates the player label.
+	/// </summary>
+	/// <param name="userName">The username of the player.</param>
+	/// <param name="playerName">The in game name of the player.</param>
+	/// <param name="playerRole">The role of the player.</param>
+	/// <param name="i">The index the player label is on.</param>
 	void CreatePlayerLabel(string userName, string playerName, string playerRole, int i)
 	{
 		int num = players.Count;
@@ -56,6 +66,7 @@ public class ResultsManager : MonoBehaviour {
 		label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)num)) - ((1.0f / (float)num) * i));
 		label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		label.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+
 		if (i % 2 == 0)
 		{
 			label.GetComponent<Image>().color = new UnityEngine.Color(0.4f, 0.4f, 0.4f, 0.7f);
@@ -66,6 +77,13 @@ public class ResultsManager : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Creates the death label.
+	/// </summary>
+	/// <param name="time">Time of death.</param>
+	/// <param name="player">The player that died.</param>
+	/// <param name="killer">The killer.</param>
+	/// <param name="i">The index.</param>
 	void CreateDeathLabel(float time, string player, string killer, int i)
 	{
 		int num = deathList.Count;
@@ -77,8 +95,21 @@ public class ResultsManager : MonoBehaviour {
 		label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)num)) - ((1.0f / (float)num) * i));
 		label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
 		label.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+
+		if (i % 2 == 0)
+		{
+			label.GetComponent<Image>().color = new UnityEngine.Color(0.4f, 0.4f, 0.4f, 0.7f);
+		}
+		else
+		{
+			label.GetComponent<Image>().color = new UnityEngine.Color(0.6f, 0.6f, 0.6f, 0.7f);
+		}
 	}
-	
+
+	/// <summary>
+	/// Resizes the scrolling box of the player list to fit the number of labels needed.
+	/// </summary>
+	/// <param name="numOfPlayers">Number of players.</param>
 	void ResizeScrollingBox(int numOfPlayers)
 	{
 		float panelHeight = playerLabel.GetComponent<RectTransform>().rect.height * numOfPlayers;
@@ -88,6 +119,10 @@ public class ResultsManager : MonoBehaviour {
 		playersList.transform.FindChild("PlayersScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
 	}
 
+	/// <summary>
+	/// Resizes the scrolling box of the death log to fit the number of labels needed.
+	/// </summary>
+	/// <param name="numOfDeaths">Number of deaths.</param>
 	void ResizeDeathsScrollingBox(int numOfDeaths)
 	{
 		float panelHeight = deathLabel.GetComponent<RectTransform>().rect.height * numOfDeaths;
@@ -97,6 +132,9 @@ public class ResultsManager : MonoBehaviour {
 		deathsLog.transform.FindChild("DeathsScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
 	}
 
+	/// <summary>
+	/// Goes to the lobby and enables the button for everyone else if the person who clicked it is the host.
+	/// </summary>
 	public void GoToLobby()
 	{
         if (Network.isServer)
@@ -106,6 +144,10 @@ public class ResultsManager : MonoBehaviour {
         GameObject.Find("NetworkManager").GetComponent<NetworkManager>().ReturnToLobby();
 	}
 
+	/// <summary>
+	/// Creates the list of players and death log.
+	/// </summary>
+	/// <param name="networkPlayers">Each player in the game.</param>
     [RPC] void CreateList(NetworkPlayer[] networkPlayers)
     {
         players = new List<NetworkPlayer>();
@@ -134,7 +176,10 @@ public class ResultsManager : MonoBehaviour {
             j++;
         }
     }
-	
+
+	/// <summary>
+	/// Enables the lobby for each player after the host clicks lobby.
+	/// </summary>
 	[RPC] public void EnableLobby()
 	{
         // There is no reason to send any more data over the network on the default channel,
