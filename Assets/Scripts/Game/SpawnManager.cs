@@ -31,13 +31,14 @@ public class SpawnManager : MonoBehaviour {
     void OnNetworkLoadedLevel()
     {
         ChooseRandomName();
+		NetworkManager networkManager = GameObject.Find ("NetworkManager").GetComponent<NetworkManager>();
         // Begin building hashtable of all networkplayers and their names.
-        networkView.RPC("CreateNameHashtable", RPCMode.All, Network.player, randomName, GameObject.Find("NetworkManager").GetComponent<NetworkManager>().playerName);
+        networkView.RPC("CreateNameHashtable", RPCMode.All, Network.player, randomName, networkManager.playerName);
         if (Network.isServer)
         {
             MasterServer.UnregisterHost();
             Network.maxConnections = 0;
-            MasterServer.RegisterHost(NetworkManager.AppId, GameObject.Find("NetworkManager").GetComponent<NetworkManager>().gameName, "Closed");
+            MasterServer.RegisterHost(NetworkManager.AppId, networkManager.gameName, "Closed");
         }
 		if (Network.isClient)
 		{
@@ -75,7 +76,7 @@ public class SpawnManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Handles weighted assignment of roles.
+    /// Handles weighted assignment of random roles.
     /// </summary>
 	void ChooseRole()
 	{
@@ -87,7 +88,7 @@ public class SpawnManager : MonoBehaviour {
 				playerList.Add (Network.connections[i]);
 			}
 
-			//Spawning the monster
+			//Spawns the monster
 			int monsterIndex = Random.Range (0, playerList.Count);
 			NetworkPlayer Monster = playerList[monsterIndex];
 			if (playerList [monsterIndex] == Network.player) 
@@ -100,7 +101,7 @@ public class SpawnManager : MonoBehaviour {
 			}
 			playerList.RemoveAt(monsterIndex);
 
-			//Spawning the cultist if their are more than 6 players
+			//Spawning the cultist if there are more than 6 players
 			if (playerList.Count >= 6) 
 			{
 				int cultistIndex = Random.Range(0,playerList.Count);
@@ -132,7 +133,7 @@ public class SpawnManager : MonoBehaviour {
 				{
 					role = Random.Range (50,100);
 				}
-				//Paired Roles
+				//Paired Roles. Chooses two players to pair up with their roles.
 				if(role < 25)
 				{
 					int pairIndex = Random.Range(0,playerList.Count);
@@ -243,21 +244,22 @@ public class SpawnManager : MonoBehaviour {
 	}
 
     /// <summary>
-    /// Updates the text of a player's role description.
+    /// Updates the text of a player's role description in their pause menu.
     /// </summary>
     /// <param name="player">The player whose text is being changed.</param>
     /// <param name="roleName">The name of their role.</param>
     /// <param name="roleDescription">The description of their role.</param>
     public void SetRoleText(GameObject player, string roleName, string roleDescription)
     {
+		Transform mainPanel = player.GetComponent<MonsterManager> ().Menu.transform.FindChild ("MainPanel");
 		if (roleName == "Monster") {
-			player.GetComponent<MonsterManager> ().Menu.transform.FindChild ("MainPanel").FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text> ().text = roleName;
-			player.GetComponent<MonsterManager> ().Menu.transform.FindChild ("MainPanel").FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text> ().text = roleDescription;
+			mainPanel.FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text> ().text = roleName;
+			mainPanel.FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text> ().text = roleDescription;
 		} 
 		else 
 		{
-			player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleNamePanel").FindChild("RoleName").GetComponent<Text>().text = roleName;
-			player.GetComponent<Player>().Menu.transform.FindChild("MainPanel").FindChild("RoleDescriptionPanel").FindChild("RoleDescription").GetComponent<Text>().text = roleDescription;
+			mainPanel.FindChild("RoleNamePanel").FindChild("RoleName").GetComponent<Text>().text = roleName;
+			mainPanel.FindChild("RoleDescriptionPanel").FindChild("RoleDescription").GetComponent<Text>().text = roleDescription;
 		}
     }
 
@@ -294,17 +296,19 @@ public class SpawnManager : MonoBehaviour {
 	}
 
     /// <summary>
-    /// Create a player object.
+    /// Create a player with a random role. Enables trail for monster after spawn.
     /// </summary>
     /// <param name="role">The role of that player.</param>
 	[RPC] void SpawnPlayer(string role, NetworkPlayer Monster)
 	{
         myRole = role;
         networkView.RPC("CreateRoleHashtable", RPCMode.All, Network.player, myRole);
+		//Creates monster in the correct spawn point
 		if (role == "Monster") 
 		{
 			spawnPoints = GameObject.FindGameObjectsWithTag("MonsterSpawn");
 			int index = Random.Range(0, spawnPoints.Length);
+			float random = Random.Range (-spawnRadius, spawnRadius);
 			Vector3 spawnPoint = spawnPoints[index].transform.position;
 			Vector3 spawn = new Vector3(spawnPoint.x + Random.Range(-spawnRadius, spawnRadius), spawnPoint.y, spawnPoint.z + Random.Range(-spawnRadius, spawnRadius));
 			for(int i = 0; i < maxSpawnAttempts; i++){
@@ -323,6 +327,7 @@ public class SpawnManager : MonoBehaviour {
             myPlayer = player;
             SetRoleText(player, "Monster", "You're a monster! Kill everyone...");
 		}
+		//Creates player in correct spawn point
 		else
 		{
 			spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
@@ -366,7 +371,7 @@ public class SpawnManager : MonoBehaviour {
 	}
 
     /// <summary>
-    /// Create a player object.
+    /// Creates a player whose role is paired with another player. Enables trail for monster after spawn.
     /// </summary>
     /// <param name="role">The role of that player.</param>
     /// <param name="pair">That player's pair player name.</param>
@@ -413,6 +418,11 @@ public class SpawnManager : MonoBehaviour {
         userNames.Add(player, username);
 	}
 
+	/// <summary>
+	/// Creates a hashtable of all the players and their roles.
+	/// </summary>
+	/// <param name="player">Player.</param>
+	/// <param name="role">Role.</param>
     [RPC] void CreateRoleHashtable(NetworkPlayer player, string role)
     {
         roles.Add(player, role);

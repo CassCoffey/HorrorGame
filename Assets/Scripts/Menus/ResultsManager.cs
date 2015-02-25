@@ -9,11 +9,11 @@ public class ResultsManager : MonoBehaviour {
 	public GameObject lobbyButton;
 	public GameObject playersList;
 	public GameObject playerLabel;
-	public GameObject deathsLog;
+	public GameObject deathsList;
 	public GameObject deathLabel;
 	public Font font;
-	public List<NetworkPlayer> players = new List<NetworkPlayer>();
-	public List<Death> deathList;
+	public List<NetworkPlayer> playersInGame = new List<NetworkPlayer>();
+	public List<Death> playersDead;
 
 	private DeathLog log;
 
@@ -30,17 +30,17 @@ public class ResultsManager : MonoBehaviour {
         Screen.showCursor = true;
         if (Network.isServer)
         {
-            players.Add(Network.player);
+            playersInGame.Add(Network.player);
             foreach (NetworkPlayer player in Network.connections)
             {
-                players.Add(player);
+                playersInGame.Add(player);
             }
-            networkView.RPC("CreateList", RPCMode.AllBuffered, players.ToArray());
+            networkView.RPC("CreateList", RPCMode.AllBuffered, playersInGame.ToArray());
         }
 	}
 
 	/// <summary>
-	/// Creates the player label.
+	/// Creates the player label with a username, in game name, and role.
 	/// </summary>
 	/// <param name="userName">The username of the player.</param>
 	/// <param name="playerName">The in game name of the player.</param>
@@ -48,7 +48,7 @@ public class ResultsManager : MonoBehaviour {
 	/// <param name="i">The index the player label is on.</param>
 	void CreatePlayerLabel(string userName, string playerName, string playerRole, int i)
 	{
-		int num = players.Count;
+		int num = playersInGame.Count;
 		GameObject label = (GameObject)Instantiate (playerLabel);
 		label.transform.SetParent(playersList.transform.FindChild("PlayersScrolling"), false);
 		label.GetComponentInChildren<Text>().font = font;
@@ -86,11 +86,12 @@ public class ResultsManager : MonoBehaviour {
 	/// <param name="i">The index.</param>
 	void CreateDeathLabel(float time, string player, string killer, int i)
 	{
-		int num = deathList.Count;
+		int num = playersDead.Count;
 		GameObject label = (GameObject)Instantiate (deathLabel);
-		label.transform.SetParent(deathsLog.transform.FindChild("DeathsScrolling"), false);
+		Text labelText = label.transform.FindChild ("DeathDescription").GetComponent<Text> ();
+		label.transform.SetParent(deathsList.transform.FindChild("DeathsScrolling"), false);
 		label.GetComponentInChildren<Text>().font = font;
-		label.transform.FindChild ("DeathDescription").GetComponent<Text> ().text = "Time: " + time + " Player: " + player + " Killer: " + killer;
+		labelText.text = "Time: " + time + " Player: " + player + " Killer: " + killer;
 		label.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1 - ((1.0f / (float)num) * i));
 		label.GetComponent<RectTransform>().anchorMin = new Vector2(0, (1 - (1.0f / (float)num)) - ((1.0f / (float)num) * i));
 		label.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
@@ -126,10 +127,10 @@ public class ResultsManager : MonoBehaviour {
 	void ResizeDeathsScrollingBox(int numOfDeaths)
 	{
 		float panelHeight = deathLabel.GetComponent<RectTransform>().rect.height * numOfDeaths;
-		float currentHeight = deathsLog.GetComponent<RectTransform>().rect.height;
-		deathsLog.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
-		deathsLog.transform.FindChild("DeathsScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
-		deathsLog.transform.FindChild("DeathsScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
+		float currentHeight = deathsList.GetComponent<RectTransform>().rect.height;
+		deathsList.GetComponent<ScrollRect>().enabled = (panelHeight > currentHeight);
+		deathsList.transform.FindChild("DeathsScrolling").GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+		deathsList.transform.FindChild("DeathsScrolling").GetComponent<RectTransform>().offsetMin = new Vector2(0, currentHeight - panelHeight);
 	}
 
 	/// <summary>
@@ -150,27 +151,28 @@ public class ResultsManager : MonoBehaviour {
 	/// <param name="networkPlayers">Each player in the game.</param>
     [RPC] void CreateList(NetworkPlayer[] networkPlayers)
     {
-        players = new List<NetworkPlayer>();
+        playersInGame = new List<NetworkPlayer>();
         foreach (NetworkPlayer player in networkPlayers)
         {
-            players.Add(player);
+            playersInGame.Add(player);
         }
         if (Network.isServer)
         {
             lobbyButton.SetActive(true);
         }
         log = GameObject.Find("GameManager").GetComponent<DeathLog>();
-        deathList = log.deaths;
-        ResizeScrollingBox(players.Count);
-        ResizeDeathsScrollingBox(deathList.Count);
+        playersDead = log.deaths;
+        ResizeScrollingBox(playersInGame.Count);
+        ResizeDeathsScrollingBox(playersDead.Count);
         int i = 0;
         int j = 0;
-        foreach (NetworkPlayer player in players)
+		SpawnManager spawnManager = GameObject.Find ("SpawnManager").GetComponent<SpawnManager> ();
+        foreach (NetworkPlayer player in playersInGame)
         {
-            CreatePlayerLabel((string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().userNames[player], (string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().playerNames[player], (string)GameObject.Find("SpawnManager").GetComponent<SpawnManager>().roles[player], i);
+            CreatePlayerLabel((string)spawnManager.userNames[player], (string)spawnManager.playerNames[player], (string)spawnManager.roles[player], i);
             i++;
         }
-        foreach (Death death in deathList)
+        foreach (Death death in playersDead)
         {
             CreateDeathLabel(death.DeathTime, death.PlayerName, death.Killer, j);
             j++;
