@@ -159,6 +159,18 @@ public class LobbyManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Called when disconnected from a server.
+    /// </summary>
+    /// <param name="info">Information about the disconnect.</param>
+    void OnDisconnectedFromServer(NetworkDisconnection info)
+    {
+        if (Network.isClient)
+        {
+            GameObject.Find("ScreenManager").GetComponent<ScreenManager>().MoveCameraTo(GameObject.Find("MainMenu"));
+        }
+    }
+
 	/// <summary>
     /// Clears all of the labels, resizes the scrolling box, and adds a player label for each person connected
 	/// </summary>
