@@ -9,6 +9,7 @@ public class Death
 	public string Killer { get; private set; }
 	public int Damage { get; private set; }
 	public Vector3 Location { get; private set; }
+
 	/// <summary>
 	/// Death Class for keeping track of any death that happens, whether it is a human or a monster that dies.
 	/// </summary>

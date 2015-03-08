@@ -20,7 +20,7 @@ public class NetworkManager : MonoBehaviour {
         }
     }
     // Version number management
-    private static string version = "v0.02";
+    private static string version = "v0.03";
     public static string Version
     {
         get

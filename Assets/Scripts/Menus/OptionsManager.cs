@@ -34,10 +34,28 @@ public class OptionsManager : MonoBehaviour {
             usernamePanel.SetActive(true);
             usernamePanel.transform.parent.FindChild("BlockerPanel").gameObject.SetActive(true);
         }
-        CurrentResolution = Screen.currentResolution;
+        Resolution res = new Resolution();
+        res.width = Screen.width;
+        res.height = Screen.height;
+        CurrentResolution = res;
         CreateResolutionList();
         SetVolumeSliders();
 		SetSensitivitySlider();
+    }
+
+    /// <summary>
+    /// Called when the camera arrives at this menu.
+    /// Refreshes the list.
+    /// </summary>
+    public void OnCameraArrive(Object canvas)
+    {
+        if ((GameObject)canvas == gameObject)
+        {
+            Resolution res = new Resolution();
+            res.width = Screen.width;
+            res.height = Screen.height;
+            CurrentResolution = res;
+        }
     }
 
     /// <summary>
