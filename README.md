@@ -1,6 +1,8 @@
 # HorrorGame
 A starter project for learning Unity, C#, networking, and using Git in a team environment.
 
+___
+
 Features:
 
 Three Dimensional Menu System
