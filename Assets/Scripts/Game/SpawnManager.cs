@@ -251,13 +251,15 @@ public class SpawnManager : MonoBehaviour {
     /// <param name="roleDescription">The description of their role.</param>
     public void SetRoleText(GameObject player, string roleName, string roleDescription)
     {
-		Transform mainPanel = player.GetComponent<MonsterManager> ().Menu.transform.FindChild ("MainPanel");
+		Transform mainPanel;
 		if (roleName == "Monster") {
+			mainPanel = player.GetComponent<MonsterManager> ().Menu.transform.FindChild ("MainPanel");
 			mainPanel.FindChild ("RoleNamePanel").FindChild ("RoleName").GetComponent<Text> ().text = roleName;
 			mainPanel.FindChild ("RoleDescriptionPanel").FindChild ("RoleDescription").GetComponent<Text> ().text = roleDescription;
 		} 
 		else 
 		{
+			mainPanel = player.GetComponent<Player> ().Menu.transform.FindChild ("MainPanel");
 			mainPanel.FindChild("RoleNamePanel").FindChild("RoleName").GetComponent<Text>().text = roleName;
 			mainPanel.FindChild("RoleDescriptionPanel").FindChild("RoleDescription").GetComponent<Text>().text = roleDescription;
 		}
