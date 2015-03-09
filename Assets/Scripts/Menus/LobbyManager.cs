@@ -85,6 +85,7 @@ public class LobbyManager : MonoBehaviour {
                 playerNameList.Add(networkManager.GetComponent<NetworkManager>().playerName);
                 serverName = networkManager.GetComponent<NetworkManager>().gameName;
                 UpdateServerName(serverName);
+                networkView.RPC("UpdateServerName", RPCMode.AllBuffered, serverName);
                 ClearPlayerLabels();
                 ResizeScrollingBox(1);
                 CreatePlayerLabel(playerNameList[0], "0", 1, 0);
