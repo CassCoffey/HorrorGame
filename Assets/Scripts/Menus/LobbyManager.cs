@@ -260,8 +260,7 @@ public class LobbyManager : MonoBehaviour {
 
     [RPC] void RetrieveServerOptions(string option, string value)
     {
-        settingsPanel.transform.FindChild(option).FindChild("Text").GetComponent<Text>().text = value;
-        settingsPanel.transform.FindChild(option).FindChild("Placeholder").GetComponent<Text>().text = "";
+        settingsPanel.transform.FindChild(option).FindChild("Placeholder").GetComponent<Text>().text = value;
     }
 
 
