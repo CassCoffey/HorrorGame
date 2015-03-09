@@ -113,7 +113,6 @@ public class Vitals : MonoBehaviour {
             vitalsPanel.transform.FindChild("HealthSlider").GetComponent<Slider>().value = health;
 			if(player.tag == "Player")
 			{
-				Debug.Log ("SyncTrails");
 				player.transform.FindChild("TrailParticles").GetComponent<TrailSyncing>().SyncTrails(health);
 			}
         }
