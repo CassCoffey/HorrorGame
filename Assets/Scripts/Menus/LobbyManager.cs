@@ -166,10 +166,7 @@ public class LobbyManager : MonoBehaviour {
     /// <param name="info">Information about the disconnect.</param>
     void OnDisconnectedFromServer(NetworkDisconnection info)
     {
-        if (Network.isClient)
-        {
-            GameObject.Find("ScreenManager").GetComponent<ScreenManager>().MoveCameraTo(GameObject.Find("MainMenu"));
-        }
+        GameObject.Find("ScreenManager").GetComponent<ScreenManager>().MoveCameraTo(GameObject.Find("MainMenu"));
     }
 
 	/// <summary>
