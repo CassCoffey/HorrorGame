@@ -581,7 +581,7 @@ GameObject:
   - 114: {fileID: 786385836}
   m_Layer: 0
   m_Name: WinZone
-  m_TagString: Untagged
+  m_TagString: WinZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -755,6 +755,10 @@ Prefab:
       propertyPath: resultsEmpty
       value: 
       objectReference: {fileID: 1572321195}
+    - target: {fileID: 156136, guid: 0dc3480937ff6fd4fbb57c4525ab711f, type: 2}
+      propertyPath: m_TagString
+      value: WinZone
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0dc3480937ff6fd4fbb57c4525ab711f, type: 2}
   m_RootGameObject: {fileID: 786385835}
