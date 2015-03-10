@@ -1,6 +1,8 @@
 # HorrorGame
 A starter project for learning Unity, C#, networking, and using Git in a team environment.
 
+Code written by us can be found in the Assets/Scripts/Game and Assets/Scripts/Menu folders.
+
 ___
 
 Features:
